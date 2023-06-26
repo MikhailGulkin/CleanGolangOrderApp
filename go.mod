@@ -1,4 +1,4 @@
-module github.com/MikhailGulkin/simpleOrderApp
+module github.com/MikhailGulkin/simpleGoOrderApp
 
 go 1.20
 
