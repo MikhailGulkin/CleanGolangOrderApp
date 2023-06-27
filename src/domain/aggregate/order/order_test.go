@@ -1,7 +1,7 @@
 package domain
 
 import (
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	"testing"
 )
 

@@ -2,7 +2,7 @@ package domain
 
 import (
 	"errors"
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/google/uuid"
 	"strconv"

@@ -1,9 +1,11 @@
-package domain
+package product
 
 import (
-	"errors"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain"
+	domain2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
 	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/google/uuid"
+	"strconv"
 )
 
 type Product struct {
@@ -19,14 +21,17 @@ func (_ Product) create(price float64, discount int32, description string) (Prod
 	productId, err := uuid.NewUUID()
 
 	if err != nil {
-		return Product{}, errors.New("When ProductId was created error occurred: " + err.Error())
+		idError := domain.InvalidUUIDCreation.Exception(domain.InvalidUUIDCreation{}, "Product Creation failure", err.Error())
+		return Product{}, &idError
 	}
 	if price < 0 {
-		return Product{}, errors.New("price cannot be negative")
+		priceError := domain2.InvalidPriceProductCreation.Exception(domain2.InvalidPriceProductCreation{}, strconv.Itoa(int(price)))
+		return Product{}, &priceError
 	}
 
 	if discount < 0 || discount > 99 {
-		return Product{}, errors.New("discount must be in from 0 to 99")
+		discountError := domain2.InvalidDiscountProductCreation.Exception(domain2.InvalidDiscountProductCreation{}, strconv.Itoa(int(discount)))
+		return Product{}, &discountError
 	}
 	return Product{
 		ProductId:    vo.ProductId{Value: productId},
