@@ -10,7 +10,7 @@ import (
 
 type Product struct {
 	vo.ProductId
-	price        float64
+	Price        float64
 	discount     int32
 	quantity     int32
 	description  string
@@ -35,7 +35,7 @@ func (_ Product) create(price float64, discount int32, description string) (Prod
 	}
 	return Product{
 		ProductId:    vo.ProductId{Value: productId},
-		price:        price,
+		Price:        price,
 		discount:     discount,
 		quantity:     1,
 		description:  description,
