@@ -7,3 +7,9 @@ func Provide(opt fx.Option) *fx.App {
 		opt,
 	)
 }
+
+var Module = fx.Provide(
+	NewConfig,
+	NewDBConfig,
+	NewAPIConfig,
+)

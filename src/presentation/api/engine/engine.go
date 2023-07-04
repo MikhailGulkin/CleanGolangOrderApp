@@ -14,8 +14,15 @@ func NewRequestHandler() RequestHandler {
 	return RequestHandler{Gin: engine}
 }
 
+type BaseGroup struct {
+	Group *gin.RouterGroup
+}
+
+func NewBaseGroup(handler RequestHandler) BaseGroup {
+	return BaseGroup{handler.Gin.Group("/api/v1")}
+}
+
 var Module = fx.Options(
-	//routes.Module,
 	fx.Provide(NewRequestHandler),
-	//fx.Provide(NewConfig),
+	fx.Provide(NewBaseGroup),
 )

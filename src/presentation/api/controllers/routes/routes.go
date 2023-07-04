@@ -1,23 +1,24 @@
 package routes
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/handlers"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
 	fx.Provide(NewRoutes),
 	fx.Provide(NewProductRoutes),
-	controllers.Module,
+	handlers.Module,
 )
 
 type Routes []Route
+
 type Route interface {
 	Setup()
 }
 
 func NewRoutes(
-	productRoutes ProductRoutes,
+	productRoutes ProductRoutes, //nolint:all
 ) Routes {
 	return Routes{
 		productRoutes,

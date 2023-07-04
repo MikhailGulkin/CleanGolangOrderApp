@@ -4,7 +4,6 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
-	"gorm.io/gorm"
 )
 
 type ProductDAOImpl struct {
@@ -22,10 +21,6 @@ func (dao *ProductDAOImpl) Create(product product.Product) error {
 		Description:  product.Description,
 		Availability: product.Availability,
 	}
-	result := dao.session.Create(&productModel)
+	result := dao.Session.Create(&productModel)
 	return result.Error
-}
-
-func BuildProductDAO(conn *gorm.DB) persistence.ProductDAO {
-	return &ProductDAOImpl{BaseGormDAO: BaseGormDAO{conn}}
 }

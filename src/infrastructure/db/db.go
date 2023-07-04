@@ -1,11 +1,15 @@
 package db
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/dao"
-	"go.uber.org/fx"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/config"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-var Module = fx.Options(
-	fx.Provide(BuildConnection),
-	fx.Provide(dao.BuildProductDAO),
-)
+func BuildConnection(config config.DBConfig) *gorm.DB {
+	db, err := gorm.Open(postgres.Open(config.FullDNS()), &gorm.Config{})
+	if err == nil {
+		return db
+	}
+	panic(err.Error())
+}

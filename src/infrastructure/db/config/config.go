@@ -1,10 +1,10 @@
-package db
+package config
 
 import (
 	"fmt"
 )
 
-type ConfigDB struct {
+type DBConfig struct {
 	Host     string `toml:"host"`
 	Port     int    `toml:"port"`
 	Database string `toml:"database"`
@@ -12,7 +12,7 @@ type ConfigDB struct {
 	Password string `toml:"password"`
 }
 
-func (conf *ConfigDB) FullDNS() string {
+func (conf *DBConfig) FullDNS() string {
 	return fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%d",
 		conf.Host, conf.User, conf.Password, conf.Database, conf.Port,

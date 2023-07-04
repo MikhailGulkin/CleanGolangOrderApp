@@ -1,4 +1,4 @@
-package controllers
+package handlers
 
 import (
 	interfaces "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
@@ -6,15 +6,11 @@ import (
 	"net/http"
 )
 
-type ProductController struct {
-	Interactor interfaces.CreateProduct
+type ProductHandler struct {
+	createProduct interfaces.CreateProduct
 }
 
-func NewProductController(interactor interfaces.CreateProduct) ProductController {
-	return ProductController{interactor}
-}
-
-func (c *ProductController) CreateProduct(context *gin.Context) {
+func (c *ProductHandler) CreateProduct(context *gin.Context) {
 	var requestBody interfaces.CreateProductCommand
 	if err := context.BindJSON(&requestBody); err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
@@ -22,7 +18,7 @@ func (c *ProductController) CreateProduct(context *gin.Context) {
 		})
 	}
 
-	err := c.Interactor.Create(requestBody)
+	err := c.createProduct.Create(requestBody)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),

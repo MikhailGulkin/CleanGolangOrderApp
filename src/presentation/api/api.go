@@ -3,40 +3,39 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/config"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/routes"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	fx.Provide(NewConfig),
+	providers.Module,
 	routes.Module,
 	engine.Module,
+	di.Module,
+	fx.Invoke(Start),
 )
 
-type Config struct {
-	db.ConfigDB
-	APIConfig struct {
-		Host string
-		Port int
-	} `toml:"api"`
-}
-
-func NewConfig() Config {
-	var conf Config
-	config.LoadConfig(&conf, "")
-	return conf
-}
-
-func Start(lifecycle fx.Lifecycle, router engine.RequestHandler, config Config, routes routes.Routes) {
-	routes.Setup()
+func Start(
+	lifecycle fx.Lifecycle,
+	router engine.RequestHandler,
+	config config.APIConfig,
+	routers routes.Routes, //nolint:all
+) {
+	routers.Setup()
 	lifecycle.Append(
 		fx.Hook{
 			OnStart: func(context.Context) error {
-				fmt.Printf("Starting application in :%d", config.APIConfig.Port)
-				go router.Gin.Run(fmt.Sprintf("%s:%d", config.APIConfig.Host, config.APIConfig.Port))
+				fmt.Printf("Starting application in :%d", config.Port)
+				go func() {
+					err := router.Gin.Run(fmt.Sprintf("%s:%d", config.Host, config.Port))
+					if err != nil {
+
+					}
+				}()
 				return nil
 			},
 			OnStop: func(context.Context) error {

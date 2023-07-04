@@ -1,4 +1,4 @@
-package command
+package product
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
