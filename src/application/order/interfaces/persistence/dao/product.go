@@ -1,9 +1,9 @@
-package persistence
+package dao
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 )
 
 type ProductDAO interface {
-	Create(product.Product) error
+	Create(product product.Product, tx interface{}) error
 }

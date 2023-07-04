@@ -1,17 +1,18 @@
 package dao
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
+	"gorm.io/gorm"
 )
 
 type ProductDAOImpl struct {
 	BaseGormDAO
-	persistence.ProductDAO
+	dao.ProductDAO
 }
 
-func (dao *ProductDAOImpl) Create(product product.Product) error {
+func (dao *ProductDAOImpl) Create(product product.Product, tx interface{}) error {
 	productModel := models.Product{
 		Base:         models.Base{ID: product.ProductID.Value},
 		Price:        product.Price,
@@ -21,6 +22,5 @@ func (dao *ProductDAOImpl) Create(product product.Product) error {
 		Description:  product.Description,
 		Availability: product.Availability,
 	}
-	result := dao.Session.Create(&productModel)
-	return result.Error
+	return tx.(*gorm.DB).Create(&productModel).Error
 }
