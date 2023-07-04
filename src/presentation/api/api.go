@@ -33,7 +33,7 @@ func Start(
 				go func() {
 					err := router.Gin.Run(fmt.Sprintf("%s:%d", config.Host, config.Port))
 					if err != nil {
-
+						panic(err)
 					}
 				}()
 				return nil
