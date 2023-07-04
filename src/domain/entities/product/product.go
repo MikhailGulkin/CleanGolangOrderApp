@@ -2,43 +2,45 @@ package product
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain"
-	domain2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
+	domainEntity "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
 	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/google/uuid"
 	"strconv"
 )
 
 type Product struct {
-	vo.ProductId
+	vo.ProductID
 	Price        float64
-	discount     int32
-	quantity     int32
-	description  string
-	availability bool
+	Name         string
+	Discount     int32
+	Quantity     int32
+	Description  string
+	Availability bool
 }
 
-func (_ Product) create(price float64, discount int32, description string) (Product, error) {
-	productId, err := uuid.NewUUID()
+func (Product) Create(price float64, discount int32, description string, name string) (Product, error) {
+	productID, err := uuid.NewUUID()
 
 	if err != nil {
-		idError := domain.InvalidUUIDCreation.Exception(domain.InvalidUUIDCreation{}, "Product Creation failure", err.Error())
+		idError := domain.InvalidUUIDCreation{}.Exception("Product ID Creation failure", err.Error())
 		return Product{}, &idError
 	}
 	if price < 0 {
-		priceError := domain2.InvalidPriceProductCreation.Exception(domain2.InvalidPriceProductCreation{}, strconv.Itoa(int(price)))
+		priceError := domainEntity.InvalidPriceProductCreation{}.Exception(strconv.Itoa(int(price)))
 		return Product{}, &priceError
 	}
 
 	if discount < 0 || discount > 99 {
-		discountError := domain2.InvalidDiscountProductCreation.Exception(domain2.InvalidDiscountProductCreation{}, strconv.Itoa(int(discount)))
+		discountError := domainEntity.InvalidDiscountProductCreation{}.Exception(strconv.Itoa(int(discount)))
 		return Product{}, &discountError
 	}
 	return Product{
-		ProductId:    vo.ProductId{Value: productId},
+		ProductID:    vo.ProductID{Value: productID},
 		Price:        price,
-		discount:     discount,
-		quantity:     1,
-		description:  description,
-		availability: true,
+		Name:         name,
+		Discount:     discount,
+		Quantity:     1,
+		Description:  description,
+		Availability: true,
 	}, nil
 }

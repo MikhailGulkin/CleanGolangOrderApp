@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-type priceOrder float64
+type PriceOrder float64
 
 type Order struct {
 	vo.OrderId
@@ -19,13 +19,13 @@ type Order struct {
 	orderStatus     consts.OrderStatus
 	paymentMethod   consts.PaymentMethod
 	deliveryAddress address.Address
-	totalPrice      priceOrder
+	totalPrice      PriceOrder
 	date            time.Time
 	serialNumber    int
 }
 
-func (_ Order) create(products *[]domain.Product, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
-	OrderId, idError := uuid.NewUUID()
+func (Order) Create(products *[]domain.Product, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
+	OrderID, idError := uuid.NewUUID()
 
 	if idError != nil {
 		return Order{}, errors.New("When OrderId was created error occurred: " + idError.Error())
@@ -36,7 +36,7 @@ func (_ Order) create(products *[]domain.Product, deliveryAddress address.Addres
 	}
 
 	return Order{
-		OrderId:         vo.OrderId{Value: OrderId},
+		OrderId:         vo.OrderId{Value: OrderID},
 		products:        *products,
 		orderStatus:     consts.New,
 		deliveryAddress: deliveryAddress,
@@ -48,17 +48,16 @@ func (_ Order) create(products *[]domain.Product, deliveryAddress address.Addres
 func getCurrentSerialNumber(serialNumber int) (int, error) {
 	if serialNumber > 100 || serialNumber < 1 {
 		return -1, errors.New("wrong SerialNumber creation, serial: " + strconv.Itoa(serialNumber))
-
 	}
 	if serialNumber == 100 {
 		return 1, nil
 	}
 	return serialNumber + 1, nil
 }
-func (c *Order) getTotalPrice() priceOrder {
-	var total priceOrder
+func (c *Order) GetTotalPrice() PriceOrder {
+	var total PriceOrder
 	for _, product := range c.products {
-		total += priceOrder(product.Price)
+		total += PriceOrder(product.Price)
 	}
 	return total
 }

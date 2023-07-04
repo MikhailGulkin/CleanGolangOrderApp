@@ -23,3 +23,6 @@ func (e InvalidUUIDCreation) Exception(context string, uuidError string) Invalid
 		uuidError,
 	}
 }
+func (e *InvalidUUIDCreation) Error() string {
+	return e.CustomException.Error() + e.uuidError
+}

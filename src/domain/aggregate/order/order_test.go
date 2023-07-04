@@ -7,8 +7,8 @@ import (
 )
 
 func TestIncorrectSerialOrderCreate(t *testing.T) {
-	var incorrectSerial int = 110
-	_, err := Order.create(Order{}, &[]domain.Product{}, address.Address{}, incorrectSerial)
+	var incorrectSerial = 110
+	_, err := Order.Create(Order{}, &[]domain.Product{}, address.Address{}, incorrectSerial)
 	if err == nil {
 		t.Error("Wrong Order created with serial: ", incorrectSerial)
 	}

@@ -1,11 +1,17 @@
-package models
+package dto
+
+import (
+	"github.com/google/uuid"
+	"time"
+)
 
 type Product struct {
-	Base
+	ID           uuid.UUID
+	Name         string
 	Price        float64
-	Name         string `gorm:"unique"`
 	Discount     int32
 	Quantity     int32
 	Description  string
 	Availability bool
+	CreatedAt    time.Time
 }

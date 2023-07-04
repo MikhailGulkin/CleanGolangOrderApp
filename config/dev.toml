@@ -1,0 +1,10 @@
+[api]
+host = "127.0.0.1"
+port = 8000
+
+[db]
+host = "localhost"
+port = 5431
+database = "OrderApp"
+user = "postgres"
+password = "1234"
