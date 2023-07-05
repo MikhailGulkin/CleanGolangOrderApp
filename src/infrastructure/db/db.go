@@ -7,13 +7,6 @@ import (
 	"gorm.io/gorm"
 )
 
-func AutoMigrate(db *gorm.DB) {
-	err := db.AutoMigrate(&models.Product{})
-	if err != nil {
-		return
-	}
-}
-
 func BuildConnection(config config.DBConfig) *gorm.DB {
 	db, err := gorm.Open(postgres.Open(config.FullDNS()), &gorm.Config{})
 	if err == nil {
