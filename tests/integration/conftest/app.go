@@ -1,7 +1,6 @@
 package conftest
 
 import (
-	"fmt"
 	load "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di"
@@ -9,7 +8,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/middleware"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
@@ -26,22 +25,21 @@ func NewRequestHandler() engine.RequestHandler {
 func NewConfig() config.Config {
 	var conf config.Config
 	load.LoadConfig(&conf, os.Getenv("PROJECT_PATH"), "./config/test.toml")
-	fmt.Println(conf.FullDNS())
 	return conf
 }
 
 var ModuleEngine = fx.Provide(
-	engine.NewBaseGroup,
 	NewRequestHandler,
 )
 var ModuleConfig = fx.Provide(
 	NewConfig,
-	providers.NewDBConfig,
-	providers.NewAPIConfig,
+	config.NewDBConfig,
+	config.NewAPIConfig,
 )
 var Module = fx.Options(
 	ModuleConfig,
 	routes.Module,
+	middleware.Module,
 	ModuleEngine,
 	di.Module,
 	fx.Invoke(api.Start),

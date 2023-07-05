@@ -7,12 +7,13 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/middleware"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	providers.Module,
+	config.Module,
+	middleware.Module,
 	routes.Module,
 	engine.Module,
 	di.Module,
@@ -23,9 +24,12 @@ func Start(
 	lifecycle fx.Lifecycle,
 	router engine.RequestHandler,
 	config config.APIConfig,
+	middlewares middleware.Middlewares,
 	routers routes.Routes, //nolint:all
 ) {
+	middlewares.Setup()
 	routers.Setup()
+
 	lifecycle.Append(
 		fx.Hook{
 			OnStart: func(context.Context) error {

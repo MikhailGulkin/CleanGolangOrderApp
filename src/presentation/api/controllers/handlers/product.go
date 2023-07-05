@@ -13,16 +13,14 @@ type ProductHandler struct {
 func (c *ProductHandler) CreateProduct(context *gin.Context) {
 	var requestBody interfaces.CreateProductCommand
 	if err := context.BindJSON(&requestBody); err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
-			"error": err.Error(),
-		})
+		context.AbortWithError(http.StatusInternalServerError, err)
+		return
 	}
 
 	err := c.createProduct.Create(requestBody)
 	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
+		context.Error(err)
+		return
 	}
 	context.Status(http.StatusNoContent)
 }
