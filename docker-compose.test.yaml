@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  test-db:
+    container_name: OrderAppTest
+    image: postgres:latest
+    restart: on-failure
+    env_file:
+      - .test.env
+    ports:
+      - "5430:5432"
+    volumes:
+      - ./dump-test:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

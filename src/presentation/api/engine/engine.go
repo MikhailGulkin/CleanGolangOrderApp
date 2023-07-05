@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
 )
@@ -18,8 +19,8 @@ type BaseGroup struct {
 	Group *gin.RouterGroup
 }
 
-func NewBaseGroup(handler RequestHandler) BaseGroup {
-	return BaseGroup{handler.Gin.Group("/api/v1")}
+func NewBaseGroup(handler RequestHandler, config config.APIConfig) BaseGroup {
+	return BaseGroup{handler.Gin.Group(config.BaseURLPrefix)}
 }
 
 var Module = fx.Options(

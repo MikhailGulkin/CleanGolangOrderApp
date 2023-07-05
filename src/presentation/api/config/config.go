@@ -5,8 +5,9 @@ import (
 )
 
 type APIConfig struct {
-	Host string
-	Port int
+	Host          string
+	Port          int
+	BaseURLPrefix string `toml:"base_url_prefix"`
 }
 type Config struct {
 	config.DBConfig `toml:"db"`

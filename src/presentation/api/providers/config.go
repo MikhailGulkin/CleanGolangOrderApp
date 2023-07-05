@@ -8,7 +8,7 @@ import (
 
 func NewConfig() config.Config {
 	var conf config.Config
-	load.LoadConfig(&conf)
+	load.LoadConfig(&conf, "", "")
 	return conf
 }
 func NewDBConfig(config config.Config) db.DBConfig {

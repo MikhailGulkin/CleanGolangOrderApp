@@ -4,13 +4,9 @@ services:
     container_name: OrderApp
     image: postgres:latest
     restart: on-failure
-    environment:
-      POSTGRES_DB : OrderApp
-      POSTGRES_USER : postgres
-      POSTGRES_PASSWORD : 1234
-      POSTGRES_HOST : localhost
-      POSTGRES_PORT : 5431
+    env_file:
+      - .env
     ports:
-      - 5431:5432
+      - "5431:5432"
     volumes:
       - ./dump:/var/lib/postgresql/data

@@ -1,11 +1,11 @@
 [api]
 host = "127.0.0.1"
-port = 8000
+port = 8002
 base_url_prefix = "/api/v1"
 
 [db]
-host = "localhost"
-port = 5431
-database = "OrderApp"
+host = "OrderContainerAppTest"
+port = 5432
+database = "OrderContainerAppTest"
 user = "postgres"
 password = "1234"
