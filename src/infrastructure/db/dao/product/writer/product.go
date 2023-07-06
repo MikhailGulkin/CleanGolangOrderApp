@@ -1,14 +1,15 @@
-package dao
+package writer
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
+	db "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	"gorm.io/gorm"
 )
 
 type ProductDAOImpl struct {
-	BaseGormDAO
+	db.BaseGormDAO
 	dao.ProductDAO
 }
 

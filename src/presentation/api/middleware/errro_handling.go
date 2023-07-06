@@ -3,10 +3,10 @@ package middleware
 import (
 	"errors"
 	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/response"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"reflect"
 )
 
 type ErrorMiddleware struct {
@@ -27,17 +27,15 @@ func (m ErrorMiddleware) Setup() {
 			var discountError *domain.InvalidDiscountProductCreation
 			var priceError *domain.InvalidPriceProductCreation
 			if errors.As(err, &discountError) {
-				c.JSON(http.StatusBadRequest, gin.H{
-					"error": err.Error(),
-					"data":  reflect.TypeOf(domain.InvalidDiscountProductCreation{}).String(),
-				})
+				c.JSON(http.StatusBadRequest,
+					response.ExceptionResponse{Message: discountError.Message, Data: discountError.Ctx},
+				)
 				return
 			}
 			if errors.As(err, &priceError) {
-				c.JSON(http.StatusBadRequest, gin.H{
-					"message": err.Error(),
-					"data":    reflect.TypeOf(domain.InvalidPriceProductCreation{}).String(),
-				})
+				c.JSON(http.StatusBadRequest,
+					response.ExceptionResponse{Message: priceError.Message, Data: priceError.Ctx},
+				)
 				return
 			}
 

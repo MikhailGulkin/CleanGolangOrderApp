@@ -13,7 +13,9 @@ type ProductRoutes struct {
 }
 
 func (s ProductRoutes) Setup() {
-	s.Gin.POST("/api/v1/products", s.controller.CreateProduct)
+	r := s.Gin.Group(s.BaseURLPrefix)
+	r.POST("/products", s.controller.CreateProduct)
+	r.GET("/products", s.controller.GetALlProducts)
 }
 
 func NewProductRoutes(
