@@ -11,7 +11,7 @@ func BuildConnection(config config.DBConfig) *gorm.DB {
 	db, err := gorm.Open(postgres.Open(config.FullDNS()), &gorm.Config{})
 	if err == nil {
 		if config.Migration {
-			_ = db.AutoMigrate(&models.Product{})
+			_ = db.AutoMigrate(&models.Product{}, &models.Address{})
 		}
 		return db
 	}

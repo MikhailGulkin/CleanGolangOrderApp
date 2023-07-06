@@ -9,4 +9,4 @@ port = 5431
 database = "OrderApp"
 user = "postgres"
 password = "1234"
-migration = false
+migration = true
