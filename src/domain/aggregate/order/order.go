@@ -28,7 +28,7 @@ func (Order) Create(products *[]domain.Product, deliveryAddress address.Address,
 	OrderID, idError := uuid.NewUUID()
 
 	if idError != nil {
-		return Order{}, errors.New("When OrderId was created error occurred: " + idError.Error())
+		return Order{}, errors.New("When OrderId was created errorHandler occurred: " + idError.Error())
 	}
 	serialNumber, serialError := getCurrentSerialNumber(previousSerialNumber)
 	if serialError != nil {

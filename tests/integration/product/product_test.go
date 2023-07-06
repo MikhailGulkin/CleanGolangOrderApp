@@ -18,7 +18,7 @@ func TestProducts(t *testing.T) {
 		resp, err := http.Post(fmt.Sprintf("%s/products", server.URL), "application/json", CreateValidByteProduct()) //nolint:bodyclose
 
 		if err != nil {
-			t.Fatalf("Expected no error, got %v", err)
+			t.Fatalf("Expected no errorHandler, got %v", err)
 		}
 		assert.Equal(t, http.StatusNoContent, resp.StatusCode)
 	})
@@ -28,7 +28,7 @@ func TestProducts(t *testing.T) {
 		resp, err := http.Post(fmt.Sprintf("%s/products", server.URL), "application/json", CreateInvalidDiscountByteProduct()) //nolint:bodyclose
 
 		if err != nil {
-			t.Fatalf("Expected no error, got %v", err)
+			t.Fatalf("Expected no errorHandler, got %v", err)
 		}
 		assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
 	})
@@ -38,7 +38,7 @@ func TestProducts(t *testing.T) {
 		resp, err := http.Post(fmt.Sprintf("%s/products", server.URL), "application/json", CreateInvalidPriceByteProduct()) //nolint:bodyclose
 
 		if err != nil {
-			t.Fatalf("Expected no error, got %v", err)
+			t.Fatalf("Expected no errorHandler, got %v", err)
 		}
 		assert.Equal(t, http.StatusBadRequest, resp.StatusCode)
 	})

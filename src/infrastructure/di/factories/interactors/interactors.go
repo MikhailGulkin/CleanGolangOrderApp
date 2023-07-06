@@ -21,8 +21,14 @@ func NewGetALlProductsImp(dao dao.ProductReader) query.GetAllProducts {
 		DAO: dao,
 	}
 }
+func NewGetProductByName(dao dao.ProductReader) query.GetProductByName {
+	return &p.GetProductByNameImpl{
+		DAO: dao,
+	}
+}
 
 var Module = fx.Provide(
 	NewCreateProductImpl,
 	NewGetALlProductsImp,
+	NewGetProductByName,
 )

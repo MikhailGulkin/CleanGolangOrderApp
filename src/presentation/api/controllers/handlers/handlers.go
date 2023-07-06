@@ -10,6 +10,10 @@ var Module = fx.Options(
 	fx.Provide(NewProductHandler),
 )
 
-func NewProductHandler(createProduct interfaces.CreateProduct, getAllProducts product.GetAllProducts) ProductHandler {
-	return ProductHandler{createProduct, getAllProducts}
+func NewProductHandler(
+	createProduct interfaces.CreateProduct,
+	getAllProducts product.GetAllProducts,
+	getProductByName product.GetProductByName,
+) ProductHandler {
+	return ProductHandler{createProduct: createProduct, getAllProducts: getAllProducts, getProductByName: getProductByName}
 }

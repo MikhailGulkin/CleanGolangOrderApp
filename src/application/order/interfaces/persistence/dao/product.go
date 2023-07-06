@@ -11,4 +11,5 @@ type ProductDAO interface {
 }
 type ProductReader interface {
 	GetAllProducts(filters filters.BaseFilters) ([]dto.Product, error)
+	GetProductByName(name string) (dto.Product, error)
 }

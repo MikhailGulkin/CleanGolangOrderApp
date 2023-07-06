@@ -17,7 +17,7 @@ type InvalidUUIDCreation struct {
 func (e InvalidUUIDCreation) Exception(context string, uuidError string) InvalidUUIDCreation {
 	return InvalidUUIDCreation{
 		CustomException{
-			Message: "When create uuid error occurred",
+			Message: "When create uuid errorHandler occurred",
 			Ctx:     context,
 		},
 		uuidError,

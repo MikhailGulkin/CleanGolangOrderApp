@@ -11,8 +11,9 @@ import (
 )
 
 type ProductHandler struct {
-	createProduct  command.CreateProduct
-	getAllProducts product.GetAllProducts
+	createProduct    command.CreateProduct
+	getAllProducts   product.GetAllProducts
+	getProductByName product.GetProductByName
 }
 
 func (c *ProductHandler) CreateProduct(context *gin.Context) {
@@ -47,4 +48,15 @@ func (c *ProductHandler) GetALlProducts(context *gin.Context) {
 		return
 	}
 	context.JSON(http.StatusOK, products)
+}
+func (c *ProductHandler) GetProductByName(context *gin.Context) {
+	productName := context.Param("productName")
+	productByName, err := c.getProductByName.Get(
+		product.GetProductByNameQuery{Name: productName},
+	)
+	if err != nil {
+		context.Error(err)
+		return
+	}
+	context.JSON(http.StatusOK, productByName)
 }
