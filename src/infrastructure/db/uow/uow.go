@@ -24,7 +24,9 @@ func (uow *GormUoW) GetTx() interface{} {
 }
 func (uow *GormUoW) Commit() {
 	uow.Tx.Commit()
+	uow.Tx = nil
 }
 func (uow *GormUoW) Rollback() {
 	uow.Tx.Rollback()
+	uow.Tx = nil
 }
