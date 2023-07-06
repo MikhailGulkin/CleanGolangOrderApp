@@ -19,5 +19,5 @@ func (interactor *GetAllProductsImpl) Get(query product.GetAllProductsQuery) (dt
 	if err != nil {
 		return dto.Products{}, err
 	}
-	return dto.Products{Products: products, Limit: query.Limit, Offset: query.Offset, Order: query.Order}, nil
+	return dto.Products{Products: products, Limit: query.Limit, Offset: query.Offset, Order: query.Order, Count: uint(len(products))}, nil
 }

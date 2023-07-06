@@ -27,7 +27,7 @@ func (m ErrorMiddleware) Handle(c *gin.Context) {
 			return
 		}
 		c.JSON(http.StatusInternalServerError,
-			response.ExceptionResponse{Message: "Unknown server errorHandler has occurred", Data: err.Error()},
+			response.ExceptionResponse{Message: "Unknown server error has occurred", Data: err.Error()},
 		)
 	}
 }

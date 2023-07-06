@@ -19,6 +19,7 @@ type Product struct {
 
 type Products struct {
 	Products []Product         `json:"products,omitempty"`
+	Count    uint              `json:"count"`
 	Limit    uint              `json:"limit,omitempty"`
 	Offset   uint              `json:"offset,omitempty"`
 	Order    filters.BaseOrder `json:"order,omitempty"`
