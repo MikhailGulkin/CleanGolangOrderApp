@@ -13,7 +13,9 @@ type GetAllProductsImpl struct {
 }
 
 func (interactor *GetAllProductsImpl) Get(query product.GetAllProductsQuery) (dto.Products, error) {
-	products, err := interactor.DAO.GetAllProducts(filters.GetAllProductsFilters{}.Create(query.Limit, query.Offset, query.Order))
+	products, err := interactor.DAO.GetAllProducts(
+		filters.GetAllProductsFilters{}.Create(query.Limit, query.Offset, query.Order),
+	)
 	if err != nil {
 		return dto.Products{}, err
 	}

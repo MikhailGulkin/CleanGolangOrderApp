@@ -24,10 +24,8 @@ func Start(
 	lifecycle fx.Lifecycle,
 	router engine.RequestHandler,
 	config config.APIConfig,
-	middlewares middleware.Middlewares,
 	routers routes.Routes, //nolint:all
 ) {
-	middlewares.Setup()
 	routers.Setup()
 
 	lifecycle.Append(

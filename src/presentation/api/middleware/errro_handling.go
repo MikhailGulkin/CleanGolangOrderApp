@@ -10,39 +10,38 @@ import (
 )
 
 type ErrorMiddleware struct {
+	Middleware
 	engine.RequestHandler
 }
 
 func NewErrorMiddleware(handler engine.RequestHandler) ErrorMiddleware {
 	return ErrorMiddleware{
-		handler,
+		RequestHandler: handler,
 	}
 }
 
-func (m ErrorMiddleware) Setup() {
-	m.Gin.Use(func(c *gin.Context) {
-		c.Next()
-		err := c.Errors.Last()
-		if err != nil {
-			var discountError *domain.InvalidDiscountProductCreation
-			var priceError *domain.InvalidPriceProductCreation
-			if errors.As(err, &discountError) {
-				c.JSON(http.StatusBadRequest,
-					response.ExceptionResponse{Message: discountError.Message, Data: discountError.Ctx},
-				)
-				return
-			}
-			if errors.As(err, &priceError) {
-				c.JSON(http.StatusBadRequest,
-					response.ExceptionResponse{Message: priceError.Message, Data: priceError.Ctx},
-				)
-				return
-			}
-
-			c.JSON(http.StatusInternalServerError, gin.H{
-				"message": "Unknown server error has occurred",
-				"data":    err.Error(),
-			})
+func (m ErrorMiddleware) Handle(c *gin.Context) {
+	c.Next()
+	err := c.Errors.Last()
+	if err != nil {
+		var discountError *domain.InvalidDiscountProductCreation
+		var priceError *domain.InvalidPriceProductCreation
+		if errors.As(err, &discountError) {
+			c.JSON(http.StatusBadRequest,
+				response.ExceptionResponse{Message: discountError.Message, Data: discountError.Ctx},
+			)
+			return
 		}
-	})
+		if errors.As(err, &priceError) {
+			c.JSON(http.StatusBadRequest,
+				response.ExceptionResponse{Message: priceError.Message, Data: priceError.Ctx},
+			)
+			return
+		}
+
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "Unknown server error has occurred",
+			"data":    err.Error(),
+		})
+	}
 }
