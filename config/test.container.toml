@@ -9,3 +9,4 @@ port = 5432
 database = "OrderContainerAppTest"
 user = "postgres"
 password = "1234"
+migration = true

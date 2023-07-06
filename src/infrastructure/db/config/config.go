@@ -5,11 +5,12 @@ import (
 )
 
 type DBConfig struct {
-	Host     string `toml:"host"`
-	Port     int    `toml:"port"`
-	Database string `toml:"database"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
+	Host      string `toml:"host"`
+	Port      int    `toml:"port"`
+	Database  string `toml:"database"`
+	User      string `toml:"user"`
+	Password  string `toml:"password"`
+	Migration bool   `toml:"migration"`
 }
 
 func (conf *DBConfig) FullDNS() string {

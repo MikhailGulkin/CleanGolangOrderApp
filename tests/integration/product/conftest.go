@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-func CreateValidProduct() command.CreateProductCommand {
+func CreateValidProductCommand() command.CreateProductCommand {
 	return command.CreateProductCommand{
 		Price:       100,
 		Discount:    10,
@@ -17,14 +17,14 @@ func CreateValidProduct() command.CreateProductCommand {
 }
 
 func CreateValidByteProduct() *bytes.Reader {
-	marshalled, err := json.Marshal(CreateValidProduct())
+	marshalled, err := json.Marshal(CreateValidProductCommand())
 	if err != nil {
 		log.Fatalf("impossible to marshall teacher: %s", err)
 	}
 	return bytes.NewReader(marshalled)
 }
 func CreateInvalidDiscountByteProduct() *bytes.Reader {
-	product := CreateValidProduct()
+	product := CreateValidProductCommand()
 	product.Discount = -100
 	marshalled, err := json.Marshal(product)
 	if err != nil {
@@ -33,7 +33,7 @@ func CreateInvalidDiscountByteProduct() *bytes.Reader {
 	return bytes.NewReader(marshalled)
 }
 func CreateInvalidPriceByteProduct() *bytes.Reader {
-	product := CreateValidProduct()
+	product := CreateValidProductCommand()
 	product.Price = -100
 	marshalled, err := json.Marshal(product)
 	if err != nil {

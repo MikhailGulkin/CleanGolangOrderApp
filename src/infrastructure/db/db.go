@@ -10,7 +10,9 @@ import (
 func BuildConnection(config config.DBConfig) *gorm.DB {
 	db, err := gorm.Open(postgres.Open(config.FullDNS()), &gorm.Config{})
 	if err == nil {
-		_ = db.AutoMigrate(&models.Product{})
+		if config.Migration {
+			_ = db.AutoMigrate(&models.Product{})
+		}
 		return db
 	}
 	panic(err.Error())
