@@ -14,6 +14,12 @@ func NewProductHandler(
 	createProduct interfaces.CreateProduct,
 	getAllProducts product.GetAllProducts,
 	getProductByName product.GetProductByName,
+	updateProductByName interfaces.UpdateProductName,
 ) ProductHandler {
-	return ProductHandler{createProduct: createProduct, getAllProducts: getAllProducts, getProductByName: getProductByName}
+	return ProductHandler{
+		createProduct:     createProduct,
+		getAllProducts:    getAllProducts,
+		getProductByName:  getProductByName,
+		updateProductName: updateProductByName,
+	}
 }

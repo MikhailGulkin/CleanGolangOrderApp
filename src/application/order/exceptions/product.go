@@ -16,3 +16,15 @@ func (e ProductNameNotExist) Exception(context string) ProductNameNotExist {
 			Ctx:     fmt.Sprintf("name `%s`", context),
 		}}
 }
+
+type ProductIDNotExist struct {
+	domain.CustomException
+}
+
+func (e ProductIDNotExist) Exception(context string) ProductIDNotExist {
+	return ProductIDNotExist{
+		CustomException: domain.CustomException{
+			Message: "Product with this id not exist;",
+			Ctx:     fmt.Sprintf("id `%s`", context),
+		}}
+}

@@ -44,3 +44,7 @@ func (Product) Create(price float64, discount int32, description string, name st
 		Availability: true,
 	}, nil
 }
+func (product *Product) UpdateName(name string) error {
+	product.Name = name
+	return nil
+}

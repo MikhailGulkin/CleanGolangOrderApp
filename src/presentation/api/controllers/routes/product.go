@@ -13,8 +13,10 @@ type ProductRoutes struct {
 
 func (r ProductRoutes) Setup() {
 	r.POST("/products", r.controller.CreateProduct)
+	r.PUT("/products/:productID/productName", r.controller.UpdateProductName)
 	r.GET("/products", r.controller.GetALlProducts)
 	r.GET("/products/:productName", r.controller.GetProductByName)
+
 }
 
 func NewProductRoutes(

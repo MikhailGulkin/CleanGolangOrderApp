@@ -10,13 +10,20 @@ import (
 	"go.uber.org/fx"
 )
 
-func NewCreateProductImpl(dao dao.ProductDAO, uow persistence.UoW) command.CreateProduct {
+func NewCreateProduct(dao dao.ProductDAO, uow persistence.UoW) command.CreateProduct {
 	return &product.CreateProductImpl{
 		ProductDAO: dao,
 		UoW:        uow,
 	}
 }
-func NewGetALlProductsImp(dao dao.ProductReader) query.GetAllProducts {
+func NewUpdateProductName(dao dao.ProductDAO, uow persistence.UoW) command.UpdateProductName {
+	return &product.UpdateProductNameImpl{
+		ProductDAO: dao,
+		UoW:        uow,
+	}
+}
+
+func NewGetALlProducts(dao dao.ProductReader) query.GetAllProducts {
 	return &p.GetAllProductsImpl{
 		DAO: dao,
 	}
@@ -28,7 +35,8 @@ func NewGetProductByName(dao dao.ProductReader) query.GetProductByName {
 }
 
 var Module = fx.Provide(
-	NewCreateProductImpl,
-	NewGetALlProductsImp,
+	NewCreateProduct,
+	NewGetALlProducts,
+	NewUpdateProductName,
 	NewGetProductByName,
 )

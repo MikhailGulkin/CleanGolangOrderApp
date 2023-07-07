@@ -13,6 +13,7 @@ func BuildConnection(config config.DBConfig) *gorm.DB {
 		if config.Migration {
 			_ = db.AutoMigrate(&models.Product{}, &models.Address{})
 		}
+
 		return db
 	}
 	panic(err.Error())

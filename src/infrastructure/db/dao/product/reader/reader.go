@@ -40,6 +40,5 @@ func (dao *ProductReaderImpl) GetProductByName(name string) (dto.Product, error)
 	if result.Error != nil {
 		return dto.Product{}, result.Error
 	}
-	fmt.Println(product)
 	return convertors.ConvertProductModelToDTO(product), nil
 }
