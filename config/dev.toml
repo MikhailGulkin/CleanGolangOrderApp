@@ -10,3 +10,5 @@ database = "OrderApp"
 user = "postgres"
 password = "1234"
 migration = true
+logging = true
+max_idle_connection = 100

@@ -9,4 +9,6 @@ port = 5430
 database = "OrderAppTest"
 user = "postgres"
 password = "1234"
-migration = true
+migration = false
+logging = false
+max_idle_connection = 100

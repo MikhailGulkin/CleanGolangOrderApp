@@ -13,6 +13,7 @@ func handleError(err error, c *gin.Context) bool {
 	var discountError *domain.InvalidDiscountProductCreation
 	var priceError *domain.InvalidPriceProductCreation
 	var productNameError *application.ProductNameNotExist
+	var productIDError *application.ProductIDNotExist
 
 	if errors.As(err, &discountError) {
 		c.JSON(http.StatusBadRequest,
@@ -29,6 +30,12 @@ func handleError(err error, c *gin.Context) bool {
 	if errors.As(err, &productNameError) {
 		c.JSON(http.StatusNotFound,
 			response.ExceptionResponse{Message: productNameError.Message, Data: productNameError.Ctx},
+		)
+		return true
+	}
+	if errors.As(err, &productIDError) {
+		c.JSON(http.StatusNotFound,
+			response.ExceptionResponse{Message: productIDError.Message, Data: productIDError.Ctx},
 		)
 		return true
 	}

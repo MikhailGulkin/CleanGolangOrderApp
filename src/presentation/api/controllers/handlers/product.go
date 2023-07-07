@@ -40,12 +40,12 @@ func (c *ProductHandler) UpdateProductName(context *gin.Context) {
 		context.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
-	uuid_, err := uuid.Parse(productID)
+
+	parse, err := uuid.Parse(productID)
 	if err != nil {
 		context.Error(err)
 	}
-	requestBody.ProductID = uuid_
-
+	requestBody.ProductID = parse
 	err = c.updateProductName.Update(requestBody)
 	if err != nil {
 		context.Error(err)
