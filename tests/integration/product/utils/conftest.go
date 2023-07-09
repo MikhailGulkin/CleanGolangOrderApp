@@ -4,11 +4,13 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
+	"github.com/google/uuid"
 	"log"
 )
 
 func CreateValidProductCommand() command.CreateProductCommand {
 	return command.CreateProductCommand{
+		ProductID:   uuid.New(),
 		Price:       100,
 		Discount:    10,
 		Description: "Some Product",

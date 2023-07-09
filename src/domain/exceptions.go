@@ -8,21 +8,3 @@ type CustomException struct {
 func (e *CustomException) Error() string {
 	return e.Message + " " + e.Ctx
 }
-
-type InvalidUUIDCreation struct {
-	CustomException
-	uuidError string
-}
-
-func (e InvalidUUIDCreation) Exception(context string, uuidError string) InvalidUUIDCreation {
-	return InvalidUUIDCreation{
-		CustomException{
-			Message: "When create uuid errorHandler occurred",
-			Ctx:     context,
-		},
-		uuidError,
-	}
-}
-func (e *InvalidUUIDCreation) Error() string {
-	return e.CustomException.Error() + e.uuidError
-}

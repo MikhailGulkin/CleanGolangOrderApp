@@ -24,19 +24,14 @@ type Order struct {
 	serialNumber    int
 }
 
-func (Order) Create(products *[]domain.Product, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
-	OrderID, idError := uuid.NewUUID()
-
-	if idError != nil {
-		return Order{}, errors.New("When OrderId was created errorHandler occurred: " + idError.Error())
-	}
+func (Order) Create(orderID uuid.UUID, products *[]domain.Product, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
 	serialNumber, serialError := getCurrentSerialNumber(previousSerialNumber)
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
 	}
 
 	return Order{
-		OrderId:         vo.OrderId{Value: OrderID},
+		OrderId:         vo.OrderId{Value: orderID},
 		products:        *products,
 		orderStatus:     consts.New,
 		deliveryAddress: deliveryAddress,

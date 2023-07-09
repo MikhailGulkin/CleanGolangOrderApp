@@ -3,11 +3,12 @@ package utils
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
 func CreateValidProductEntity() product.Product {
-	entity, _ := product.Product{}.Create(100, 10, "", "some name")
+	entity, _ := product.Product{}.Create(uuid.New(), 100, 10, "", "some name")
 	return entity
 }
 func CreateValidProductModel(entity product.Product) models.Product {

@@ -15,6 +15,7 @@ type CreateProductImpl struct {
 
 func (interactor *CreateProductImpl) Create(command command.CreateProductCommand) error {
 	productEntity, err := product.Product{}.Create(
+		command.ProductID,
 		command.Price,
 		command.Discount,
 		command.Description,

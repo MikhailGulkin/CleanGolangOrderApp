@@ -1,7 +1,6 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain"
 	domainEntity "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
 	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/google/uuid"
@@ -18,13 +17,7 @@ type Product struct {
 	Availability bool
 }
 
-func (Product) Create(price float64, discount int32, description string, name string) (Product, error) {
-	productID, err := uuid.NewUUID()
-
-	if err != nil {
-		idError := domain.InvalidUUIDCreation{}.Exception("Product ID Creation failure", err.Error())
-		return Product{}, &idError
-	}
+func (Product) Create(productID uuid.UUID, price float64, discount int32, description string, name string) (Product, error) {
 	if price < 0 {
 		priceError := domainEntity.InvalidPriceProductCreation{}.Exception(strconv.Itoa(int(price)))
 		return Product{}, &priceError
