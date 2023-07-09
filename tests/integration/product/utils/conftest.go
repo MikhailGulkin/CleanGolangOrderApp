@@ -1,4 +1,4 @@
-package product
+package utils
 
 import (
 	"bytes"

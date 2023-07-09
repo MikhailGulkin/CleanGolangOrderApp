@@ -1,4 +1,4 @@
-package product
+package utils
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
