@@ -10,16 +10,16 @@ import (
 	"go.uber.org/fx"
 )
 
-func NewCreateProduct(dao dao.ProductDAO, uow persistence.UoW) command.CreateProduct {
+func NewCreateProduct(dao dao.ProductRepo, uow persistence.UoW) command.CreateProduct {
 	return &product.CreateProductImpl{
-		ProductDAO: dao,
-		UoW:        uow,
+		ProductRepo: dao,
+		UoW:         uow,
 	}
 }
-func NewUpdateProductName(dao dao.ProductDAO, uow persistence.UoW) command.UpdateProductName {
+func NewUpdateProductName(dao dao.ProductRepo, uow persistence.UoW) command.UpdateProductName {
 	return &product.UpdateProductNameImpl{
-		ProductDAO: dao,
-		UoW:        uow,
+		ProductRepo: dao,
+		UoW:         uow,
 	}
 }
 

@@ -1,4 +1,4 @@
-package dao
+package reader
 
 import "gorm.io/gorm"
 

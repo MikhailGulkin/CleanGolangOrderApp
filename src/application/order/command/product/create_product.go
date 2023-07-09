@@ -8,7 +8,7 @@ import (
 )
 
 type CreateProductImpl struct {
-	dao.ProductDAO
+	dao.ProductRepo
 	persistence.UoW
 	command.CreateProduct
 }
@@ -23,12 +23,12 @@ func (interactor *CreateProductImpl) Create(command command.CreateProductCommand
 	if err != nil {
 		return err
 	}
-	interactor.StartTx()
-	err = interactor.ProductDAO.Create(productEntity, interactor.GetTx())
+	interactor.UoW.StartTx()
+	err = interactor.ProductRepo.Create(productEntity, interactor.UoW.GetTx())
 	if err != nil {
 		return err
 	}
-	interactor.Commit()
+	interactor.UoW.Commit()
 
 	return nil
 }

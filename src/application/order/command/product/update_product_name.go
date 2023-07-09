@@ -8,7 +8,7 @@ import (
 )
 
 type UpdateProductNameImpl struct {
-	dao.ProductDAO
+	dao.ProductRepo
 	persistence.UoW
 	command.UpdateProductName
 }
@@ -16,7 +16,7 @@ type UpdateProductNameImpl struct {
 func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNameCommand) error {
 	productID := value_object.ProductID{Value: command.ProductID}
 
-	productEntity, err := interactor.ProductDAO.AcquireProductByID(productID)
+	productEntity, err := interactor.ProductRepo.AcquireProductByID(productID)
 	if err != nil {
 		return err
 	}
@@ -24,11 +24,11 @@ func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNam
 	if err != nil {
 		return err
 	}
-	interactor.StartTx()
-	err = interactor.ProductDAO.UpdateProduct(productEntity, interactor.GetTx())
+	interactor.UoW.StartTx()
+	err = interactor.ProductRepo.UpdateProduct(productEntity, interactor.UoW.GetTx())
 	if err != nil {
 		return err
 	}
-	interactor.Commit()
+	interactor.UoW.Commit()
 	return nil
 }

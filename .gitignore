@@ -6,3 +6,4 @@ dump-container-test
 .env
 .test.env
 .test.container.env
+config

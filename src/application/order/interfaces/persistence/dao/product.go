@@ -7,7 +7,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 )
 
-type ProductDAO interface {
+type ProductRepo interface {
 	AcquireProductByID(productID value_object.ProductID) (product.Product, error)
 	Create(product product.Product, tx interface{}) error
 	UpdateProduct(product product.Product, tx interface{}) error

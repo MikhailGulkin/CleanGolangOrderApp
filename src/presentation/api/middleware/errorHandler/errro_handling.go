@@ -12,6 +12,11 @@ type ErrorMiddleware struct {
 	interfaces.Middleware
 	engine.RequestHandler
 }
+type ErrorCatching struct {
+	status    *int
+	err       error
+	exception *response.ExceptionResponse
+}
 
 func NewErrorMiddleware(handler engine.RequestHandler) ErrorMiddleware {
 	return ErrorMiddleware{
@@ -22,12 +27,23 @@ func NewErrorMiddleware(handler engine.RequestHandler) ErrorMiddleware {
 func (m ErrorMiddleware) Handle(c *gin.Context) {
 	c.Next()
 	err := c.Errors.Last()
+
 	if err != nil {
-		if handleError(err, c) {
-			return
+		status, exceptionResponse := http.StatusInternalServerError, response.ExceptionResponse{
+			Message: "Unknown server error has occurred",
+			Data:    err.Error(),
 		}
-		c.JSON(http.StatusInternalServerError,
-			response.ExceptionResponse{Message: "Unknown server error has occurred", Data: err.Error()},
-		)
+		errorCatching := ErrorCatching{status: &status, err: err, exception: &exceptionResponse}
+
+		handleProductError(errorCatching)
+		if c.Request.Method == "POST" ||
+			c.Request.Method == "DELETE" ||
+			c.Request.Method == "PATCH" ||
+			c.Request.Method == "PUT" {
+			c.Status(*errorCatching.status)
+		}
+		if c.Request.Method == "GET" {
+			c.JSON(*errorCatching.status, *errorCatching.exception)
+		}
 	}
 }

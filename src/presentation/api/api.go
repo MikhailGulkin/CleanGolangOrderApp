@@ -3,7 +3,6 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
@@ -16,7 +15,6 @@ var Module = fx.Options(
 	middleware.Module,
 	routes.Module,
 	engine.Module,
-	di.Module,
 	fx.Invoke(Start),
 )
 

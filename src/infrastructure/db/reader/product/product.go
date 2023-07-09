@@ -1,4 +1,4 @@
-package reader
+package product
 
 import (
 	"errors"
@@ -7,18 +7,17 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/filters"
-	db "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/dao/product/convertors"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
+	db "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/reader"
 	"gorm.io/gorm"
 )
 
-type ProductReaderImpl struct {
+type ReaderImpl struct {
 	db.BaseGormDAO
 	dao.ProductReader
 }
 
-func (dao *ProductReaderImpl) GetAllProducts(filters filters.BaseFilters) ([]dto.Product, error) {
+func (dao *ReaderImpl) GetAllProducts(filters filters.BaseFilters) ([]dto.Product, error) {
 	var products []models.Product
 	result := dao.Session.
 		Limit(int(filters.Limit)).
@@ -28,9 +27,9 @@ func (dao *ProductReaderImpl) GetAllProducts(filters filters.BaseFilters) ([]dto
 	if result.Error != nil {
 		return []dto.Product{}, result.Error
 	}
-	return convertors.ConvertProductModelsToDTOs(products), nil
+	return ConvertProductModelsToDTOs(products), nil
 }
-func (dao *ProductReaderImpl) GetProductByName(name string) (dto.Product, error) {
+func (dao *ReaderImpl) GetProductByName(name string) (dto.Product, error) {
 	var product models.Product
 	result := dao.Session.Where("name = ?", name).First(&product)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -40,5 +39,5 @@ func (dao *ProductReaderImpl) GetProductByName(name string) (dto.Product, error)
 	if result.Error != nil {
 		return dto.Product{}, result.Error
 	}
-	return convertors.ConvertProductModelToDTO(product), nil
+	return ConvertProductModelToDTO(product), nil
 }
