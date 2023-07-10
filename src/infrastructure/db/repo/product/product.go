@@ -5,7 +5,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/exceptions"
 	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/repo"
 	"gorm.io/gorm"
@@ -16,7 +16,7 @@ type RepoImpl struct {
 	appRepo.ProductRepo
 }
 
-func (dao *RepoImpl) AcquireProductByID(productID value_object.ProductID) (product.Product, error) {
+func (dao *RepoImpl) AcquireProductByID(productID vo.ProductID) (product.Product, error) {
 	var productModel models.Product
 	result := dao.Session.Where("id = ?", productID.ToString()).First(&productModel)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {

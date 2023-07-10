@@ -4,7 +4,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 )
 
 type UpdateProductNameImpl struct {
@@ -14,7 +14,7 @@ type UpdateProductNameImpl struct {
 }
 
 func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNameCommand) error {
-	productID := value_object.ProductID{Value: command.ProductID}
+	productID := vo.ProductID{Value: command.ProductID}
 
 	productEntity, err := interactor.ProductRepo.AcquireProductByID(productID)
 	if err != nil {

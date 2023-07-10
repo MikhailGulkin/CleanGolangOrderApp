@@ -2,10 +2,10 @@ package domain
 
 import (
 	"errors"
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/address"
-	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/google/uuid"
 	"strconv"
 	"time"
@@ -15,7 +15,7 @@ type PriceOrder float64
 
 type Order struct {
 	vo.OrderId
-	products        []domain.Product
+	products        []product.OrderProduct
 	orderStatus     consts.OrderStatus
 	paymentMethod   consts.PaymentMethod
 	deliveryAddress address.Address
@@ -24,7 +24,7 @@ type Order struct {
 	serialNumber    int
 }
 
-func (Order) Create(orderID uuid.UUID, products *[]domain.Product, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
+func (Order) Create(orderID uuid.UUID, products []product.OrderProduct, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
 	serialNumber, serialError := getCurrentSerialNumber(previousSerialNumber)
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
@@ -32,7 +32,7 @@ func (Order) Create(orderID uuid.UUID, products *[]domain.Product, deliveryAddre
 
 	return Order{
 		OrderId:         vo.OrderId{Value: orderID},
-		products:        *products,
+		products:        products,
 		orderStatus:     consts.New,
 		deliveryAddress: deliveryAddress,
 		paymentMethod:   consts.Online,
@@ -51,8 +51,8 @@ func getCurrentSerialNumber(serialNumber int) (int, error) {
 }
 func (c *Order) GetTotalPrice() PriceOrder {
 	var total PriceOrder
-	for _, product := range c.products {
-		total += PriceOrder(product.Price)
+	for _, orderProduct := range c.products {
+		total += PriceOrder(orderProduct.Price)
 	}
 	return total
 }

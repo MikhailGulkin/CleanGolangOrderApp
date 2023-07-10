@@ -1,7 +1,7 @@
 package product
 
 import (
-	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/google/uuid"
 	"strconv"
 )

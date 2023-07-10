@@ -2,13 +2,13 @@ package product
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 )
 
 func ConvertProductModelToEntity(model models.Product) product.Product {
 	return product.Product{
-		ProductID:    value_object.ProductID{Value: model.ID},
+		ProductID:    vo.ProductID{Value: model.ID},
 		Price:        model.Price,
 		Name:         model.Name,
 		Discount:     model.Discount,
