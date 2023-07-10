@@ -2,13 +2,13 @@ package product
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/reader"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/query/product"
 )
 
 type GetAllProductsImpl struct {
-	DAO dao.ProductReader
+	DAO reader.ProductReader
 	product.GetAllProducts
 }
 

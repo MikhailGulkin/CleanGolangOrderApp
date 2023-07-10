@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	"github.com/google/uuid"
 	"gorm.io/gorm"

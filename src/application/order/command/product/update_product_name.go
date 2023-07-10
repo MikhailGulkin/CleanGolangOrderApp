@@ -3,12 +3,12 @@ package product
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 )
 
 type UpdateProductNameImpl struct {
-	dao.ProductRepo
+	repo.ProductRepo
 	persistence.UoW
 	command.UpdateProductName
 }

@@ -1,7 +1,6 @@
 package product
 
 import (
-	domainEntity "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities"
 	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/google/uuid"
 	"strconv"
@@ -19,12 +18,12 @@ type Product struct {
 
 func (Product) Create(productID uuid.UUID, price float64, discount int32, description string, name string) (Product, error) {
 	if price < 0 {
-		priceError := domainEntity.InvalidPriceProductCreation{}.Exception(strconv.Itoa(int(price)))
+		priceError := InvalidPriceProductCreation{}.Exception(strconv.Itoa(int(price)))
 		return Product{}, &priceError
 	}
 
 	if discount < 0 || discount > 99 {
-		discountError := domainEntity.InvalidDiscountProductCreation{}.Exception(strconv.Itoa(int(discount)))
+		discountError := InvalidDiscountProductCreation{}.Exception(strconv.Itoa(int(discount)))
 		return Product{}, &discountError
 	}
 	return Product{

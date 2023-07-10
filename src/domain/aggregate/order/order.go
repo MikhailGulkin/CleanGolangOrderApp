@@ -2,9 +2,9 @@ package domain
 
 import (
 	"errors"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/address"
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/google/uuid"
 	"strconv"

@@ -3,8 +3,8 @@ package product
 import (
 	"errors"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/value_object"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/repo"
@@ -13,7 +13,7 @@ import (
 
 type RepoImpl struct {
 	repo.BaseGormRepo
-	dao.ProductRepo
+	appRepo.ProductRepo
 }
 
 func (dao *RepoImpl) AcquireProductByID(productID value_object.ProductID) (product.Product, error) {

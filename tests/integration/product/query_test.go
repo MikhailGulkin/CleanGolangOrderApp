@@ -3,7 +3,7 @@ package product
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/product/utils"
 	"net/http"
 )

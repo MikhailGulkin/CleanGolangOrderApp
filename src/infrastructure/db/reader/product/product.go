@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/reader"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	db "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/reader"
 	"gorm.io/gorm"
@@ -14,7 +14,7 @@ import (
 
 type ReaderImpl struct {
 	db.BaseGormDAO
-	dao.ProductReader
+	reader.ProductReader
 }
 
 func (dao *ReaderImpl) GetAllProducts(filters filters.BaseFilters) ([]dto.Product, error) {

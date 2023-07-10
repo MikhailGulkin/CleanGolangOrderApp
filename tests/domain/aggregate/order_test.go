@@ -2,8 +2,8 @@ package aggregate
 
 import (
 	domain2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/address"
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
 	"github.com/google/uuid"
 	"testing"
 )
