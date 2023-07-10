@@ -1,7 +1,7 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 )
 

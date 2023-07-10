@@ -3,7 +3,7 @@ package utils
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/google/uuid"
 	"log"
 )

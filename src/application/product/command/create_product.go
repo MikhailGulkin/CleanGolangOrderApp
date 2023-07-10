@@ -1,9 +1,9 @@
-package product
+package command
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 )
 

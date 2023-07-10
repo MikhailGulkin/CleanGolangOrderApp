@@ -59,7 +59,7 @@ func (suite *TestSuite) TestSuccessUpdateProductName() {
 	req, err := http.NewRequest(
 		http.MethodPut,
 		fmt.Sprintf("%s/products/%s/productName", suite.Server.URL, suite.ProductModel.ID),
-		strings.NewReader(fmt.Sprintf("{\"productName\": \"%s\"}", "testNameUpdateSuccess")),
+		strings.NewReader(fmt.Sprintf("{\"productName\": \"%s\"}", "TestNameUpdateSuccess")),
 	)
 	if err != nil {
 		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", err))
@@ -71,5 +71,24 @@ func (suite *TestSuite) TestSuccessUpdateProductName() {
 		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", errClient))
 	}
 	suite.Equal(http.StatusNoContent, resp.StatusCode)
+	suite.Equal(resp.ContentLength, ZeroInt64)
+}
+func (suite *TestSuite) TestIncorrectUpdateProductName() {
+	utils.CreateProductInDB(&suite.ProductModel, suite.Server.DB)
+	req, err := http.NewRequest(
+		http.MethodPut,
+		fmt.Sprintf("%s/products/%s/productName", suite.Server.URL, suite.ProductModel.ID),
+		strings.NewReader(fmt.Sprintf("{\"productName\": \"%s\"}", "testNameUpdateSuccess")),
+	)
+	if err != nil {
+		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", err))
+	}
+
+	client := &http.Client{}
+	resp, errClient := client.Do(req) //nolint:bodyclose
+	if errClient != nil {
+		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", errClient))
+	}
+	suite.Equal(http.StatusBadRequest, resp.StatusCode)
 	suite.Equal(resp.ContentLength, ZeroInt64)
 }

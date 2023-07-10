@@ -26,7 +26,3 @@ type BaseFilters struct {
 func (filter BaseFilters) Create(limit uint, offset uint, order BaseOrder) BaseFilters {
 	return BaseFilters{Limit: limit, Offset: offset, Order: order}
 }
-
-type GetAllProductsFilters struct {
-	BaseFilters
-}

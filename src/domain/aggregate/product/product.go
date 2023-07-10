@@ -3,6 +3,7 @@ package product
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/google/uuid"
+	"regexp"
 	"strconv"
 )
 
@@ -37,6 +38,14 @@ func (Product) Create(productID uuid.UUID, price float64, discount int32, descri
 	}, nil
 }
 func (product *Product) UpdateName(name string) error {
+	matched, err := regexp.MatchString("^[A-Z].*", name)
+	if err != nil {
+		return err
+	}
+	if !matched {
+		exception := InvalidProductNameUpdate{}.Exception(name)
+		return &exception
+	}
 	product.Name = name
 	return nil
 }

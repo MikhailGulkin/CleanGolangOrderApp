@@ -2,8 +2,8 @@ package product
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/exceptions"
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/exceptions"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"

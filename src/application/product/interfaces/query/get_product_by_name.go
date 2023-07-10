@@ -1,6 +1,8 @@
-package product
+package query
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/dto"
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/dto"
+)
 
 type GetProductByNameQuery struct {
 	Name string

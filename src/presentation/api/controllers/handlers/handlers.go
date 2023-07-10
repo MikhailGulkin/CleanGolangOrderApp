@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	interfaces "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/query/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/query"
 	"go.uber.org/fx"
 )
 
@@ -11,10 +11,10 @@ var Module = fx.Options(
 )
 
 func NewProductHandler(
-	createProduct interfaces.CreateProduct,
-	getAllProducts product.GetAllProducts,
-	getProductByName product.GetProductByName,
-	updateProductByName interfaces.UpdateProductName,
+	createProduct command.CreateProduct,
+	getAllProducts query.GetAllProducts,
+	getProductByName query.GetProductByName,
+	updateProductByName command.UpdateProductName,
 ) ProductHandler {
 	return ProductHandler{
 		createProduct:     createProduct,

@@ -3,10 +3,10 @@ package product
 import (
 	"errors"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/filters"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/reader"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	db "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/reader"
 	"gorm.io/gorm"
@@ -17,7 +17,7 @@ type ReaderImpl struct {
 	reader.ProductReader
 }
 
-func (dao *ReaderImpl) GetAllProducts(filters filters.BaseFilters) ([]dto.Product, error) {
+func (dao *ReaderImpl) GetAllProducts(filters filters.GetAllProductsFilters) ([]dto.Product, error) {
 	var products []models.Product
 	result := dao.Session.
 		Limit(int(filters.Limit)).
