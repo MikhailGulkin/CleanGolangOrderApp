@@ -3,10 +3,8 @@ package domain
 import (
 	"errors"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/consts"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/address"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
-	"github.com/google/uuid"
 	"strconv"
 	"time"
 )
@@ -14,31 +12,36 @@ import (
 type PriceOrder float64
 
 type Order struct {
-	vo.OrderId
-	products        []product.OrderProduct
+	vo.OrderID
+	products        []order.OrderProduct
+	client          order.OrderClient
 	orderStatus     consts.OrderStatus
 	paymentMethod   consts.PaymentMethod
-	deliveryAddress address.Address
+	deliveryAddress order.OrderAddress
 	totalPrice      PriceOrder
 	date            time.Time
 	serialNumber    int
 }
 
-func (Order) Create(orderID uuid.UUID, products []product.OrderProduct, deliveryAddress address.Address, previousSerialNumber int) (Order, error) {
+func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int) (Order, error) {
 	serialNumber, serialError := getCurrentSerialNumber(previousSerialNumber)
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
 	}
 
 	return Order{
-		OrderId:         vo.OrderId{Value: orderID},
-		products:        products,
+		OrderID:         orderID,
 		orderStatus:     consts.New,
+		client:          client,
 		deliveryAddress: deliveryAddress,
 		paymentMethod:   consts.Online,
 		date:            time.Now(),
 		serialNumber:    serialNumber,
 	}, nil
+}
+func (o *Order) AddProduct(product order.OrderProduct) error {
+	o.products = append(o.products, product)
+	return nil
 }
 func getCurrentSerialNumber(serialNumber int) (int, error) {
 	if serialNumber > 100 || serialNumber < 1 {
@@ -49,10 +52,13 @@ func getCurrentSerialNumber(serialNumber int) (int, error) {
 	}
 	return serialNumber + 1, nil
 }
-func (c *Order) GetTotalPrice() PriceOrder {
+func (o *Order) GetTotalPrice() PriceOrder {
 	var total PriceOrder
-	for _, orderProduct := range c.products {
+	for _, orderProduct := range o.products {
 		total += PriceOrder(orderProduct.Price)
 	}
 	return total
+}
+func (o *Order) GetSerialNumber() int {
+	return o.serialNumber
 }

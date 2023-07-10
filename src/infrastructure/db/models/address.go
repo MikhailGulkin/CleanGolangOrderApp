@@ -6,4 +6,5 @@ type Address struct {
 	StreetName     string `gorm:"index:UniqueAddress, unique"`
 	City           string `gorm:"index:UniqueAddress, unique"`
 	Country        string `gorm:"index:UniqueAddress, unique"`
+	Orders         []Order
 }

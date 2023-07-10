@@ -2,7 +2,6 @@ package db
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/config"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -21,7 +20,7 @@ func BuildConnection(config config.DBConfig) *gorm.DB {
 	sqlDB.SetMaxIdleConns(config.MaxIdleConnection)
 	if err == nil {
 		if config.Migration {
-			_ = db.AutoMigrate(&models.Product{}, &models.Address{})
+			migrate(db)
 		}
 
 		return db

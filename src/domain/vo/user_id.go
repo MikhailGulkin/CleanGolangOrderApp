@@ -2,6 +2,6 @@ package vo
 
 import "github.com/google/uuid"
 
-type OrderID struct {
+type UserID struct {
 	Value uuid.UUID
 }

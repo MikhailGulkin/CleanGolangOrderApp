@@ -1,6 +1,9 @@
 package address
 
+import "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+
 type Address struct {
+	vo.AddressID
 	BuildingNumber int
 	StreetName     string
 	City           string

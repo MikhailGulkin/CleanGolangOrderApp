@@ -22,11 +22,13 @@ func (uow *GormUoW) GetTx() interface{} {
 	uow.Tx = uow.Session.Begin()
 	return uow.Tx
 }
-func (uow *GormUoW) Commit() {
+func (uow *GormUoW) Commit() error {
 	uow.Tx.Commit()
 	uow.Tx = nil
+	return nil
 }
-func (uow *GormUoW) Rollback() {
+func (uow *GormUoW) Rollback() error {
 	uow.Tx.Rollback()
 	uow.Tx = nil
+	return nil
 }

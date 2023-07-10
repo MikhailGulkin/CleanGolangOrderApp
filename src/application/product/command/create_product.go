@@ -5,6 +5,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 )
 
 type CreateProductImpl struct {
@@ -15,7 +16,7 @@ type CreateProductImpl struct {
 
 func (interactor *CreateProductImpl) Create(command command.CreateProductCommand) error {
 	productEntity, err := product.Product{}.Create(
-		command.ProductID,
+		vo.ProductID{Value: command.ProductID},
 		command.Price,
 		command.Discount,
 		command.Description,
@@ -29,7 +30,10 @@ func (interactor *CreateProductImpl) Create(command command.CreateProductCommand
 	if err != nil {
 		return err
 	}
-	interactor.UoW.Commit()
+	err = interactor.UoW.Commit()
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

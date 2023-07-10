@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	f "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/filters"
 	q "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/query"
 	command2 "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/query"
@@ -63,7 +63,8 @@ func (c *ProductHandler) GetALlProducts(context *gin.Context) {
 			BaseListQueryParams: q.BaseListQueryParams{
 				Limit:  uint(Limit),
 				Offset: uint(Offset),
-				Order:  f.ConvertToOrder(Order)},
+				Order:  filters.BaseOrder(Order),
+			},
 		},
 	)
 	if err != nil {

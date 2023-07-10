@@ -2,7 +2,6 @@ package product
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
-	"github.com/google/uuid"
 	"regexp"
 	"strconv"
 )
@@ -17,7 +16,7 @@ type Product struct {
 	Availability bool
 }
 
-func (Product) Create(productID uuid.UUID, price float64, discount int32, description string, name string) (Product, error) {
+func (Product) Create(productID vo.ProductID, price float64, discount int32, description string, name string) (Product, error) {
 	if price < 0 {
 		priceError := InvalidPriceProductCreation{}.Exception(strconv.Itoa(int(price)))
 		return Product{}, &priceError
@@ -28,7 +27,7 @@ func (Product) Create(productID uuid.UUID, price float64, discount int32, descri
 		return Product{}, &discountError
 	}
 	return Product{
-		ProductID:    vo.ProductID{Value: productID},
+		ProductID:    productID,
 		Price:        price,
 		Name:         name,
 		Discount:     discount,

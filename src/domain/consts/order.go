@@ -1,19 +1,19 @@
 package consts
 
-type OrderStatus int
+type OrderStatus string
 
 const (
-	New OrderStatus = iota
-	InProcessing
-	Processed
-	Delivered
-	Canceled
+	New          OrderStatus = "New"
+	InProcessing OrderStatus = "InProcessing"
+	Processed    OrderStatus = "Processed"
+	Delivered    OrderStatus = "Delivered"
+	Canceled     OrderStatus = "Canceled"
 )
 
-type PaymentMethod int
+type PaymentMethod string
 
 const (
-	Online PaymentMethod = iota
-	Card
-	Cash
+	Online PaymentMethod = "Online"
+	Card   PaymentMethod = "Card"
+	Cash   PaymentMethod = "Cash"
 )

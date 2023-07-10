@@ -29,6 +29,9 @@ func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNam
 	if err != nil {
 		return err
 	}
-	interactor.UoW.Commit()
+	err = interactor.UoW.Commit()
+	if err != nil {
+		return err
+	}
 	return nil
 }

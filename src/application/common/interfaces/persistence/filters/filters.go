@@ -7,16 +7,6 @@ const (
 	DESC BaseOrder = "desc"
 )
 
-func ConvertToOrder(s string) BaseOrder {
-	if s == string(ASC) {
-		return ASC
-	}
-	if s == string(DESC) {
-		return DESC
-	}
-	return ASC
-}
-
 type BaseFilters struct {
 	Limit  uint
 	Offset uint
