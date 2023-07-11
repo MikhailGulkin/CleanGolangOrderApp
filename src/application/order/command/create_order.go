@@ -7,8 +7,8 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	userRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/user/interfaces/persistence/repo"
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
 	o "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
+	service "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"reflect"
 )
@@ -52,27 +52,12 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if clientError != nil {
 		return clientError
 	}
-	order, orderError := domain.Order{}.Create(
-		vo.OrderID{Value: command.OrderID},
-		orderAddress,
-		client,
-		serialNumber,
-	)
-	if orderError != nil {
-		return orderError
-	}
-	for _, product := range products {
-		orderProduct, err := o.OrderProduct{}.Create(product.ProductID.Value, product.Price)
-		if err != nil {
-			return err
-		}
-		err = order.AddProduct(orderProduct)
-		if err != nil {
-			return err
-		}
+	order, err := service.CreateOrder(vo.OrderID{Value: command.OrderID}, orderAddress, client, serialNumber, products)
+	if err != nil {
+		return err
 	}
 	interactor.UoW.StartTx()
-	err := interactor.OrderRepo.Add(&order, interactor.UoW.GetTx())
+	err = interactor.OrderRepo.Add(&order, interactor.UoW.GetTx())
 	if err != nil {
 		return err
 	}
