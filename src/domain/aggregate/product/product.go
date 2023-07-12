@@ -1,31 +1,28 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
 	"regexp"
-	"strconv"
 )
 
 type Product struct {
-	vo.ProductID
-	Price        float64
+	product.ProductID
+	Price        product.ProductPrice
 	Name         string
-	Discount     int32
+	Discount     product.ProductDiscount
 	Quantity     int32
 	Description  string
 	Availability bool
 }
 
-func (Product) Create(productID vo.ProductID, price float64, discount int32, description string, name string) (Product, error) {
-	if price < 0 {
-		priceError := InvalidPriceProductCreation{}.Exception(strconv.Itoa(int(price)))
-		return Product{}, &priceError
-	}
-
-	if discount < 0 || discount > 99 {
-		discountError := InvalidDiscountProductCreation{}.Exception(strconv.Itoa(int(discount)))
-		return Product{}, &discountError
-	}
+func (Product) Create(
+	productID product.ProductID,
+	price product.ProductPrice,
+	discount product.ProductDiscount,
+	description string,
+	name string,
+) (Product, error) {
 	return Product{
 		ProductID:    productID,
 		Price:        price,
@@ -42,7 +39,7 @@ func (product *Product) UpdateName(name string) error {
 		return err
 	}
 	if !matched {
-		exception := InvalidProductNameUpdate{}.Exception(name)
+		exception := exceptions.InvalidProductNameUpdate{}.Exception(name)
 		return &exception
 	}
 	product.Name = name

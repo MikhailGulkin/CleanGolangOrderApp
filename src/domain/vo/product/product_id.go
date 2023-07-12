@@ -1,4 +1,4 @@
-package vo
+package product
 
 import "github.com/google/uuid"
 

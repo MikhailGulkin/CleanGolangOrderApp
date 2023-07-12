@@ -3,11 +3,15 @@ package order
 import (
 	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 )
 
-func CreateOrder(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int, products []product.Product) (domain.Order, error) {
+type OrderService struct {
+}
+
+func (OrderService) CreateOrder(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int, products []product.Product) (domain.Order, error) {
 	createdOrder, orderError := domain.Order{}.Create(
 		orderID,
 		deliveryAddress,
@@ -28,4 +32,7 @@ func CreateOrder(orderID vo.OrderID, deliveryAddress order.OrderAddress, client 
 		}
 	}
 	return createdOrder, nil
+}
+func (OrderService) UpdateOrderStatus(status consts.OrderStatus) {
+
 }

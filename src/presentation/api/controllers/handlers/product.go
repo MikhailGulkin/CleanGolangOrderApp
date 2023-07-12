@@ -3,7 +3,7 @@ package handlers
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/filters"
 	q "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/query"
-	command2 "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/query"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -12,14 +12,14 @@ import (
 )
 
 type ProductHandler struct {
-	createProduct     command2.CreateProduct
+	createProduct     command.CreateProduct
 	getAllProducts    query.GetAllProducts
 	getProductByName  query.GetProductByName
-	updateProductName command2.UpdateProductName
+	updateProductName command.UpdateProductName
 }
 
 func (c *ProductHandler) CreateProduct(context *gin.Context) {
-	var requestBody command2.CreateProductCommand
+	var requestBody command.CreateProductCommand
 	if err := context.BindJSON(&requestBody); err != nil {
 		context.AbortWithError(http.StatusInternalServerError, err)
 		return
@@ -35,7 +35,7 @@ func (c *ProductHandler) CreateProduct(context *gin.Context) {
 func (c *ProductHandler) UpdateProductName(context *gin.Context) {
 	productID := context.Param("productID")
 
-	var requestBody command2.UpdateProductNameCommand
+	var requestBody command.UpdateProductNameCommand
 	if err := context.BindJSON(&requestBody); err != nil {
 		context.AbortWithError(http.StatusInternalServerError, err)
 		return

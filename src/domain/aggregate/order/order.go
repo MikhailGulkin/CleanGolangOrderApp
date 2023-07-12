@@ -21,6 +21,7 @@ type Order struct {
 	totalPrice      PriceOrder
 	date            time.Time
 	serialNumber    int
+	closed          bool
 }
 
 func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int) (Order, error) {

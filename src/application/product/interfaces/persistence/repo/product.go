@@ -2,7 +2,7 @@ package repo
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
 )
 
 type ProductRepo interface {

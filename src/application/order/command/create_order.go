@@ -10,20 +10,22 @@ import (
 	o "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
 	service "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
 	"reflect"
 )
 
-type CreateOrderImpl struct {
+type CreateOrderImpl struct { //nolint:maligned
 	command.CreateOrder
 	productRepo.ProductRepo
 	userRepo.UserRepo
 	addressRepo.AddressRepo
 	repo.OrderRepo
 	persistence.UoW
+	service service.OrderService
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
-	products, productError := interactor.ProductRepo.AcquireProductsByIDs(vo.GetProductIDs(command.ProductsIDs))
+	products, productError := interactor.ProductRepo.AcquireProductsByIDs(product.GetProductIDs(command.ProductsIDs))
 	if productError != nil {
 		return productError
 	}
@@ -52,7 +54,13 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if clientError != nil {
 		return clientError
 	}
-	order, err := service.CreateOrder(vo.OrderID{Value: command.OrderID}, orderAddress, client, serialNumber, products)
+	order, err := interactor.service.CreateOrder(
+		vo.OrderID{Value: command.OrderID},
+		orderAddress,
+		client,
+		serialNumber,
+		products,
+	)
 	if err != nil {
 		return err
 	}

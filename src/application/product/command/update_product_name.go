@@ -4,7 +4,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	vo "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
 )
 
 type UpdateProductNameImpl struct {

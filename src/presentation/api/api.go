@@ -11,7 +11,6 @@ import (
 )
 
 var Module = fx.Options(
-	config.Module,
 	middleware.Module,
 	routes.Module,
 	engine.Module,

@@ -3,7 +3,7 @@ package errorhandler
 import (
 	"errors"
 	application "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/exceptions"
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/response"
 	"net/http"
 )
@@ -14,9 +14,9 @@ type ErrorStatus struct {
 }
 
 func handleProductError(e ErrorCatching) {
-	var discountError *domain.InvalidDiscountProductCreation
-	var priceError *domain.InvalidPriceProductCreation
-	var incorrectProductName *domain.InvalidProductNameUpdate
+	var discountError *exceptions.InvalidDiscountProductCreation
+	var priceError *exceptions.InvalidPriceProductCreation
+	var incorrectProductName *exceptions.InvalidProductNameUpdate
 	var productNameError *application.ProductNameNotExist
 	var productIDError *application.ProductIDNotExist
 

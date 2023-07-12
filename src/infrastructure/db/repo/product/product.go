@@ -5,7 +5,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/exceptions"
 	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	product2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/repo"
 	"gorm.io/gorm"
@@ -16,7 +16,7 @@ type RepoImpl struct {
 	appRepo.ProductRepo
 }
 
-func (dao *RepoImpl) AcquireProductByID(productID vo.ProductID) (product.Product, error) {
+func (dao *RepoImpl) AcquireProductByID(productID product2.ProductID) (product.Product, error) {
 	var productModel models.Product
 	result := dao.Session.Where("id = ?", productID.ToString()).First(&productModel)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -39,9 +39,9 @@ func (dao *RepoImpl) UpdateProduct(product product.Product, tx interface{}) erro
 func (dao *RepoImpl) Create(product product.Product, tx interface{}) error {
 	productModel := models.Product{
 		Base:         models.Base{ID: product.ProductID.Value},
-		Price:        product.Price,
+		Price:        product.Price.Value,
 		Name:         product.Name,
-		Discount:     product.Discount,
+		Discount:     product.Discount.Value,
 		Quantity:     product.Quantity,
 		Description:  product.Description,
 		Availability: product.Availability,
