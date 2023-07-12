@@ -10,3 +10,11 @@ type User struct {
 	Username string
 	Orders   []user.UserOrder
 }
+
+func (User) Create(id vo.UserID, username string, orders []user.UserOrder) User {
+	return User{
+		id,
+		username,
+		orders,
+	}
+}
