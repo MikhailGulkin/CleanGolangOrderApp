@@ -5,10 +5,10 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/middleware"
+	config2 "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/config"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
@@ -22,8 +22,8 @@ func NewRequestHandler() engine.RequestHandler {
 	return engine.RequestHandler{Gin: newEngine}
 }
 
-func NewConfig() config.Config {
-	var conf config.Config
+func NewConfig() config2.Config {
+	var conf config2.Config
 	load.LoadConfig(&conf, os.Getenv("PROJECT_PATH"), "./config/test.toml")
 	return conf
 }
@@ -33,8 +33,8 @@ var ModuleEngine = fx.Provide(
 )
 var ModuleConfig = fx.Provide(
 	NewConfig,
-	config.NewDBConfig,
-	config.NewAPIConfig,
+	config2.NewDBConfig,
+	config2.NewAPIConfig,
 )
 var Module = fx.Options(
 	ModuleConfig,

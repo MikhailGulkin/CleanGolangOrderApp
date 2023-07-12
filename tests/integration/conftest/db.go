@@ -10,8 +10,9 @@ func CleanTables(conn *gorm.DB) {
 	if err := conn.Table("information_schema.tables").Where("table_schema = ?", "public").Pluck("table_name", &tables).Error; err != nil {
 		panic(err)
 	}
-	fmt.Println(tables)
+	tx := conn.Begin()
 	for _, table := range tables {
-		conn.Exec(fmt.Sprintf("TRUNCATE TABLE %s CASCADE;", table))
+		tx.Exec(fmt.Sprintf("TRUNCATE TABLE %s CASCADE;", table))
 	}
+	tx.Commit()
 }

@@ -2,13 +2,13 @@ package conftest
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
+	c "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"log"
 	"net"
 	"time"
 )
 
-func setupBaseURL(apiConfig config.APIConfig) string {
+func setupBaseURL(apiConfig c.APIConfig) string {
 	return fmt.Sprintf("http://%s:%d%s", apiConfig.Host, apiConfig.Port, apiConfig.BaseURLPrefix)
 }
 func waitForServer(port string) {
