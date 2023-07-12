@@ -8,7 +8,7 @@ import (
 	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	userRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/user/interfaces/persistence/repo"
 	o "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
-	service "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/order"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
 	"reflect"
@@ -21,7 +21,7 @@ type CreateOrderImpl struct { //nolint:maligned
 	addressRepo.AddressRepo
 	repo.OrderRepo
 	persistence.UoW
-	service service.OrderService
+	service order.Service
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
