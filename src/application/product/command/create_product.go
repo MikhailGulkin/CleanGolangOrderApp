@@ -35,7 +35,7 @@ func (interactor *CreateProductImpl) Create(command command.CreateProductCommand
 		return err
 	}
 	interactor.UoW.StartTx()
-	err = interactor.ProductRepo.Create(productEntity, interactor.UoW.GetTx())
+	err = interactor.ProductRepo.AddProduct(productEntity, interactor.UoW.GetTx())
 	if err != nil {
 		return err
 	}

@@ -10,6 +10,6 @@ type Address struct {
 	Country        string
 }
 
-func (Address) Create(buildingNumber int, streetName string, city string, country string) Address {
-	return Address{City: city, StreetName: streetName, BuildingNumber: buildingNumber, Country: country}
+func (Address) Create(id vo.AddressID, buildingNumber int, streetName string, city string, country string) Address {
+	return Address{AddressID: id, City: city, StreetName: streetName, BuildingNumber: buildingNumber, Country: country}
 }

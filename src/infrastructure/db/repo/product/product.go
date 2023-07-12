@@ -16,9 +16,9 @@ type RepoImpl struct {
 	appRepo.ProductRepo
 }
 
-func (dao *RepoImpl) AcquireProductByID(productID product2.ProductID) (product.Product, error) {
+func (repo *RepoImpl) AcquireProductByID(productID product2.ProductID) (product.Product, error) {
 	var productModel models.Product
-	result := dao.Session.Where("id = ?", productID.ToString()).First(&productModel)
+	result := repo.Session.Where("id = ?", productID.ToString()).First(&productModel)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		exception := exceptions.ProductIDNotExist{}.Exception(productID.ToString())
 		return product.Product{}, &exception
@@ -28,7 +28,7 @@ func (dao *RepoImpl) AcquireProductByID(productID product2.ProductID) (product.P
 	}
 	return ConvertProductModelToEntity(productModel), nil
 }
-func (dao *RepoImpl) UpdateProduct(product product.Product, tx interface{}) error {
+func (repo *RepoImpl) UpdateProduct(product product.Product, tx interface{}) error {
 	productModel := ConvertProductEntityToModel(product)
 	result := tx.(*gorm.DB).Where("id = ?", productModel.ID).Updates(productModel)
 	if result.Error != nil {
@@ -36,15 +36,7 @@ func (dao *RepoImpl) UpdateProduct(product product.Product, tx interface{}) erro
 	}
 	return nil
 }
-func (dao *RepoImpl) Create(product product.Product, tx interface{}) error {
-	productModel := models.Product{
-		Base:         models.Base{ID: product.ProductID.Value},
-		Price:        product.Price.Value,
-		Name:         product.Name,
-		Discount:     product.Discount.Value,
-		Quantity:     product.Quantity,
-		Description:  product.Description,
-		Availability: product.Availability,
-	}
-	return tx.(*gorm.DB).Create(&productModel).Error
+func (repo *RepoImpl) AddProduct(product product.Product, tx interface{}) error {
+	model := ConvertProductEntityToModel(product)
+	return tx.(*gorm.DB).Create(&model).Error
 }

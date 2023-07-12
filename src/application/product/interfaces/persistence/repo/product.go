@@ -8,6 +8,6 @@ import (
 type ProductRepo interface {
 	AcquireProductsByIDs(productIDs []vo.ProductID) ([]product.Product, error)
 	AcquireProductByID(productID vo.ProductID) (product.Product, error)
-	Create(product product.Product, tx interface{}) error
+	AddProduct(product product.Product, tx interface{}) error
 	UpdateProduct(product product.Product, tx interface{}) error
 }

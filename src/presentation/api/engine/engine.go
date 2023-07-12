@@ -8,6 +8,9 @@ import (
 type RequestHandler struct {
 	Gin *gin.Engine
 }
+type GroupRoutes struct {
+	*gin.RouterGroup
+}
 
 func NewRequestHandler() RequestHandler {
 	engine := gin.Default()

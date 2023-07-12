@@ -1,4 +1,4 @@
-package handlers
+package product
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/filters"
@@ -11,14 +11,14 @@ import (
 	"strconv"
 )
 
-type ProductHandler struct {
+type Handler struct {
 	createProduct     command.CreateProduct
 	getAllProducts    query.GetAllProducts
 	getProductByName  query.GetProductByName
 	updateProductName command.UpdateProductName
 }
 
-func (c *ProductHandler) CreateProduct(context *gin.Context) {
+func (c *Handler) CreateProduct(context *gin.Context) {
 	var requestBody command.CreateProductCommand
 	if err := context.BindJSON(&requestBody); err != nil {
 		context.AbortWithError(http.StatusInternalServerError, err)
@@ -32,7 +32,7 @@ func (c *ProductHandler) CreateProduct(context *gin.Context) {
 	}
 	context.Status(http.StatusNoContent)
 }
-func (c *ProductHandler) UpdateProductName(context *gin.Context) {
+func (c *Handler) UpdateProductName(context *gin.Context) {
 	productID := context.Param("productID")
 
 	var requestBody command.UpdateProductNameCommand
@@ -53,7 +53,7 @@ func (c *ProductHandler) UpdateProductName(context *gin.Context) {
 	}
 	context.Status(http.StatusNoContent)
 }
-func (c *ProductHandler) GetALlProducts(context *gin.Context) {
+func (c *Handler) GetALlProducts(context *gin.Context) {
 	Limit, _ := strconv.Atoi(context.DefaultQuery("limit", "1000"))
 	Offset, _ := strconv.Atoi(context.DefaultQuery("offset", "0"))
 	Order := context.DefaultQuery("order", "asc")
@@ -73,7 +73,7 @@ func (c *ProductHandler) GetALlProducts(context *gin.Context) {
 	}
 	context.JSON(http.StatusOK, products)
 }
-func (c *ProductHandler) GetProductByName(context *gin.Context) {
+func (c *Handler) GetProductByName(context *gin.Context) {
 	productName := context.Param("productName")
 	productByName, err := c.getProductByName.Get(
 		query.GetProductByNameQuery{Name: productName},

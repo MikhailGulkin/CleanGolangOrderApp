@@ -7,4 +7,5 @@ import (
 
 type AddressRepo interface {
 	AcquireAddressByID(addressID vo.AddressID) (address.Address, error)
+	AddAddress(address address.Address, tx interface{}) error
 }
