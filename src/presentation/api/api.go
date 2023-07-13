@@ -6,14 +6,12 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/middleware"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	middleware.Module,
-	routes.Module,
-	engine.Module,
+	providers.Module,
 	fx.Invoke(Start),
 )
 

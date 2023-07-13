@@ -1,10 +1,8 @@
 package routes
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/handlers"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes/address"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes/product"
-	"go.uber.org/fx"
 )
 
 type Routes []Route
@@ -27,11 +25,3 @@ func (r Routes) Setup() {
 		route.Setup()
 	}
 }
-
-var Module = fx.Options(
-	fx.Provide(NewRoutes),
-	fx.Provide(product.NewProductRoutes),
-	fx.Provide(address.NewAddressRoutes),
-	fx.Provide(NewGroupRoutes),
-	handlers.Module,
-)

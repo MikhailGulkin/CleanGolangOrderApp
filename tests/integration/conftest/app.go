@@ -5,9 +5,9 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/middleware"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers/controllers"
+	middleware2 "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers/middleware"
 	config2 "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/config"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/fx"
@@ -38,8 +38,8 @@ var ModuleConfig = fx.Provide(
 )
 var Module = fx.Options(
 	ModuleConfig,
-	routes.Module,
-	middleware.Module,
+	controllers.Module,
+	middleware2.Module,
 	ModuleEngine,
 	di.Module,
 	fx.Invoke(api.Start),
