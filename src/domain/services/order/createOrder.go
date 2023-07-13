@@ -4,6 +4,7 @@ import (
 	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
 )
 
@@ -25,6 +26,10 @@ func (Service) CreateOrder(
 	)
 	if orderError != nil {
 		return domain.Order{}, orderError
+	}
+	if len(products) == 0 {
+		orderException := exceptions.OrderProductsEmpty{}.Exception(orderID.ToString())
+		return domain.Order{}, &orderException
 	}
 	for _, p := range products {
 		orderProduct, err := order.OrderProduct{}.Create(p.ProductID.Value, p.Price.Value)

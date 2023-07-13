@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/google/uuid"
-	"time"
 )
 
 type Order struct {
@@ -14,7 +13,6 @@ type Order struct {
 	PaymentMethod string
 	Address       Address
 	AddressID     uuid.UUID
-	Date          time.Time
 	Closed        bool
 	SerialNumber  int
 }

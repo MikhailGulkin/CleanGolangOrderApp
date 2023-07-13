@@ -52,3 +52,15 @@ func (e OrderProductNotExists) Exception(productID string, context string) Order
 			Ctx:     fmt.Sprintf("order id `%s`", context),
 		}}
 }
+
+type OrderProductsEmpty struct {
+	domain.CustomException
+}
+
+func (e OrderProductsEmpty) Exception(context string) OrderProductsEmpty {
+	return OrderProductsEmpty{
+		CustomException: domain.CustomException{
+			Message: "Order cannot doesn't have products;",
+			Ctx:     fmt.Sprintf("order id `%s`", context),
+		}}
+}

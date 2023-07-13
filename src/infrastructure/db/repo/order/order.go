@@ -16,7 +16,13 @@ type RepoImpl struct {
 
 func (repo *RepoImpl) AcquireLastOrder() (order.Order, error) {
 	var orderModel models.Order
-	result := repo.Session.Preload("Address").Preload("Client").Preload("Products").Last(&orderModel)
+	result := repo.Session.
+		Preload("Address").
+		Preload("Client").
+		Preload("Products").
+		Order("created_at desc").
+		Limit(1).
+		Find(&orderModel)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		return order.Order{}, nil
 	}

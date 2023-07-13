@@ -29,19 +29,18 @@ func ConvertOrderModelToAggregate(model models.Order) order.Order {
 			AddressID:   model.Address.ID,
 			FullAddress: model.Address.GetFullAddress(),
 		},
-		Date:         model.Date,
+		Date:         model.Base.CreatedAt,
 		SerialNumber: model.SerialNumber,
 		Closed:       model.Closed,
 	}
 }
 func ConvertOrderAggregateToModel(order order.Order) models.Order {
 	return models.Order{
-		Base:          models.Base{ID: order.OrderID.Value},
+		Base:          models.Base{ID: order.OrderID.Value, CreatedAt: order.Date},
 		OrderStatus:   string(order.OrderStatus),
 		ClientID:      order.Client.ClientID,
 		PaymentMethod: string(order.PaymentMethod),
 		AddressID:     order.DeliveryAddress.AddressID,
-		Date:          order.Date,
 		Closed:        order.Closed,
 		SerialNumber:  order.SerialNumber,
 	}

@@ -41,6 +41,7 @@ func (m ErrorMiddleware) Handle(c *gin.Context) {
 
 		handleProductError(errorCatching)
 		handleAddressError(errorCatching)
+		handleOrderError(errorCatching)
 		if c.Request.Method == "POST" ||
 			c.Request.Method == "DELETE" ||
 			c.Request.Method == "PATCH" ||
