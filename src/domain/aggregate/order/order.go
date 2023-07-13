@@ -14,15 +14,15 @@ type PriceOrder float64
 
 type Order struct {
 	vo.OrderID
-	products        []order.OrderProduct
-	client          order.OrderClient
-	orderStatus     consts.OrderStatus
-	paymentMethod   consts.PaymentMethod
-	deliveryAddress order.OrderAddress
-	totalPrice      PriceOrder
-	date            time.Time
-	serialNumber    int
-	closed          bool
+	Products        []order.OrderProduct
+	Client          order.OrderClient
+	OrderStatus     consts.OrderStatus
+	PaymentMethod   consts.PaymentMethod
+	DeliveryAddress order.OrderAddress
+	TotalPrice      PriceOrder
+	Date            time.Time
+	SerialNumber    int
+	Closed          bool
 }
 
 func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int) (Order, error) {
@@ -33,28 +33,28 @@ func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, clie
 
 	return Order{
 		OrderID:         orderID,
-		orderStatus:     consts.New,
-		client:          client,
-		deliveryAddress: deliveryAddress,
-		paymentMethod:   consts.Online,
-		date:            time.Now(),
-		serialNumber:    serialNumber,
+		OrderStatus:     consts.New,
+		Client:          client,
+		DeliveryAddress: deliveryAddress,
+		PaymentMethod:   consts.Online,
+		Date:            time.Now(),
+		SerialNumber:    serialNumber,
 	}, nil
 }
 func (o *Order) AddProduct(product order.OrderProduct) error {
-	for _, p := range o.products {
+	for _, p := range o.Products {
 		if p.ProductID == product.ProductID {
 			exception := exceptions.ProductAlreadyContained{}.Exception(product.ProductID.String(), o.OrderID.Value.String())
 			return &exception
 		}
 	}
-	o.products = append(o.products, product)
+	o.Products = append(o.Products, product)
 
 	return nil
 }
 func (o *Order) RemoveProduct(product order.OrderProduct) error {
 	start := -1
-	for index, p := range o.products {
+	for index, p := range o.Products {
 		if p.ProductID == product.ProductID {
 			start = index
 		}
@@ -63,12 +63,12 @@ func (o *Order) RemoveProduct(product order.OrderProduct) error {
 		exception := exceptions.OrderProductNotExists{}.Exception(product.ProductID.String(), o.OrderID.Value.String())
 		return &exception
 	}
-	o.products = append(o.products[:start], o.products[start+1:]...)
+	o.Products = append(o.Products[:start], o.Products[start+1:]...)
 
 	return nil
 }
 func getCurrentSerialNumber(serialNumber int) (int, error) {
-	if serialNumber > 100 || serialNumber < 1 {
+	if serialNumber > 100 || serialNumber < 0 {
 		exception := exceptions.InvalidSerialNumber{}.Exception(strconv.Itoa(serialNumber))
 		return -1, &exception
 	}
@@ -79,17 +79,17 @@ func getCurrentSerialNumber(serialNumber int) (int, error) {
 }
 func (o *Order) GetTotalPrice() PriceOrder {
 	var total PriceOrder
-	for _, orderProduct := range o.products {
+	for _, orderProduct := range o.Products {
 		total += PriceOrder(orderProduct.Price)
 	}
 	return total
 }
 func (o *Order) GetSerialNumber() int {
-	return o.serialNumber
+	return o.SerialNumber
 }
 func (o *Order) CheckNotClosed() error {
-	if o.closed {
-		exception := exceptions.OrderIsClosed{}.Exception(o.OrderID.Value.String())
+	if o.Closed {
+		exception := exceptions.OrderIsClosed{}.Exception(o.OrderID.ToString())
 		return &exception
 	}
 	return nil
@@ -98,10 +98,10 @@ func (o *Order) UpdateStatus(status consts.OrderStatus) error {
 	if err := o.CheckNotClosed(); err != nil {
 		return err
 	}
-	o.orderStatus = status
+	o.OrderStatus = status
 
 	if status == consts.Delivered || status == consts.Canceled {
-		o.closed = true
+		o.Closed = true
 	}
 	return nil
 }

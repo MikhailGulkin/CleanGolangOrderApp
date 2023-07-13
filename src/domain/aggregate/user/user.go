@@ -8,13 +8,14 @@ import (
 type User struct {
 	vo.UserID
 	Username string
+	Address  user.UserAddress
 	Orders   []user.UserOrder
 }
 
-func (User) Create(id vo.UserID, username string, orders []user.UserOrder) User {
+func (User) Create(id vo.UserID, username string, address user.UserAddress) User {
 	return User{
-		id,
-		username,
-		orders,
+		UserID:   id,
+		Username: username,
+		Address:  address,
 	}
 }

@@ -2,9 +2,10 @@ package repo
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/user"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common/id"
 )
 
 type UserRepo interface {
-	AcquireUserByID(userID vo.UserID) (user.User, error)
+	AcquireUserByID(userID id.ID) (user.User, error)
+	AddUser(user user.User, tx interface{}) error
 }

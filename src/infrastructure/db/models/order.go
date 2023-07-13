@@ -12,8 +12,9 @@ type Order struct {
 	ClientID      uuid.UUID
 	Client        User
 	PaymentMethod string
+	Address       Address
 	AddressID     uuid.UUID
-	Price         float64
 	Date          time.Time
+	Closed        bool
 	SerialNumber  int
 }

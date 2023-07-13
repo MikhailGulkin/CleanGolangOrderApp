@@ -17,6 +17,10 @@ type ErrorCatching struct {
 	err       error
 	exception *response.ExceptionResponse
 }
+type ErrorStatus struct {
+	status    int
+	exception any
+}
 
 func NewErrorMiddleware(handler engine.RequestHandler) ErrorMiddleware {
 	return ErrorMiddleware{
@@ -36,6 +40,7 @@ func (m ErrorMiddleware) Handle(c *gin.Context) {
 		errorCatching := ErrorCatching{status: &status, err: err, exception: &exceptionResponse}
 
 		handleProductError(errorCatching)
+		handleAddressError(errorCatching)
 		if c.Request.Method == "POST" ||
 			c.Request.Method == "DELETE" ||
 			c.Request.Method == "PATCH" ||

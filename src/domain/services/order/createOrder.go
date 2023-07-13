@@ -10,7 +10,13 @@ import (
 type Service struct {
 }
 
-func (Service) CreateOrder(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int, products []product.Product) (domain.Order, error) {
+func (Service) CreateOrder(
+	orderID vo.OrderID,
+	deliveryAddress order.OrderAddress,
+	client order.OrderClient,
+	previousSerialNumber int,
+	products []product.Product,
+) (domain.Order, error) {
 	createdOrder, orderError := domain.Order{}.Create(
 		orderID,
 		deliveryAddress,

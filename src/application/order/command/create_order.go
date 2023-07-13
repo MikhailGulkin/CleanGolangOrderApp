@@ -14,14 +14,14 @@ import (
 	"reflect"
 )
 
-type CreateOrderImpl struct { //nolint:maligned
+type CreateOrderImpl struct {
 	command.CreateOrder
 	productRepo.ProductRepo
 	userRepo.UserRepo
 	addressRepo.AddressRepo
 	repo.OrderRepo
+	order.Service
 	persistence.UoW
-	service order.Service
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
@@ -37,24 +37,24 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if addressError != nil {
 		return addressError
 	}
-	previousOrder, previousOrderError := interactor.OrderRepo.AcquireLastOrderByID(vo.OrderID{Value: command.OrderID})
+	previousOrder, previousOrderError := interactor.OrderRepo.AcquireLastOrder()
 	if previousOrderError != nil {
 		return previousOrderError
 	}
-	serialNumber := 1
+	serialNumber := 0
 	if !reflect.ValueOf(previousOrder).IsZero() {
 		serialNumber = previousOrder.GetSerialNumber()
 	}
-	orderAddress, orderErrAddress := o.OrderAddress{}.Create(address.BuildingNumber)
+	orderAddress, orderErrAddress := o.OrderAddress{}.Create(address.AddressID.Value, address.GetFullAddress())
 
 	if orderErrAddress != nil {
 		return orderErrAddress
 	}
-	client, clientError := o.OrderClient{}.Create(user.Username)
+	client, clientError := o.OrderClient{}.Create(user.UserID.Value, user.Username)
 	if clientError != nil {
 		return clientError
 	}
-	order, err := interactor.service.CreateOrder(
+	orderAggregate, err := interactor.Service.CreateOrder(
 		vo.OrderID{Value: command.OrderID},
 		orderAddress,
 		client,
@@ -65,8 +65,9 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 		return err
 	}
 	interactor.UoW.StartTx()
-	err = interactor.OrderRepo.Add(&order, interactor.UoW.GetTx())
+	err = interactor.OrderRepo.AddOrder(orderAggregate, interactor.UoW.GetTx())
 	if err != nil {
+		interactor.UoW.Rollback()
 		return err
 	}
 	err = interactor.UoW.Commit()

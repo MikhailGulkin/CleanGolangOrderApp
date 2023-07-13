@@ -1,13 +1,17 @@
 package product
 
-import "github.com/google/uuid"
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common/id"
+	"github.com/google/uuid"
+)
 
 type ProductID struct {
+	id.ID
 	Value uuid.UUID
 }
 
-func GetProductIDs(productIDs []uuid.UUID) []ProductID {
-	ids := make([]ProductID, len(productIDs))
+func GetProductIDs(productIDs []uuid.UUID) []id.ID {
+	ids := make([]id.ID, len(productIDs))
 	for i, productID := range productIDs {
 		ids[i] = ProductID{Value: productID}
 	}

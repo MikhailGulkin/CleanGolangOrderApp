@@ -5,7 +5,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/exceptions"
 	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
-	product2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common/id"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/repo"
 	"gorm.io/gorm"
@@ -16,7 +16,23 @@ type RepoImpl struct {
 	appRepo.ProductRepo
 }
 
-func (repo *RepoImpl) AcquireProductByID(productID product2.ProductID) (product.Product, error) {
+func (repo *RepoImpl) AcquireProductsByIDs(productIDs []id.ID) ([]product.Product, error) {
+	ids := make([]string, len(productIDs))
+	for index, productID := range productIDs {
+		ids[index] = productID.ToString()
+	}
+	var productsModel []models.Product
+	result := repo.Session.Where("id IN ?", ids).Find(&productsModel)
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		exception := exceptions.ProductIDsNotExist{}.Exception(ids)
+		return []product.Product{}, &exception
+	}
+	if result.Error != nil {
+		return []product.Product{}, result.Error
+	}
+	return ConvertProductsModelsToAggregate(&productsModel), nil
+}
+func (repo *RepoImpl) AcquireProductByID(productID id.ID) (product.Product, error) {
 	var productModel models.Product
 	result := repo.Session.Where("id = ?", productID.ToString()).First(&productModel)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {

@@ -1,11 +1,10 @@
 package repo
 
 import (
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
 )
 
 type OrderRepo interface {
-	AcquireLastOrderByID(orderID vo.OrderID) (domain.Order, error)
-	Add(order *domain.Order, tx interface{}) error
+	AcquireLastOrder() (order.Order, error)
+	AddOrder(order order.Order, tx interface{}) error
 }

@@ -15,7 +15,7 @@ func (uow *GormUoW) StartTx() {
 	uow.Tx = uow.Session.Begin()
 }
 
-func (uow *GormUoW) GetTx() interface{} {
+func (uow *GormUoW) GetTx() any {
 	if uow.Tx != nil {
 		return uow.Tx
 	}
@@ -27,8 +27,7 @@ func (uow *GormUoW) Commit() error {
 	uow.Tx = nil
 	return nil
 }
-func (uow *GormUoW) Rollback() error {
+func (uow *GormUoW) Rollback() {
 	uow.Tx.Rollback()
 	uow.Tx = nil
-	return nil
 }

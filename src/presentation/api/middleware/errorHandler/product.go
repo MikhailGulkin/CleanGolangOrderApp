@@ -8,11 +8,6 @@ import (
 	"net/http"
 )
 
-type ErrorStatus struct {
-	status    int
-	exception any
-}
-
 func handleProductError(e ErrorCatching) {
 	var discountError *exceptions.InvalidDiscountProductCreation
 	var priceError *exceptions.InvalidPriceProductCreation
