@@ -19,7 +19,7 @@ type Order struct {
 	OrderStatus     consts.OrderStatus
 	PaymentMethod   consts.PaymentMethod
 	DeliveryAddress order.OrderAddress
-	TotalPrice      PriceOrder
+	totalPrice      PriceOrder
 	Date            time.Time
 	SerialNumber    int
 	Closed          bool
@@ -78,11 +78,14 @@ func getCurrentSerialNumber(serialNumber int) (int, error) {
 	return serialNumber + 1, nil
 }
 func (o *Order) GetTotalPrice() PriceOrder {
-	var total PriceOrder
+	var totalPrice float64
+	var totalDiscount float64
 	for _, orderProduct := range o.Products {
-		total += PriceOrder(orderProduct.Price)
+		totalPrice += orderProduct.Price
+		totalDiscount += float64(orderProduct.Discount)
 	}
-	return total
+	o.totalPrice = PriceOrder(totalPrice - ((totalDiscount / 100) * 100))
+	return o.totalPrice
 }
 func (o *Order) GetSerialNumber() int {
 	return o.SerialNumber

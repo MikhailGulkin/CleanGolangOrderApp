@@ -1,7 +1,7 @@
 package dto
 
 import (
-	f "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/dto"
 	"github.com/google/uuid"
 	"time"
 )
@@ -18,9 +18,6 @@ type Product struct {
 }
 
 type Products struct {
-	Products []Product   `json:"products,omitempty"`
-	Count    uint        `json:"count"`
-	Limit    uint        `json:"limit,omitempty"`
-	Offset   uint        `json:"offset,omitempty"`
-	Order    f.BaseOrder `json:"order,omitempty"`
+	Products []Product `json:"products,omitempty"`
+	dto.BaseSequence
 }

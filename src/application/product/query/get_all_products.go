@@ -1,6 +1,7 @@
 package query
 
 import (
+	base "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/dto"
 	baseFilters "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/filters"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/filters"
@@ -20,5 +21,5 @@ func (interactor *GetAllProductsImpl) Get(q query.GetAllProductsQuery) (dto.Prod
 	if err != nil {
 		return dto.Products{}, err
 	}
-	return dto.Products{Products: products, Limit: q.Limit, Offset: q.Offset, Order: q.Order, Count: uint(len(products))}, nil
+	return dto.Products{Products: products, BaseSequence: base.BaseSequence{Limit: q.Limit, Offset: q.Offset, Order: q.Order, Count: uint(len(products))}}, nil
 }

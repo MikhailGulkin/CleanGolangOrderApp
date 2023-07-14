@@ -14,6 +14,7 @@ func ConvertOrderModelToAggregate(model models.Order) order.Order {
 		products[index] = o.OrderProduct{
 			ProductID: product.ID,
 			Price:     product.Price,
+			Discount:  product.Discount,
 		}
 	}
 	return order.Order{
