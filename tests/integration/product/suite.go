@@ -1,7 +1,7 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/conftest"
 	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/product/utils"
@@ -11,7 +11,7 @@ import (
 type TestSuite struct {
 	suite.Suite
 	Server        conftest.Server
-	ProductEntity product.Product
+	ProductEntity aggregate.Product
 	ProductModel  models.Product
 }
 

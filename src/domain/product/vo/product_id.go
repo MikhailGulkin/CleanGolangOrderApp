@@ -1,4 +1,4 @@
-package product
+package vo
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common/id"

@@ -2,7 +2,7 @@ package errorhandler
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/response"
 	"net/http"
 )

@@ -1,4 +1,4 @@
-package domain
+package common
 
 type CustomException struct {
 	Message string

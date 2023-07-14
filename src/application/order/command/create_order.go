@@ -7,10 +7,12 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	userRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/user/interfaces/persistence/repo"
-	o "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/address/vo"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/services"
+	vo2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
+	vo3 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/vo"
+	vo4 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/user/vo"
 	"reflect"
 )
 
@@ -20,16 +22,16 @@ type CreateOrderImpl struct {
 	userRepo.UserRepo
 	addressRepo.AddressRepo
 	repo.OrderRepo
-	order.Service
+	services.Service
 	persistence.UoW
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
-	products, productError := interactor.ProductRepo.AcquireProductsByIDs(product.GetProductIDs(command.ProductsIDs))
+	products, productError := interactor.ProductRepo.AcquireProductsByIDs(vo3.GetProductIDs(command.ProductsIDs))
 	if productError != nil {
 		return productError
 	}
-	user, userError := interactor.UserRepo.AcquireUserByID(vo.UserID{Value: command.UserID})
+	user, userError := interactor.UserRepo.AcquireUserByID(vo4.UserID{Value: command.UserID})
 	if userError != nil {
 		return userError
 	}
@@ -45,17 +47,17 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if !reflect.ValueOf(previousOrder).IsZero() {
 		serialNumber = previousOrder.GetSerialNumber()
 	}
-	orderAddress, orderErrAddress := o.OrderAddress{}.Create(address.AddressID.Value, address.GetFullAddress())
+	orderAddress, orderErrAddress := order.OrderAddress{}.Create(address.AddressID.Value, address.GetFullAddress())
 
 	if orderErrAddress != nil {
 		return orderErrAddress
 	}
-	client, clientError := o.OrderClient{}.Create(user.UserID.Value, user.Username)
+	client, clientError := order.OrderClient{}.Create(user.UserID.Value, user.Username)
 	if clientError != nil {
 		return clientError
 	}
 	orderAggregate, err := interactor.Service.CreateOrder(
-		vo.OrderID{Value: command.OrderID},
+		vo2.OrderID{Value: command.OrderID},
 		orderAddress,
 		client,
 		serialNumber,

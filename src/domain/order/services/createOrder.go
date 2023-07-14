@@ -1,11 +1,11 @@
-package order
+package services
 
 import (
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
 )
 
 type Service struct {
@@ -16,7 +16,7 @@ func (Service) CreateOrder(
 	deliveryAddress order.OrderAddress,
 	client order.OrderClient,
 	previousSerialNumber int,
-	products []product.Product,
+	products []aggregate.Product,
 ) (domain.Order, error) {
 	createdOrder, orderError := domain.Order{}.Create(
 		orderID,

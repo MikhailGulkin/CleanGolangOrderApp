@@ -5,12 +5,13 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/user/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/user/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/user"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/address/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/user/services"
+	vo2 "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/user/vo"
 )
 
 type CreateUserImpl struct {
-	user.Service
+	services.Service
 	persistence.UoW
 	repo.UserRepo
 	addressRepo.AddressRepo
@@ -23,7 +24,7 @@ func (interactor *CreateUserImpl) Create(command command.CreateUserCommand) erro
 		return err
 	}
 	interactor.StartTx()
-	entity := interactor.Service.CreateUser(vo.UserID{Value: command.UserID}, command.Username, address)
+	entity := interactor.Service.CreateUser(vo2.UserID{Value: command.UserID}, command.Username, address)
 	err = interactor.UserRepo.AddUser(entity, interactor.GetTx())
 	if err != nil {
 		return err

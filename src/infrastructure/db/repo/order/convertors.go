@@ -1,10 +1,10 @@
 package order
 
 import (
-	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/consts"
-	o "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/consts"
+	o "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 )
 

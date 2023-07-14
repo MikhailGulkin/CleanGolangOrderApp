@@ -2,14 +2,14 @@ package product
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/vo"
 	"testing"
 )
 
 func TestIncorrectPriceProductCreate(t *testing.T) {
 	var incorrectPrice float64 = -100
-	_, err := product.ProductPrice{}.Create(incorrectPrice)
+	_, err := vo.ProductPrice{}.Create(incorrectPrice)
 	if err != nil {
 		return
 	}
@@ -20,7 +20,7 @@ func TestIncorrectPriceProductCreate(t *testing.T) {
 }
 func TestIncorrectDiscountProductCreate(t *testing.T) {
 	var discount int32 = 3000
-	_, err := product.ProductDiscount{}.Create(discount)
+	_, err := vo.ProductDiscount{}.Create(discount)
 	var discountError *exceptions.InvalidDiscountProductCreation
 	if !errors.As(err, &discountError) {
 		t.Error("Product with unlivable discount created, price: ", discount)

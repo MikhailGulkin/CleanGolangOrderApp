@@ -4,8 +4,8 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/address/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/address/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/address"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/address/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/address/vo"
 )
 
 type CreateAddressImpl struct {
@@ -15,7 +15,7 @@ type CreateAddressImpl struct {
 }
 
 func (interactor *CreateAddressImpl) Create(command command.CreateAddressCommand) error {
-	addressEntity := address.Address{}.Create(
+	addressEntity := aggregate.Address{}.Create(
 		vo.AddressID{Value: command.AddressID},
 		command.BuildingNumber,
 		command.StreetName,

@@ -2,16 +2,16 @@ package exceptions
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common"
 )
 
 type UserIDNotExist struct {
-	domain.CustomException
+	common.CustomException
 }
 
 func (e UserIDNotExist) Exception(context string) UserIDNotExist {
 	return UserIDNotExist{
-		CustomException: domain.CustomException{
+		CustomException: common.CustomException{
 			Message: "User with this id not exist;",
 			Ctx:     fmt.Sprintf("id `%s`", context),
 		}}

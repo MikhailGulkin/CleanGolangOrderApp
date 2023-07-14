@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/product/utils"
 	"net/http"
 )
@@ -34,7 +34,7 @@ func (suite *TestSuite) TestGetProductByName() {
 	suite.Equal(http.StatusOK, resp.StatusCode)
 
 	decoder := json.NewDecoder(resp.Body)
-	var data product.Product
+	var data aggregate.Product
 	_ = decoder.Decode(&data)
 
 	suite.Equal(data.Name, suite.ProductModel.Name)

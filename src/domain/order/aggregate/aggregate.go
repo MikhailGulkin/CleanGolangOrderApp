@@ -1,11 +1,11 @@
-package domain
+package aggregate
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/consts"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/entities/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/consts"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
 	"strconv"
 	"time"
 )

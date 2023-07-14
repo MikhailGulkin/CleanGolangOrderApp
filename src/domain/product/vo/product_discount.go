@@ -1,7 +1,7 @@
-package product
+package vo
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/exceptions"
 	"strconv"
 )
 

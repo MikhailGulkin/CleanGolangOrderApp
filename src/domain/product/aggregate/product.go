@@ -1,25 +1,25 @@
-package product
+package aggregate
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/vo"
 	"regexp"
 )
 
 type Product struct {
-	product.ProductID
-	Price        product.ProductPrice
+	vo.ProductID
+	Price        vo.ProductPrice
 	Name         string
-	Discount     product.ProductDiscount
+	Discount     vo.ProductDiscount
 	Quantity     int32
 	Description  string
 	Availability bool
 }
 
 func (Product) Create(
-	productID product.ProductID,
-	price product.ProductPrice,
-	discount product.ProductDiscount,
+	productID vo.ProductID,
+	price vo.ProductPrice,
+	discount vo.ProductDiscount,
 	description string,
 	name string,
 ) (Product, error) {

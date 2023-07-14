@@ -3,7 +3,7 @@ package order
 import (
 	"errors"
 	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
-	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/repo"
 	"gorm.io/gorm"
@@ -44,11 +44,17 @@ func (repo *RepoImpl) AddOrder(entity order.Order, tx any) error {
 	if result.Error != nil {
 		return result.Error
 	}
-	err := tx.(*gorm.DB).Model(&model).Association("Products").Append(products)
+	err := tx.(*gorm.DB).Model(
+		&model,
+	).Association("Products").Append(
+		products,
+	)
 	if err != nil {
 		return err
 	}
-	err = tx.(*gorm.DB).Model(&models.User{Base: models.Base{ID: entity.Client.ClientID}}).Association("Orders").Append(
+	err = tx.(*gorm.DB).Model(
+		&models.User{Base: models.Base{ID: entity.Client.ClientID}},
+	).Association("Orders").Append(
 		&model,
 	)
 	if err != nil {

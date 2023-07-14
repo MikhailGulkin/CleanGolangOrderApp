@@ -8,7 +8,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	userRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/user/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/services/order"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/services"
 	"go.uber.org/fx"
 )
 
@@ -25,7 +25,7 @@ func NewCreateOrder(
 		AddressRepo: addressRepo,
 		ProductRepo: productRepo,
 		OrderRepo:   orderRepo,
-		Service:     order.Service{},
+		Service:     services.Service{},
 	}
 }
 

@@ -1,8 +1,8 @@
-package address
+package aggregate
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/address/vo"
 )
 
 type Address struct {

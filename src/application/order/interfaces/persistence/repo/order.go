@@ -1,7 +1,7 @@
 package repo
 
 import (
-	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/aggregate/order"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
 )
 
 type OrderRepo interface {
