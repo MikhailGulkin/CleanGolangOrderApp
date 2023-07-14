@@ -33,6 +33,6 @@ func (e InvalidProductNameUpdate) Exception(context string) InvalidProductNameUp
 	return InvalidProductNameUpdate{
 		CustomException: common.CustomException{
 			Message: "Product name must be start with capital letter",
-			Ctx:     fmt.Sprintf("api name: `%s`", context),
+			Ctx:     fmt.Sprintf("product name: `%s`", context),
 		}}
 }
