@@ -1,16 +1,14 @@
-package product
+package api
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/product/utils"
+	utils2 "github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/api/product/utils"
 	"net/http"
 	"strings"
 )
 
-var ZeroInt64 = int64(0)
-
 func (suite *TestSuite) TestSuccessProductCreate() {
-	resp, err := http.Post(fmt.Sprintf("%s/products", suite.Server.URL), "application/json", utils.CreateValidByteProduct()) //nolint:bodyclose
+	resp, err := http.Post(fmt.Sprintf("%s/products", suite.Server.URL), "application/json", utils2.CreateValidByteProduct()) //nolint:bodyclose
 
 	if err != nil {
 		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", err))
@@ -19,7 +17,7 @@ func (suite *TestSuite) TestSuccessProductCreate() {
 	suite.Equal(resp.ContentLength, ZeroInt64)
 }
 func (suite *TestSuite) TestInvalidDiscount() {
-	resp, err := http.Post(fmt.Sprintf("%s/products", suite.Server.URL), "application/json", utils.CreateInvalidDiscountByteProduct()) //nolint:bodyclose
+	resp, err := http.Post(fmt.Sprintf("%s/products", suite.Server.URL), "application/json", utils2.CreateInvalidDiscountByteProduct()) //nolint:bodyclose
 
 	if err != nil {
 		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", err))
@@ -28,7 +26,7 @@ func (suite *TestSuite) TestInvalidDiscount() {
 	suite.Equal(resp.ContentLength, ZeroInt64)
 }
 func (suite *TestSuite) TestInvalidPrice() {
-	resp, err := http.Post(fmt.Sprintf("%s/products", suite.Server.URL), "application/json", utils.CreateInvalidPriceByteProduct()) //nolint:bodyclose
+	resp, err := http.Post(fmt.Sprintf("%s/products", suite.Server.URL), "application/json", utils2.CreateInvalidPriceByteProduct()) //nolint:bodyclose
 
 	if err != nil {
 		suite.Fail(fmt.Sprintf("Expected no errorHandler, got %v", err))
@@ -55,7 +53,7 @@ func (suite *TestSuite) TestNotExistProductWhenUpdate() {
 	suite.Equal(resp.ContentLength, ZeroInt64)
 }
 func (suite *TestSuite) TestSuccessUpdateProductName() {
-	utils.CreateProductInDB(&suite.ProductModel, suite.Server.DB)
+	utils2.CreateProductInDB(&suite.ProductModel, suite.Server.DB)
 	req, err := http.NewRequest(
 		http.MethodPut,
 		fmt.Sprintf("%s/products/%s/productName", suite.Server.URL, suite.ProductModel.ID),
@@ -74,7 +72,7 @@ func (suite *TestSuite) TestSuccessUpdateProductName() {
 	suite.Equal(resp.ContentLength, ZeroInt64)
 }
 func (suite *TestSuite) TestIncorrectUpdateProductName() {
-	utils.CreateProductInDB(&suite.ProductModel, suite.Server.DB)
+	utils2.CreateProductInDB(&suite.ProductModel, suite.Server.DB)
 	req, err := http.NewRequest(
 		http.MethodPut,
 		fmt.Sprintf("%s/products/%s/productName", suite.Server.URL, suite.ProductModel.ID),

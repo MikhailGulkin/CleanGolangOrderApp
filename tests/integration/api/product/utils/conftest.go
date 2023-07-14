@@ -21,7 +21,7 @@ func CreateValidProductCommand() command.CreateProductCommand {
 func CreateValidByteProduct() *bytes.Reader {
 	marshalled, err := json.Marshal(CreateValidProductCommand())
 	if err != nil {
-		log.Fatalf("impossible to marshall teacher: %s", err)
+		log.Fatalf("impossible to marshall api: %s", err)
 	}
 	return bytes.NewReader(marshalled)
 }

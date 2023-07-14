@@ -1,11 +1,11 @@
-package product
+package api
 
 import (
 	"encoding/json"
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/product/utils"
+	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/api/product/utils"
 	"net/http"
 )
 

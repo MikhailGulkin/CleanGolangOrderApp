@@ -31,7 +31,6 @@ func NewErrorMiddleware(handler engine.RequestHandler) ErrorMiddleware {
 func (m ErrorMiddleware) Handle(c *gin.Context) {
 	c.Next()
 	err := c.Errors.Last()
-
 	if err != nil {
 		status, exceptionResponse := http.StatusInternalServerError, response.ExceptionResponse{
 			Message: "Unknown server error has occurred",
