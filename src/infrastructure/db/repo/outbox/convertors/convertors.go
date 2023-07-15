@@ -7,7 +7,7 @@ import (
 )
 
 type PayloadEnhanced struct {
-	payload models.JSON
+	payload string
 	reflect reflect.Type
 }
 type EventToOutbox struct {
@@ -21,11 +21,8 @@ func (e EventToOutbox) Create(events []events.Event) (EventToOutbox, error) {
 		if binaryErr != nil {
 			return EventToOutbox{}, binaryErr
 		}
-		payload, jsonError := models.GetJSONPayload(binary)
-		if jsonError != nil {
-			return EventToOutbox{}, jsonError
-		}
-		payloads = append(payloads, PayloadEnhanced{payload: payload, reflect: reflect.TypeOf(event)})
+
+		payloads = append(payloads, PayloadEnhanced{payload: string(binary), reflect: reflect.TypeOf(event)})
 	}
 	return EventToOutbox{payloads: payloads}, nil
 }

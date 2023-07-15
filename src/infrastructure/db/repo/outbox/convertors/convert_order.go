@@ -9,7 +9,7 @@ import (
 func OrdersEventsHandler(outboxes *[]models.Outbox, payload PayloadEnhanced) bool {
 	if payload.reflect == reflect.TypeOf(new(o.OrderCreated)) {
 		*outboxes = append(*outboxes, models.Outbox{
-			Exchange: "Order",
+			Exchange: "Orders",
 			Route:    "order_create",
 			Payload:  payload.payload,
 		})
@@ -17,7 +17,7 @@ func OrdersEventsHandler(outboxes *[]models.Outbox, payload PayloadEnhanced) boo
 	}
 	if payload.reflect == reflect.TypeOf(new(o.OrderAddProduct)) {
 		*outboxes = append(*outboxes, models.Outbox{
-			Exchange: "Order",
+			Exchange: "Orders",
 			Route:    "order_add_product",
 			Payload:  payload.payload,
 		})

@@ -12,3 +12,12 @@ password = "1234"
 migration = true
 logging = true
 max_idle_connection = 100
+
+[broker]
+host = "localhost"
+port = 5672
+login = "admin"
+password = "admin"
+
+[cron]
+seconds = 5
