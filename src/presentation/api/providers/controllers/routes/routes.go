@@ -9,12 +9,12 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Options(
-	fx.Provide(routes.NewRoutes),
-	fx.Provide(routes.NewGroupRoutes),
+var Module = fx.Provide(
+	routes.NewRoutes,
+	routes.NewGroupRoutes,
 
-	fx.Provide(product.NewProductRoutes),
-	fx.Provide(user.NewUserRoutes),
-	fx.Provide(order.NewOrderRoutes),
-	fx.Provide(address.NewAddressRoutes),
+	product.NewProductRoutes,
+	user.NewUserRoutes,
+	order.NewOrderRoutes,
+	address.NewAddressRoutes,
 )

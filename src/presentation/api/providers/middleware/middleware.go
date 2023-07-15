@@ -6,7 +6,7 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Options(
-	fx.Provide(errorhandler.NewErrorMiddleware),
-	fx.Provide(middleware.NewMiddlewares),
+var Module = fx.Provide(
+	errorhandler.NewErrorMiddleware,
+	middleware.NewMiddlewares,
 )

@@ -5,6 +5,6 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Options(
-	fx.Provide(engine.NewRequestHandler),
+var Module = fx.Provide(
+	engine.NewRequestHandler,
 )

@@ -8,9 +8,9 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Options(
-	fx.Provide(product.NewProductHandler),
-	fx.Provide(user.NewUserHandler),
-	fx.Provide(address.NewProductHandler),
-	fx.Provide(order.NewOrderHandler),
+var Module = fx.Provide(
+	product.NewProductHandler,
+	user.NewUserHandler,
+	address.NewProductHandler,
+	order.NewOrderHandler,
 )
