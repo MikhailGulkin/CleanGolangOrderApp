@@ -18,6 +18,6 @@ func (OrderAddProduct) Create(product uuid.UUID, orderPrice float64) events.Even
 		OrderPrice: orderPrice,
 	}
 }
-func (o *OrderAddProduct) Jsonify() ([]byte, error) {
-	return events.Jsonify(o)
+func (o *OrderAddProduct) Bytes() ([]byte, error) {
+	return events.Bytes(o)
 }

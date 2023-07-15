@@ -23,6 +23,6 @@ func (OrderCreated) Create(client uuid.UUID, paymentMethod string, address uuid.
 	}
 }
 
-func (o *OrderCreated) Jsonify() ([]byte, error) {
-	return events.Jsonify(o)
+func (o *OrderCreated) Bytes() ([]byte, error) {
+	return events.Bytes(o)
 }

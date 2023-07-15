@@ -3,6 +3,7 @@ package order
 import (
 	addressRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/address/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
+	outboxRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/command"
 	c "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/reader"
@@ -21,6 +22,7 @@ func NewCreateOrder(
 	addressRepo addressRepo.AddressRepo,
 	productRepo productRepo.ProductRepo,
 	orderRepo repo.OrderRepo,
+	outboxRepo outboxRepo.OutboxRepo,
 ) c.CreateOrder {
 	return &command.CreateOrderImpl{
 		UserRepo:    userRepo,
@@ -29,6 +31,7 @@ func NewCreateOrder(
 		ProductRepo: productRepo,
 		OrderRepo:   orderRepo,
 		Service:     services.Service{},
+		OutboxRepo:  outboxRepo,
 	}
 }
 func NewGetAllOrders(dao reader.OrderReader) q.GetAllOrders {

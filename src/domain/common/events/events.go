@@ -7,7 +7,7 @@ import (
 )
 
 type Event interface {
-	Jsonify() ([]byte, error)
+	Bytes() ([]byte, error)
 }
 type BaseEvent struct {
 	EventID        uuid.UUID `json:"eventID"`
@@ -20,13 +20,13 @@ func (BaseEvent) Create() BaseEvent {
 		EventTimeStamp: time.Now(),
 	}
 }
-func Jsonify(v any) ([]byte, error) {
+func Bytes(v any) ([]byte, error) {
 	bin, err := json.Marshal(v)
 	if err != nil {
 		return nil, err
 	}
 	return bin, nil
 }
-func (o *BaseEvent) Jsonify() ([]byte, error) {
-	return Jsonify(o)
+func (o *BaseEvent) Bytes() ([]byte, error) {
+	return Bytes(o)
 }

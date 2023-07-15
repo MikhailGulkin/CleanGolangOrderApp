@@ -6,6 +6,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/uow"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db/address"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db/orders"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db/outbox"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db/user"
 	"go.uber.org/fx"
@@ -25,4 +26,6 @@ var Module = fx.Options(
 		BuildGormUoW,
 		db.BuildConnection,
 	),
+
+	outbox.Module,
 )
