@@ -36,6 +36,12 @@ func ConvertOrderModelToAggregate(model models.Order) order.Order {
 	}
 }
 func ConvertOrderAggregateToModel(order order.Order) models.Order {
+	products := make([]models.Product, len(order.Products))
+	for index, product := range order.Products {
+		products[index] = models.Product{
+			Base: models.Base{ID: product.ProductID},
+		}
+	}
 	return models.Order{
 		Base:          models.Base{ID: order.OrderID.Value, CreatedAt: order.Date},
 		OrderStatus:   string(order.OrderStatus),
@@ -44,6 +50,7 @@ func ConvertOrderAggregateToModel(order order.Order) models.Order {
 		AddressID:     order.DeliveryAddress.AddressID,
 		Closed:        order.Closed,
 		SerialNumber:  order.SerialNumber,
+		Products:      products,
+		Users:         []models.User{{Base: models.Base{ID: order.Client.ClientID}}},
 	}
-
 }

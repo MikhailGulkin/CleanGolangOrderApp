@@ -23,9 +23,8 @@ func (interactor *CreateUserImpl) Create(command command.CreateUserCommand) erro
 	if err != nil {
 		return err
 	}
-	interactor.StartTx()
 	entity := interactor.Service.CreateUser(vo2.UserID{Value: command.UserID}, command.Username, address)
-	err = interactor.UserRepo.AddUser(entity, interactor.GetTx())
+	err = interactor.UserRepo.AddUser(entity, interactor.UoW.StartTx())
 	if err != nil {
 		return err
 	}

@@ -13,7 +13,7 @@ import (
 )
 
 func BuildGormUoW(conn *gorm.DB) persistence.UoW {
-	return &uow.GormUoW{Session: conn, Tx: nil}
+	return &uow.GormUoW{Session: conn}
 }
 
 var Module = fx.Options(

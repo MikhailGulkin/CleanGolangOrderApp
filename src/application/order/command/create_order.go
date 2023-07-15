@@ -25,7 +25,7 @@ type CreateOrderImpl struct {
 	repo.OrderRepo
 	services.Service
 	persistence.UoW
-	box.OutBoxRepo
+	box.OutboxRepo
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
@@ -68,14 +68,12 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if err != nil {
 		return err
 	}
-
-	interactor.UoW.StartTx()
-	err = interactor.OrderRepo.AddOrder(orderAggregate, interactor.UoW.GetTx())
+	err = interactor.OrderRepo.AddOrder(orderAggregate, interactor.UoW.StartTx())
+	interactor.UoW.Rollback()
 	if err != nil {
-		interactor.UoW.Rollback()
 		return err
 	}
-	err = interactor.OutBoxRepo.AddEvents(orderAggregate.PullEvents(), interactor.UoW.GetTx())
+	err = interactor.OutboxRepo.AddEvents(orderAggregate.PullEvents(), interactor.UoW.StartTx())
 	if err != nil {
 		interactor.UoW.Rollback()
 		return err

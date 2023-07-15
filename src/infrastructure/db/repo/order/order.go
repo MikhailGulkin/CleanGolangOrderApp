@@ -33,32 +33,12 @@ func (repo *RepoImpl) AcquireLastOrder() (order.Order, error) {
 }
 
 func (repo *RepoImpl) AddOrder(entity order.Order, tx any) error {
-	products := make([]models.Product, len(entity.Products))
-	for index, product := range entity.Products {
-		products[index] = models.Product{
-			Base: models.Base{ID: product.ProductID},
-		}
-	}
 	model := ConvertOrderAggregateToModel(entity)
-	result := tx.(*gorm.DB).Create(&model)
+	result := tx.(*gorm.DB).
+		Omit("Users.*", "Products.*").
+		Create(&model)
 	if result.Error != nil {
 		return result.Error
-	}
-	err := tx.(*gorm.DB).Model(
-		&model,
-	).Association("Products").Append(
-		products,
-	)
-	if err != nil {
-		return err
-	}
-	err = tx.(*gorm.DB).Model(
-		&models.User{Base: models.Base{ID: entity.Client.ClientID}},
-	).Association("Orders").Append(
-		&model,
-	)
-	if err != nil {
-		return err
 	}
 	return nil
 }

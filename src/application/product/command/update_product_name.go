@@ -24,8 +24,7 @@ func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNam
 	if err != nil {
 		return err
 	}
-	interactor.UoW.StartTx()
-	err = interactor.ProductRepo.UpdateProduct(productEntity, interactor.UoW.GetTx())
+	err = interactor.ProductRepo.UpdateProduct(productEntity, interactor.UoW.StartTx())
 	if err != nil {
 		return err
 	}

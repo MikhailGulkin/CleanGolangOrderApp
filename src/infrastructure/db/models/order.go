@@ -6,7 +6,6 @@ import (
 
 type Order struct {
 	Base
-	Products      []Product `gorm:"many2many:order_products;"`
 	OrderStatus   string
 	ClientID      uuid.UUID
 	Client        User
@@ -15,4 +14,7 @@ type Order struct {
 	AddressID     uuid.UUID
 	Closed        bool
 	SerialNumber  int
+
+	Users    []User    `gorm:"many2many:user_orders;"`
+	Products []Product `gorm:"many2many:order_products;"`
 }

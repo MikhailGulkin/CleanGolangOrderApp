@@ -1,7 +1,7 @@
 package persistence
 
 type UoW interface {
-	StartTx()
+	StartTx() any
 	GetTx() any
 	Commit() error
 	Rollback()

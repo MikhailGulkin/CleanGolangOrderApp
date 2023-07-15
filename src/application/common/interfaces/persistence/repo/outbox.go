@@ -2,6 +2,6 @@ package repo
 
 import "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common/events"
 
-type OutBoxRepo interface {
+type OutboxRepo interface {
 	AddEvents(events []events.Event, tx interface{}) error
 }

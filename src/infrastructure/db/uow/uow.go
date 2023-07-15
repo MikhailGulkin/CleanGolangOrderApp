@@ -8,26 +8,27 @@ import (
 type GormUoW struct {
 	persistence.UoW
 	Session *gorm.DB
-	Tx      *gorm.DB
+	tx      *gorm.DB
 }
 
-func (uow *GormUoW) StartTx() {
-	uow.Tx = uow.Session.Begin()
+func (uow *GormUoW) StartTx() any {
+	uow.tx = uow.Session.Begin()
+	return uow.tx
 }
 
 func (uow *GormUoW) GetTx() any {
-	if uow.Tx != nil {
-		return uow.Tx
+	if uow.tx != nil {
+		return uow.tx
 	}
-	uow.Tx = uow.Session.Begin()
-	return uow.Tx
+	uow.tx = uow.Session.Begin()
+	return uow.tx
 }
 func (uow *GormUoW) Commit() error {
-	uow.Tx.Commit()
-	uow.Tx = nil
+	uow.tx.Commit()
+	uow.tx = nil
 	return nil
 }
 func (uow *GormUoW) Rollback() {
-	uow.Tx.Rollback()
-	uow.Tx = nil
+	uow.tx.Rollback()
+	uow.tx = nil
 }

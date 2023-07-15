@@ -22,8 +22,7 @@ func (interactor *CreateAddressImpl) Create(command command.CreateAddressCommand
 		command.City,
 		command.Country,
 	)
-	interactor.UoW.StartTx()
-	err := interactor.AddressRepo.AddAddress(addressEntity, interactor.UoW.GetTx())
+	err := interactor.AddressRepo.AddAddress(addressEntity, interactor.UoW.StartTx())
 	if err != nil {
 		return err
 	}
