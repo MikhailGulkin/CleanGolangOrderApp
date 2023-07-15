@@ -7,3 +7,6 @@ dump-container-test
 .test.env
 .test.container.env
 /config/
+
+dump-postgres
+dump-rabbit_mq

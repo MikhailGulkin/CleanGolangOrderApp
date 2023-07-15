@@ -13,7 +13,7 @@ type Routes struct {
 }
 
 func (r Routes) Setup() {
-	r.POST("/address", r.controller.CreateAddress)
+	r.POST("/addresses", r.controller.CreateAddress)
 }
 
 func NewAddressRoutes(

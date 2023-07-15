@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   postgres:
-    container_name: OrderApp
+    container_name: PostgresOrderApp
     image: postgres:latest
     restart: on-failure
     env_file:
@@ -9,4 +9,16 @@ services:
     ports:
       - "5431:5432"
     volumes:
-      - ./dump:/var/lib/postgresql/data
+      - ./dump-postgres:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: RabbitOrderApp
+    hostname: DevRabbitmq
+    volumes:
+      - ./dump-rabbit_mq:/var/lib/rabbitmq/mnesia/
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    env_file:
+      .env
