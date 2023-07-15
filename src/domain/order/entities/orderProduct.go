@@ -8,6 +8,6 @@ type OrderProduct struct {
 	Discount  int32
 }
 
-func (OrderProduct) Create(productID uuid.UUID, price float64) (OrderProduct, error) {
-	return OrderProduct{ProductID: productID, Price: price}, nil
+func (OrderProduct) Create(productID uuid.UUID, price float64, discount int32) (OrderProduct, error) {
+	return OrderProduct{ProductID: productID, Price: price, Discount: discount}, nil
 }

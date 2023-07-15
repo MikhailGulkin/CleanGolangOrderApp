@@ -2,8 +2,10 @@ package aggregate
 
 import (
 	"errors"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/common/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/consts"
 	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
 	"strconv"
@@ -13,6 +15,7 @@ import (
 type PriceOrder float64
 
 type Order struct {
+	aggregate.AggregateRoot
 	vo.OrderID
 	Products        []order.OrderProduct
 	Client          order.OrderClient
@@ -30,8 +33,7 @@ func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, clie
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
 	}
-
-	return Order{
+	createdOrder := Order{
 		OrderID:         orderID,
 		OrderStatus:     consts.New,
 		Client:          client,
@@ -39,7 +41,16 @@ func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, clie
 		PaymentMethod:   consts.Online,
 		Date:            time.Now(),
 		SerialNumber:    serialNumber,
-	}, nil
+	}
+	createdOrder.RecordEvent(
+		events.OrderCreated{}.Create(
+			createdOrder.Client.ClientID,
+			string(createdOrder.PaymentMethod),
+			createdOrder.DeliveryAddress.AddressID,
+			createdOrder.SerialNumber,
+		),
+	)
+	return createdOrder, nil
 }
 func (o *Order) AddProduct(product order.OrderProduct) error {
 	for _, p := range o.Products {
@@ -49,7 +60,12 @@ func (o *Order) AddProduct(product order.OrderProduct) error {
 		}
 	}
 	o.Products = append(o.Products, product)
-
+	o.RecordEvent(
+		events.OrderAddProduct{}.Create(
+			product.ProductID,
+			float64(o.GetTotalPrice()),
+		),
+	)
 	return nil
 }
 func (o *Order) RemoveProduct(product order.OrderProduct) error {

@@ -32,7 +32,7 @@ func (Service) CreateOrder(
 		return domain.Order{}, &orderException
 	}
 	for _, p := range products {
-		orderProduct, err := order.OrderProduct{}.Create(p.ProductID.Value, p.Price.Value)
+		orderProduct, err := order.OrderProduct{}.Create(p.ProductID.Value, p.Price.Value, p.Discount.Value)
 		if err != nil {
 			return domain.Order{}, err
 		}

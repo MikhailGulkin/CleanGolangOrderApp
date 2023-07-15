@@ -3,6 +3,7 @@ package command
 import (
 	addressRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/address/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence"
+	box "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
@@ -24,6 +25,7 @@ type CreateOrderImpl struct {
 	repo.OrderRepo
 	services.Service
 	persistence.UoW
+	box.OutBoxRepo
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
@@ -66,8 +68,14 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if err != nil {
 		return err
 	}
+
 	interactor.UoW.StartTx()
 	err = interactor.OrderRepo.AddOrder(orderAggregate, interactor.UoW.GetTx())
+	if err != nil {
+		interactor.UoW.Rollback()
+		return err
+	}
+	err = interactor.OutBoxRepo.AddEvents(orderAggregate.PullEvents(), interactor.UoW.GetTx())
 	if err != nil {
 		interactor.UoW.Rollback()
 		return err
