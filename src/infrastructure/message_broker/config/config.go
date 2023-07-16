@@ -3,10 +3,10 @@ package config
 import "fmt"
 
 type MessageBrokerConfig struct {
-	Host     string `json:"host"`
-	Port     int    `json:"port"`
-	Login    string `json:"login"`
-	Password string `json:"password"`
+	Host     string `toml:"host"`
+	Port     int    `toml:"port"`
+	Login    string `toml:"login"`
+	Password string `toml:"password"`
 }
 
 func (conf *MessageBrokerConfig) FullDNS() string {

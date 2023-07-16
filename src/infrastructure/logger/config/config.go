@@ -1,7 +1,7 @@
 package config
 
 type LoggerConfig struct {
-	Mode      string
-	LogOutput string
-	LogLevel  string
+	Mode      string `toml:"mode"`
+	LogOutput string `toml:"log_output"`
+	LogLevel  string `toml:"log_level"`
 }

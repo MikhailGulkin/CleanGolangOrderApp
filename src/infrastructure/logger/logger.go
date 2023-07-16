@@ -16,13 +16,14 @@ var (
 	zapLogger    *zap.Logger
 )
 
-func GetLogger(loggerConfig config.LoggerConfig) Logger {
+func NewLogger(loggerConfig config.LoggerConfig) Logger {
 	if globalLogger == nil {
 		logger := newLogger(loggerConfig)
 		globalLogger = &logger
 	}
 	return *globalLogger
 }
+
 func newLogger(loggerConfig config.LoggerConfig) Logger {
 	zapConfig := zap.NewDevelopmentConfig()
 	logOutput := loggerConfig.LogOutput
@@ -37,7 +38,7 @@ func newLogger(loggerConfig config.LoggerConfig) Logger {
 	}
 
 	logLevel := loggerConfig.LogLevel
-	level := zap.PanicLevel
+	var level zapcore.Level
 	switch logLevel {
 	case "debug":
 		level = zapcore.DebugLevel

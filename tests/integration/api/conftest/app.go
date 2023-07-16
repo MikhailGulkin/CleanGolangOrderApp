@@ -1,11 +1,14 @@
 package conftest
 
 import (
+	"context"
+	"fmt"
 	load "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
 	dbFactory "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/interactors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api"
+	api "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers/controllers"
 	middleware2 "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/providers/middleware"
@@ -41,13 +44,14 @@ var DiModule = fx.Options(
 	dbFactory.Module,
 	interactors.Module,
 )
+
 var Module = fx.Options(
 	ModuleConfig,
 	DiModule,
 	controllers.Module,
 	middleware2.Module,
 	ModuleEngine,
-	fx.Invoke(api.Start),
+	fx.Invoke(Start),
 )
 
 type Server struct {
@@ -69,4 +73,26 @@ func StartServer() Server {
 	conn := db.BuildConnection(conf.DBConfig)
 
 	return Server{App: app, URL: setupBaseURL(conf.APIConfig), DB: conn}
+}
+func Start(
+	lifecycle fx.Lifecycle,
+	router engine.RequestHandler,
+	config api.APIConfig,
+	routers routes.Routes, //nolint:all
+) {
+	routers.Setup()
+
+	lifecycle.Append(
+		fx.Hook{
+			OnStart: func(context.Context) error {
+				go func() {
+					err := router.Gin.Run(fmt.Sprintf("%s:%d", config.Host, config.Port))
+					if err != nil {
+						panic(err)
+					}
+				}()
+				return nil
+			},
+		},
+	)
 }

@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"fmt"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
@@ -19,6 +20,7 @@ func Start(
 	lifecycle fx.Lifecycle,
 	router engine.RequestHandler,
 	config config.APIConfig,
+	logger logger.Logger,
 	routers routes.Routes, //nolint:all
 ) {
 	routers.Setup()
@@ -26,8 +28,13 @@ func Start(
 	lifecycle.Append(
 		fx.Hook{
 			OnStart: func(context.Context) error {
-				fmt.Printf("Starting application in :%d", config.Port)
+				logger.Info(fmt.Sprintf("Starting application in :%d", config.Port))
 				go func() {
+					defer func() {
+						if r := recover(); r != nil {
+							logger.Info(fmt.Sprintf("Recovered when boot api server, r %s", r))
+						}
+					}()
 					err := router.Gin.Run(fmt.Sprintf("%s:%d", config.Host, config.Port))
 					if err != nil {
 						panic(err)
@@ -36,7 +43,7 @@ func Start(
 				return nil
 			},
 			OnStop: func(context.Context) error {
-				fmt.Println("Stopping application")
+				logger.Info("Stopping api application")
 				return nil
 			},
 		},

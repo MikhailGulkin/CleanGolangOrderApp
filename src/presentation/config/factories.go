@@ -3,6 +3,7 @@ package config
 import (
 	load "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/config"
 	db "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger/config"
 	broker "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/message_broker/config"
 	api "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	cron "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/config"
@@ -24,4 +25,7 @@ func NewBrokerConfig(config Config) broker.MessageBrokerConfig {
 }
 func NewCronConfig(config Config) cron.CronConfig {
 	return config.CronConfig
+}
+func NewLoggerConfig(config Config) config.LoggerConfig {
+	return config.LoggerConfig
 }

@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,7 +12,8 @@ type GroupRoutes struct {
 	*gin.RouterGroup
 }
 
-func NewRequestHandler() RequestHandler {
+func NewRequestHandler(logger logger.Logger) RequestHandler {
+	gin.DefaultWriter = logger.GetGinLogger()
 	engine := gin.Default()
 	return RequestHandler{Gin: engine}
 }
