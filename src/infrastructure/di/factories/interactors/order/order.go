@@ -9,8 +9,11 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/reader"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/persistence/repo"
 	q "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/saga"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/query"
+	s "github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/saga"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/services"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	"go.uber.org/fx"
 )
 
@@ -39,8 +42,18 @@ func NewGetOrderByID(dao reader.OrderReader) q.GetOrderByID {
 	}
 }
 
+func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger.Logger) saga.CreateOrder {
+	return &s.CreateOrderImpl{
+		OrderSagaDAO: dao,
+		UoW:          uow,
+		Logger:       logger,
+	}
+}
+
 var Module = fx.Provide(
 	NewCreateOrder,
 	NewGetAllOrders,
 	NewGetOrderByID,
+
+	NewSagaCreateOrder,
 )

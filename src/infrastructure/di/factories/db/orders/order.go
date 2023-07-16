@@ -28,9 +28,16 @@ func BuildOrderDAO(conn *gorm.DB) appDAO.OrderDAO {
 		BaseGormRepo: repo.BaseGormRepo{Session: conn},
 	}
 }
+func BuildOrderSagaDAO(conn *gorm.DB) appDAO.OrderSagaDAO {
+	return &orderDAO.SagaDAOImpl{
+		BaseGormRepo: repo.BaseGormRepo{Session: conn},
+	}
+}
 
 var Module = fx.Provide(
 	BuildOrderRepo,
 	BuildOrderReader,
 	BuildOrderDAO,
+
+	BuildOrderSagaDAO,
 )

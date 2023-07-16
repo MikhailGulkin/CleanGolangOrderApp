@@ -30,8 +30,10 @@ func (r *RelayImpl) SendMessagesToBroker() {
 		}
 		processedIDs = append(processedIDs, m.ID)
 	}
-	err = r.OutboxDAO.UpdateMessage(processedIDs)
-	if err != nil {
-		return
+	if len(processedIDs) != 0 {
+		err = r.OutboxDAO.UpdateMessage(processedIDs)
+		if err != nil {
+			return
+		}
 	}
 }

@@ -10,3 +10,7 @@ type OrderDAO interface {
 	GetClientByID(uuid.UUID) (order.OrderClient, error)
 	GetAddressByID(uuid.UUID) (order.OrderAddress, error)
 }
+type OrderSagaDAO interface {
+	UpdateOrderSagaStatus(uuid.UUID, string, interface{}) error
+	DeleteOrderCascade(uuid.UUID, interface{}) error
+}
