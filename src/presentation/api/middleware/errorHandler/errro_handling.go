@@ -1,6 +1,8 @@
 package errorhandler
 
 import (
+	"fmt"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/response"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/middleware/interfaces"
@@ -11,6 +13,7 @@ import (
 type ErrorMiddleware struct {
 	interfaces.Middleware
 	engine.RequestHandler
+	logger.Logger
 }
 type ErrorCatching struct {
 	status    *int
@@ -22,9 +25,10 @@ type ErrorStatus struct {
 	exception any
 }
 
-func NewErrorMiddleware(handler engine.RequestHandler) ErrorMiddleware {
+func NewErrorMiddleware(handler engine.RequestHandler, logger logger.Logger) ErrorMiddleware {
 	return ErrorMiddleware{
 		RequestHandler: handler,
+		Logger:         logger,
 	}
 }
 
@@ -40,7 +44,12 @@ func (m ErrorMiddleware) Handle(c *gin.Context) {
 
 		handleProductError(errorCatching)
 		handleAddressError(errorCatching)
+		handleUserError(errorCatching)
 		handleOrderError(errorCatching)
+		m.Logger.Info(
+			fmt.Sprintf("Server handle erorr with status: %d, and error message: %s",
+				*errorCatching.status, errorCatching.err.Error()),
+		)
 		if c.Request.Method == "POST" ||
 			c.Request.Method == "DELETE" ||
 			c.Request.Method == "PATCH" ||
