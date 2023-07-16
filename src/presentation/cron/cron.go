@@ -1,32 +1,32 @@
-package relay
+package cron
 
 import (
 	"context"
 	"fmt"
 	brokerconfigurate "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/message_broker/broker_configurate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/relay/cron"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/di"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/handlers"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	fx.Provide(
-		cron.NewCron,
-		cron.NewController,
-	),
+	di.Module,
 	fx.Invoke(Start),
 )
 
 func Start(
 	lifecycle fx.Lifecycle,
 	setup brokerconfigurate.Brokers, //nolint:all
-	cron cron.Controller,
+	handlers handlers.Handlers,
+	cron engine.CronController,
 ) {
 	setup.Setup()
-	cron.Setup()
+	handlers.Setup()
 
 	lifecycle.Append(
 		fx.Hook{
-			OnStart: func(context.Context) error {
+			OnStart: func(ctx context.Context) error {
 				go cron.Run()
 				return nil
 			},
