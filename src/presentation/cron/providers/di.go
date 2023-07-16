@@ -1,4 +1,4 @@
-package di
+package providers
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/engine"

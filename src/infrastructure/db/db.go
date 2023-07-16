@@ -9,11 +9,11 @@ import (
 )
 
 func BuildConnection(logger logger.Logger, config config.DBConfig) *gorm.DB {
-	gormConfig := gorm.Config{
-		Logger: logger.GetGormLogger(),
-	}
+	gormConfig := gorm.Config{}
 	if !config.Logging {
 		gormConfig.Logger = gormLogger.Default.LogMode(gormLogger.Silent)
+	} else {
+		gormConfig.Logger = logger.GetGormLogger()
 	}
 	db, err := gorm.Open(postgres.Open(config.FullDNS()), &gormConfig)
 	sqlDB, errSQL := db.DB()

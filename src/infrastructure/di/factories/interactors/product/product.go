@@ -8,6 +8,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/persistence/repo"
 	q "github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	"go.uber.org/fx"
 )
 
@@ -24,9 +25,10 @@ func NewUpdateProductName(dao repo.ProductRepo, uow persistence.UoW) c.UpdatePro
 	}
 }
 
-func NewGetALlProducts(dao reader.ProductReader) q.GetAllProducts {
+func NewGetALlProducts(dao reader.ProductReader, logger logger.Logger) q.GetAllProducts {
 	return &query.GetAllProductsImpl{
-		DAO: dao,
+		DAO:    dao,
+		Logger: logger,
 	}
 }
 func NewGetProductByName(dao reader.ProductReader) q.GetProductByName {

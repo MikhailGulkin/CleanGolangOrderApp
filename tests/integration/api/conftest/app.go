@@ -7,6 +7,8 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
 	dbFactory "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/interactors"
+	logger2 "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	api "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/engine"
@@ -39,10 +41,12 @@ var ModuleConfig = fx.Provide(
 	NewConfig,
 	config.NewDBConfig,
 	config.NewAPIConfig,
+	config.NewLoggerConfig,
 )
 var DiModule = fx.Options(
 	dbFactory.Module,
 	interactors.Module,
+	logger2.Module,
 )
 
 var Module = fx.Options(
@@ -70,7 +74,7 @@ func StartServer() Server {
 		app.Run()
 	}()
 	waitForServer(strconv.Itoa(conf.APIConfig.Port))
-	conn := db.BuildConnection(conf.DBConfig)
+	conn := db.BuildConnection(logger.Logger{}, conf.DBConfig)
 
 	return Server{App: app, URL: setupBaseURL(conf.APIConfig), DB: conn}
 }

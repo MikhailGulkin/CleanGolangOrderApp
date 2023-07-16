@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	brokerconfigurate "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/message_broker/broker_configurate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/di"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/handlers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/providers"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	di.Module,
+	providers.Module,
 	fx.Invoke(Start),
 )
 
