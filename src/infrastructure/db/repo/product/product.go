@@ -16,22 +16,6 @@ type RepoImpl struct {
 	appRepo.ProductRepo
 }
 
-func (repo *RepoImpl) AcquireProductsByIDs(productIDs []id.ID) ([]aggregate.Product, error) {
-	ids := make([]string, len(productIDs))
-	for index, productID := range productIDs {
-		ids[index] = productID.ToString()
-	}
-	var productsModel []models.Product
-	result := repo.Session.Where("id IN ?", ids).Find(&productsModel)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		exception := exceptions.ProductIDsNotExist{}.Exception(ids)
-		return []aggregate.Product{}, &exception
-	}
-	if result.Error != nil {
-		return []aggregate.Product{}, result.Error
-	}
-	return ConvertProductsModelsToAggregates(&productsModel), nil
-}
 func (repo *RepoImpl) AcquireProductByID(productID id.ID) (aggregate.Product, error) {
 	var productModel models.Product
 	result := repo.Session.Where("id = ?", productID.ToString()).First(&productModel)

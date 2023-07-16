@@ -16,3 +16,15 @@ func (e UserIDNotExist) Exception(context string) UserIDNotExist {
 			Ctx:     fmt.Sprintf("id `%s`", context),
 		}}
 }
+
+type UserAddressIDNotExist struct {
+	common.CustomException
+}
+
+func (e UserAddressIDNotExist) Exception(context string) UserAddressIDNotExist {
+	return UserAddressIDNotExist{
+		CustomException: common.CustomException{
+			Message: "User address with this id not exist;",
+			Ctx:     fmt.Sprintf("id `%s`", context),
+		}}
+}

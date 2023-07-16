@@ -4,13 +4,13 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/relay/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/relay/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/reader"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/repo"
 	"github.com/google/uuid"
 )
 
 type DAOImpl struct {
 	dao.OutboxDAO
-	reader.BaseGormDAO
+	repo.BaseGormRepo
 }
 
 func (dao *DAOImpl) GetAllNonProcessedMessages() ([]dto.Message, error) {

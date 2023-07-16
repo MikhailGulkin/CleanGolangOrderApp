@@ -6,7 +6,6 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
 )
 
 type Service struct {
@@ -17,7 +16,7 @@ func (Service) CreateOrder(
 	deliveryAddress order.OrderAddress,
 	client order.OrderClient,
 	previousSerialNumber int,
-	products []aggregate.Product,
+	products []order.OrderProduct,
 ) (domain.Order, error) {
 	createdOrder, orderError := domain.Order{}.Create(
 		orderID,
@@ -32,12 +31,8 @@ func (Service) CreateOrder(
 		orderException := exceptions.OrderProductsEmpty{}.Exception(orderID.ToString())
 		return domain.Order{}, &orderException
 	}
-	for _, p := range products {
-		orderProduct, err := order.OrderProduct{}.Create(p.ProductID.Value, p.Price.Value, p.Discount.Value)
-		if err != nil {
-			return domain.Order{}, err
-		}
-		err = createdOrder.AddProduct(orderProduct)
+	for _, product := range products {
+		err := createdOrder.AddProduct(product)
 		if err != nil {
 			return domain.Order{}, err
 		}

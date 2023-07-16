@@ -28,15 +28,3 @@ func (e ProductIDNotExist) Exception(context string) ProductIDNotExist {
 			Ctx:     fmt.Sprintf("id `%s`", context),
 		}}
 }
-
-type ProductIDsNotExist struct {
-	common.CustomException
-}
-
-func (e ProductIDsNotExist) Exception(context []string) ProductIDsNotExist {
-	return ProductIDsNotExist{
-		CustomException: common.CustomException{
-			Message: "Product with this ids not exist;",
-			Ctx:     fmt.Sprintf("ids: `%v`", context),
-		}}
-}
