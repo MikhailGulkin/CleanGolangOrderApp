@@ -5,10 +5,10 @@ import (
 	q "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/handlers"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"net/http"
-	"strconv"
 )
 
 type Handler struct {
@@ -54,10 +54,7 @@ func (c *Handler) UpdateProductName(context *gin.Context) {
 	context.Status(http.StatusNoContent)
 }
 func (c *Handler) GetAllProducts(context *gin.Context) {
-	Limit, _ := strconv.Atoi(context.DefaultQuery("limit", "1000"))
-	Offset, _ := strconv.Atoi(context.DefaultQuery("offset", "0"))
-	Order := context.DefaultQuery("order", "asc")
-
+	Limit, Offset, Order := handlers.GetQueryParams(context)
 	products, err := c.getAllProducts.Get(
 		query.GetAllProductsQuery{
 			BaseListQueryParams: q.BaseListQueryParams{
