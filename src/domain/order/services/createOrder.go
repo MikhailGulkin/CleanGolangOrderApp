@@ -3,6 +3,7 @@ package services
 import (
 	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
 	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
@@ -41,5 +42,14 @@ func (Service) CreateOrder(
 			return domain.Order{}, err
 		}
 	}
+	createdOrder.RecordEvent(
+		events.OrderCreated{}.Create(
+			createdOrder.Client.ClientID,
+			string(createdOrder.PaymentMethod),
+			createdOrder.DeliveryAddress.AddressID,
+			createdOrder.SerialNumber,
+			float64(createdOrder.GetTotalPrice()),
+		),
+	)
 	return createdOrder, nil
 }

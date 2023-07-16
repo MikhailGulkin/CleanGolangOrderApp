@@ -6,7 +6,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
 )
 
-func ConvertProductsModelsToAggregate(models *[]models.Product) []aggregate.Product {
+func ConvertProductsModelsToAggregates(models *[]models.Product) []aggregate.Product {
 	products := make([]aggregate.Product, len(*models))
 	for index, model := range *models {
 		products[index] = ConvertProductModelToEntity(model)

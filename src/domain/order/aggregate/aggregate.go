@@ -33,7 +33,7 @@ func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, clie
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
 	}
-	createdOrder := Order{
+	return Order{
 		OrderID:         orderID,
 		OrderStatus:     consts.New,
 		Client:          client,
@@ -41,16 +41,7 @@ func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, clie
 		PaymentMethod:   consts.Online,
 		Date:            time.Now(),
 		SerialNumber:    serialNumber,
-	}
-	createdOrder.RecordEvent(
-		events.OrderCreated{}.Create(
-			createdOrder.Client.ClientID,
-			string(createdOrder.PaymentMethod),
-			createdOrder.DeliveryAddress.AddressID,
-			createdOrder.SerialNumber,
-		),
-	)
-	return createdOrder, nil
+	}, nil
 }
 func (o *Order) AddProduct(product order.OrderProduct) error {
 	for _, p := range o.Products {

@@ -11,15 +11,23 @@ type OrderCreated struct {
 	PaymentMethod   string
 	DeliveryAddress uuid.UUID
 	SerialNumber    int
+	TotalPrice      float64
 }
 
-func (OrderCreated) Create(client uuid.UUID, paymentMethod string, address uuid.UUID, serialNumber int) events.Event {
+func (OrderCreated) Create(
+	client uuid.UUID,
+	paymentMethod string,
+	address uuid.UUID,
+	serialNumber int,
+	totalPrice float64,
+) events.Event {
 	return &OrderCreated{
 		BaseEvent:       events.BaseEvent{}.Create(),
 		Client:          client,
 		PaymentMethod:   paymentMethod,
 		DeliveryAddress: address,
 		SerialNumber:    serialNumber,
+		TotalPrice:      totalPrice,
 	}
 }
 

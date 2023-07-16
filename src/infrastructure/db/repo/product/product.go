@@ -30,7 +30,7 @@ func (repo *RepoImpl) AcquireProductsByIDs(productIDs []id.ID) ([]aggregate.Prod
 	if result.Error != nil {
 		return []aggregate.Product{}, result.Error
 	}
-	return ConvertProductsModelsToAggregate(&productsModel), nil
+	return ConvertProductsModelsToAggregates(&productsModel), nil
 }
 func (repo *RepoImpl) AcquireProductByID(productID id.ID) (aggregate.Product, error) {
 	var productModel models.Product
