@@ -2,15 +2,18 @@ package db
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
+	gormLogger "gorm.io/gorm/logger"
 )
 
-func BuildConnection(config config.DBConfig) *gorm.DB {
-	gormConfig := gorm.Config{}
+func BuildConnection(logger logger.Logger, config config.DBConfig) *gorm.DB {
+	gormConfig := gorm.Config{
+		Logger: logger.GetGormLogger(),
+	}
 	if !config.Logging {
-		gormConfig.Logger = logger.Default.LogMode(logger.Silent)
+		gormConfig.Logger = gormLogger.Default.LogMode(gormLogger.Silent)
 	}
 	db, err := gorm.Open(postgres.Open(config.FullDNS()), &gormConfig)
 	sqlDB, errSQL := db.DB()

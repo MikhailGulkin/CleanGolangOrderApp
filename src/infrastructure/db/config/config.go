@@ -11,8 +11,8 @@ type DBConfig struct {
 	User              string `toml:"user"`
 	Password          string `toml:"password"`
 	Migration         bool   `toml:"migration"`
-	MaxIdleConnection int    `toml:"max_idle_connection"`
 	Logging           bool   `toml:"logging"`
+	MaxIdleConnection int    `toml:"max_idle_connection"`
 }
 
 func (conf *DBConfig) FullDNS() string {
