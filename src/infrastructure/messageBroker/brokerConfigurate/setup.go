@@ -1,6 +1,6 @@
 package brokerconfigurate
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/message_broker/broker_configurate/order"
+import "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/messageBroker/brokerConfigurate/order"
 
 type Brokers []Broker
 type Broker interface {

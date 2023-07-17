@@ -5,6 +5,7 @@ import (
 	q "github.com/MikhailGulkin/simpleGoOrderApp/src/application/common/interfaces/persistence/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/product/interfaces/query"
+	commandbus "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/commandBus"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/controllers/handlers"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -12,7 +13,7 @@ import (
 )
 
 type Handler struct {
-	createProduct     command.CreateProduct
+	bus               commandbus.CommandBus
 	getAllProducts    query.GetAllProducts
 	getProductByName  query.GetProductByName
 	updateProductName command.UpdateProductName
@@ -25,7 +26,7 @@ func (c *Handler) CreateProduct(context *gin.Context) {
 		return
 	}
 
-	err := c.createProduct.Create(requestBody)
+	err := c.bus.Execute(requestBody)
 	if err != nil {
 		context.Error(err)
 		return

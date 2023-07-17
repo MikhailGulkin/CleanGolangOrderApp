@@ -1,7 +1,7 @@
 package order
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/message_broker/broker_configurate/interfaces"
+	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/messageBroker/brokerConfigurate/interfaces"
 )
 
 var ExchangeName = "Orders"

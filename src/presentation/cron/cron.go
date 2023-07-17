@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger"
-	brokerconfigurate "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/message_broker/broker_configurate"
+	brokerconfigurate "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/messageBroker/brokerConfigurate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/handlers"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/cron/providers"
