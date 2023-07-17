@@ -7,15 +7,24 @@ import (
 
 type OrderAddProduct struct {
 	events.BaseEvent
-	Product    uuid.UUID
-	OrderPrice float64
+	OrderID      uuid.UUID `json:"orderID"`
+	Product      uuid.UUID `json:"product"`
+	ProductPrice float64   `json:"productPrice"`
+	OrderPrice   float64   `json:"orderPrice"`
 }
 
-func (OrderAddProduct) Create(product uuid.UUID, orderPrice float64) events.Event {
+func (OrderAddProduct) Create(
+	orderID uuid.UUID,
+	product uuid.UUID,
+	productPrice float64,
+	orderPrice float64,
+) events.Event {
 	return &OrderAddProduct{
-		BaseEvent:  events.BaseEvent{}.Create(),
-		Product:    product,
-		OrderPrice: orderPrice,
+		BaseEvent:    events.BaseEvent{}.Create(),
+		OrderID:      orderID,
+		Product:      product,
+		ProductPrice: productPrice,
+		OrderPrice:   orderPrice,
 	}
 }
 func (o *OrderAddProduct) Bytes() ([]byte, error) {

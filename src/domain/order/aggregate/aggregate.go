@@ -53,8 +53,10 @@ func (o *Order) AddProduct(product order.OrderProduct) error {
 	o.Products = append(o.Products, product)
 	o.RecordEvent(
 		events.OrderAddProduct{}.Create(
+			o.OrderID.Value,
 			product.ProductID,
 			float64(o.GetTotalPrice()),
+			product.Price,
 		),
 	)
 	return nil

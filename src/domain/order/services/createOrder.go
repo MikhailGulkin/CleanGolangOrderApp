@@ -39,7 +39,8 @@ func (Service) CreateOrder(
 	}
 	createdOrder.RecordEvent(
 		events.OrderCreated{}.Create(
-			createdOrder.Client.ClientID,
+			createdOrder.OrderID.Value,
+			events.OrderCreatedClient{ClientID: client.ClientID, Username: client.Username},
 			string(createdOrder.PaymentMethod),
 			createdOrder.DeliveryAddress.AddressID,
 			createdOrder.SerialNumber,
