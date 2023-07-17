@@ -1,7 +1,6 @@
 package logger
 
 import (
-	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/logger/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -25,16 +24,15 @@ func NewLogger(loggerConfig config.LoggerConfig) Logger {
 }
 
 func newLogger(loggerConfig config.LoggerConfig) Logger {
-	zapConfig := zap.NewDevelopmentConfig()
-	logOutput := loggerConfig.LogOutput
-
-	if loggerConfig.Mode == "development" {
-		fmt.Println("encode level")
+	var zapConfig zap.Config
+	if loggerConfig.Mode == "production" {
+		zapConfig = zap.NewProductionConfig()
+	} else if loggerConfig.Mode == "development" {
+		zapConfig = zap.NewDevelopmentConfig()
 		zapConfig.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
 	}
-
-	if loggerConfig.Mode == "production" && logOutput != "" {
-		zapConfig.OutputPaths = []string{logOutput}
+	if loggerConfig.Mode == "production" && loggerConfig.LogOutput != "" {
+		zapConfig.OutputPaths = []string{loggerConfig.LogOutput}
 	}
 
 	logLevel := loggerConfig.LogLevel
