@@ -2,7 +2,7 @@ package conftest
 
 import (
 	"fmt"
-	c "github.com/MikhailGulkin/simpleGoOrderApp/src/presentation/api/config"
+	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/config"
 	"log"
 	"net"
 	"time"

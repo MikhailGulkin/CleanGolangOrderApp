@@ -1,0 +1,15 @@
+package providers
+
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/handlers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/handlers/relay"
+	"go.uber.org/fx"
+)
+
+var Module = fx.Provide(
+	handlers.NewHandlers,
+	relay.NewCronHandler,
+	engine.NewCron,
+	engine.NewCronController,
+)

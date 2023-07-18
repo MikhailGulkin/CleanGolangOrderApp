@@ -3,7 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/api/order/utils"
 	"net/http"
 )

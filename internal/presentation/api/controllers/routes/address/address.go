@@ -1,0 +1,25 @@
+package address
+
+import (
+	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/address"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
+)
+
+type Routes struct {
+	engine.GroupRoutes
+	controller address.Handler
+	c.APIConfig
+}
+
+func (r Routes) Setup() {
+	r.POST("/addresses", r.controller.CreateAddress)
+}
+
+func NewAddressRoutes(
+	group engine.GroupRoutes,
+	controller address.Handler,
+	config c.APIConfig,
+) Routes {
+	return Routes{controller: controller, GroupRoutes: group, APIConfig: config}
+}

@@ -2,8 +2,8 @@ package product
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/vo"
 	"testing"
 )
 

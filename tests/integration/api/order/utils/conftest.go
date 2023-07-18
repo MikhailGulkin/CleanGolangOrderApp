@@ -3,9 +3,9 @@ package utils
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/consts"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/consts"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
 	"github.com/google/uuid"
 	"log"
 )

@@ -1,9 +1,9 @@
 package api
 
 import (
-	agg "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
+	agg "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
 	conftest2 "github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/api/conftest"
 	u "github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/api/order/utils"
 	"github.com/MikhailGulkin/simpleGoOrderApp/tests/integration/api/product/utils"

@@ -1,9 +1,9 @@
 package aggregate
 
 import (
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
 	"github.com/google/uuid"
 	"testing"
 )

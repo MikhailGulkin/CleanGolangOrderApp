@@ -1,10 +1,10 @@
 package utils
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/aggregate"
-	order "github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/order/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db/models"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/aggregate"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

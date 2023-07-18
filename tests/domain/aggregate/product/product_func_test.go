@@ -1,7 +1,7 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/src/domain/product/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/vo"
 	"github.com/google/uuid"
 	"testing"
 )
