@@ -17,11 +17,16 @@ type TestSuite struct {
 	ProductModel   models.Product
 	OrderAggregate agg.Order
 	OrderModel     models.Order
+	DBContainer    *conftest2.TestDatabase
 }
 
 func (suite *TestSuite) SetupSuite() {
-	server := conftest2.StartServer()
+	testDB := conftest2.NewTestDatabase(suite.T())
+	//defer testDB.Close(suite.T())
+
+	server := conftest2.StartServer(testDB.Port(suite.T()))
 	defer server.Done()
+	suite.DBContainer = testDB
 	suite.Server = server
 	suite.ProductEntity = utils.CreateValidProductEntity()
 	suite.ProductModel = utils.CreateValidProductModel(suite.ProductEntity)

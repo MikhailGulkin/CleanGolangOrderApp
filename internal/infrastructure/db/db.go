@@ -1,6 +1,7 @@
 package db
 
 import (
+	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"gorm.io/driver/postgres"
@@ -9,6 +10,7 @@ import (
 )
 
 func BuildConnection(logger logger.Logger, config config.DBConfig) *gorm.DB {
+	fmt.Println(config.FullDNS())
 	gormConfig := gorm.Config{}
 	if !config.Logging {
 		gormConfig.Logger = gormLogger.Default.LogMode(gormLogger.Silent)

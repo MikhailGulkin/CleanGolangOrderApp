@@ -20,7 +20,6 @@ import (
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 	"os"
-	"strconv"
 )
 
 func NewRequestHandler() engine.RequestHandler {
@@ -28,18 +27,19 @@ func NewRequestHandler() engine.RequestHandler {
 	newEngine := gin.New()
 	return engine.RequestHandler{Gin: newEngine}
 }
-
-func NewConfig() config.Config {
-	var conf config.Config
-	load.LoadConfig(&conf, os.Getenv("PROJECT_PATH"), "./config/test.toml")
-	return conf
+func createConfFabric(dbPort int) func() config.Config {
+	return func() config.Config {
+		var conf config.Config
+		load.LoadConfig(&conf, os.Getenv("PROJECT_PATH"), "./config/test.toml")
+		conf.DBConfig.Port = dbPort
+		return conf
+	}
 }
 
 var ModuleEngine = fx.Provide(
 	NewRequestHandler,
 )
 var ModuleConfig = fx.Provide(
-	NewConfig,
 	config.NewDBConfig,
 	config.NewAPIConfig,
 	config.NewLoggerConfig,
@@ -66,16 +66,18 @@ type Server struct {
 	*gorm.DB
 }
 
-func StartServer() Server {
-	conf := NewConfig()
+func StartServer(dbPort int) Server {
+	fabric := createConfFabric(dbPort)
+	conf := fabric()
+
 	app := fx.New(
 		fx.NopLogger,
 		Module,
+		fx.Provide(createConfFabric(dbPort)),
 	)
 	go func() {
 		app.Run()
 	}()
-	waitForServer(strconv.Itoa(conf.APIConfig.Port))
 	conn := db.BuildConnection(logger.Logger{}, conf.DBConfig)
 
 	return Server{App: app, URL: setupBaseURL(conf.APIConfig), DB: conn}
