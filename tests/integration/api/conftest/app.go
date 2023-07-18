@@ -5,6 +5,7 @@ import (
 	"fmt"
 	load "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/db"
+	commandbus "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/commandBus"
 	dbFactory "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/interactors"
 	logger2 "github.com/MikhailGulkin/simpleGoOrderApp/src/infrastructure/di/factories/logger"
@@ -47,6 +48,7 @@ var DiModule = fx.Options(
 	dbFactory.Module,
 	interactors.Module,
 	logger2.Module,
+	commandbus.Module,
 )
 
 var Module = fx.Options(
