@@ -10,8 +10,8 @@ type Event interface {
 	Bytes() ([]byte, error)
 }
 type BaseEvent struct {
-	EventID        uuid.UUID `json:"eventID"`
-	EventTimeStamp time.Time `json:"eventTimeStamp"`
+	EventID        uuid.UUID `json:"eventID,omitempty"`
+	EventTimeStamp time.Time `json:"eventTimeStamp,omitempty"`
 }
 
 func (BaseEvent) Create() BaseEvent {

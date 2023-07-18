@@ -25,4 +25,10 @@ seconds = 5
 [logging]
 mode="development"
 log_output=''
-log_level='debug'
+log_level='info'
+
+[cache]
+host="localhost"
+port=6379
+password=""
+db=0

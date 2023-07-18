@@ -11,6 +11,7 @@ type OrderDAO interface {
 	GetAddressByID(uuid.UUID) (order.OrderAddress, error)
 }
 type OrderSagaDAO interface {
+	CheckSagaCompletion(uuid.UUID) (bool, error)
 	UpdateOrderSagaStatus(uuid.UUID, string, interface{}) error
 	DeleteOrderCascade(uuid.UUID, interface{}) error
 }

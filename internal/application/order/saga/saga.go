@@ -17,6 +17,10 @@ type CreateOrderImpl struct {
 }
 
 func (interactor *CreateOrderImpl) CheckStatus(message saga.Message) {
+	check, err := interactor.OrderSagaDAO.CheckSagaCompletion(message.OrderID)
+	if err != nil || !check {
+		return
+	}
 	switch message.OrderType {
 	case consts.Approved:
 		err := interactor.OrderSagaDAO.UpdateOrderSagaStatus(message.OrderID, string(consts.Approved), interactor.UoW.StartTx())

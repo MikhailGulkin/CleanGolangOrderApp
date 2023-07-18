@@ -1,6 +1,7 @@
 package di
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/logger"
@@ -13,6 +14,7 @@ var Module = fx.Options(
 	db.Module,
 	interactors.Module,
 	messagebroker.Module,
+	cache.Module,
 	logger.Module,
 	mediator.Module,
 )

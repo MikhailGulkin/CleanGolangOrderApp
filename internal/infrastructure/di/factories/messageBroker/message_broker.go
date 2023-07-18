@@ -1,4 +1,4 @@
-package messagebroker
+package messagebrokerconfig
 
 import (
 	messagebroker "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/messageBroker"

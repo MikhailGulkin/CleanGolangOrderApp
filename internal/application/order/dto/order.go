@@ -21,3 +21,15 @@ type Orders struct {
 	Orders []Order `json:"orders"`
 	dto.BaseSequence
 }
+type OrderCreateClientSubscribe struct {
+	ClientID uuid.UUID `json:"clientID,omitempty"`
+	Username string    `json:"username,omitempty"`
+}
+type OrderCreateSubscribe struct {
+	OrderID         uuid.UUID                  `json:"orderID,omitempty"`
+	Client          OrderCreateClientSubscribe `json:"client"`
+	PaymentMethod   string                     `json:"paymentMethod,omitempty"`
+	DeliveryAddress uuid.UUID                  `json:"deliveryAddress,omitempty"`
+	SerialNumber    int                        `json:"serialNumber,omitempty"`
+	TotalPrice      float64                    `json:"totalPrice,omitempty"`
+}
