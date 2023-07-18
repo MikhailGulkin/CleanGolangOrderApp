@@ -5,6 +5,7 @@ import (
 	q "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -12,9 +13,7 @@ import (
 )
 
 type Handler struct {
-	createOrder  command.CreateOrder
-	getAllOrders query.GetAllOrders
-	getOrderByID query.GetOrderByID
+	mediator mediator.Mediator
 }
 
 func (c *Handler) CreateOrder(context *gin.Context) {
@@ -24,7 +23,7 @@ func (c *Handler) CreateOrder(context *gin.Context) {
 		return
 	}
 
-	err := c.createOrder.Create(requestBody)
+	err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return
@@ -33,7 +32,7 @@ func (c *Handler) CreateOrder(context *gin.Context) {
 }
 func (c *Handler) GetAllOrders(context *gin.Context) {
 	Limit, Offset, Order := handlers.GetQueryParams(context)
-	products, err := c.getAllOrders.Get(
+	products, err := c.mediator.Query(
 		query.GetAllOrderQuery{
 			BaseListQueryParams: q.BaseListQueryParams{
 				Limit:  uint(Limit),
@@ -54,7 +53,7 @@ func (c *Handler) GetOrderByID(context *gin.Context) {
 		context.AbortWithError(http.StatusInternalServerError, errUUID)
 		return
 	}
-	productByName, err := c.getOrderByID.Get(
+	productByName, err := c.mediator.Query(
 		query.GetOrderByIDQuery{ID: orderID},
 	)
 	if err != nil {

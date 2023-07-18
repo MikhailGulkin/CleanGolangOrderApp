@@ -1,18 +1,13 @@
 package order
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
 )
 
 func NewOrderHandler(
-	createOrder command.CreateOrder,
-	getAllOrders query.GetAllOrders,
-	getOrderByID query.GetOrderByID,
+	mediator mediator.Mediator,
 ) Handler {
 	return Handler{
-		createOrder:  createOrder,
-		getAllOrders: getAllOrders,
-		getOrderByID: getOrderByID,
+		mediator: mediator,
 	}
 }

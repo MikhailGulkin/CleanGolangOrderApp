@@ -5,7 +5,7 @@ import (
 	q "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/query"
-	commandbus "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/commandBus"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -13,10 +13,7 @@ import (
 )
 
 type Handler struct {
-	bus               commandbus.CommandBus
-	getAllProducts    query.GetAllProducts
-	getProductByName  query.GetProductByName
-	updateProductName command.UpdateProductName
+	mediator mediator.Mediator
 }
 
 func (c *Handler) CreateProduct(context *gin.Context) {
@@ -26,7 +23,7 @@ func (c *Handler) CreateProduct(context *gin.Context) {
 		return
 	}
 
-	err := c.bus.Execute(requestBody)
+	err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return
@@ -47,7 +44,7 @@ func (c *Handler) UpdateProductName(context *gin.Context) {
 		context.Error(err)
 	}
 	requestBody.ProductID = parse
-	err = c.updateProductName.Update(requestBody)
+	err = c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return
@@ -56,7 +53,7 @@ func (c *Handler) UpdateProductName(context *gin.Context) {
 }
 func (c *Handler) GetAllProducts(context *gin.Context) {
 	Limit, Offset, Order := handlers.GetQueryParams(context)
-	products, err := c.getAllProducts.Get(
+	products, err := c.mediator.Query(
 		query.GetAllProductsQuery{
 			BaseListQueryParams: q.BaseListQueryParams{
 				Limit:  uint(Limit),
@@ -73,7 +70,7 @@ func (c *Handler) GetAllProducts(context *gin.Context) {
 }
 func (c *Handler) GetProductByName(context *gin.Context) {
 	productName := context.Param("productName")
-	productByName, err := c.getProductByName.Get(
+	productByName, err := c.mediator.Query(
 		query.GetProductByNameQuery{Name: productName},
 	)
 	if err != nil {

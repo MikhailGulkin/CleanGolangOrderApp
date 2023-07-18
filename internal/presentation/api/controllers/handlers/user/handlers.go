@@ -1,11 +1,13 @@
 package user
 
-import c "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/command"
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
+)
 
 func NewUserHandler(
-	createUser c.CreateUser,
+	mediator mediator.Mediator,
 ) Handler {
 	return Handler{
-		createUser: createUser,
+		mediator: mediator,
 	}
 }

@@ -2,12 +2,13 @@ package user
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type Handler struct {
-	createUser command.CreateUser
+	mediator mediator.Mediator
 }
 
 func (c *Handler) CreateUser(context *gin.Context) {
@@ -17,7 +18,7 @@ func (c *Handler) CreateUser(context *gin.Context) {
 		return
 	}
 
-	err := c.createUser.Create(requestBody)
+	err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return

@@ -1,13 +1,13 @@
 package address
 
 import (
-	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
 )
 
 func NewProductHandler(
-	createAddress c.CreateAddress,
+	mediator mediator.Mediator,
 ) Handler {
 	return Handler{
-		createAddress: createAddress,
+		mediator: mediator,
 	}
 }

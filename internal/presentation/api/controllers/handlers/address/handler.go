@@ -2,12 +2,13 @@ package address
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 type Handler struct {
-	createAddress command.CreateAddress
+	mediator mediator.Mediator
 }
 
 func (c *Handler) CreateAddress(context *gin.Context) {
@@ -17,7 +18,7 @@ func (c *Handler) CreateAddress(context *gin.Context) {
 		return
 	}
 
-	err := c.createAddress.Create(requestBody)
+	err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return

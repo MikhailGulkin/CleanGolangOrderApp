@@ -1,10 +1,10 @@
 package di
 
 import (
-	commandbus "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/commandBus"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/db"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/mediator"
 	messagebroker "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/messageBroker"
 	"go.uber.org/fx"
 )
@@ -14,5 +14,5 @@ var Module = fx.Options(
 	interactors.Module,
 	messagebroker.Module,
 	logger.Module,
-	commandbus.Module,
+	mediator.Module,
 )
