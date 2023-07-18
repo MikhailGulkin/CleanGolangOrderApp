@@ -13,11 +13,13 @@ func NewEventConsumer(
 	logger logger.Logger,
 ) Subscribers {
 	ch, err := connection.Channel()
-	if err != nil {
-		panic(err)
+	ch1, err1 := connection.Channel()
+	if err != nil || err1 != nil {
+		panic("Incorrect event consumer create")
 	}
 	return Subscribers{
 		order.SagaCreateSubscriber{Channel: ch, CreateOrder: sagaOrderCreate, Logger: logger},
+		order.CreateQuerySubscriber{Channel: ch1, Logger: logger},
 	}
 }
 

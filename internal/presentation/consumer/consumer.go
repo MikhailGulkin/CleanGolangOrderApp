@@ -17,7 +17,7 @@ var Module = fx.Options(
 func Start(
 	lifecycle fx.Lifecycle,
 	logger logger.Logger,
-	consumer subscribers.Subscribers,
+	consumer subscribers.Subscribers, //nolint:all
 ) {
 	lifecycle.Append(
 		fx.Hook{
