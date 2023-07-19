@@ -51,6 +51,5 @@ func ConvertOrderAggregateToModel(order order.Order) models.Order {
 		Closed:        order.Closed,
 		SerialNumber:  order.SerialNumber,
 		Products:      products,
-		Users:         []models.User{{Base: models.Base{ID: order.Client.ClientID}}},
 	}
 }

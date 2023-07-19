@@ -35,7 +35,7 @@ func (repo *RepoImpl) AcquireLastOrder() (order.Order, error) {
 func (repo *RepoImpl) AddOrder(entity order.Order, tx any) error {
 	model := ConvertOrderAggregateToModel(entity)
 	result := tx.(*gorm.DB).
-		Omit("Users.*", "Products.*").
+		Omit("Products.*").
 		Create(&model)
 	if result.Error != nil {
 		return result.Error

@@ -25,7 +25,7 @@ services:
   redis:
     container_name: RedisOrderAppDEV
     image: redis:alpine
-    restart: always
+    restart: on-failure
     command: redis-server
     ports:
       - "6379:6379"

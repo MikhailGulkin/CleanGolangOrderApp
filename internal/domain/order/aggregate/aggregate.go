@@ -57,6 +57,7 @@ func (o *Order) AddProduct(product order.OrderProduct) error {
 			product.ProductID,
 			float64(o.GetTotalPrice()),
 			product.Price,
+			o.Client.ClientID,
 		),
 	)
 	return nil

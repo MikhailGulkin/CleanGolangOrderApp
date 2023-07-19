@@ -3,7 +3,7 @@ package order
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"github.com/rabbitmq/amqp091-go"
 )
@@ -35,7 +35,7 @@ func (s CreateQuerySubscriber) Listen() {
 		nil,
 	)
 
-	var e dto.OrderCreateSubscribe
+	var e cache.OrderCreateSubscribe
 	var str string
 	go func() {
 		for message := range messages {
@@ -43,7 +43,11 @@ func (s CreateQuerySubscriber) Listen() {
 			err := json.Unmarshal([]byte(str), &e)
 			if err != nil {
 				s.Info(fmt.Sprintf("Invalid order unmarshall id %s, err %s", message.MessageId, err.Error()))
+				continue
 			}
+			//fmt.Println(e)
 		}
 	}()
 }
+
+// event1 -> check order contain \

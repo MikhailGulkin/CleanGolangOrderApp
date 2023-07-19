@@ -41,6 +41,7 @@ func (s SagaCreateSubscriber) Listen() {
 			err := json.Unmarshal(message.Body, &m)
 			if err != nil {
 				s.Info(fmt.Sprintf("Invalid order unmarshall id %s, err %s", message.MessageId, err.Error()))
+				continue
 			}
 			s.CreateOrder.CheckStatus(m)
 		}

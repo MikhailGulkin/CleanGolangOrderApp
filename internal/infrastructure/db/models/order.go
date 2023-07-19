@@ -17,6 +17,5 @@ type Order struct {
 
 	SagaStatus string `gorm:"default:Pending"`
 
-	Users    []User    `gorm:"many2many:user_orders;"`
 	Products []Product `gorm:"many2many:order_products;"`
 }
