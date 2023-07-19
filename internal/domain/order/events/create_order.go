@@ -2,6 +2,7 @@ package events
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/events"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/consts"
 	"github.com/google/uuid"
 )
 
@@ -13,6 +14,7 @@ type OrderCreated struct {
 	events.BaseEvent
 	OrderID         uuid.UUID          `json:"orderID"`
 	Client          OrderCreatedClient `json:"client"`
+	OrderStatus     string             `json:"orderStatus"`
 	PaymentMethod   string             `json:"paymentMethod"`
 	DeliveryAddress uuid.UUID          `json:"deliveryAddress"`
 	SerialNumber    int                `json:"serialNumber"`
@@ -33,6 +35,7 @@ func (OrderCreated) Create(
 		Client:          client,
 		PaymentMethod:   paymentMethod,
 		DeliveryAddress: address,
+		OrderStatus:     string(consts.New),
 		SerialNumber:    serialNumber,
 		TotalPrice:      totalPrice,
 	}

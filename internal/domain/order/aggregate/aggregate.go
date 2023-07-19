@@ -55,8 +55,9 @@ func (o *Order) AddProduct(product order.OrderProduct) error {
 		events.OrderAddProduct{}.Create(
 			o.OrderID.Value,
 			product.ProductID,
+			product.GetActualPrice(),
 			float64(o.GetTotalPrice()),
-			product.Price,
+			product.Name,
 			o.Client.ClientID,
 		),
 	)

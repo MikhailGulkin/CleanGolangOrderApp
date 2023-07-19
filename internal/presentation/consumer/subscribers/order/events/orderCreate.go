@@ -1,4 +1,4 @@
-package order
+package events
 
 import (
 	"encoding/json"
@@ -6,14 +6,16 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"github.com/rabbitmq/amqp091-go"
+	"sync"
 )
 
 type CreateQuerySubscriber struct {
 	*amqp091.Channel
 	logger.Logger
+	cache.OrderCache
 }
 
-func (s CreateQuerySubscriber) Listen() {
+func (s CreateQuerySubscriber) Listen(mutex *sync.Mutex) {
 	err := s.Channel.QueueBind(
 		"OrdersCreate",
 		"order_create",
@@ -27,7 +29,7 @@ func (s CreateQuerySubscriber) Listen() {
 
 	messages, _ := s.Channel.Consume(
 		"OrdersCreate",
-		"order_create",
+		"order_create_sub",
 		false,
 		false,
 		false,
@@ -45,9 +47,9 @@ func (s CreateQuerySubscriber) Listen() {
 				s.Info(fmt.Sprintf("Invalid order unmarshall id %s, err %s", message.MessageId, err.Error()))
 				continue
 			}
-			//fmt.Println(e)
+			mutex.Lock()
+			s.OrderCache.OrderCreate(e)
+			mutex.Unlock()
 		}
 	}()
 }
-
-// event1 -> check order contain \

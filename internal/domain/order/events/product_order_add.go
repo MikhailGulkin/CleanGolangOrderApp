@@ -9,7 +9,8 @@ type OrderAddProduct struct {
 	events.BaseEvent
 	OrderID      uuid.UUID `json:"orderID"`
 	ClientID     uuid.UUID `json:"clientID"`
-	Product      uuid.UUID `json:"product"`
+	ProductID    uuid.UUID `json:"productID"`
+	ProductName  string    `json:"productName"`
 	ProductPrice float64   `json:"productPrice"`
 	OrderPrice   float64   `json:"orderPrice"`
 }
@@ -19,12 +20,14 @@ func (OrderAddProduct) Create(
 	product uuid.UUID,
 	productPrice float64,
 	orderPrice float64,
+	productName string,
 	clientID uuid.UUID,
 ) events.Event {
 	return &OrderAddProduct{
 		BaseEvent:    events.BaseEvent{}.Create(),
 		OrderID:      orderID,
-		Product:      product,
+		ProductID:    product,
+		ProductName:  productName,
 		ProductPrice: productPrice,
 		OrderPrice:   orderPrice,
 		ClientID:     clientID,

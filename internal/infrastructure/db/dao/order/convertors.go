@@ -11,6 +11,7 @@ func ConvertProductsModelsToOrderEntity(models []models.Product) []order.OrderPr
 		products[index] = order.OrderProduct{
 			ProductID: model.ID,
 			Price:     model.Price,
+			Name:      model.Name,
 			Discount:  model.Discount,
 		}
 	}

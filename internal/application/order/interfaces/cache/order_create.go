@@ -13,11 +13,18 @@ type OrderCreateSubscribe struct {
 	OrderID         uuid.UUID                  `json:"orderID,omitempty"`
 	Client          OrderCreateClientSubscribe `json:"client"`
 	PaymentMethod   string                     `json:"paymentMethod,omitempty"`
+	OrderStatus     string                     `json:"orderStatus"`
 	DeliveryAddress uuid.UUID                  `json:"deliveryAddress,omitempty"`
 	SerialNumber    int                        `json:"serialNumber,omitempty"`
 	TotalPrice      float64                    `json:"totalPrice,omitempty"`
 }
-
+type OrderAddProductSubscribe struct {
+	OrderID      uuid.UUID `json:"orderID"`
+	ClientID     uuid.UUID `json:"clientID"`
+	ProductName  string    `json:"productName"`
+	ProductID    uuid.UUID `json:"productID"`
+	ProductPrice float64   `json:"productPrice"`
+}
 type ProductEvent struct {
 	ProductID   uuid.UUID `json:"productID"`
 	Name        string    `json:"name"`

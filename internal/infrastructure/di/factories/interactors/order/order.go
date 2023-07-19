@@ -3,7 +3,9 @@ package order
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
 	outboxRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/repo"
+	ch "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
 	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/reader"
@@ -49,11 +51,16 @@ func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger
 		Logger:       logger,
 	}
 }
+func NewCacheCreateOrder() cache.OrderCache {
+	return &ch.OrderCacheImpl{}
+}
 
 var Module = fx.Provide(
 	NewCreateOrder,
 	NewGetAllOrders,
 	NewGetOrderByID,
+
+	NewCacheCreateOrder,
 
 	NewSagaCreateOrder,
 )
