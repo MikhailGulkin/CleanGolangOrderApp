@@ -24,6 +24,9 @@ func (reader *CacheReaderImpl) GetAllOrdersByUserID(userID uuid.UUID, filters fi
 		return []dto.Order{}, err
 	}
 	l := uint(len(keys))
+	if l == 0 {
+		return []dto.Order{}, err
+	}
 	if filters.Offset >= l {
 		filters.Offset = l - 1
 	}
