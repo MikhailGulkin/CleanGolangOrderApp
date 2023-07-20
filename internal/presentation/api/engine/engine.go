@@ -2,6 +2,7 @@ package engine
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
+	api "github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/config"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,8 +13,11 @@ type GroupRoutes struct {
 	*gin.RouterGroup
 }
 
-func NewRequestHandler(logger logger.Logger) RequestHandler {
+func NewRequestHandler(logger logger.Logger, config api.APIConfig) RequestHandler {
 	gin.DefaultWriter = logger.GetGinLogger()
+	if config.Mode == "production" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	engine := gin.Default()
 	return RequestHandler{Gin: engine}
 }

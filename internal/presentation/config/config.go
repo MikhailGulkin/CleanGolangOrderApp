@@ -10,7 +10,11 @@ import (
 	"go.uber.org/fx"
 )
 
+type App struct {
+	Mode string
+}
 type Config struct {
+	App                        `toml:"app"`
 	db.DBConfig                `toml:"db"`
 	api.APIConfig              `toml:"api"`
 	broker.MessageBrokerConfig `toml:"broker"`

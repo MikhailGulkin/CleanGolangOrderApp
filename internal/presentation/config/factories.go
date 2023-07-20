@@ -19,6 +19,7 @@ func NewDBConfig(config Config) db.DBConfig {
 	return config.DBConfig
 }
 func NewAPIConfig(config Config) api.APIConfig {
+	config.APIConfig.Mode = config.App.Mode
 	return config.APIConfig
 }
 func NewBrokerConfig(config Config) broker.MessageBrokerConfig {
@@ -28,6 +29,7 @@ func NewCronConfig(config Config) cron.CronConfig {
 	return config.CronConfig
 }
 func NewLoggerConfig(config Config) logger.LoggerConfig {
+	config.LoggerConfig.Mode = config.App.Mode
 	return config.LoggerConfig
 }
 func NewCacheConfig(config Config) cache.RedisConfig {
