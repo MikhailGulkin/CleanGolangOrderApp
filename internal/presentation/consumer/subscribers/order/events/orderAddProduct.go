@@ -15,10 +15,10 @@ type AddProductQuerySubscriber struct {
 	cache.OrderCache
 }
 
-func (s AddProductQuerySubscriber) Listen(mutex *sync.Mutex) {
+func (s AddProductQuerySubscriber) Listen(mutex sync.Locker) {
 	err := s.Channel.QueueBind(
 		"OrdersAddProduct",
-		"order_add_product",
+		"Order.AddProduct",
 		"Orders",
 		false,
 		nil,
@@ -29,7 +29,7 @@ func (s AddProductQuerySubscriber) Listen(mutex *sync.Mutex) {
 
 	messages, _ := s.Channel.Consume(
 		"OrdersAddProduct",
-		"order_add_product_sub",
+		"",
 		false,
 		false,
 		false,

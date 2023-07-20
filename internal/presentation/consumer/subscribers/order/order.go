@@ -17,8 +17,8 @@ type SagaCreateSubscriber struct {
 func (s SagaCreateSubscriber) Listen() {
 	err := s.Channel.QueueBind(
 		"OrderSagaCreateStatus",
-		"saga_order_creation_status",
-		"OrderSagaCreate",
+		"Order.Saga.*",
+		"Orders",
 		false,
 		nil,
 	)
@@ -28,7 +28,7 @@ func (s SagaCreateSubscriber) Listen() {
 
 	messages, _ := s.Channel.Consume(
 		"OrderSagaCreateStatus",
-		"saga_order_get",
+		"",
 		true,
 		false,
 		false,

@@ -17,6 +17,6 @@ type OrderSagaDAO interface {
 	DeleteOrderCascade(uuid.UUID, interface{}) error
 }
 type OrderCacheDAO interface {
-	CheckOrderExist(uuid.UUID) bool
-	CreateOrderCreate(cache cache.OrderCreateSubscribe)
+	GetOrder(uuid.UUID) cache.OrderEvent
+	SaveOrder(cache.OrderEvent) error
 }

@@ -51,8 +51,8 @@ func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger
 		Logger:       logger,
 	}
 }
-func NewCacheCreateOrder() cache.OrderCache {
-	return &ch.OrderCacheImpl{}
+func NewCacheCreateOrder(cacheDAO dao.OrderCacheDAO) cache.OrderCache {
+	return &ch.OrderCacheImpl{OrderCacheDAO: cacheDAO}
 }
 
 var Module = fx.Provide(

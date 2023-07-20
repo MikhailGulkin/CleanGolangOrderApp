@@ -16,8 +16,8 @@ func (b BrokerSetup) Setup() {
 	b.DeclareExchange(ExchangeName)
 	b.DeclareQueue(QueueNameCreate)
 	b.DeclareQueue(QueueNameAddProduct)
-	b.BindExchangeQueue(ExchangeName, "order_create", QueueNameCreate)
-	b.BindExchangeQueue(ExchangeName, "order_add_product", QueueNameAddProduct)
+	b.BindExchangeQueue(ExchangeName, "Order.Create", QueueNameCreate)
+	b.BindExchangeQueue(ExchangeName, "Order.AddProduct", QueueNameAddProduct)
 }
 func NewSetupBroker(broker interfaces.BaseMessageBrokerConfigure) BrokerSetup {
 	return BrokerSetup{

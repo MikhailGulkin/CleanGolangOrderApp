@@ -17,6 +17,7 @@ type OrderCreateSubscribe struct {
 	DeliveryAddress uuid.UUID                  `json:"deliveryAddress,omitempty"`
 	SerialNumber    int                        `json:"serialNumber,omitempty"`
 	TotalPrice      float64                    `json:"totalPrice,omitempty"`
+	CreatedAt       time.Time                  `json:"eventTimeStamp"`
 }
 type OrderAddProductSubscribe struct {
 	OrderID      uuid.UUID `json:"orderID"`
