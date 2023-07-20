@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
 )
@@ -17,11 +18,11 @@ func (o *OrderCacheImpl) OrderCreate(event interface{}) {
 		order.OrderStatus = e.OrderStatus
 		order.OrderID = e.OrderID
 		order.CreatedAt = e.CreatedAt
-		order.Address = e.DeliveryAddress.String()
+		order.Address = e.DeliveryAddress.FullAddress
 		order.TotalPrice = e.TotalPrice
 		order.SerialNumber = e.SerialNumber
 		order.PaymentMethod = e.PaymentMethod
-		order.Client = cache.ClientEvent{
+		order.Client = dto.Client{
 			ClientID:   e.Client.ClientID,
 			ClientName: e.Client.Username,
 		}
@@ -32,12 +33,12 @@ func (o *OrderCacheImpl) OrderCreate(event interface{}) {
 	case cache.OrderAddProductSubscribe:
 		order := o.OrderCacheDAO.GetOrder(e.OrderID)
 		order.OrderID = e.OrderID
-		order.Products = append(order.Products, cache.ProductEvent{
+		order.Products = append(order.Products, dto.Product{
 			ProductID:   e.ProductID,
 			Name:        e.ProductName,
 			ActualPrice: e.ProductPrice,
 		})
-		order.Client = cache.ClientEvent{
+		order.Client = dto.Client{
 			ClientID: e.ClientID,
 		}
 		err := o.OrderCacheDAO.SaveOrder(order)

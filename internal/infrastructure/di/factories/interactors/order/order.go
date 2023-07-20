@@ -54,11 +54,18 @@ func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger
 func NewCacheCreateOrder(cacheDAO dao.OrderCacheDAO) cache.OrderCache {
 	return &ch.OrderCacheImpl{OrderCacheDAO: cacheDAO}
 }
+func NewGetAllOrdersByUserID(reader reader.OrderCacheReader) q.GetAllOrdersByUserID {
+	return &query.GetAllOrdersByUserIDImpl{
+		OrderCacheReader: reader,
+	}
+}
 
 var Module = fx.Provide(
 	NewCreateOrder,
 	NewGetAllOrders,
 	NewGetOrderByID,
+
+	NewGetAllOrdersByUserID,
 
 	NewCacheCreateOrder,
 

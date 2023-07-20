@@ -42,9 +42,9 @@ func (Service) CreateOrder(
 			createdOrder.OrderID.Value,
 			events.OrderCreatedClient{ClientID: client.ClientID, Username: client.Username},
 			string(createdOrder.PaymentMethod),
-			createdOrder.DeliveryAddress.AddressID,
 			createdOrder.SerialNumber,
 			float64(createdOrder.GetTotalPrice()),
+			events.OrderCreatedAddress{AddressID: createdOrder.DeliveryAddress.AddressID, FullAddress: createdOrder.DeliveryAddress.FullAddress},
 		),
 	)
 	return createdOrder, nil

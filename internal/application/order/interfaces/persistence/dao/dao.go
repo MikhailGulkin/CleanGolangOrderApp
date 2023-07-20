@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
 	order "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/entities"
 	"github.com/google/uuid"
 )
@@ -17,6 +17,6 @@ type OrderSagaDAO interface {
 	DeleteOrderCascade(uuid.UUID, interface{}) error
 }
 type OrderCacheDAO interface {
-	GetOrder(uuid.UUID) cache.OrderEvent
-	SaveOrder(cache.OrderEvent) error
+	GetOrder(uuid.UUID) dto.Order
+	SaveOrder(dto.Order) error
 }

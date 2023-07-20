@@ -5,3 +5,6 @@ import "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/in
 type GetAllOrdersFilters struct {
 	filters.BaseFilters
 }
+type GetAllOrdersByUserIDFilters struct {
+	filters.BaseFilters
+}

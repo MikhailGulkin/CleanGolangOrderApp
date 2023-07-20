@@ -30,7 +30,7 @@ func (s AddProductQuerySubscriber) Listen(mutex sync.Locker) {
 	messages, _ := s.Channel.Consume(
 		"OrdersAddProduct",
 		"",
-		false,
+		true,
 		false,
 		false,
 		false,

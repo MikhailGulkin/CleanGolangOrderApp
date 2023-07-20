@@ -32,7 +32,7 @@ func (c *Handler) CreateOrder(context *gin.Context) {
 }
 func (c *Handler) GetAllOrders(context *gin.Context) {
 	Limit, Offset, Order := handlers.GetQueryParams(context)
-	products, err := c.mediator.Query(
+	orders, err := c.mediator.Query(
 		query.GetAllOrderQuery{
 			BaseListQueryParams: q.BaseListQueryParams{
 				Limit:  uint(Limit),
@@ -45,7 +45,30 @@ func (c *Handler) GetAllOrders(context *gin.Context) {
 		context.Error(err)
 		return
 	}
-	context.JSON(http.StatusOK, products)
+	context.JSON(http.StatusOK, orders)
+}
+func (c *Handler) GetAllOrdersByUserID(context *gin.Context) {
+	userID, errUUID := uuid.Parse(context.Param("userID"))
+	if errUUID != nil {
+		context.AbortWithError(http.StatusInternalServerError, errUUID)
+		return
+	}
+	Limit, Offset, Order := handlers.GetQueryParams(context)
+	orders, err := c.mediator.Query(
+		query.GetAllOrderByUserIDQuery{
+			UserID: userID,
+			BaseListQueryParams: q.BaseListQueryParams{
+				Limit:  uint(Limit),
+				Offset: uint(Offset),
+				Order:  filters.BaseOrder(Order),
+			},
+		},
+	)
+	if err != nil {
+		context.Error(err)
+		return
+	}
+	context.JSON(http.StatusOK, orders)
 }
 func (c *Handler) GetOrderByID(context *gin.Context) {
 	orderID, errUUID := uuid.Parse(context.Param("id"))
@@ -53,12 +76,12 @@ func (c *Handler) GetOrderByID(context *gin.Context) {
 		context.AbortWithError(http.StatusInternalServerError, errUUID)
 		return
 	}
-	productByName, err := c.mediator.Query(
+	orderByID, err := c.mediator.Query(
 		query.GetOrderByIDQuery{ID: orderID},
 	)
 	if err != nil {
 		context.Error(err)
 		return
 	}
-	context.JSON(http.StatusOK, productByName)
+	context.JSON(http.StatusOK, orderByID)
 }

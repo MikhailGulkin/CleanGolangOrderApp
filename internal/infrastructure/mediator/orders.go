@@ -21,6 +21,14 @@ func (c *GetAllOrdersQueryHandler) Handle(q interface{}) (interface{}, error) {
 	return c.Get(q.(query.GetAllOrderQuery))
 }
 
+type GetAllOrdersByUserIDQueryHandler struct {
+	query.GetAllOrdersByUserID
+}
+
+func (c *GetAllOrdersByUserIDQueryHandler) Handle(q interface{}) (interface{}, error) {
+	return c.Get(q.(query.GetAllOrderByUserIDQuery))
+}
+
 type GetOrdersByIDHandler struct {
 	query.GetOrderByID
 }

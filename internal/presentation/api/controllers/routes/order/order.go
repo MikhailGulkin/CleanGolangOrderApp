@@ -14,8 +14,10 @@ type Routes struct {
 
 func (r Routes) Setup() {
 	r.POST("/orders", r.controller.CreateOrder)
+
 	r.GET("/orders", r.controller.GetAllOrders)
 	r.GET("/orders/:id", r.controller.GetOrderByID)
+	r.GET("/orders/user/:userID", r.controller.GetAllOrdersByUserID)
 }
 
 func NewOrderRoutes(

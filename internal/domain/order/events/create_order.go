@@ -10,24 +10,28 @@ type OrderCreatedClient struct {
 	ClientID uuid.UUID `json:"clientID"`
 	Username string    `json:"username"`
 }
+type OrderCreatedAddress struct {
+	AddressID   uuid.UUID `json:"clientID"`
+	FullAddress string    `json:"username"`
+}
 type OrderCreated struct {
 	events.BaseEvent
-	OrderID         uuid.UUID          `json:"orderID"`
-	Client          OrderCreatedClient `json:"client"`
-	OrderStatus     string             `json:"orderStatus"`
-	PaymentMethod   string             `json:"paymentMethod"`
-	DeliveryAddress uuid.UUID          `json:"deliveryAddress"`
-	SerialNumber    int                `json:"serialNumber"`
-	TotalPrice      float64            `json:"totalPrice"`
+	OrderID         uuid.UUID           `json:"orderID"`
+	Client          OrderCreatedClient  `json:"client"`
+	OrderStatus     string              `json:"orderStatus"`
+	PaymentMethod   string              `json:"paymentMethod"`
+	DeliveryAddress OrderCreatedAddress `json:"deliveryAddress"`
+	SerialNumber    int                 `json:"serialNumber"`
+	TotalPrice      float64             `json:"totalPrice"`
 }
 
 func (OrderCreated) Create(
 	orderID uuid.UUID,
 	client OrderCreatedClient,
 	paymentMethod string,
-	address uuid.UUID,
 	serialNumber int,
 	totalPrice float64,
+	address OrderCreatedAddress,
 ) events.Event {
 	return &OrderCreated{
 		OrderID:         orderID,

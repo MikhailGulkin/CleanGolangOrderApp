@@ -18,6 +18,7 @@ func NewMediator(
 	createProduct commandProduct.CreateProduct,
 	createOrder commandOrder.CreateOrder,
 	getAllOrders queryOrder.GetAllOrders,
+	getOrdersByUserID queryOrder.GetAllOrdersByUserID,
 	getOrderByID queryOrder.GetOrderByID,
 	createAddress commandAddress.CreateAddress,
 	createUser commandUser.CreateUser,
@@ -31,6 +32,7 @@ func NewMediator(
 	m.RegisterCommandHandler(commandOrder.CreateOrderCommand{}, &mediator.CreateOrderCommandHandler{CreateOrder: createOrder})
 	m.RegisterQueryHandler(queryOrder.GetOrderByIDQuery{}, &mediator.GetOrdersByIDHandler{GetOrderByID: getOrderByID})
 	m.RegisterQueryHandler(queryOrder.GetAllOrderQuery{}, &mediator.GetAllOrdersQueryHandler{GetAllOrders: getAllOrders})
+	m.RegisterQueryHandler(queryOrder.GetAllOrderByUserIDQuery{}, &mediator.GetAllOrdersByUserIDQueryHandler{GetAllOrdersByUserID: getOrdersByUserID})
 
 	m.RegisterCommandHandler(commandUser.CreateUserCommand{}, &mediator.CreateUserCommandHandler{CreateUser: createUser})
 
