@@ -3,6 +3,8 @@ package conftest
 import (
 	"context"
 	"fmt"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/reader"
+	order2 "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/cache/reader/order"
 	load "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db"
 	dbFactory "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/db"
@@ -28,7 +30,6 @@ func NewRequestHandler() engine.RequestHandler {
 	newEngine := gin.New()
 	return engine.RequestHandler{Gin: newEngine}
 }
-
 func NewConfig() config.Config {
 	var conf config.Config
 	load.LoadConfig(&conf, os.Getenv("PROJECT_PATH"), "./config/test.toml")
@@ -44,9 +45,15 @@ var ModuleConfig = fx.Provide(
 	config.NewAPIConfig,
 	config.NewLoggerConfig,
 )
+
+func NewOrderCacheReader() reader.OrderCacheReader {
+	return &order2.CacheReaderImpl{}
+}
+
 var DiModule = fx.Options(
 	dbFactory.Module,
 	interactors.Module,
+	fx.Provide(NewOrderCacheReader),
 	logger2.Module,
 	mediator.Module,
 )
