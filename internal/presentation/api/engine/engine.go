@@ -18,6 +18,5 @@ func NewRequestHandler(logger logger.Logger, config api.APIConfig) RequestHandle
 	if config.Mode == "production" {
 		gin.SetMode(gin.ReleaseMode)
 	}
-	engine := gin.Default()
-	return RequestHandler{Gin: engine}
+	return RequestHandler{Gin: gin.New()}
 }

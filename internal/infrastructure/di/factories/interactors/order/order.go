@@ -54,9 +54,10 @@ func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger
 func NewCacheCreateOrder(cacheDAO dao.OrderCacheDAO) cache.OrderCache {
 	return &ch.OrderCacheImpl{OrderCacheDAO: cacheDAO}
 }
-func NewGetAllOrdersByUserID(reader reader.OrderCacheReader) q.GetAllOrdersByUserID {
+func NewGetAllOrdersByUserID(reader reader.OrderCacheReader, logger logger.Logger) q.GetAllOrdersByUserID {
 	return &query.GetAllOrdersByUserIDImpl{
 		OrderCacheReader: reader,
+		Logger:           logger,
 	}
 }
 
