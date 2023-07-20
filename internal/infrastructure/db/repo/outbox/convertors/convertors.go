@@ -3,12 +3,14 @@ package convertors
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
+	"github.com/google/uuid"
 	"reflect"
 )
 
 type PayloadEnhanced struct {
-	payload string
-	reflect reflect.Type
+	payload       string
+	reflect       reflect.Type
+	eventUniqueID uuid.UUID
 }
 type EventToOutbox struct {
 	payloads []PayloadEnhanced
@@ -22,7 +24,7 @@ func (e EventToOutbox) Create(events []events.Event) (EventToOutbox, error) {
 			return EventToOutbox{}, binaryErr
 		}
 
-		payloads = append(payloads, PayloadEnhanced{payload: string(binary), reflect: reflect.TypeOf(event)})
+		payloads = append(payloads, PayloadEnhanced{payload: string(binary), reflect: reflect.TypeOf(event), eventUniqueID: event.UniqueAggregateID()})
 	}
 	return EventToOutbox{payloads: payloads}, nil
 }

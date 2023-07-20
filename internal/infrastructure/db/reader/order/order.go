@@ -27,7 +27,7 @@ func (dao *ReaderImpl) GetAllOrders(filters filters.GetAllOrdersFilters) ([]dto.
 		Limit(int(filters.Limit)).
 		Offset(int(filters.Offset)).
 		Order(fmt.Sprintf("created_at %s", filters.Order)).
-		Where("closed = ?", false).
+		Where("closed = ? AND saga_status = ?", false, "Approved").
 		Find(&orders)
 	if result.Error != nil {
 		return []dto.Order{}, result.Error

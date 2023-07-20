@@ -14,6 +14,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/saga"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/query"
 	s "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/saga"
+	d "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/services"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"go.uber.org/fx"
@@ -44,11 +45,12 @@ func NewGetOrderByID(dao reader.OrderReader) q.GetOrderByID {
 	}
 }
 
-func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger.Logger) saga.CreateOrder {
+func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger.Logger, outboxDAO d.OutboxDAO) saga.CreateOrder {
 	return &s.CreateOrderImpl{
 		OrderSagaDAO: dao,
 		UoW:          uow,
 		Logger:       logger,
+		OutboxDAO:    outboxDAO,
 	}
 }
 func NewCacheCreateOrder(cacheDAO dao.OrderCacheDAO) cache.OrderCache {

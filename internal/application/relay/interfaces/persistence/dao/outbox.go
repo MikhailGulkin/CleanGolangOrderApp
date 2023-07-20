@@ -8,4 +8,5 @@ import (
 type OutboxDAO interface {
 	GetAllNonProcessedMessages() ([]dto.Message, error)
 	UpdateMessage([]uuid.UUID) error
+	UpdateStatusMessagesByAggregateID(aggregateID uuid.UUID, status int, tx interface{}) error
 }

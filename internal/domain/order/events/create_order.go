@@ -48,3 +48,6 @@ func (OrderCreated) Create(
 func (o *OrderCreated) Bytes() ([]byte, error) {
 	return events.Bytes(o)
 }
+func (o *OrderCreated) UniqueAggregateID() uuid.UUID {
+	return o.OrderID
+}

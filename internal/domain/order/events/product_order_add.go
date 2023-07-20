@@ -36,3 +36,6 @@ func (OrderAddProduct) Create(
 func (o *OrderAddProduct) Bytes() ([]byte, error) {
 	return events.Bytes(o)
 }
+func (o *OrderAddProduct) UniqueAggregateID() uuid.UUID {
+	return o.OrderID
+}

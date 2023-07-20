@@ -47,5 +47,11 @@ func (Service) CreateOrder(
 			events.OrderCreatedAddress{AddressID: createdOrder.DeliveryAddress.AddressID, FullAddress: createdOrder.DeliveryAddress.FullAddress},
 		),
 	)
+	createdOrder.RecordEvent(
+		events.OrderCreateSaga{}.Create(
+			createdOrder.OrderID.Value,
+			float64(createdOrder.GetTotalPrice()),
+		),
+	)
 	return createdOrder, nil
 }

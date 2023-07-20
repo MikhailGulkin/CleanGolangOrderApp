@@ -8,6 +8,7 @@ import (
 
 type Event interface {
 	Bytes() ([]byte, error)
+	UniqueAggregateID() uuid.UUID
 }
 type BaseEvent struct {
 	EventID        uuid.UUID `json:"eventID,omitempty"`
@@ -29,4 +30,7 @@ func Bytes(v any) ([]byte, error) {
 }
 func (o *BaseEvent) Bytes() ([]byte, error) {
 	return Bytes(o)
+}
+func (o *BaseEvent) UniqueAggregateID() uuid.UUID {
+	return o.EventID
 }
