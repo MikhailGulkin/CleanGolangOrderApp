@@ -1,3 +1,6 @@
+[app]
+mode='development'
+
 [api]
 host = "127.0.0.1"
 port = 8000
@@ -23,7 +26,6 @@ password = "admin"
 seconds = 5
 
 [logging]
-mode="development"
 log_output=''
 log_level='info'
 
