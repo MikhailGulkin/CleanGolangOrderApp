@@ -1,7 +1,6 @@
 package order
 
 import (
-	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
@@ -17,7 +16,6 @@ type SagaDAOImpl struct {
 
 func (dao *SagaDAOImpl) CheckSagaCompletion(orderID uuid.UUID) (bool, error) {
 	var count int64
-	fmt.Println(orderID)
 	res := dao.Session.Model(&models.Order{}).Where("saga_status = ? AND id = ?", consts.Pending, orderID).Count(&count)
 	return count > 0, res.Error
 }

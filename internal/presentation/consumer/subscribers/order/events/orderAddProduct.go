@@ -2,7 +2,6 @@ package events
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"github.com/rabbitmq/amqp091-go"
@@ -16,19 +15,8 @@ type AddProductQuerySubscriber struct {
 }
 
 func (s AddProductQuerySubscriber) Listen(mutex sync.Locker) {
-	err := s.Channel.QueueBind(
-		"OrdersAddProduct",
-		"Order.AddProduct",
-		"Orders",
-		false,
-		nil,
-	)
-	if err != nil {
-		return
-	}
-
 	messages, _ := s.Channel.Consume(
-		"OrdersAddProduct",
+		"Orders",
 		"",
 		true,
 		false,
@@ -44,7 +32,6 @@ func (s AddProductQuerySubscriber) Listen(mutex sync.Locker) {
 			_ = json.Unmarshal(message.Body, &str)
 			err := json.Unmarshal([]byte(str), &e)
 			if err != nil {
-				s.Info(fmt.Sprintf("Invalid order unmarshall id %s, err %s", message.MessageId, err.Error()))
 				continue
 			}
 			mutex.Lock()

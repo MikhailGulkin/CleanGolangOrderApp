@@ -5,8 +5,7 @@ import (
 )
 
 var ExchangeName = "Orders"
-var QueueNameCreate = "OrdersCreate"
-var QueueNameAddProduct = "OrdersAddProduct"
+var QueueName = "Orders"
 
 type BrokerSetup struct {
 	interfaces.BaseMessageBrokerConfigure
@@ -14,10 +13,8 @@ type BrokerSetup struct {
 
 func (b BrokerSetup) Setup() {
 	b.DeclareExchange(ExchangeName)
-	b.DeclareQueue(QueueNameCreate)
-	b.DeclareQueue(QueueNameAddProduct)
-	b.BindExchangeQueue(ExchangeName, "Order.Create", QueueNameCreate)
-	b.BindExchangeQueue(ExchangeName, "Order.AddProduct", QueueNameAddProduct)
+	b.DeclareQueue(QueueName)
+	b.BindExchangeQueue(ExchangeName, "Order.*", QueueName)
 }
 func NewSetupBroker(broker interfaces.BaseMessageBrokerConfigure) BrokerSetup {
 	return BrokerSetup{
