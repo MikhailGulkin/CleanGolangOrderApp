@@ -5,7 +5,6 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/saga"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/consumer/subscribers/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/consumer/subscribers/order/events"
 	"github.com/rabbitmq/amqp091-go"
 )
 
@@ -26,7 +25,7 @@ func NewEventConsumer(
 	}
 	return Subscribers{
 		order.SagaCreateSubscriber{Channel: ch, CreateOrder: sagaOrderCreate, Logger: logger},
-		events.OrderEvent{Channel: ch2, Logger: logger, OrderCache: cache},
+		order.OrderEvent{Channel: ch2, Logger: logger, OrderCache: cache},
 	}
 }
 

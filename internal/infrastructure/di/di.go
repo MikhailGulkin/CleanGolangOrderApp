@@ -10,11 +10,14 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Options(
-	db.Module,
-	interactors.Module,
-	messagebroker.Module,
-	cache.Module,
-	logger.Module,
-	mediator.Module,
+var Module = fx.Module(
+	"infrastructure.di",
+	fx.Options(
+		db.Module,
+		interactors.Module,
+		messagebroker.Module,
+		cache.Module,
+		logger.Module,
+		mediator.Module,
+	),
 )

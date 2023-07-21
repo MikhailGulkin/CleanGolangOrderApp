@@ -9,8 +9,10 @@ dump-container-test
 /config/
 tests
 docker-compose.test.yaml
+docker-compose.dev.yaml
 DockerfileTest
 .env
+
 
 dump-postgres
 dump-rabbit_mq

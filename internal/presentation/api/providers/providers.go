@@ -7,8 +7,11 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Options(
-	middleware.Module,
-	engine.Module,
-	controllers.Module,
+var Module = fx.Module(
+	"presentation.api",
+	fx.Options(
+		middleware.Module,
+		engine.Module,
+		controllers.Module,
+	),
 )

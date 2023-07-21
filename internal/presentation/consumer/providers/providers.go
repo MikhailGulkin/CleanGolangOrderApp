@@ -5,6 +5,9 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Provide(
-	subscribers.NewEventConsumer,
+var Module = fx.Module(
+	"presentation.consumer",
+	fx.Provide(
+		subscribers.NewEventConsumer,
+	),
 )

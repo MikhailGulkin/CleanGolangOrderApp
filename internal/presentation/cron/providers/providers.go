@@ -7,9 +7,12 @@ import (
 	"go.uber.org/fx"
 )
 
-var Module = fx.Provide(
-	handlers.NewHandlers,
-	relay.NewCronHandler,
-	engine.NewCron,
-	engine.NewCronController,
+var Module = fx.Module(
+	"presentation.cron",
+	fx.Provide(
+		handlers.NewHandlers,
+		relay.NewCronHandler,
+		engine.NewCron,
+		engine.NewCronController,
+	),
 )

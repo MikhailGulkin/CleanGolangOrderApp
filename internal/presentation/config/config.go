@@ -23,12 +23,15 @@ type Config struct {
 	cache.RedisConfig          `toml:"cache"`
 }
 
-var Module = fx.Provide(
-	NewConfig,
-	NewDBConfig,
-	NewAPIConfig,
-	NewBrokerConfig,
-	NewCronConfig,
-	NewLoggerConfig,
-	NewCacheConfig,
+var Module = fx.Module(
+	"presentation.config",
+	fx.Provide(
+		NewConfig,
+		NewDBConfig,
+		NewAPIConfig,
+		NewBrokerConfig,
+		NewCronConfig,
+		NewLoggerConfig,
+		NewCacheConfig,
+	),
 )

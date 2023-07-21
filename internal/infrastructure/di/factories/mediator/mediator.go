@@ -11,34 +11,22 @@ import (
 	"go.uber.org/fx"
 )
 
-func NewMediator(
-	getAllProducts queryProduct.GetAllProducts,
-	getProductByName queryProduct.GetProductByName,
-	updateProductName commandProduct.UpdateProductName,
-	createProduct commandProduct.CreateProduct,
-	createOrder commandOrder.CreateOrder,
-	deleteOrder commandOrder.DeleteOrder,
-	getAllOrders queryOrder.GetAllOrders,
-	getOrdersByUserID queryOrder.GetAllOrdersByUserID,
-	getOrderByID queryOrder.GetOrderByID,
-	createAddress commandAddress.CreateAddress,
-	createUser commandUser.CreateUser,
-) mediator.Mediator {
+func NewMediator(p Params) mediator.Mediator {
 	m := mediator.MediatorImpl{}.Create()
-	m.RegisterCommandHandler(commandProduct.CreateProductCommand{}, &mediator.CreateProductCommandHandler{CreateProduct: createProduct})
-	m.RegisterCommandHandler(commandProduct.UpdateProductNameCommand{}, &mediator.UpdateProductCommandHandler{UpdateProductName: updateProductName})
-	m.RegisterQueryHandler(queryProduct.GetAllProductsQuery{}, &mediator.GetAllProductsQueryHandler{GetAllProducts: getAllProducts})
-	m.RegisterQueryHandler(queryProduct.GetProductByNameQuery{}, &mediator.GetProductByNameQueryHandler{GetProductByName: getProductByName})
+	m.RegisterCommandHandler(commandProduct.CreateProductCommand{}, &mediator.CreateProductCommandHandler{CreateProduct: p.CreateProduct})
+	m.RegisterCommandHandler(commandProduct.UpdateProductNameCommand{}, &mediator.UpdateProductCommandHandler{UpdateProductName: p.UpdateProductName})
+	m.RegisterQueryHandler(queryProduct.GetAllProductsQuery{}, &mediator.GetAllProductsQueryHandler{GetAllProducts: p.GetAllProducts})
+	m.RegisterQueryHandler(queryProduct.GetProductByNameQuery{}, &mediator.GetProductByNameQueryHandler{GetProductByName: p.GetProductByName})
 
-	m.RegisterCommandHandler(commandOrder.CreateOrderCommand{}, &mediator.CreateOrderCommandHandler{CreateOrder: createOrder})
-	m.RegisterCommandHandler(commandOrder.DeleteOrderCommand{}, &mediator.DeleteOrderCommandHandler{DeleteOrder: deleteOrder})
-	m.RegisterQueryHandler(queryOrder.GetOrderByIDQuery{}, &mediator.GetOrdersByIDHandler{GetOrderByID: getOrderByID})
-	m.RegisterQueryHandler(queryOrder.GetAllOrderQuery{}, &mediator.GetAllOrdersQueryHandler{GetAllOrders: getAllOrders})
-	m.RegisterQueryHandler(queryOrder.GetAllOrderByUserIDQuery{}, &mediator.GetAllOrdersByUserIDQueryHandler{GetAllOrdersByUserID: getOrdersByUserID})
+	m.RegisterCommandHandler(commandOrder.CreateOrderCommand{}, &mediator.CreateOrderCommandHandler{CreateOrder: p.CreateOrder})
+	m.RegisterCommandHandler(commandOrder.DeleteOrderCommand{}, &mediator.DeleteOrderCommandHandler{DeleteOrder: p.DeleteOrder})
+	m.RegisterQueryHandler(queryOrder.GetOrderByIDQuery{}, &mediator.GetOrdersByIDHandler{GetOrderByID: p.GetOrderByID})
+	m.RegisterQueryHandler(queryOrder.GetAllOrderQuery{}, &mediator.GetAllOrdersQueryHandler{GetAllOrders: p.GetAllOrders})
+	m.RegisterQueryHandler(queryOrder.GetAllOrderByUserIDQuery{}, &mediator.GetAllOrdersByUserIDQueryHandler{GetAllOrdersByUserID: p.GetAllOrdersByUserID})
 
-	m.RegisterCommandHandler(commandUser.CreateUserCommand{}, &mediator.CreateUserCommandHandler{CreateUser: createUser})
+	m.RegisterCommandHandler(commandUser.CreateUserCommand{}, &mediator.CreateUserCommandHandler{CreateUser: p.CreateUser})
 
-	m.RegisterCommandHandler(commandAddress.CreateAddressCommand{}, &mediator.CreateAddressCommandHandler{CreateAddress: createAddress})
+	m.RegisterCommandHandler(commandAddress.CreateAddressCommand{}, &mediator.CreateAddressCommandHandler{CreateAddress: p.CreateAddress})
 
 	return m
 }
