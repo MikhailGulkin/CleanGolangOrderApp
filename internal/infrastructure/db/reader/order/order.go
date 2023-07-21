@@ -3,6 +3,7 @@ package order
 import (
 	"errors"
 	"fmt"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/filters"
@@ -27,7 +28,7 @@ func (dao *ReaderImpl) GetAllOrders(filters filters.GetAllOrdersFilters) ([]dto.
 		Limit(int(filters.Limit)).
 		Offset(int(filters.Offset)).
 		Order(fmt.Sprintf("created_at %s", filters.Order)).
-		Where("closed = ? AND saga_status = ?", false, "Approved").
+		Where("closed = ? AND saga_status = ?", false, consts.Approved).
 		Find(&orders)
 	if result.Error != nil {
 		return []dto.Order{}, result.Error

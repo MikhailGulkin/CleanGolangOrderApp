@@ -1,6 +1,7 @@
 package convertors
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/consts/outbox"
 	o "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
 	"reflect"
@@ -12,7 +13,7 @@ func OrdersEventsHandler(outboxes *[]models.Outbox, payload PayloadEnhanced) boo
 			Exchange:    "Orders",
 			Route:       "Order.Create",
 			Payload:     payload.payload,
-			EventStatus: models.Sagas,
+			EventStatus: outbox.Sagas,
 			AggregateID: payload.eventUniqueID,
 		})
 		return true
@@ -22,7 +23,7 @@ func OrdersEventsHandler(outboxes *[]models.Outbox, payload PayloadEnhanced) boo
 			Exchange:    "Orders",
 			Route:       "Order.AddProduct",
 			Payload:     payload.payload,
-			EventStatus: models.Sagas,
+			EventStatus: outbox.Sagas,
 			AggregateID: payload.eventUniqueID,
 		})
 		return true
