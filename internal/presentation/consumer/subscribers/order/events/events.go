@@ -2,7 +2,6 @@ package events
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"github.com/rabbitmq/amqp091-go"
@@ -27,6 +26,7 @@ func (s OrderEvent) Listen() {
 
 	var orderAddProduct cache.OrderAddProductSubscribe
 	var orderCreate cache.OrderCreateSubscribe
+	var orderDelete cache.OrderDeleteEvent
 	var eventType cache.EventType
 	var str string
 	go func() {
@@ -42,15 +42,19 @@ func (s OrderEvent) Listen() {
 				if err != nil {
 					continue
 				}
-				fmt.Println("orderCreate")
-				s.OrderCache.OrderEvent(orderCreate)
+				s.OrderCache.OrderCreateEvent(orderCreate)
 			case "OrderAddProduct":
 				err = json.Unmarshal([]byte(str), &orderAddProduct)
 				if err != nil {
 					continue
 				}
-				fmt.Println("orderAddProduct")
-				s.OrderCache.OrderEvent(orderAddProduct)
+				s.OrderCache.OrderAddProductEvent(orderAddProduct)
+			case "OrderDeleted":
+				err = json.Unmarshal([]byte(str), &orderDelete)
+				if err != nil {
+					continue
+				}
+				s.OrderCache.OrderDeleteEvent(orderDelete)
 			}
 		}
 	}()

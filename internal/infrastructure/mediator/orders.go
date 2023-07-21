@@ -13,6 +13,14 @@ func (c *CreateOrderCommandHandler) Handle(cmd interface{}) error {
 	return c.Create(cmd.(command.CreateOrderCommand))
 }
 
+type DeleteOrderCommandHandler struct {
+	command.DeleteOrder
+}
+
+func (c *DeleteOrderCommandHandler) Handle(cmd interface{}) error {
+	return c.Delete(cmd.(command.DeleteOrderCommand))
+}
+
 type GetAllOrdersQueryHandler struct {
 	query.GetAllOrders
 }

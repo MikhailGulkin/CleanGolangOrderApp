@@ -53,8 +53,8 @@ func NewSagaCreateOrder(dao dao.OrderSagaDAO, uow persistence.UoW, logger logger
 		OutboxDAO:    outboxDAO,
 	}
 }
-func NewCacheCreateOrder(cacheDAO dao.OrderCacheDAO) cache.OrderCache {
-	return &ch.OrderCacheImpl{OrderCacheDAO: cacheDAO}
+func NewCacheCreateOrder(cacheDAO dao.OrderCacheDAO, logger logger.Logger) cache.OrderCache {
+	return &ch.OrderCacheImpl{OrderCacheDAO: cacheDAO, Logger: logger}
 }
 func NewGetAllOrdersByUserID(reader reader.OrderCacheReader, logger logger.Logger) q.GetAllOrdersByUserID {
 	return &query.GetAllOrdersByUserIDImpl{
@@ -62,9 +62,26 @@ func NewGetAllOrdersByUserID(reader reader.OrderCacheReader, logger logger.Logge
 		Logger:           logger,
 	}
 }
+func NewDeleteOrderByID(
+	logger logger.Logger,
+	repo repo.OrderRepo,
+	uow persistence.UoW,
+	orderDAO dao.OrderDAO,
+	outRepo outboxRepo.OutboxRepo,
+) c.DeleteOrder {
+	return &command.DeleteOrderImpl{
+		Logger:     logger,
+		OrderRepo:  repo,
+		UoW:        uow,
+		OrderDAO:   orderDAO,
+		OutboxRepo: outRepo,
+	}
+}
 
 var Module = fx.Provide(
 	NewCreateOrder,
+	NewDeleteOrderByID,
+
 	NewGetAllOrders,
 	NewGetOrderByID,
 

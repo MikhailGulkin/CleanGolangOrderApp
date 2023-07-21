@@ -8,6 +8,7 @@ dump-container-test
 .test.container.env
 /config/
 tests
+docker-compose.test.yaml
 
 dump-postgres
 dump-rabbit_mq

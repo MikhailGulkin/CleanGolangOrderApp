@@ -30,6 +30,20 @@ func (c *Handler) CreateOrder(context *gin.Context) {
 	}
 	context.Status(http.StatusNoContent)
 }
+func (c *Handler) DeleteOrder(context *gin.Context) {
+	var requestBody command.DeleteOrderCommand
+	if err := context.BindJSON(&requestBody); err != nil {
+		context.AbortWithError(http.StatusInternalServerError, err)
+		return
+	}
+
+	err := c.mediator.Send(requestBody)
+	if err != nil {
+		context.Error(err)
+		return
+	}
+	context.Status(http.StatusNoContent)
+}
 func (c *Handler) GetAllOrders(context *gin.Context) {
 	Limit, Offset, Order := handlers.GetQueryParams(context)
 	orders, err := c.mediator.Query(

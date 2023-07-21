@@ -56,3 +56,8 @@ func (dao *DAOImpl) GetAddressByID(addressID uuid.UUID) (order.OrderAddress, err
 	}
 	return ConvertAddressModelToOrderAddress(addressModel), nil
 }
+func (dao *DAOImpl) DeleteOrder(orderID uuid.UUID, tx interface{}) error {
+	return tx.(*gorm.DB).
+		Where("id = ?", orderID).
+		Delete(&models.Order{}).Error
+}

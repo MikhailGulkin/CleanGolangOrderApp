@@ -45,3 +45,13 @@ func (dao *CacheDAOImpl) SaveOrder(order dto.Order) error {
 	)
 	return status.Err()
 }
+func (dao *CacheDAOImpl) DeleteOrder(orderID uuid.UUID) error {
+	keys, _ := dao.Client.Keys(context.Background(), fmt.Sprintf("order:*:%s", orderID)).Result()
+	for _, key := range keys {
+		_, err := dao.Client.Del(context.Background(), key).Result()
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}

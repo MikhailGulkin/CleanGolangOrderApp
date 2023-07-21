@@ -120,6 +120,16 @@ func (o *Order) UpdateStatus(status consts.OrderStatus) error {
 	}
 	return nil
 }
+func (o *Order) DeleteOrder() error {
+	err := o.CheckNotClosed()
+	if err != nil {
+		return err
+	}
+	o.RecordEvent(
+		events.OrderDeleted{}.Create(o.OrderID.Value),
+	)
+	return nil
+}
 func (o *Order) GetAllProductsIds() []uuid.UUID {
 	ids := make([]uuid.UUID, len(o.Products))
 	for index, product := range o.Products {

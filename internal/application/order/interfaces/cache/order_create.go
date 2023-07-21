@@ -38,7 +38,11 @@ type ProductEvent struct {
 	Name        string    `json:"name"`
 	ActualPrice float64   `json:"actualPrice"`
 }
-
+type OrderDeleteEvent struct {
+	OrderID uuid.UUID `json:"orderID"`
+}
 type OrderCache interface {
-	OrderEvent(event interface{})
+	OrderCreateEvent(event OrderCreateSubscribe)
+	OrderAddProductEvent(event OrderAddProductSubscribe)
+	OrderDeleteEvent(event OrderDeleteEvent)
 }

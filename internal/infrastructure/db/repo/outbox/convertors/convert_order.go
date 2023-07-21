@@ -28,6 +28,15 @@ func OrdersEventsHandler(outboxes *[]models.Outbox, payload PayloadEnhanced) boo
 		})
 		return true
 	}
+	if payload.reflect == reflect.TypeOf(new(o.OrderDeleted)) {
+		*outboxes = append(*outboxes, models.Outbox{
+			Exchange:    "Orders",
+			Route:       "Order.Delete",
+			Payload:     payload.payload,
+			AggregateID: payload.eventUniqueID,
+		})
+		return true
+	}
 	if payload.reflect == reflect.TypeOf(new(o.OrderCreateSaga)) {
 		*outboxes = append(*outboxes, models.Outbox{
 			Exchange:    "Orders",
@@ -35,6 +44,8 @@ func OrdersEventsHandler(outboxes *[]models.Outbox, payload PayloadEnhanced) boo
 			Payload:     payload.payload,
 			AggregateID: payload.eventUniqueID,
 		})
+		return true
 	}
+
 	return false
 }
