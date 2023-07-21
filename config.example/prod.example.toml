@@ -1,14 +1,14 @@
 [app]
-mode='development'
+mode='production'
 
 [api]
-host = "127.0.0.1"
+host = "0.0.0.0"
 port = 8000
 base_url_prefix = "/api/v1"
 
 [db]
-host = "localhost"
-port = 5431
+host = "orderService.postgres"
+port = 5432
 database = "OrderApp"
 user = "postgres"
 password = "1234"
@@ -17,7 +17,7 @@ logging = true
 max_idle_connection = 100
 
 [broker]
-host = "localhost"
+host = "orderService.rabbitmq"
 port = 5672
 login = "admin"
 password = "admin"
@@ -30,7 +30,7 @@ log_output=''
 log_level='info'
 
 [cache]
-host="localhost"
+host="orderService.redis"
 port=6379
 password=""
 db=0

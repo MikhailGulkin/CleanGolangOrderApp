@@ -2,7 +2,7 @@ package command
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
-	box "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/repo"
+	outbox "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/repo"
@@ -16,7 +16,7 @@ type CreateOrderImpl struct {
 	repo.OrderRepo
 	services.Service
 	persistence.UoW
-	box.OutboxRepo
+	outbox.OutboxRepo
 	dao.OrderDAO
 }
 

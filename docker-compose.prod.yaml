@@ -1,0 +1,102 @@
+version: '3.8'
+services:
+  api:
+    container_name: orderService.api
+    build:
+      context: .
+    restart: on-failure
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    command: ["main"]
+    environment:
+      - CONFIG_PATH=${CONFIG_PATH:-./usr/local/bin/prod.toml}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - orderService.postgres.network
+      - orderService.redis.network
+      - orderService.rabbitmq.network
+
+  postgres:
+    container_name: orderService.postgres
+    image: postgres:latest
+    restart: on-failure
+    expose:
+      - "5432"
+    ports:
+      - "127.0.0.1:15432:5432"
+    networks:
+      - orderService.postgres.network
+    env_file:
+      - .env
+    volumes:
+      - orderService.postgres.data:/var/lib/postgresql/users:rw
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 10s
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: orderService.rabbitmq
+    hostname: orderService.rabbitmq
+    networks:
+      - orderService.rabbitmq.network
+    expose:
+      # AMQP protocol port
+      - "5672"
+      # HTTP management UI
+      - "15672"
+    volumes:
+      - orderService.rabbitmq.data:/var/lib/rabbitmq/:rw
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    env_file:
+      .env.dev
+    healthcheck:
+      test: [ "CMD-SHELL", "rabbitmq-diagnostics check_running -q" ]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 10s
+
+  redis:
+    container_name: orderService.redis
+    image: redis:alpine
+    restart: on-failure
+    command: redis-server
+    networks:
+      - orderService.redis.network
+    expose:
+      - "6379"
+    ports:
+      - "6379:6379"
+    volumes:
+      - orderService.redis.data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli","ping" ]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  orderService.postgres.data: { }
+  orderService.rabbitmq.data: { }
+  orderService.redis.data: { }
+
+networks:
+  orderService.postgres.network: { }
+  orderService.rabbitmq.network: { }
+  orderService.redis.network: { }

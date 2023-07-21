@@ -8,7 +8,7 @@ import (
 type OrderCreateSaga struct {
 	events.BaseEvent
 	OrderID    uuid.UUID   `json:"orderID"`
-	ProductsID []uuid.UUID `json:"productsID"`
+	ProductsID []uuid.UUID `json:"productsIDs"`
 	TotalPrice float64     `json:"totalPrice"`
 }
 

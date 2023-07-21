@@ -9,11 +9,11 @@ import (
 const DefaultConfigPath = "./config/dev.toml"
 
 func LoadConfig(val interface{}, absolutePath string, relativePath string) {
-	relativeEnv := getEnv("DEFAULT_CONFIG_PATH", "")
+	relativeEnv := getEnv("CONFIG_PATH", "")
 	if relativeEnv == "" {
 		relativeEnv = DefaultConfigPath
 	}
-	if relativePath != "" && getEnv("DEFAULT_CONFIG_PATH", "") == "" {
+	if relativePath != "" && getEnv("CONFIG_PATH", "") == "" {
 		relativeEnv = relativePath
 	}
 

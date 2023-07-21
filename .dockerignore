@@ -1,2 +1,6 @@
 dump
 dump-test
+dump-postgres
+dump-rabbit_mq
+dump-redis_data
+tests
