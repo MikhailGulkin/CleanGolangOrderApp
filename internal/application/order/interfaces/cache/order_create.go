@@ -37,5 +37,5 @@ type ProductEvent struct {
 }
 
 type OrderCache interface {
-	OrderCreate(event interface{})
+	OrderEvent(event interface{})
 }

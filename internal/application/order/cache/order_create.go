@@ -11,7 +11,7 @@ type OrderCacheImpl struct {
 	dao.OrderCacheDAO
 }
 
-func (o *OrderCacheImpl) OrderCreate(event interface{}) {
+func (o *OrderCacheImpl) OrderEvent(event interface{}) {
 	switch e := event.(type) {
 	case cache.OrderCreateSubscribe:
 		order := o.OrderCacheDAO.GetOrder(e.OrderID)

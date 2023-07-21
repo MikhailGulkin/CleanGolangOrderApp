@@ -8,6 +8,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
+	"github.com/google/uuid"
 	"strconv"
 	"time"
 )
@@ -118,4 +119,11 @@ func (o *Order) UpdateStatus(status consts.OrderStatus) error {
 		o.Closed = true
 	}
 	return nil
+}
+func (o *Order) GetAllProductsIds() []uuid.UUID {
+	ids := make([]uuid.UUID, len(o.Products))
+	for index, product := range o.Products {
+		ids[index] = product.ProductID
+	}
+	return ids
 }

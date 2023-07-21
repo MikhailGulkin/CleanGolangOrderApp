@@ -29,7 +29,7 @@ func (s SagaCreateSubscriber) Listen() {
 	messages, _ := s.Channel.Consume(
 		"OrderSagaStatus",
 		"",
-		false,
+		true,
 		false,
 		false,
 		false,

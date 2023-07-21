@@ -51,6 +51,7 @@ func (Service) CreateOrder(
 		events.OrderCreateSaga{}.Create(
 			createdOrder.OrderID.Value,
 			float64(createdOrder.GetTotalPrice()),
+			createdOrder.GetAllProductsIds(),
 		),
 	)
 	return createdOrder, nil

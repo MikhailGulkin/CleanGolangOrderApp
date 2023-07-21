@@ -48,7 +48,7 @@ func (s AddProductQuerySubscriber) Listen(mutex sync.Locker) {
 				continue
 			}
 			mutex.Lock()
-			s.OrderCache.OrderCreate(e)
+			s.OrderCache.OrderEvent(e)
 			mutex.Unlock()
 		}
 	}()

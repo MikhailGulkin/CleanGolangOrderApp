@@ -7,13 +7,15 @@ import (
 
 type OrderCreateSaga struct {
 	events.BaseEvent
-	OrderID    uuid.UUID `json:"orderID"`
-	TotalPrice float64   `json:"totalPrice"`
+	OrderID    uuid.UUID   `json:"orderID"`
+	ProductsID []uuid.UUID `json:"productsID"`
+	TotalPrice float64     `json:"totalPrice"`
 }
 
-func (OrderCreateSaga) Create(orderID uuid.UUID, price float64) events.Event {
+func (OrderCreateSaga) Create(orderID uuid.UUID, price float64, productsID []uuid.UUID) events.Event {
 	return &OrderCreateSaga{
 		BaseEvent:  events.BaseEvent{}.Create(),
+		ProductsID: productsID,
 		OrderID:    orderID,
 		TotalPrice: price,
 	}
