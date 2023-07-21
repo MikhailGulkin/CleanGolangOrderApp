@@ -24,7 +24,7 @@ func (OrderAddProduct) Create(
 	clientID uuid.UUID,
 ) events.Event {
 	return &OrderAddProduct{
-		BaseEvent:    events.BaseEvent{}.Create(),
+		BaseEvent:    events.BaseEvent{}.Create("OrderAddProduct"),
 		OrderID:      orderID,
 		ProductID:    product,
 		ProductName:  productName,

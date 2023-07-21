@@ -35,7 +35,7 @@ func (OrderCreated) Create(
 ) events.Event {
 	return &OrderCreated{
 		OrderID:         orderID,
-		BaseEvent:       events.BaseEvent{}.Create(),
+		BaseEvent:       events.BaseEvent{}.Create("OrderCreated"),
 		Client:          client,
 		PaymentMethod:   paymentMethod,
 		DeliveryAddress: address,

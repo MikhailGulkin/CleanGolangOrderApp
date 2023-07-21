@@ -5,8 +5,11 @@ import (
 	"time"
 )
 
+type EventType struct {
+	EventType string `json:"eventType"`
+}
 type OrderCreateClientSubscribe struct {
-	ClientID uuid.UUID `json:"clientID,omitempty"`
+	ClientID uuid.UUID `json:"clientID"`
 	Username string    `json:"username,omitempty"`
 }
 type OrderCreatedAddressSubscribe struct {
@@ -14,13 +17,13 @@ type OrderCreatedAddressSubscribe struct {
 	FullAddress string    `json:"username"`
 }
 type OrderCreateSubscribe struct {
-	OrderID         uuid.UUID                    `json:"orderID,omitempty"`
+	OrderID         uuid.UUID                    `json:"orderID"`
 	Client          OrderCreateClientSubscribe   `json:"client"`
-	PaymentMethod   string                       `json:"paymentMethod,omitempty"`
+	PaymentMethod   string                       `json:"paymentMethod"`
 	OrderStatus     string                       `json:"orderStatus"`
-	DeliveryAddress OrderCreatedAddressSubscribe `json:"deliveryAddress,omitempty"`
-	SerialNumber    int                          `json:"serialNumber,omitempty"`
-	TotalPrice      float64                      `json:"totalPrice,omitempty"`
+	DeliveryAddress OrderCreatedAddressSubscribe `json:"deliveryAddress"`
+	SerialNumber    int                          `json:"serialNumber"`
+	TotalPrice      float64                      `json:"totalPrice"`
 	CreatedAt       time.Time                    `json:"eventTimeStamp"`
 }
 type OrderAddProductSubscribe struct {

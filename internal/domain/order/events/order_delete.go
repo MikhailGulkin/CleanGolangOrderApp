@@ -14,7 +14,7 @@ func (OrderDeleted) Create(
 	orderID uuid.UUID,
 ) events.Event {
 	return &OrderDeleted{
-		BaseEvent: events.BaseEvent{}.Create(),
+		BaseEvent: events.BaseEvent{}.Create("OrderDeleted"),
 		OrderID:   orderID,
 	}
 }

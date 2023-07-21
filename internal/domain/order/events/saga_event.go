@@ -14,7 +14,7 @@ type OrderCreateSaga struct {
 
 func (OrderCreateSaga) Create(orderID uuid.UUID, price float64, productsID []uuid.UUID) events.Event {
 	return &OrderCreateSaga{
-		BaseEvent:  events.BaseEvent{}.Create(),
+		BaseEvent:  events.BaseEvent{}.Create("OrderCreateSaga"),
 		ProductsID: productsID,
 		OrderID:    orderID,
 		TotalPrice: price,

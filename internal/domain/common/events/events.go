@@ -12,11 +12,13 @@ type Event interface {
 }
 type BaseEvent struct {
 	EventID        uuid.UUID `json:"eventID,omitempty"`
+	EventType      string    `json:"eventType"`
 	EventTimeStamp time.Time `json:"eventTimeStamp,omitempty"`
 }
 
-func (BaseEvent) Create() BaseEvent {
+func (BaseEvent) Create(eventType string) BaseEvent {
 	return BaseEvent{
+		EventType:      eventType,
 		EventID:        uuid.New(),
 		EventTimeStamp: time.Now(),
 	}
