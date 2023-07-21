@@ -41,7 +41,7 @@ func (interactor *CreateOrderImpl) CheckStatus(message saga.Message) {
 			return
 		}
 	case consts.Rejected:
-		err := interactor.OrderSagaDAO.DeleteOrderCascade(message.OrderID, string(consts.Rejected), interactor.UoW.StartTx())
+		err := interactor.OrderSagaDAO.DeleteOrder(message.OrderID, interactor.UoW.StartTx())
 		if err != nil {
 			interactor.Rollback()
 		}

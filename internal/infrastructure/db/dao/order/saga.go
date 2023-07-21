@@ -27,7 +27,7 @@ func (dao *SagaDAOImpl) UpdateOrderSagaStatus(orderID uuid.UUID, status string, 
 		Where("id = ?", orderID).
 		UpdateColumn("saga_status", status).Error
 }
-func (dao *SagaDAOImpl) DeleteOrderCascade(orderID uuid.UUID, tx interface{}) error {
+func (dao *SagaDAOImpl) DeleteOrder(orderID uuid.UUID, tx interface{}) error {
 	return tx.(*gorm.DB).
 		Where("id = ?", orderID).
 		Delete(&models.Order{}).Error

@@ -14,7 +14,7 @@ type OrderDAO interface {
 type OrderSagaDAO interface {
 	CheckSagaCompletion(uuid.UUID) (bool, error)
 	UpdateOrderSagaStatus(uuid.UUID, string, interface{}) error
-	DeleteOrderCascade(uuid.UUID, interface{}) error
+	DeleteOrder(uuid.UUID, interface{}) error
 }
 type OrderCacheDAO interface {
 	GetOrder(uuid.UUID) dto.Order
