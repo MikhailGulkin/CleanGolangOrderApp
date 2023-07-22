@@ -77,10 +77,10 @@ After creating an order, need to imitate a response from a third-party service
 #### RabbitMQ
 - CustomerSaga Queue Payload
 ```bash
-'{
+{
     "orderID": "1b2b434e-44e8-424c-bb1b-1fe609fc1f7d",
     "orderType": "Approved"
-}`
+}
 ```
 After publish payload can get orders:
 #### GET /orders/
