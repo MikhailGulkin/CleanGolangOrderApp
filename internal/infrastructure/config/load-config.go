@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-const DefaultConfigPath = "./config/dev.toml"
+const DefaultConfigPath = "./configs/app/dev.toml"
 
 func LoadConfig(val interface{}, absolutePath string, relativePath string) {
 	relativeEnv := getEnv("CONFIG_PATH", "")

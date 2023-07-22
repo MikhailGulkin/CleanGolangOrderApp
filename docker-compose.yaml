@@ -45,7 +45,7 @@ services:
       - .env
     volumes:
       - orderService.postgres.data:/var/lib/postgresql/users:rw
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./configs/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 10s
@@ -108,7 +108,7 @@ services:
       - orderService.grafana.network
     volumes:
       - orderService.grafana.data:/var/lib/grafana:rw
-      - ./grafana/provisioning:/etc/grafana/provisioning:rw
+      - ./configs/grafana/provisioning:/etc/grafana/provisioning:rw
     env_file:
       - .env
     environment:
@@ -123,7 +123,7 @@ services:
     expose:
       - "3100"
     volumes:
-      - ./loki/config.yaml:/etc/loki/config.yaml:ro
+      - ./configs/loki/config.yaml:/etc/loki/config.yaml:ro
       - orderService.loki.data:/tmp/:rw
     command: -config.file=/etc/loki/config.yaml
     restart: unless-stopped
@@ -140,7 +140,7 @@ services:
       - orderService.grafana.network
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./vector/vector.toml:/etc/vector/vector.toml:ro
+      - ./configs/vector/vector.toml:/etc/vector/vector.toml:ro
     logging:
       driver: "json-file"
       options:
@@ -152,7 +152,7 @@ services:
       - orderService.grafana.network
       - orderService.api.network
     volumes:
-      - ./prometheus:/etc/prometheus:ro
+      - ./configs/prometheus:/etc/prometheus:ro
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
       - '--storage.tsdb.path=/prometheus'

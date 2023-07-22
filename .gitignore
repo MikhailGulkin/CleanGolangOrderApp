@@ -6,7 +6,7 @@ dump-container-test
 .env.dev
 .test.env
 .test.container.env
-/config/
+/configs/app
 tests
 docker-compose.test.yaml
 docker-compose.dev.yaml
