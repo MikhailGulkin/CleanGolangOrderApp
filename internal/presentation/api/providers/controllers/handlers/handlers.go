@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/address"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/healthcheck"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/user"
@@ -13,4 +14,5 @@ var Module = fx.Provide(
 	user.NewUserHandler,
 	address.NewProductHandler,
 	order.NewOrderHandler,
+	healthcheck.NewHealthCheckHandler,
 )

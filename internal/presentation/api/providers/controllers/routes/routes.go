@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/address"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/healthcheck"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/user"
@@ -17,4 +18,5 @@ var Module = fx.Provide(
 	user.NewUserRoutes,
 	order.NewOrderRoutes,
 	address.NewAddressRoutes,
+	healthcheck.NewHealthCheckRoutes,
 )

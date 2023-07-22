@@ -23,6 +23,12 @@ services:
       - orderService.postgres.network
       - orderService.redis.network
       - orderService.rabbitmq.network
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -fsSL http://localhost:8000/healthcheck/" ]
+      interval: 10s
+      timeout: 60s
+      retries: 5
+      start_period: 10s
 
   postgres:
     container_name: orderService.postgres
@@ -53,9 +59,7 @@ services:
     networks:
       - orderService.rabbitmq.network
     expose:
-      # AMQP protocol port
       - "5672"
-      # HTTP management UI
       - "15672"
     volumes:
       - orderService.rabbitmq.data:/var/lib/rabbitmq/:rw
@@ -74,10 +78,10 @@ services:
   redis:
     container_name: orderService.redis
     image: redis:alpine
-    restart: on-failure
     command: redis-server
     networks:
       - orderService.redis.network
+      - orderService.grafana.network
     expose:
       - "6379"
     ports:
@@ -90,13 +94,66 @@ services:
       timeout: 60s
       retries: 5
       start_period: 10s
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: orderService.grafana
+    hostname: orderService.grafana
+    restart: unless-stopped
+    expose:
+      - "3000"
+    ports:
+      - "127.0.0.1:3000:3000"
+    networks:
+      - orderService.grafana.network
+    volumes:
+      - orderService.grafana.data:/var/lib/grafana:rw
+      - ./grafana/provisioning:/etc/grafana/provisioning:rw
+    env_file:
+      - .env
+    environment:
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - VIRTUAL_HOST=orderService.grafana
+      - NETWORK_ACCESS=internal
+      - VIRTUAL_PORT=3000
+  loki:
+    image: grafana/loki:2.8.2
+    container_name: orderService.loki
+    hostname: orderService.loki
+    expose:
+      - "3100"
+    volumes:
+      - ./loki/config.yaml:/etc/loki/config.yaml:ro
+      - orderService.loki.data:/tmp/:rw
+    command: -config.file=/etc/loki/config.yaml
+    restart: unless-stopped
+    networks:
+      - orderService.grafana.network
+  vector:
+    image: timberio/vector:0.29.1-alpine
+    container_name: orderService.vector
+    hostname: orderService.vector
+    restart: unless-stopped
+    expose:
+      - "8383"
+    networks:
+      - orderService.grafana.network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./vector/vector.toml:/etc/vector/vector.toml:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
 
 volumes:
   orderService.postgres.data: { }
   orderService.rabbitmq.data: { }
   orderService.redis.data: { }
+  orderService.grafana.data: { }
+  orderService.loki.data: { }
 
 networks:
   orderService.postgres.network: { }
   orderService.rabbitmq.network: { }
   orderService.redis.network: { }
+  orderService.grafana.network: {}

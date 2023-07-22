@@ -2,6 +2,7 @@ package routes
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/address"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/healthcheck"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/order"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/product"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes/user"
@@ -18,12 +19,14 @@ func NewRoutes(
 	addressRoutes address.Routes,
 	userRoutes user.Routes,
 	orderRoutes order.Routes,
+	healthcheckRoutes healthcheck.Routes,
 ) Routes {
 	return Routes{
 		productRoutes,
 		addressRoutes,
 		userRoutes,
 		orderRoutes,
+		healthcheckRoutes,
 	}
 }
 func (r Routes) Setup() {

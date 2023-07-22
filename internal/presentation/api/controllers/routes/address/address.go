@@ -1,7 +1,6 @@
 package address
 
 import (
-	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/address"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
 )
@@ -9,7 +8,6 @@ import (
 type Routes struct {
 	engine.GroupRoutes
 	controller address.Handler
-	c.APIConfig
 }
 
 func (r Routes) Setup() {
@@ -19,7 +17,6 @@ func (r Routes) Setup() {
 func NewAddressRoutes(
 	group engine.GroupRoutes,
 	controller address.Handler,
-	config c.APIConfig,
 ) Routes {
-	return Routes{controller: controller, GroupRoutes: group, APIConfig: config}
+	return Routes{controller: controller, GroupRoutes: group}
 }

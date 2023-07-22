@@ -11,4 +11,5 @@ RUN go env -w GOARCH=amd64
 RUN go build -o main ./cmd/main.go
 
 FROM ubuntu:20.04
+RUN apt-get update && apt-get install -y curl
 COPY --from=build /app/config/prod.toml /app/main /usr/local/bin/

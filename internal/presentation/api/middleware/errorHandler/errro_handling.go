@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/response"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/middleware/interfaces"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -12,7 +11,6 @@ import (
 
 type ErrorMiddleware struct {
 	interfaces.Middleware
-	engine.RequestHandler
 	logger.Logger
 }
 type ErrorCatching struct {
@@ -25,10 +23,9 @@ type ErrorStatus struct {
 	exception any
 }
 
-func NewErrorMiddleware(handler engine.RequestHandler, logger logger.Logger) ErrorMiddleware {
+func NewErrorMiddleware(logger logger.Logger) ErrorMiddleware {
 	return ErrorMiddleware{
-		RequestHandler: handler,
-		Logger:         logger,
+		Logger: logger,
 	}
 }
 
