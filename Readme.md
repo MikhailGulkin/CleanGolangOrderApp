@@ -173,6 +173,19 @@ curl -X "GET" "http://localhost:8000/api/v1/orders/user/4b2b575e-65e7-427c-bb1b-
 - [fx](https://uber-go.github.io/fx/) - A dependency injection tool for easy initialization and delivery of dependencies
 - [zap](https://pkg.go.dev/go.uber.org/zap) - For better logging config
 - [amqp091-go](https://github.com/rabbitmq/amqp091-go) - For working with RabbitMQ
+
+### Setup
+The first thing to do is to clone the repository:
+```bash
+git clone https://github.com/MikhailGulkin/TheCleanestGolangOrderApp
+cd TheCleanestGolangOrderApp
+```
+After that create `.env` and `configs/app/prod.toml`. Examples for use lie next to these files.
+Run following command
+```bash
+make up-prod
+```
+
 ### TODO
 - [ ] Refactoring auto-tests
 - [ ] Configure CI
