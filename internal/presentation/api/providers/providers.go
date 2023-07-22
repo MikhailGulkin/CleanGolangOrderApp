@@ -1,6 +1,7 @@
 package providers
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/prometheus"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/providers/controllers"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/providers/engine"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/providers/middleware"
@@ -13,5 +14,8 @@ var Module = fx.Module(
 		middleware.Module,
 		engine.Module,
 		controllers.Module,
+		fx.Provide(
+			prometheus.NewPrometheus,
+		),
 	),
 )

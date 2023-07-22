@@ -7,6 +7,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/config"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/prometheus"
 	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/providers"
 	"go.uber.org/fx"
 )
@@ -22,8 +23,10 @@ func Start(
 	config config.APIConfig,
 	logger logger.Logger,
 	routers routes.Routes, //nolint:all
+	prometheus prometheus.Prometheus,
 ) {
 	routers.Setup()
+	prometheus.Use(router.Gin)
 
 	lifecycle.Append(
 		fx.Hook{

@@ -9,7 +9,7 @@ services:
       - "8000"
     ports:
       - "8000:8000"
-    command: ["main"]
+    command: [ "main" ]
     environment:
       - CONFIG_PATH=${CONFIG_PATH:-./usr/local/bin/prod.toml}
     depends_on:
@@ -20,6 +20,7 @@ services:
       redis:
         condition: service_healthy
     networks:
+      - orderService.api.network
       - orderService.postgres.network
       - orderService.redis.network
       - orderService.rabbitmq.network
@@ -70,7 +71,7 @@ services:
       .env.dev
     healthcheck:
       test: [ "CMD-SHELL", "rabbitmq-diagnostics check_running -q" ]
-      interval: 10s
+      interval: 30s
       timeout: 60s
       retries: 5
       start_period: 10s
@@ -144,6 +145,21 @@ services:
       driver: "json-file"
       options:
         max-size: "10m"
+  prometheus:
+    container_name: orderService.prometheus
+    image: prom/prometheus:v2.36.2
+    networks:
+      - orderService.grafana.network
+      - orderService.api.network
+    volumes:
+      - ./prometheus:/etc/prometheus:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "9090:9090"
 
 volumes:
   orderService.postgres.data: { }
@@ -154,6 +170,7 @@ volumes:
 
 networks:
   orderService.postgres.network: { }
+  orderService.api.network: { }
   orderService.rabbitmq.network: { }
   orderService.redis.network: { }
-  orderService.grafana.network: {}
+  orderService.grafana.network: { }
