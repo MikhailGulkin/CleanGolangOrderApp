@@ -177,8 +177,8 @@ curl -X "GET" "http://localhost:8000/api/v1/orders/user/4b2b575e-65e7-427c-bb1b-
 ### Setup
 The first thing to do is to clone the repository:
 ```bash
-git clone https://github.com/MikhailGulkin/TheCleanestGolangOrderApp
-cd TheCleanestGolangOrderApp
+git clone https://github.com/MikhailGulkin/CleanGolangOrderApp
+cd CleanGolangOrderApp
 ```
 After that create `.env` and `configs/app/prod.toml`. Examples for use lie next to these files.
 Run following command
