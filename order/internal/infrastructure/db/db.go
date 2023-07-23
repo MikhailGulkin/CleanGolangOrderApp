@@ -1,8 +1,8 @@
 package db
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/config"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	gormLogger "gorm.io/gorm/logger"

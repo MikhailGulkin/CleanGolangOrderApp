@@ -1,10 +1,10 @@
 package address
 
 import (
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/address/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/address/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/address/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"gorm.io/gorm"
 )
 

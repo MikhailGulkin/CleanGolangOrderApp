@@ -3,11 +3,11 @@ package cron
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
-	brokerconfigurate "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/messageBroker/brokerConfigurate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/handlers"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/providers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
+	brokerconfigurate "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/handlers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/providers"
 	"go.uber.org/fx"
 )
 

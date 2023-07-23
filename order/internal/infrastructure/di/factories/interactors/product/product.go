@@ -1,14 +1,14 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/command"
-	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/persistence/repo"
-	q "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/command"
+	c "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/repo"
+	q "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
 	"go.uber.org/fx"
 )
 

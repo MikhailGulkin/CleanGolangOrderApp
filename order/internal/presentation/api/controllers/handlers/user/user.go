@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/mediator"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

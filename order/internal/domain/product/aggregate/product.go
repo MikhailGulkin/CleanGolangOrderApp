@@ -1,8 +1,8 @@
 package aggregate
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
 	"regexp"
 )
 

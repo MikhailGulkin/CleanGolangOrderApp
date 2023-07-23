@@ -2,12 +2,12 @@ package aggregate
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/consts"
-	order "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/events"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/consts"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/events"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/vo"
 	"github.com/google/uuid"
 	"strconv"
 	"time"

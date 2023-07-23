@@ -1,12 +1,12 @@
 package product
 
 import (
-	appDAO "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/persistence/reader"
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/reader/product"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
-	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo/product"
+	appDAO "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/reader/product"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
+	productRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/product"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )

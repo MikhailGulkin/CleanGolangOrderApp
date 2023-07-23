@@ -1,8 +1,8 @@
 package address
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/address"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/handlers/address"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/engine"
 )
 
 type Routes struct {

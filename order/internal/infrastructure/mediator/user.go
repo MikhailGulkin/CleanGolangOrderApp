@@ -1,6 +1,6 @@
 package mediator
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/command"
+import "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/command"
 
 type CreateUserCommandHandler struct {
 	command.CreateUser

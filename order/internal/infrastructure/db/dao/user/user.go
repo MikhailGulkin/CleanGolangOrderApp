@@ -2,11 +2,11 @@ package user
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

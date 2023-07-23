@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/user"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/handlers/user"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/engine"
 )
 
 type Routes struct {

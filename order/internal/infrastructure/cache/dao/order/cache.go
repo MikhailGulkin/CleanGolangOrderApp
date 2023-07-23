@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
-	base "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/cache/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	base "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/dao"
 	"github.com/google/uuid"
 )
 

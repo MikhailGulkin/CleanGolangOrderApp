@@ -1,10 +1,10 @@
 package user
 
 import (
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"gorm.io/gorm"
 )
 

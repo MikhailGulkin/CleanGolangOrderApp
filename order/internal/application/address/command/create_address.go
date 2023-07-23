@@ -1,11 +1,11 @@
 package command
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/address/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/address/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/address/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/address/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/address/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/address/vo"
 )
 
 type CreateAddressImpl struct {

@@ -1,6 +1,6 @@
 package aggregate
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/events"
+import "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/events"
 
 type AggregateRoot struct {
 	Events []events.Event

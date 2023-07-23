@@ -1,11 +1,11 @@
 package order
 
 import (
-	order "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/consts"
-	o "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/consts"
+	o "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertOrderModelToAggregate(model models.Order) order.Order {

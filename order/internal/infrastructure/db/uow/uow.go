@@ -1,7 +1,7 @@
 package uow
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
 	"gorm.io/gorm"
 )
 

@@ -1,7 +1,7 @@
 package repo
 
 import (
-	order "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/aggregate"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/aggregate"
 	"github.com/google/uuid"
 )
 

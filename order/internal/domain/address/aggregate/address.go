@@ -2,7 +2,7 @@ package aggregate
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/address/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/address/vo"
 )
 
 type Address struct {

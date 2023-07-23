@@ -1,9 +1,9 @@
 package address
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/address/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/address/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/address/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/address/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertAddressModelToAggregate(model models.Address) aggregate.Address {

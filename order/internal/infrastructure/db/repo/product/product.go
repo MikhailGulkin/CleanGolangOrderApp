@@ -2,12 +2,12 @@ package product
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/exceptions"
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/id"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/exceptions"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/id"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"gorm.io/gorm"
 )
 

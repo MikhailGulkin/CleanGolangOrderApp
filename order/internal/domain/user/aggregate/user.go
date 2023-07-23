@@ -1,8 +1,8 @@
 package aggregate
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/vo"
 )
 
 type User struct {

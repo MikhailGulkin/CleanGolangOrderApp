@@ -1,8 +1,8 @@
 package mediator
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
 )
 
 type CreateProductCommandHandler struct {

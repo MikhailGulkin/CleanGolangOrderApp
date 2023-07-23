@@ -2,12 +2,12 @@ package command
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
-	outboxRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
+	outboxRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/repo"
 )
 
 type DeleteOrderImpl struct {

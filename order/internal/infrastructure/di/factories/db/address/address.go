@@ -1,9 +1,9 @@
 package address
 
 import (
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/persistence/repo"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
-	addressRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo/address"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/address/interfaces/persistence/repo"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
+	addressRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/address"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )

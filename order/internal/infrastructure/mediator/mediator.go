@@ -1,8 +1,8 @@
 package mediator
 
 import (
-	c "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator/dispatchers/commandDispatcher"
-	q "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator/dispatchers/queryDispatcher"
+	c "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/mediator/dispatchers/commandDispatcher"
+	q "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/mediator/dispatchers/queryDispatcher"
 	"reflect"
 )
 

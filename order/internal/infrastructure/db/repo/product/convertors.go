@@ -1,9 +1,9 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertProductModelToEntity(model models.Product) aggregate.Product {

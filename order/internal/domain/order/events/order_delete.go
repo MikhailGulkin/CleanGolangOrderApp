@@ -1,7 +1,7 @@
 package events
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/events"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/events"
 	"github.com/google/uuid"
 )
 

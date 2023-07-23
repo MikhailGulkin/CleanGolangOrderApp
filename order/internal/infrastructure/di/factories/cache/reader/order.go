@@ -1,10 +1,10 @@
 package reader
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/cache"
-	r "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/cache/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/cache/reader/order"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache"
+	r "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/reader/order"
 	"go.uber.org/fx"
 )
 

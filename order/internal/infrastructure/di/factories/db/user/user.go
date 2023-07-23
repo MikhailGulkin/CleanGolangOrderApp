@@ -1,11 +1,11 @@
 package user
 
 import (
-	appDAO "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/persistence/dao"
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/user/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/dao/user"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
-	userRepo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo/user"
+	appDAO "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/persistence/dao"
+	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/dao/user"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
+	userRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/user"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )

@@ -1,7 +1,7 @@
 FROM golang:1.20.5 AS build
 WORKDIR /app
-COPY .. /app
-COPY go.mod go.sum /modules/
+COPY /order /app
+COPY order/go.mod order/go.sum /modules/
 
 RUN go mod download
 RUN go env -w CGO_ENABLED=0

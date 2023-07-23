@@ -1,12 +1,12 @@
 package order
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/filters"
-	q "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/filters"
+	q "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/mediator"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/handlers"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"net/http"

@@ -1,13 +1,13 @@
 package command
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence"
-	outbox "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/services"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
+	outbox "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/services"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/vo"
 	"reflect"
 )
 

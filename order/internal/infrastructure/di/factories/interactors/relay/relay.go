@@ -1,10 +1,10 @@
 package relay
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/broker"
-	impl "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/interactors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/interfaces/interactors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/broker"
+	impl "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interactors"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/interactors"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/persistence/dao"
 	"go.uber.org/fx"
 )
 

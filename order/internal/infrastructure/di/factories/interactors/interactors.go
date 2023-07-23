@@ -1,11 +1,11 @@
 package interactors
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors/address"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors/product"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors/relay"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/interactors/user"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/interactors/address"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/interactors/order"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/interactors/product"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/interactors/relay"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/interactors/user"
 	"go.uber.org/fx"
 )
 

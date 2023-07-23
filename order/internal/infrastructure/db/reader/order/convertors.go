@@ -1,9 +1,9 @@
 package order
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/reader"
 )
 
 func ConvertOrderModelToDTO(model models.Order) dto.Order {

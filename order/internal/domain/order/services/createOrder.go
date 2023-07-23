@@ -1,11 +1,11 @@
 package services
 
 import (
-	domain "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/aggregate"
-	order "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/events"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/order/vo"
+	domain "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/aggregate"
+	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/events"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/exceptions"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/vo"
 )
 
 type Service struct {

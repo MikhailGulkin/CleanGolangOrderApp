@@ -1,11 +1,11 @@
 package outbox
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/consts/outbox"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/consts/outbox"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

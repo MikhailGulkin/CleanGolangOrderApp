@@ -1,10 +1,10 @@
 package user
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/aggregate"
-	entity "github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/user/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/aggregate"
+	entity "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertUserModelToAggregate(model models.User) aggregate.User {

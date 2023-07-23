@@ -1,7 +1,7 @@
 package order
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/mediator"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/mediator"
 )
 
 func NewOrderHandler(

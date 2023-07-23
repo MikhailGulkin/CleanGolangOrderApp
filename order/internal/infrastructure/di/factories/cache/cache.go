@@ -1,9 +1,9 @@
 package cache
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/cache"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/cache/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/di/factories/cache/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/cache/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/cache/reader"
 	"go.uber.org/fx"
 )
 

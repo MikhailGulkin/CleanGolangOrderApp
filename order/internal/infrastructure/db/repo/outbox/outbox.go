@@ -1,10 +1,10 @@
 package outbox
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/events"
-	base "github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/db/repo/outbox/convertors"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/events"
+	base "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/outbox/convertors"
 	"gorm.io/gorm"
 )
 

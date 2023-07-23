@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/dto"
 	"github.com/google/uuid"
 	"time"
 )

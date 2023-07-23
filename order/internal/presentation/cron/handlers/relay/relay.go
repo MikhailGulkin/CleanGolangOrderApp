@@ -2,8 +2,8 @@ package relay
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/relay/interfaces/interactors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/interactors"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/engine"
 )
 
 func NewCronHandler(controller engine.CronController, relay interactors.Relay) CronRelayHandler {

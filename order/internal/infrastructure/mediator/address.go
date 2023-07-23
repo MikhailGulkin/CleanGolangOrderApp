@@ -1,6 +1,6 @@
 package mediator
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/address/interfaces/command"
+import "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/address/interfaces/command"
 
 type CreateAddressCommandHandler struct {
 	command.CreateAddress

@@ -2,13 +2,13 @@ package query
 
 import (
 	"fmt"
-	base "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/logger"
-	baseFilters "github.com/MikhailGulkin/simpleGoOrderApp/internal/application/common/interfaces/persistence/filters"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/filters"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/query"
+	base "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/logger"
+	baseFilters "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/query"
 )
 
 type GetAllOrdersByUserIDImpl struct {

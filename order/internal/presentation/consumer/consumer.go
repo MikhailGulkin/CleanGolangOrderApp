@@ -3,9 +3,9 @@ package consumer
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/consumer/providers"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/consumer/subscribers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer/providers"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer/subscribers"
 	"go.uber.org/fx"
 )
 
@@ -33,7 +33,7 @@ func Start(
 				return nil
 			},
 			OnStop: func(context.Context) error {
-				logger.Info("Stopping cron application")
+				logger.Info("Stopping consumer application")
 				return nil
 			},
 		},

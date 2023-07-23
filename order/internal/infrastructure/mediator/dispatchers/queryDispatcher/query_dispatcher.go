@@ -1,7 +1,7 @@
 package querydispatcher
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/product/interfaces/query"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
 	"reflect"
 )
 

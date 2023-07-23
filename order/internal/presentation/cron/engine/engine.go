@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/cron/config"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/config"
 	"github.com/robfig/cron/v3"
 	"os"
 	"os/signal"

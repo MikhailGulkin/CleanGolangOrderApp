@@ -1,9 +1,9 @@
 package healthcheck
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/controllers/handlers/healthcheck"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/presentation/api/middleware/logging"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/handlers/healthcheck"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/engine"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/middleware/logging"
 )
 
 type Routes struct {

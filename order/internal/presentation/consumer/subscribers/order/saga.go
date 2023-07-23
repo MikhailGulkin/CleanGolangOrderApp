@@ -2,8 +2,8 @@ package order
 
 import (
 	"encoding/json"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/application/order/interfaces/saga"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/saga"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
 	"github.com/rabbitmq/amqp091-go"
 )
 

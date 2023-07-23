@@ -1,8 +1,8 @@
 package repo
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/common/id"
-	"github.com/MikhailGulkin/simpleGoOrderApp/internal/domain/product/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/id"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/aggregate"
 )
 
 type ProductRepo interface {
