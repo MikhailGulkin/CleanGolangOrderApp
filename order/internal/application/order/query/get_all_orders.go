@@ -11,11 +11,11 @@ import (
 
 type GetAllOrderImpl struct {
 	query.GetAllOrders
-	reader.OrderReader
+	reader.OrderCacheReader
 }
 
 func (interactor *GetAllOrderImpl) Get(q query.GetAllOrderQuery) (dto.Orders, error) {
-	orders, err := interactor.OrderReader.GetAllOrders(
+	orders, err := interactor.OrderCacheReader.GetAllOrders(
 		filters.GetAllOrdersFilters{BaseFilters: f.BaseFilters{
 			Limit: q.Limit, Offset: q.Offset, Order: q.Order,
 		}},

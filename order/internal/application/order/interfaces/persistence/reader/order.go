@@ -6,10 +6,8 @@ import (
 	"github.com/google/uuid"
 )
 
-type OrderReader interface {
-	GetAllOrders(filters filters.GetAllOrdersFilters) ([]dto.Order, error)
-}
 type OrderCacheReader interface {
+	GetAllOrders(filters filters.GetAllOrdersFilters) ([]dto.Order, error)
 	GetAllOrdersByUserID(userID uuid.UUID, filters filters.GetAllOrdersByUserIDFilters) ([]dto.Order, error)
 	GetOrderByID(uuid.UUID) (dto.Order, error)
 }

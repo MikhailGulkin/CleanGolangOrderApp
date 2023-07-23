@@ -17,30 +17,6 @@ func (e OrderIDNotExist) Exception(context string) OrderIDNotExist {
 		}}
 }
 
-type OrderClientIDNotExist struct {
-	common.CustomException
-}
-
-func (e OrderClientIDNotExist) Exception(context string) OrderClientIDNotExist {
-	return OrderClientIDNotExist{
-		CustomException: common.CustomException{
-			Message: "Client with this id not exist;",
-			Ctx:     fmt.Sprintf("id `%s`", context),
-		}}
-}
-
-type OrderAddressIDNotExist struct {
-	common.CustomException
-}
-
-func (e OrderAddressIDNotExist) Exception(context string) OrderAddressIDNotExist {
-	return OrderAddressIDNotExist{
-		CustomException: common.CustomException{
-			Message: "Address with this id not exist;",
-			Ctx:     fmt.Sprintf("id `%s`", context),
-		}}
-}
-
 type ProductIDsNotExist struct {
 	common.CustomException
 }

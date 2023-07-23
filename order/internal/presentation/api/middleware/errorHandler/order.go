@@ -11,9 +11,7 @@ import (
 func handleOrderError(e ErrorCatching) {
 	var orderProductsError *domain.OrderProductsEmpty
 	var orderIDError *exceptions.OrderIDNotExist
-	var orderClientIDError *exceptions.OrderClientIDNotExist
 	var orderProductsIDsError *exceptions.ProductIDsNotExist
-	var orderAddressIDError *exceptions.OrderAddressIDNotExist
 
 	if errors.As(e.err, &orderProductsError) {
 		*e.status = http.StatusBadRequest
@@ -23,16 +21,8 @@ func handleOrderError(e ErrorCatching) {
 		*e.status = http.StatusNotFound
 		response.SetExceptionPayload(e.exception, orderIDError.CustomException)
 	}
-	if errors.As(e.err, &orderClientIDError) {
-		*e.status = http.StatusNotFound
-		response.SetExceptionPayload(e.exception, orderClientIDError.CustomException)
-	}
 	if errors.As(e.err, &orderProductsIDsError) {
 		*e.status = http.StatusNotFound
 		response.SetExceptionPayload(e.exception, orderProductsIDsError.CustomException)
-	}
-	if errors.As(e.err, &orderAddressIDError) {
-		*e.status = http.StatusNotFound
-		response.SetExceptionPayload(e.exception, orderAddressIDError.CustomException)
 	}
 }
