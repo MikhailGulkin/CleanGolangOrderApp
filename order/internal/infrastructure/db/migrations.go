@@ -6,5 +6,5 @@ import (
 )
 
 func migrate(db *gorm.DB) {
-	_ = db.AutoMigrate(&models.Product{}, &models.User{}, &models.Address{}, &models.Order{}, &models.Outbox{})
+	_ = db.AutoMigrate(&models.Product{}, &models.Order{}, &models.Outbox{})
 }

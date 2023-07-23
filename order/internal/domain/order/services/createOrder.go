@@ -6,6 +6,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/events"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/vo"
+	"github.com/google/uuid"
 )
 
 type Service struct {
@@ -13,8 +14,8 @@ type Service struct {
 
 func (Service) CreateOrder(
 	orderID vo.OrderID,
-	deliveryAddress order.OrderAddress,
-	client order.OrderClient,
+	deliveryAddress uuid.UUID,
+	client uuid.UUID,
 	previousSerialNumber int,
 	products []order.OrderProduct,
 ) (domain.Order, error) {
@@ -40,11 +41,11 @@ func (Service) CreateOrder(
 	createdOrder.RecordEvent(
 		events.OrderCreated{}.Create(
 			createdOrder.OrderID.Value,
-			events.OrderCreatedClient{ClientID: client.ClientID, Username: client.Username},
+			createdOrder.ClientID,
 			string(createdOrder.PaymentMethod),
 			createdOrder.SerialNumber,
 			float64(createdOrder.GetTotalPrice()),
-			events.OrderCreatedAddress{AddressID: createdOrder.DeliveryAddress.AddressID, FullAddress: createdOrder.DeliveryAddress.FullAddress},
+			createdOrder.DeliveryAddressID,
 		),
 	)
 	createdOrder.RecordEvent(

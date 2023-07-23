@@ -8,9 +8,7 @@ type Order struct {
 	Base
 	OrderStatus   string
 	ClientID      uuid.UUID
-	Client        User
 	PaymentMethod string
-	Address       Address
 	AddressID     uuid.UUID
 	Closed        bool
 	SerialNumber  int

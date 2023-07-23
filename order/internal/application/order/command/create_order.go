@@ -29,22 +29,15 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if !reflect.ValueOf(previousOrder).IsZero() {
 		serialNumber = previousOrder.GetSerialNumber()
 	}
-	orderAddress, orderErrAddress := interactor.OrderDAO.GetAddressByID(command.DeliveryAddress)
-	if orderErrAddress != nil {
-		return orderErrAddress
-	}
-	client, clientError := interactor.OrderDAO.GetClientByID(command.UserID)
-	if clientError != nil {
-		return clientError
-	}
+
 	products, productError := interactor.OrderDAO.GetProductsByIDs(command.ProductsIDs)
 	if productError != nil {
 		return productError
 	}
 	orderAggregate, err := interactor.Service.CreateOrder(
 		vo.OrderID{Value: command.OrderID},
-		orderAddress,
-		client,
+		command.DeliveryAddress,
+		command.UserID,
 		serialNumber,
 		products,
 	)

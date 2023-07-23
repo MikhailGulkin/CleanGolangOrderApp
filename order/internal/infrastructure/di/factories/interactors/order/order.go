@@ -39,9 +39,9 @@ func NewGetAllOrders(dao reader.OrderReader) q.GetAllOrders {
 		OrderReader: dao,
 	}
 }
-func NewGetOrderByID(dao reader.OrderReader) q.GetOrderByID {
+func NewGetOrderByID(reader reader.OrderCacheReader) q.GetOrderByID {
 	return &query.GetOrderByIDImpl{
-		OrderReader: dao,
+		OrderCacheReader: reader,
 	}
 }
 

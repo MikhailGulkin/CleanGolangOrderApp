@@ -19,15 +19,12 @@ func ConvertOrderModelToDTO(model models.Order) dto.Order {
 		OrderID:       model.ID,
 		OrderStatus:   model.OrderStatus,
 		PaymentMethod: model.PaymentMethod,
-		Client: dto.Client{
-			ClientID:   model.Client.ID,
-			ClientName: model.Client.Username,
-		},
-		Address:      model.Address.GetFullAddress(),
-		SerialNumber: model.SerialNumber,
-		Products:     products,
-		CreatedAt:    model.CreatedAt,
-		TotalPrice:   reader.CalculateTotalOrderPrice(model.Products),
+		ClientID:      model.ClientID,
+		AddressID:     model.AddressID,
+		SerialNumber:  model.SerialNumber,
+		Products:      products,
+		CreatedAt:     model.CreatedAt,
+		TotalPrice:    reader.CalculateTotalOrderPrice(model.Products),
 	}
 }
 func ConvertOrderModelsToDTOs(models []models.Order) []dto.Order {

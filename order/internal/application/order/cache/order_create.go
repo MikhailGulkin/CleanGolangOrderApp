@@ -19,14 +19,11 @@ func (o *OrderCacheImpl) OrderCreateEvent(event cache.OrderCreateSubscribe) {
 	order.OrderStatus = event.OrderStatus
 	order.OrderID = event.OrderID
 	order.CreatedAt = event.CreatedAt
-	order.Address = event.DeliveryAddress.FullAddress
+	order.AddressID = event.DeliveryAddressID
 	order.TotalPrice = event.TotalPrice
 	order.SerialNumber = event.SerialNumber
 	order.PaymentMethod = event.PaymentMethod
-	order.Client = dto.Client{
-		ClientID:   event.Client.ClientID,
-		ClientName: event.Client.Username,
-	}
+	order.ClientID = event.ClientID
 	err := o.OrderCacheDAO.SaveOrder(order)
 	if err != nil {
 		return
@@ -40,9 +37,7 @@ func (o *OrderCacheImpl) OrderAddProductEvent(event cache.OrderAddProductSubscri
 		Name:        event.ProductName,
 		ActualPrice: event.ProductPrice,
 	})
-	order.Client = dto.Client{
-		ClientID: event.ClientID,
-	}
+	order.ClientID = event.ClientID
 	err := o.OrderCacheDAO.SaveOrder(order)
 	if err != nil {
 		return

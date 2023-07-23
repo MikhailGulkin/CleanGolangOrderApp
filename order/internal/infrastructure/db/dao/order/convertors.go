@@ -17,15 +17,3 @@ func ConvertProductsModelsToOrderEntity(models []models.Product) []order.OrderPr
 	}
 	return products
 }
-func ConvertUserModelToOrderClient(model models.User) order.OrderClient {
-	return order.OrderClient{
-		ClientID: model.ID,
-		Username: model.Username,
-	}
-}
-func ConvertAddressModelToOrderAddress(model models.Address) order.OrderAddress {
-	return order.OrderAddress{
-		AddressID:   model.ID,
-		FullAddress: model.GetFullAddress(),
-	}
-}

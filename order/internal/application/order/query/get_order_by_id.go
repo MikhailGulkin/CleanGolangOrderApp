@@ -7,12 +7,12 @@ import (
 )
 
 type GetOrderByIDImpl struct {
-	reader.OrderReader
+	reader.OrderCacheReader
 	query.GetOrderByID
 }
 
 func (interactor *GetOrderByIDImpl) Get(query query.GetOrderByIDQuery) (dto.Order, error) {
-	order, err := interactor.OrderReader.GetOrderByID(query.ID)
+	order, err := interactor.OrderCacheReader.GetOrderByID(query.ID)
 	if err != nil {
 		return dto.Order{}, err
 	}

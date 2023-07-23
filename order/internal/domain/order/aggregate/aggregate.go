@@ -18,30 +18,30 @@ type PriceOrder float64
 type Order struct {
 	aggregate.AggregateRoot
 	vo.OrderID
-	Products        []order.OrderProduct
-	Client          order.OrderClient
-	OrderStatus     consts.OrderStatus
-	PaymentMethod   consts.PaymentMethod
-	DeliveryAddress order.OrderAddress
-	totalPrice      PriceOrder
-	Date            time.Time
-	SerialNumber    int
-	Closed          bool
+	Products          []order.OrderProduct
+	ClientID          uuid.UUID
+	OrderStatus       consts.OrderStatus
+	PaymentMethod     consts.PaymentMethod
+	DeliveryAddressID uuid.UUID
+	totalPrice        PriceOrder
+	Date              time.Time
+	SerialNumber      int
+	Closed            bool
 }
 
-func (Order) Create(orderID vo.OrderID, deliveryAddress order.OrderAddress, client order.OrderClient, previousSerialNumber int) (Order, error) {
+func (Order) Create(orderID vo.OrderID, deliveryAddress uuid.UUID, client uuid.UUID, previousSerialNumber int) (Order, error) {
 	serialNumber, serialError := getCurrentSerialNumber(previousSerialNumber)
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
 	}
 	return Order{
-		OrderID:         orderID,
-		OrderStatus:     consts.New,
-		Client:          client,
-		DeliveryAddress: deliveryAddress,
-		PaymentMethod:   consts.Online,
-		Date:            time.Now(),
-		SerialNumber:    serialNumber,
+		OrderID:           orderID,
+		OrderStatus:       consts.New,
+		ClientID:          client,
+		DeliveryAddressID: deliveryAddress,
+		PaymentMethod:     consts.Online,
+		Date:              time.Now(),
+		SerialNumber:      serialNumber,
 	}, nil
 }
 func (o *Order) AddProduct(product order.OrderProduct) error {
@@ -59,7 +59,7 @@ func (o *Order) AddProduct(product order.OrderProduct) error {
 			product.GetActualPrice(),
 			float64(o.GetTotalPrice()),
 			product.Name,
-			o.Client.ClientID,
+			o.ClientID,
 		),
 	)
 	return nil

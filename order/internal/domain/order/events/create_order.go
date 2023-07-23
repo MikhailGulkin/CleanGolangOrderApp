@@ -6,42 +6,34 @@ import (
 	"github.com/google/uuid"
 )
 
-type OrderCreatedClient struct {
-	ClientID uuid.UUID `json:"clientID"`
-	Username string    `json:"username"`
-}
-type OrderCreatedAddress struct {
-	AddressID   uuid.UUID `json:"clientID"`
-	FullAddress string    `json:"username"`
-}
 type OrderCreated struct {
 	events.BaseEvent
-	OrderID         uuid.UUID           `json:"orderID"`
-	Client          OrderCreatedClient  `json:"client"`
-	OrderStatus     string              `json:"orderStatus"`
-	PaymentMethod   string              `json:"paymentMethod"`
-	DeliveryAddress OrderCreatedAddress `json:"deliveryAddress"`
-	SerialNumber    int                 `json:"serialNumber"`
-	TotalPrice      float64             `json:"totalPrice"`
+	OrderID           uuid.UUID `json:"orderID"`
+	ClientID          uuid.UUID `json:"clientID"`
+	OrderStatus       string    `json:"orderStatus"`
+	PaymentMethod     string    `json:"paymentMethod"`
+	DeliveryAddressID uuid.UUID `json:"deliveryAddressID"`
+	SerialNumber      int       `json:"serialNumber"`
+	TotalPrice        float64   `json:"totalPrice"`
 }
 
 func (OrderCreated) Create(
 	orderID uuid.UUID,
-	client OrderCreatedClient,
+	client uuid.UUID,
 	paymentMethod string,
 	serialNumber int,
 	totalPrice float64,
-	address OrderCreatedAddress,
+	address uuid.UUID,
 ) events.Event {
 	return &OrderCreated{
-		OrderID:         orderID,
-		BaseEvent:       events.BaseEvent{}.Create("OrderCreated"),
-		Client:          client,
-		PaymentMethod:   paymentMethod,
-		DeliveryAddress: address,
-		OrderStatus:     string(consts.New),
-		SerialNumber:    serialNumber,
-		TotalPrice:      totalPrice,
+		OrderID:           orderID,
+		BaseEvent:         events.BaseEvent{}.Create("OrderCreated"),
+		ClientID:          client,
+		PaymentMethod:     paymentMethod,
+		DeliveryAddressID: address,
+		OrderStatus:       string(consts.New),
+		SerialNumber:      serialNumber,
+		TotalPrice:        totalPrice,
 	}
 }
 

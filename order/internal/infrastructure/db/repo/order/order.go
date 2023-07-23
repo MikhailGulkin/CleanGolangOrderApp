@@ -20,8 +20,6 @@ type RepoImpl struct {
 func (repo *RepoImpl) AcquireLastOrder() (order.Order, error) {
 	var orderModel models.Order
 	result := repo.Session.
-		Preload("Address").
-		Preload("Client").
 		Preload("Products").
 		Order("created_at desc").
 		Where("saga_status = ?", consts.Approved).
@@ -38,8 +36,6 @@ func (repo *RepoImpl) AcquireLastOrder() (order.Order, error) {
 func (repo *RepoImpl) AcquiredOrder(orderID uuid.UUID) (order.Order, error) {
 	var orderModel models.Order
 	result := repo.Session.
-		Preload("Address").
-		Preload("Client").
 		Preload("Products").
 		Where("saga_status = ? AND id = ?", consts.Approved, orderID).
 		Find(&orderModel)

@@ -39,8 +39,6 @@ func (m ErrorMiddleware) Handle(c *gin.Context) {
 		errorCatching := ErrorCatching{status: &status, err: err, exception: &exceptionResponse}
 
 		handleProductError(errorCatching)
-		handleAddressError(errorCatching)
-		handleUserError(errorCatching)
 		handleOrderError(errorCatching)
 		m.Logger.Info(
 			fmt.Sprintf("Server handle erorr with status: %d, and error message: %s",

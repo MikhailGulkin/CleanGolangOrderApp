@@ -32,30 +32,7 @@ func (dao *DAOImpl) GetProductsByIDs(productIDs []uuid.UUID) ([]order.OrderProdu
 	}
 	return ConvertProductsModelsToOrderEntity(productsModel), nil
 }
-func (dao *DAOImpl) GetClientByID(userID uuid.UUID) (order.OrderClient, error) {
-	var userModel models.User
-	result := dao.Session.Where("id = ?", userID.String()).First(&userModel)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		exception := exceptions.OrderClientIDNotExist{}.Exception(userID.String())
-		return order.OrderClient{}, &exception
-	}
-	if result.Error != nil {
-		return order.OrderClient{}, result.Error
-	}
-	return ConvertUserModelToOrderClient(userModel), nil
-}
-func (dao *DAOImpl) GetAddressByID(addressID uuid.UUID) (order.OrderAddress, error) {
-	var addressModel models.Address
-	result := dao.Session.Where("id = ?", addressID.String()).First(&addressModel)
-	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		exception := exceptions.OrderAddressIDNotExist{}.Exception(addressID.String())
-		return order.OrderAddress{}, &exception
-	}
-	if result.Error != nil {
-		return order.OrderAddress{}, result.Error
-	}
-	return ConvertAddressModelToOrderAddress(addressModel), nil
-}
+
 func (dao *DAOImpl) DeleteOrder(orderID uuid.UUID, tx interface{}) error {
 	return tx.(*gorm.DB).
 		Where("id = ?", orderID).

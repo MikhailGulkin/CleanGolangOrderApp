@@ -18,21 +18,15 @@ func ConvertOrderModelToAggregate(model models.Order) order.Order {
 		}
 	}
 	return order.Order{
-		OrderID:  vo.OrderID{Value: model.ID},
-		Products: products,
-		Client: o.OrderClient{
-			ClientID: model.Client.ID,
-			Username: model.Client.Username,
-		},
-		OrderStatus:   consts.OrderStatus(model.OrderStatus),
-		PaymentMethod: consts.PaymentMethod(model.PaymentMethod),
-		DeliveryAddress: o.OrderAddress{
-			AddressID:   model.Address.ID,
-			FullAddress: model.Address.GetFullAddress(),
-		},
-		Date:         model.Base.CreatedAt,
-		SerialNumber: model.SerialNumber,
-		Closed:       model.Closed,
+		OrderID:           vo.OrderID{Value: model.ID},
+		Products:          products,
+		ClientID:          model.ClientID,
+		OrderStatus:       consts.OrderStatus(model.OrderStatus),
+		PaymentMethod:     consts.PaymentMethod(model.PaymentMethod),
+		DeliveryAddressID: model.AddressID,
+		Date:              model.Base.CreatedAt,
+		SerialNumber:      model.SerialNumber,
+		Closed:            model.Closed,
 	}
 }
 func ConvertOrderAggregateToModel(order order.Order) models.Order {
@@ -45,9 +39,9 @@ func ConvertOrderAggregateToModel(order order.Order) models.Order {
 	return models.Order{
 		Base:          models.Base{ID: order.OrderID.Value, CreatedAt: order.Date},
 		OrderStatus:   string(order.OrderStatus),
-		ClientID:      order.Client.ClientID,
+		ClientID:      order.ClientID,
 		PaymentMethod: string(order.PaymentMethod),
-		AddressID:     order.DeliveryAddress.AddressID,
+		AddressID:     order.DeliveryAddressID,
 		Closed:        order.Closed,
 		SerialNumber:  order.SerialNumber,
 		Products:      products,

@@ -39,7 +39,7 @@ func (dao *CacheDAOImpl) SaveOrder(order dto.Order) error {
 	}
 	status := dao.Client.Set(
 		context.Background(),
-		fmt.Sprintf("order:%s:%s", order.Client.ClientID, order.OrderID),
+		fmt.Sprintf("order:%s:%s", order.ClientID, order.OrderID),
 		marshal,
 		0,
 	)

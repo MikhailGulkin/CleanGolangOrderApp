@@ -8,8 +8,8 @@ import (
 
 type OrderReader interface {
 	GetAllOrders(filters filters.GetAllOrdersFilters) ([]dto.Order, error)
-	GetOrderByID(id uuid.UUID) (dto.Order, error)
 }
 type OrderCacheReader interface {
 	GetAllOrdersByUserID(userID uuid.UUID, filters filters.GetAllOrdersByUserIDFilters) ([]dto.Order, error)
+	GetOrderByID(uuid.UUID) (dto.Order, error)
 }

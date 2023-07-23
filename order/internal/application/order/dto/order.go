@@ -9,8 +9,8 @@ import (
 type Order struct {
 	OrderStatus   string    `json:"orderStatus"`
 	PaymentMethod string    `json:"paymentMethod"`
-	Client        Client    `json:"client"`
-	Address       string    `json:"address"`
+	ClientID      uuid.UUID `json:"clientID"`
+	AddressID     uuid.UUID `json:"addressID"`
 	OrderID       uuid.UUID `json:"OrderID"`
 	SerialNumber  int       `json:"serialNumber"`
 	Products      []Product `json:"products"`

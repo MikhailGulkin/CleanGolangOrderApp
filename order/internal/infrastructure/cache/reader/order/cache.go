@@ -6,6 +6,7 @@ import (
 	"fmt"
 	filter "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/filters"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/filters"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/reader"
 	r "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/reader"
@@ -56,4 +57,26 @@ func (reader *CacheReaderImpl) GetAllOrdersByUserID(userID uuid.UUID, filters fi
 		return orders[i].TotalPrice > orders[j].TotalPrice
 	})
 	return orders, nil
+}
+
+func (reader *CacheReaderImpl) GetOrderByID(orderID uuid.UUID) (dto.Order, error) {
+	keys, err := reader.Client.Keys(context.Background(), fmt.Sprintf("order:*:%s", orderID)).Result()
+	if err != nil {
+		return dto.Order{}, err
+	}
+	for _, key := range keys {
+		orderData, err := reader.Client.Get(context.Background(), key).Result()
+		if err != nil {
+			return dto.Order{}, err
+		}
+		view := dto.Order{}
+
+		err = json.Unmarshal([]byte(orderData), &view)
+		if err != nil {
+			return dto.Order{}, err
+		}
+		return view, nil //nolint
+	}
+	customErr := exceptions.OrderIDNotExist{}.Exception(orderID.String())
+	return dto.Order{}, &customErr
 }
