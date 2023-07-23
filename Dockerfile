@@ -5,8 +5,6 @@ COPY go.mod go.sum /modules/
 
 RUN go mod download
 RUN go env -w CGO_ENABLED=0
-RUN go env -w GOOS=linux
-RUN go env -w GOARCH=amd64
 
 RUN go build -o main ./cmd/main.go
 
