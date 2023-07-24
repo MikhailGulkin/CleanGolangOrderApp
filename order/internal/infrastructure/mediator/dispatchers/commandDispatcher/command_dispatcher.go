@@ -5,7 +5,7 @@ import (
 )
 
 type CommandDispatcher interface {
-	Send(command interface{}) error
+	Send(command interface{}) (interface{}, error)
 	RegisterCommandHandler(command interface{}, handler CommandHandler)
 }
 
@@ -13,10 +13,10 @@ type CommandDispatcherImpl struct {
 	CommandHandlers map[reflect.Type]CommandHandler
 }
 type CommandHandler interface {
-	Handle(command interface{}) error
+	Handle(command interface{}) (interface{}, error)
 }
 
-func (c *CommandDispatcherImpl) Send(command interface{}) error {
+func (c *CommandDispatcherImpl) Send(command interface{}) (interface{}, error) {
 	var handler CommandHandler
 	c.GetCommandHandler(command, &handler)
 	return handler.Handle(command)

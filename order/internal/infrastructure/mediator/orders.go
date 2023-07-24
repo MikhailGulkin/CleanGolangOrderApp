@@ -9,16 +9,16 @@ type CreateOrderCommandHandler struct {
 	command.CreateOrder
 }
 
-func (c *CreateOrderCommandHandler) Handle(cmd interface{}) error {
-	return c.Create(cmd.(command.CreateOrderCommand))
+func (c *CreateOrderCommandHandler) Handle(cmd interface{}) (interface{}, error) {
+	return nil, c.Create(cmd.(command.CreateOrderCommand))
 }
 
 type DeleteOrderCommandHandler struct {
 	command.DeleteOrder
 }
 
-func (c *DeleteOrderCommandHandler) Handle(cmd interface{}) error {
-	return c.Delete(cmd.(command.DeleteOrderCommand))
+func (c *DeleteOrderCommandHandler) Handle(cmd interface{}) (interface{}, error) {
+	return nil, c.Delete(cmd.(command.DeleteOrderCommand))
 }
 
 type GetAllOrdersQueryHandler struct {

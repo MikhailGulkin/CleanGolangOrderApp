@@ -1,4 +1,4 @@
-package aggregate
+package entities
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/exceptions"

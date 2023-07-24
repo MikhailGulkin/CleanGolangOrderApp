@@ -3,13 +3,13 @@ package command
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/entities"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
 )
 
 type CreateProductImpl struct {
-	repo.ProductRepo
+	dao.ProductDAO
 	persistence.UoW
 	command.CreateProduct
 }
@@ -24,7 +24,7 @@ func (interactor *CreateProductImpl) Create(command command.CreateProductCommand
 		return discountErr
 	}
 
-	productEntity, err := aggregate.Product{}.Create(
+	productEntity, err := entities.Product{}.Create(
 		vo.ProductID{Value: command.ProductID},
 		price,
 		discount,
@@ -34,7 +34,7 @@ func (interactor *CreateProductImpl) Create(command command.CreateProductCommand
 	if err != nil {
 		return err
 	}
-	err = interactor.ProductRepo.AddProduct(productEntity, interactor.UoW.StartTx())
+	err = interactor.ProductDAO.CreateProduct(productEntity, interactor.UoW.StartTx())
 	if err != nil {
 		return err
 	}

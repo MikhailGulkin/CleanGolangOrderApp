@@ -7,7 +7,7 @@ import (
 )
 
 type Mediator interface {
-	Send(command interface{}) error
+	Send(command interface{}) (interface{}, error)
 	Query(query interface{}) (interface{}, error)
 	RegisterCommandHandler(command interface{}, handler c.CommandHandler)
 	RegisterQueryHandler(command interface{}, handler q.QueryHandler)
@@ -26,7 +26,7 @@ func (mediator *MediatorImpl) RegisterQueryHandler(command interface{}, handler 
 	mediator.queryDispatcher.RegisterQueryHandler(command, handler)
 }
 
-func (mediator *MediatorImpl) Send(command interface{}) error {
+func (mediator *MediatorImpl) Send(command interface{}) (interface{}, error) {
 	return mediator.commandDispatcher.Send(command)
 }
 

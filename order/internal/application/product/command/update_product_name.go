@@ -3,12 +3,12 @@ package command
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
 )
 
 type UpdateProductNameImpl struct {
-	repo.ProductRepo
+	dao.ProductDAO
 	persistence.UoW
 	command.UpdateProductName
 }
@@ -16,7 +16,7 @@ type UpdateProductNameImpl struct {
 func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNameCommand) error {
 	productID := vo.ProductID{Value: command.ProductID}
 
-	productEntity, err := interactor.ProductRepo.AcquireProductByID(productID)
+	productEntity, err := interactor.ProductDAO.GetProductByID(productID)
 	if err != nil {
 		return err
 	}
@@ -24,7 +24,7 @@ func (interactor *UpdateProductNameImpl) Update(command command.UpdateProductNam
 	if err != nil {
 		return err
 	}
-	err = interactor.ProductRepo.UpdateProduct(productEntity, interactor.UoW.StartTx())
+	err = interactor.ProductDAO.UpdateProduct(productEntity, interactor.UoW.StartTx())
 	if err != nil {
 		return err
 	}

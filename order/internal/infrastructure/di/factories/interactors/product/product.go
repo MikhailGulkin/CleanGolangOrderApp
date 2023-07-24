@@ -4,24 +4,24 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/command"
 	c "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/repo"
 	q "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/query"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
 	"go.uber.org/fx"
 )
 
-func NewCreateProduct(repo repo.ProductRepo, uow persistence.UoW) c.CreateProduct {
+func NewCreateProduct(dao dao.ProductDAO, uow persistence.UoW) c.CreateProduct {
 	return &command.CreateProductImpl{
-		ProductRepo: repo,
-		UoW:         uow,
+		ProductDAO: dao,
+		UoW:        uow,
 	}
 }
-func NewUpdateProductName(dao repo.ProductRepo, uow persistence.UoW) c.UpdateProductName {
+func NewUpdateProductName(dao dao.ProductDAO, uow persistence.UoW) c.UpdateProductName {
 	return &command.UpdateProductNameImpl{
-		ProductRepo: dao,
-		UoW:         uow,
+		ProductDAO: dao,
+		UoW:        uow,
 	}
 }
 

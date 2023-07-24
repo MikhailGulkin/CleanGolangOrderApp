@@ -23,12 +23,12 @@ func (c *Handler) CreateOrder(context *gin.Context) {
 		return
 	}
 
-	err := c.mediator.Send(requestBody)
+	answer, err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return
 	}
-	context.Status(http.StatusNoContent)
+	context.JSON(http.StatusNoContent, answer)
 }
 func (c *Handler) DeleteOrder(context *gin.Context) {
 	var requestBody command.DeleteOrderCommand
@@ -37,12 +37,12 @@ func (c *Handler) DeleteOrder(context *gin.Context) {
 		return
 	}
 
-	err := c.mediator.Send(requestBody)
+	answer, err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return
 	}
-	context.Status(http.StatusNoContent)
+	context.JSON(http.StatusNoContent, answer)
 }
 func (c *Handler) GetAllOrders(context *gin.Context) {
 	Limit, Offset, Order := handlers.GetQueryParams(context)

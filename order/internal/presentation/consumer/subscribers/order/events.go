@@ -2,7 +2,6 @@ package order
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
 	"github.com/rabbitmq/amqp091-go"
@@ -40,7 +39,6 @@ func (s OrderEvent) Listen() {
 			switch eventType.EventType {
 			case "OrderCreated":
 				err = json.Unmarshal([]byte(str), &orderCreate)
-				fmt.Println(str)
 				if err != nil {
 					continue
 				}

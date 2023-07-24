@@ -9,16 +9,16 @@ type CreateProductCommandHandler struct {
 	command.CreateProduct
 }
 
-func (c *CreateProductCommandHandler) Handle(cmd interface{}) error {
-	return c.Create(cmd.(command.CreateProductCommand))
+func (c *CreateProductCommandHandler) Handle(cmd interface{}) (interface{}, error) {
+	return nil, c.Create(cmd.(command.CreateProductCommand))
 }
 
 type UpdateProductCommandHandler struct {
 	command.UpdateProductName
 }
 
-func (c *UpdateProductCommandHandler) Handle(cmd interface{}) error {
-	return c.Update(cmd.(command.UpdateProductNameCommand))
+func (c *UpdateProductCommandHandler) Handle(cmd interface{}) (interface{}, error) {
+	return nil, c.Update(cmd.(command.UpdateProductNameCommand))
 }
 
 type GetAllProductsQueryHandler struct {

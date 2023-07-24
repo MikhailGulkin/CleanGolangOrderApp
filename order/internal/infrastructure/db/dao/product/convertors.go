@@ -1,13 +1,13 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/entities"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
 )
 
-func ConvertProductModelToEntity(model models.Product) aggregate.Product {
-	return aggregate.Product{
+func ConvertProductModelToEntity(model models.Product) entities.Product {
+	return entities.Product{
 		ProductID:    vo.ProductID{Value: model.ID},
 		Price:        vo.ProductPrice{Value: model.Price},
 		Name:         model.Name,
@@ -17,7 +17,7 @@ func ConvertProductModelToEntity(model models.Product) aggregate.Product {
 		Availability: model.Availability,
 	}
 }
-func ConvertProductEntityToModel(entity aggregate.Product) models.Product {
+func ConvertProductEntityToModel(entity entities.Product) models.Product {
 	return models.Product{
 		Base:         models.Base{ID: entity.ProductID.Value},
 		Price:        entity.Price.Value,

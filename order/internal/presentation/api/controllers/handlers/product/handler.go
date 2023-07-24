@@ -23,12 +23,12 @@ func (c *Handler) CreateProduct(context *gin.Context) {
 		return
 	}
 
-	err := c.mediator.Send(requestBody)
+	answer, err := c.mediator.Send(requestBody)
 	if err != nil {
 		context.Error(err)
 		return
 	}
-	context.Status(http.StatusNoContent)
+	context.JSON(http.StatusNoContent, answer)
 }
 func (c *Handler) UpdateProductName(context *gin.Context) {
 	productID := context.Param("productID")
@@ -44,12 +44,12 @@ func (c *Handler) UpdateProductName(context *gin.Context) {
 		context.Error(err)
 	}
 	requestBody.ProductID = parse
-	err = c.mediator.Send(requestBody)
-	if err != nil {
-		context.Error(err)
+	answer, errS := c.mediator.Send(requestBody)
+	if errS != nil {
+		context.Error(errS)
 		return
 	}
-	context.Status(http.StatusNoContent)
+	context.JSON(http.StatusNoContent, answer)
 }
 func (c *Handler) GetAllProducts(context *gin.Context) {
 	Limit, Offset, Order := handlers.GetQueryParams(context)
