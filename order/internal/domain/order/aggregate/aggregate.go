@@ -10,7 +10,6 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/vo"
 	"github.com/google/uuid"
 	"strconv"
-	"time"
 )
 
 type PriceOrder float64
@@ -24,12 +23,16 @@ type Order struct {
 	PaymentMethod     consts.PaymentMethod
 	DeliveryAddressID uuid.UUID
 	totalPrice        PriceOrder
-	Date              time.Time
-	SerialNumber      int
-	Closed            bool
+	vo.OrderInfo
 }
 
-func (Order) Create(orderID vo.OrderID, deliveryAddress uuid.UUID, client uuid.UUID, previousSerialNumber int) (Order, error) {
+func (Order) Create(
+	orderID vo.OrderID,
+	deliveryAddress uuid.UUID,
+	client uuid.UUID,
+	previousSerialNumber int,
+	products []order.OrderProduct,
+) (Order, error) {
 	serialNumber, serialError := getCurrentSerialNumber(previousSerialNumber)
 	if serialError != nil {
 		return Order{}, errors.New(serialError.Error())
@@ -37,11 +40,11 @@ func (Order) Create(orderID vo.OrderID, deliveryAddress uuid.UUID, client uuid.U
 	return Order{
 		OrderID:           orderID,
 		OrderStatus:       consts.New,
+		Products:          products,
 		ClientID:          client,
 		DeliveryAddressID: deliveryAddress,
 		PaymentMethod:     consts.Online,
-		Date:              time.Now(),
-		SerialNumber:      serialNumber,
+		OrderInfo:         vo.OrderInfo{}.Create(serialNumber),
 	}, nil
 }
 func (o *Order) AddProduct(product order.OrderProduct) error {

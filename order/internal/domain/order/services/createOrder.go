@@ -24,6 +24,7 @@ func (Service) CreateOrder(
 		deliveryAddress,
 		client,
 		previousSerialNumber,
+		products,
 	)
 	if orderError != nil {
 		return domain.Order{}, orderError
@@ -32,10 +33,12 @@ func (Service) CreateOrder(
 		orderException := exceptions.OrderProductsEmpty{}.Exception(orderID.ToString())
 		return domain.Order{}, &orderException
 	}
-	for _, product := range products {
-		err := createdOrder.AddProduct(product)
-		if err != nil {
-			return domain.Order{}, err
+	productsEvent := make([]events.OrderCreateProductEvent, len(products))
+	for index, product := range products {
+		productsEvent[index] = events.OrderCreateProductEvent{
+			ProductID:  product.ProductID,
+			Name:       product.Name,
+			TotalPrice: product.GetActualPrice(),
 		}
 	}
 	createdOrder.RecordEvent(
@@ -44,6 +47,7 @@ func (Service) CreateOrder(
 			createdOrder.ClientID,
 			string(createdOrder.PaymentMethod),
 			createdOrder.SerialNumber,
+			productsEvent,
 			float64(createdOrder.GetTotalPrice()),
 			createdOrder.DeliveryAddressID,
 		),

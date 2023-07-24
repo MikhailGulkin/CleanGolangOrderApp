@@ -24,9 +24,11 @@ func ConvertOrderModelToAggregate(model models.Order) order.Order {
 		OrderStatus:       consts.OrderStatus(model.OrderStatus),
 		PaymentMethod:     consts.PaymentMethod(model.PaymentMethod),
 		DeliveryAddressID: model.AddressID,
-		Date:              model.Base.CreatedAt,
-		SerialNumber:      model.SerialNumber,
-		Closed:            model.Closed,
+		OrderInfo: vo.OrderInfo{
+			Date:         model.Base.CreatedAt,
+			SerialNumber: model.SerialNumber,
+			Closed:       model.Closed,
+		},
 	}
 }
 func ConvertOrderAggregateToModel(order order.Order) models.Order {

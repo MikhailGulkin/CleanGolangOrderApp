@@ -15,7 +15,17 @@ type OrderCacheImpl struct {
 }
 
 func (o *OrderCacheImpl) OrderCreateEvent(event cache.OrderCreateSubscribe) {
+
 	order := o.OrderCacheDAO.GetOrder(event.OrderID)
+	products := make([]dto.Product, len(event.Products))
+	for index, product := range event.Products {
+		products[index] = dto.Product{
+			ProductID:   product.ProductID,
+			Name:        product.Name,
+			ActualPrice: product.ActualPrice,
+		}
+	}
+
 	order.OrderStatus = event.OrderStatus
 	order.OrderID = event.OrderID
 	order.CreatedAt = event.CreatedAt
@@ -24,6 +34,7 @@ func (o *OrderCacheImpl) OrderCreateEvent(event cache.OrderCreateSubscribe) {
 	order.SerialNumber = event.SerialNumber
 	order.PaymentMethod = event.PaymentMethod
 	order.ClientID = event.ClientID
+	order.Products = products
 	err := o.OrderCacheDAO.SaveOrder(order)
 	if err != nil {
 		return
