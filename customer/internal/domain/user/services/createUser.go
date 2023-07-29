@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/aggregate"
-	entity "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/aggregate"
+	entity "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/entities"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/vo"
 )
 
 type Service struct {

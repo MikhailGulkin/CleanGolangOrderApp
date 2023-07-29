@@ -7,22 +7,21 @@ import (
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/order"
 	"go.uber.org/fx"
-	"gorm.io/gorm"
 )
 
-func BuildOrderRepo(conn *gorm.DB) appRepo.OrderRepo {
+func BuildOrderRepo(base repo.BaseGormRepo) appRepo.OrderRepo {
 	return &order.RepoImpl{
-		BaseGormRepo: repo.BaseGormRepo{Session: conn},
+		BaseGormRepo: base,
 	}
 }
-func BuildOrderDAO(conn *gorm.DB) appDAO.OrderDAO {
+func BuildOrderDAO(base repo.BaseGormRepo) appDAO.OrderDAO {
 	return &orderDAO.DAOImpl{
-		BaseGormRepo: repo.BaseGormRepo{Session: conn},
+		BaseGormRepo: base,
 	}
 }
-func BuildOrderSagaDAO(conn *gorm.DB) appDAO.OrderSagaDAO {
+func BuildOrderSagaDAO(base repo.BaseGormRepo) appDAO.OrderSagaDAO {
 	return &orderDAO.SagaDAOImpl{
-		BaseGormRepo: repo.BaseGormRepo{Session: conn},
+		BaseGormRepo: base,
 	}
 }
 

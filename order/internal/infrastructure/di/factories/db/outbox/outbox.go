@@ -7,14 +7,13 @@ import (
 	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/outbox"
 	"go.uber.org/fx"
-	"gorm.io/gorm"
 )
 
-func BuildOutboxRepo(conn *gorm.DB) appRepo.OutboxRepo {
-	return &outbox.RepoImpl{BaseGormRepo: repo.BaseGormRepo{Session: conn}}
+func BuildOutboxRepo(base repo.BaseGormRepo) appRepo.OutboxRepo {
+	return &outbox.RepoImpl{BaseGormRepo: base}
 }
-func BuildOutboxDAO(conn *gorm.DB) dao.OutboxDAO {
-	return &relay.DAOImpl{BaseGormRepo: repo.BaseGormRepo{Session: conn}}
+func BuildOutboxDAO(base repo.BaseGormRepo) dao.OutboxDAO {
+	return &relay.DAOImpl{BaseGormRepo: base}
 }
 
 var Module = fx.Provide(

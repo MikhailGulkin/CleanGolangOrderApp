@@ -9,7 +9,7 @@ base_url_prefix = "/api/v1"
 [db]
 host = "localhost"
 port = 5431
-database = "OrderApp"
+database = "CustomerApp"
 user = "postgres"
 password = "1234"
 migration = true

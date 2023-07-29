@@ -1,12 +1,12 @@
 package command
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/user/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/services"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/user/interfaces/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/user/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/user/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/services"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/vo"
 )
 
 type CreateUserImpl struct {

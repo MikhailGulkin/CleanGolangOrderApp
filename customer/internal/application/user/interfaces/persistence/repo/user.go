@@ -1,7 +1,7 @@
 package repo
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/user/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/aggregate"
 )
 
 type UserRepo interface {

@@ -7,8 +7,8 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/exceptions"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/filters"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	db "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/dao"
 	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
-	db "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/reader"
 	"gorm.io/gorm"
 )
 

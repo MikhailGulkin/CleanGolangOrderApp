@@ -2,7 +2,7 @@ package exceptions
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
 )
 
 type AddressIDNotExist struct {
