@@ -1,11 +1,7 @@
 package main
 
-import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/pkg/customer/servicespb"
-)
-
-// import (
 //
+//import (
 //	"context"
 //	"fmt"
 //	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db/models"
@@ -15,26 +11,26 @@ import (
 //	"google.golang.org/grpc/reflection"
 //	"gorm.io/gorm"
 //	"net"
+//)
 //
-// )
-func main() {
-	//	lis, _ := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
-	//
-	//	serv := grpc.NewServer()
-	//	servicespb.RegisterCustomerServiceServer(serv, &CustomerService{})
-	//	reflection.Register(serv)
-	//
-	//	//var conf config.Config
-	//	//load.LoadConfig(&conf, "", "")
-	//	//conn := db.BuildConnection(conf.DBConfig)
-	//	//customerRepo := CustomerRepository{db: conn}
-	//	//fmt.Println(customerRepo)
-}
-
-type CustomerService struct {
-	servicespb.CustomerServiceServer
-}
-
+//func main() {
+//	lis, _ := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
+//
+//	serv := grpc.NewServer()
+//	servicespb.RegisterCustomerServiceServer(serv, &CustomerService{})
+//	reflection.Register(serv)
+//
+//	//var conf config.Config
+//	//load.LoadConfig(&conf, "", "")
+//	//conn := db.BuildConnection(conf.DBConfig)
+//	//customerRepo := CustomerRepository{db: conn}
+//	//fmt.Println(customerRepo)
+//}
+//
+//type CustomerService struct {
+//	servicespb.CustomerServiceServer
+//}
+//
 //func (s *CustomerService) CreateCustomer(
 //	ctx context.Context, request *servicespb.CreateCustomerRequest,
 //) (*servicespb.CreateCustomerResponse, error) {
