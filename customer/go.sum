@@ -4,6 +4,8 @@ github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729123308-0191d5648ecd
 github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729123308-0191d5648ecd/go.mod h1:sXXK2M51o2xraN/iiwOwvQ5KBfE0shGFU4KQEODoQGw=
 github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729130646-92b81fc6009b h1:tq/a2B6Wx9BH3JRPQ3g/IDWEs4Ea4fSMV1sgggplJmw=
 github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729130646-92b81fc6009b/go.mod h1:sXXK2M51o2xraN/iiwOwvQ5KBfE0shGFU4KQEODoQGw=
+github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729133038-bec4b5068280 h1:wbzVrYdkwkkEPJ/Vkp+v575pjwB4TWiWgB6nBUVeay8=
+github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729133038-bec4b5068280/go.mod h1:sXXK2M51o2xraN/iiwOwvQ5KBfE0shGFU4KQEODoQGw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
