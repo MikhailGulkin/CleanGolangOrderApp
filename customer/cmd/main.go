@@ -1,14 +1,24 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db/models"
 	"github.com/MikhailGulkin/simpleGoOrderApp/pkg/customer/servicespb"
 	"github.com/google/uuid"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"gorm.io/gorm"
+	"net"
 )
 
 func main() {
-	//conn, err := grpc.Dial("L")
+	lis, _ := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
+
+	serv := grpc.NewServer()
+	servicespb.RegisterCustomerServiceServer(serv, &CustomerService{})
+	reflection.Register(serv)
+
 	//var conf config.Config
 	//load.LoadConfig(&conf, "", "")
 	//conn := db.BuildConnection(conf.DBConfig)
@@ -20,8 +30,25 @@ type CustomerService struct {
 	servicespb.CustomerServiceServer
 }
 
-func (s *CustomerService) Create {
-	
+func (s *CustomerService) CreateCustomer(
+	ctx context.Context, request *servicespb.CreateCustomerRequest,
+) (*servicespb.CreateCustomerResponse, error) {
+	var response servicespb.CreateCustomerResponse
+
+	addressID, _ := uuid.Parse(request.Address)
+
+	newCustomer := models.Customer{
+		Base:        models.Base{ID: uuid.New()},
+		FirstName:   request.FirstName,
+		LastName:    request.LastName,
+		PhoneNumber: request.PhoneNumber,
+		Email:       request.Email,
+		Address:     addressID,
+	}
+	fmt.Print(newCustomer.ID)
+	response.Id = newCustomer.ID.String()
+
+	return &response, nil
 }
 
 type CustomerRepository struct {
