@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CustomerService_CreateUser_FullMethodName = "/CustomerService/CreateUser"
+	CustomerService_CreateCustomer_FullMethodName = "/CustomerService/CreateCustomer"
 )
 
 // CustomerServiceClient is the client API for CustomerService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CustomerServiceClient interface {
-	CreateUser(ctx context.Context, in *CreateCustomerRequest, opts ...grpc.CallOption) (*CreateCustomerResponse, error)
+	CreateCustomer(ctx context.Context, in *CreateCustomerRequest, opts ...grpc.CallOption) (*CreateCustomerResponse, error)
 }
 
 type customerServiceClient struct {
@@ -37,9 +37,9 @@ func NewCustomerServiceClient(cc grpc.ClientConnInterface) CustomerServiceClient
 	return &customerServiceClient{cc}
 }
 
-func (c *customerServiceClient) CreateUser(ctx context.Context, in *CreateCustomerRequest, opts ...grpc.CallOption) (*CreateCustomerResponse, error) {
+func (c *customerServiceClient) CreateCustomer(ctx context.Context, in *CreateCustomerRequest, opts ...grpc.CallOption) (*CreateCustomerResponse, error) {
 	out := new(CreateCustomerResponse)
-	err := c.cc.Invoke(ctx, CustomerService_CreateUser_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, CustomerService_CreateCustomer_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func (c *customerServiceClient) CreateUser(ctx context.Context, in *CreateCustom
 // All implementations must embed UnimplementedCustomerServiceServer
 // for forward compatibility
 type CustomerServiceServer interface {
-	CreateUser(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error)
+	CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error)
 	mustEmbedUnimplementedCustomerServiceServer()
 }
 
@@ -58,8 +58,8 @@ type CustomerServiceServer interface {
 type UnimplementedCustomerServiceServer struct {
 }
 
-func (UnimplementedCustomerServiceServer) CreateUser(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+func (UnimplementedCustomerServiceServer) CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomer not implemented")
 }
 func (UnimplementedCustomerServiceServer) mustEmbedUnimplementedCustomerServiceServer() {}
 
@@ -74,20 +74,20 @@ func RegisterCustomerServiceServer(s grpc.ServiceRegistrar, srv CustomerServiceS
 	s.RegisterService(&CustomerService_ServiceDesc, srv)
 }
 
-func _CustomerService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CustomerService_CreateCustomer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateCustomerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CustomerServiceServer).CreateUser(ctx, in)
+		return srv.(CustomerServiceServer).CreateCustomer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CustomerService_CreateUser_FullMethodName,
+		FullMethod: CustomerService_CreateCustomer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomerServiceServer).CreateUser(ctx, req.(*CreateCustomerRequest))
+		return srv.(CustomerServiceServer).CreateCustomer(ctx, req.(*CreateCustomerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -100,8 +100,8 @@ var CustomerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CustomerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateUser",
-			Handler:    _CustomerService_CreateUser_Handler,
+			MethodName: "CreateCustomer",
+			Handler:    _CustomerService_CreateCustomer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

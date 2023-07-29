@@ -20,6 +20,10 @@ type CustomerService struct {
 	servicespb.CustomerServiceServer
 }
 
+func (s *CustomerService) Create {
+	
+}
+
 type CustomerRepository struct {
 	db *gorm.DB
 }

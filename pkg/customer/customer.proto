@@ -14,7 +14,7 @@ message CreateCustomerResponse {
 }
 
 service CustomerService {
-  rpc CreateUser(CreateCustomerRequest) returns (CreateCustomerResponse);
+  rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse);
 }
 //    "firstName":   &graphql.InputObjectFieldConfig{Type: graphql.NewNonNull(graphql.String)},
 //		"lastName":    &graphql.InputObjectFieldConfig{Type: graphql.NewNonNull(graphql.String)},

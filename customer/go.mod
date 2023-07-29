@@ -11,6 +11,7 @@ require (
 )
 
 require (
+	github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729123308-0191d5648ecd // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/graphql-go/handler v0.2.3 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
