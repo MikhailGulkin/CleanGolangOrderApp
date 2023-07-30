@@ -44,14 +44,6 @@ func (m ErrorMiddleware) Handle(c *gin.Context) {
 			fmt.Sprintf("Server handle erorr with status: %d, and error message: %s",
 				*errorCatching.status, errorCatching.err.Error()),
 		)
-		if c.Request.Method == "POST" ||
-			c.Request.Method == "DELETE" ||
-			c.Request.Method == "PATCH" ||
-			c.Request.Method == "PUT" {
-			c.Status(*errorCatching.status)
-		}
-		if c.Request.Method == "GET" {
-			c.JSON(*errorCatching.status, *errorCatching.exception)
-		}
+		c.JSON(*errorCatching.status, *errorCatching.exception)
 	}
 }
