@@ -4,17 +4,17 @@ import (
 	"encoding/json"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
-	"github.com/rabbitmq/amqp091-go"
+	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
 )
 
 type OrderEvent struct {
-	*amqp091.Channel
+	messagebroker.Rabbit
 	logger.Logger
 	cache.OrderCache
 }
 
 func (s OrderEvent) Listen() {
-	messages, _ := s.Channel.Consume(
+	messages, _ := s.Rabbit.GetChannel().Consume(
 		"Orders",
 		"",
 		true,
@@ -34,7 +34,7 @@ func (s OrderEvent) Listen() {
 			_ = json.Unmarshal(message.Body, &str)
 			err := json.Unmarshal([]byte(str), &eventType)
 			if err != nil {
-				continue
+				s.Info("Error unmarshal event type; err %s", err.Error())
 			}
 			switch eventType.EventType {
 			case "OrderCreated":

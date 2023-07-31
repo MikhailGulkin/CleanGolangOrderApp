@@ -4,17 +4,17 @@ import (
 	"encoding/json"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/saga"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
-	"github.com/rabbitmq/amqp091-go"
+	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
 )
 
 type SagaCreateSubscriber struct {
-	*amqp091.Channel
+	messagebroker.Rabbit
 	logger.Logger
 	saga.CreateOrder
 }
 
 func (s SagaCreateSubscriber) Listen() {
-	messages, _ := s.Channel.Consume(
+	messages, _ := s.Rabbit.GetChannel().Consume(
 		"CustomerSaga",
 		"",
 		true,
@@ -28,7 +28,7 @@ func (s SagaCreateSubscriber) Listen() {
 		for message := range messages {
 			err := json.Unmarshal(message.Body, &m)
 			if err != nil {
-				continue
+				s.Info("Error unmarshal event type; err %s", err.Error())
 			}
 			s.CreateOrder.CheckStatus(m)
 		}

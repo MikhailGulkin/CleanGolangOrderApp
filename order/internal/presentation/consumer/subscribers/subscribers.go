@@ -15,8 +15,8 @@ func NewEventConsumer(
 	logger logger.Logger,
 ) Subscribers {
 	return Subscribers{
-		order.SagaCreateSubscriber{Channel: rabbit.GetChannel(), CreateOrder: sagaOrderCreate, Logger: logger},
-		order.OrderEvent{Channel: rabbit.GetChannel(), Logger: logger, OrderCache: cache},
+		order.SagaCreateSubscriber{Rabbit: rabbit, CreateOrder: sagaOrderCreate, Logger: logger},
+		order.OrderEvent{Rabbit: rabbit, Logger: logger, OrderCache: cache},
 	}
 }
 
