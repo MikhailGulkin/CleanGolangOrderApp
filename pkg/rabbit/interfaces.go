@@ -1,6 +1,6 @@
 package rabbit
 
 // Logger is an interface for logging
-type Logger interface {
+type logger interface {
 	Info(args ...interface{})
 }

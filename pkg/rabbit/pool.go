@@ -11,11 +11,11 @@ type Pool struct {
 	connectionCloseNotification chan *amqp091.Error   //a go channel to listen when the connection amqp was closed
 	channels                    chan *amqp091.Channel //a go channel to store the channels
 	channelsUsed                chan *amqp091.Channel //a go channel to store used channels
-	logger                      Logger                // a logger to log information
+	logger                      logger                // a logger to log information
 }
 
 // NewPool create a new pool of channels
-func NewPool(connectionString string, maxChannels int, logger Logger) (*Pool, error) {
+func NewPool(connectionString string, maxChannels int, logger logger) (*Pool, error) {
 	connection, err := connect(connectionString)
 	if err != nil {
 		return nil, err
