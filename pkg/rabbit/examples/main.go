@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/pkg/rabbit"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit"
 	"log"
 	"time"
 )
