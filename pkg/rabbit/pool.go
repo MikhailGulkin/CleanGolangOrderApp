@@ -22,7 +22,7 @@ func NewPool(connectionString string, maxChannels int, logger logger) (*Pool, er
 	}
 	reusableChannels := make(chan *amqp091.Channel, maxChannels)
 
-	for id := 1; id <= maxChannels; id++ {
+	for id := 0; id < maxChannels; id++ {
 		reusableChannel, err := newReusableChannel(connection)
 		if err != nil {
 			return nil, err
