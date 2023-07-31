@@ -36,9 +36,9 @@ func main() {
 	for i := 1; i <= 10; i++ {
 		go func() {
 			channel := pool.GetChannel()
-			defer pool.ReleaseChannel()
-			fmt.Println(channel)
-			time.Sleep(1 * time.Second)
+			defer channel.Release()
+			fmt.Println(channel.Channel)
+			time.Sleep(3 * time.Second)
 		}()
 
 	}

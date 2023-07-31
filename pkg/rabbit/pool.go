@@ -6,16 +6,15 @@ import (
 )
 
 type Pool struct {
-	connection                  *amqp091.Connection   //the connection amqp
-	maxChannels                 int                   //the maximum quantity of channels of pool
-	connectionCloseNotification chan *amqp091.Error   //a go channel to listen when the connection amqp was closed
-	channels                    chan *amqp091.Channel //a go channel to store the channels
-	channelsUsed                chan *amqp091.Channel //a go channel to store used channels
-	logger                      logger                // a logger to log information
+	connection  *amqp091.Connection   //the connection amqp
+	maxChannels int                   //the maximum quantity of channels of pool
+	channels    chan *amqp091.Channel //a go channel to store the channels
+	logger      logger                // a logger to log information
 }
 
 // NewPool create a new pool of channels
 func NewPool(connectionString string, maxChannels int, logger logger) (*Pool, error) {
+
 	connection, err := connect(connectionString)
 	if err != nil {
 		return nil, err
@@ -23,7 +22,7 @@ func NewPool(connectionString string, maxChannels int, logger logger) (*Pool, er
 	reusableChannels := make(chan *amqp091.Channel, maxChannels)
 
 	for id := 0; id < maxChannels; id++ {
-		reusableChannel, err := newReusableChannel(connection)
+		reusableChannel, err := newChannel(connection)
 		if err != nil {
 			return nil, err
 		}
@@ -31,17 +30,12 @@ func NewPool(connectionString string, maxChannels int, logger logger) (*Pool, er
 		reusableChannels <- reusableChannel
 	}
 
-	connectionCloseNotification := make(chan *amqp091.Error)
-	connectionCloseNotification = connection.NotifyClose(connectionCloseNotification)
-
 	logger.Info("Pool created successfully")
 	return &Pool{
-		connection:                  connection,
-		maxChannels:                 maxChannels,
-		connectionCloseNotification: connectionCloseNotification,
-		channels:                    reusableChannels,
-		channelsUsed:                make(chan *amqp091.Channel, maxChannels),
-		logger:                      logger,
+		connection:  connection,
+		maxChannels: maxChannels,
+		channels:    reusableChannels,
+		logger:      logger,
 	}, nil
 }
 
@@ -58,21 +52,12 @@ func (pool *Pool) Close() error {
 		return fmt.Errorf(errMsg)
 	}
 	close(pool.channels)
-	close(pool.channelsUsed)
 
 	pool.logger.Info("Connection with the amqp broker was closed successfully")
 	return nil
 }
 
 // GetChannel get a channel of the pool to use
-func (pool *Pool) GetChannel() *amqp091.Channel {
-	channel := <-pool.channels
-	pool.channelsUsed <- channel
-	return channel
-}
-
-// ReleaseChannel release a channel of the channelUsed pool
-func (pool *Pool) ReleaseChannel() {
-	channel := <-pool.channelsUsed
-	pool.channels <- channel
+func (pool *Pool) GetChannel() *ReusableChannel {
+	return newReusableChannel(<-pool.channels, pool.channels)
 }
