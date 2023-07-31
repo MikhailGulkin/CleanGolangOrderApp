@@ -1,4 +1,4 @@
-module github.com/MikhailGulkin/simpleGoOrderApp/pkg/rabbit
+module github.com/MikhailGulkin/CleanGolangOrderApp//pkg/rabbit
 
 go 1.20
 
