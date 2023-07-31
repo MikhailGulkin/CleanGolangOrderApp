@@ -1,17 +1,5 @@
 package main
 
-import (
-	"context"
-	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db/models"
-	"github.com/MikhailGulkin/simpleGoOrderApp/pkg/customer/servicespb"
-	"github.com/google/uuid"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
-	"log"
-	"net"
-)
-
 // import (
 //
 //	"context"
@@ -19,21 +7,21 @@ import (
 //	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db/models"
 //	"github.com/MikhailGulkin/simpleGoOrderApp/pkg/customer/servicespb"
 //	"github.com/google/uuid"
-//	"google.golang.org/grpc"
+//	"google.golang.org/grpc"!Ё
 //	"google.golang.org/grpc/reflection"
 //	"gorm.io/gorm"
 //	"net"
 //
 // )
 func main() {
-	lis, _ := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
-
-	serv := grpc.NewServer()
-	servicespb.RegisterCustomerServiceServer(serv, &CustomerService{})
-	reflection.Register(serv)
-	if err := serv.Serve(lis); err != nil {
-		log.Fatalf("failed to server: %v", err)
-	}
+	//lis, _ := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
+	//
+	//serv := grpc.NewServer()
+	//servicespb.RegisterCustomerServiceServer(serv, &CustomerService{})
+	//reflection.Register(serv)
+	//if err := serv.Serve(lis); err != nil {
+	//	log.Fatalf("failed to server: %v", err)
+	//}
 	//	//var conf config.Config
 	//	//load.LoadConfig(&conf, "", "")
 	//	//conn := db.BuildConnection(conf.DBConfig)
@@ -41,27 +29,27 @@ func main() {
 	//	//fmt.Println(customerRepo)
 }
 
-type CustomerService struct {
-	servicespb.CustomerServiceServer
-}
-
-func (s *CustomerService) CreateCustomer(
-	_ context.Context, request *servicespb.CreateCustomerRequest,
-) (*servicespb.CreateCustomerResponse, error) {
-	var response servicespb.CreateCustomerResponse
-
-	newCustomer := models.Customer{
-		Base:        models.Base{ID: uuid.New()},
-		FirstName:   request.FirstName,
-		LastName:    request.LastName,
-		PhoneNumber: request.PhoneNumber,
-		Email:       request.Email,
-	}
-	fmt.Println(newCustomer.ID, newCustomer.Email, request.Email)
-	response.Id = newCustomer.ID.String()
-
-	return &response, nil
-}
+//type CustomerService struct {
+//	servicespb.CustomerServiceServer
+//}
+//
+//func (s *CustomerService) CreateCustomer(
+//	_ context.Context, request *servicespb.CreateCustomerRequest,
+//) (*servicespb.CreateCustomerResponse, error) {
+//	var response servicespb.CreateCustomerResponse
+//
+//	newCustomer := models.Customer{
+//		Base:        models.Base{ID: uuid.New()},
+//		FirstName:   request.FirstName,
+//		LastName:    request.LastName,
+//		PhoneNumber: request.PhoneNumber,
+//		Email:       request.Email,
+//	}
+//	fmt.Println(newCustomer.ID, newCustomer.Email, request.Email)
+//	response.Id = newCustomer.ID.String()
+//
+//	return &response, nil
+//}
 
 //
 //type CustomerRepository struct {

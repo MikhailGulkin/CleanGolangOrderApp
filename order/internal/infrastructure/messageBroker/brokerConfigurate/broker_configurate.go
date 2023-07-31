@@ -1,6 +1,7 @@
 package brokerconfigurate
 
 import (
+	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate/interfaces"
 	"github.com/rabbitmq/amqp091-go"
 )
@@ -28,8 +29,8 @@ func (m *MessageBrokerConfigure) BindExchangeQueue(exchangeName, key, queueName 
 		panic(err)
 	}
 }
-func NewMessageBrokerConfigure(ch *amqp091.Channel) interfaces.BaseMessageBrokerConfigure {
+func NewMessageBrokerConfigure(rabbit messagebroker.Rabbit) interfaces.BaseMessageBrokerConfigure {
 	return &MessageBrokerConfigure{
-		Channel: ch,
+		Channel: rabbit.GetChannel(),
 	}
 }

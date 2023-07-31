@@ -21,6 +21,7 @@ host = "localhost"
 port = 5672
 login = "admin"
 password = "admin"
+max_channels = 10
 
 [cron]
 seconds = 5

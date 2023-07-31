@@ -1,8 +1,8 @@
 package services
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/aggregate"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/customer/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/customer/vo"
 	"github.com/google/uuid"
 )
 

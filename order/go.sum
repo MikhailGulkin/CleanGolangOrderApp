@@ -1,5 +1,7 @@
 github.com/BurntSushi/toml v1.3.2 h1:o7IhLm0Msx3BaB+n3Ag7L8EVlByGnpq14C4YWiu/gL8=
 github.com/BurntSushi/toml v1.3.2/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
+github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit v0.0.0-20230731215651-2174d0226d81 h1:bnopOPz2f1P8wW+4DYZCpZImfBso7s9UVxSqA251l8E=
+github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit v0.0.0-20230731215651-2174d0226d81/go.mod h1:Vsq05J8UTTdJYOSEStlU+1xb7bKHgwCBmZidVg39EHM=
 github.com/benbjohnson/clock v1.3.0 h1:ip6w0uFQkncKQ979AypyG0ER7mqUSBdKLOgAle/AT8A=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=

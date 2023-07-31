@@ -1,21 +1,19 @@
 package messagebroker
 
 import (
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/config"
-	"github.com/rabbitmq/amqp091-go"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit"
 )
 
-func BuildDial(config config.MessageBrokerConfig) *amqp091.Connection {
-	conn, err := amqp091.Dial(config.FullDNS())
-	if err != nil {
-		panic(err)
-	}
-	return conn
+type Rabbit struct {
+	*rabbit.Pool
 }
-func BuildChannel(connection *amqp091.Connection) *amqp091.Channel {
-	ch, err := connection.Channel()
+
+func BuildAMPQ(config config.MessageBrokerConfig, logger logger.Logger) Rabbit {
+	pool, err := rabbit.NewPool(config.FullDNS(), config.MaxChannels, logger)
 	if err != nil {
 		panic(err)
 	}
-	return ch
+	return Rabbit{Pool: pool}
 }

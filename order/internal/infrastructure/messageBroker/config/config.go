@@ -3,10 +3,11 @@ package config
 import "fmt"
 
 type MessageBrokerConfig struct {
-	Host     string `toml:"host"`
-	Port     int    `toml:"port"`
-	Login    string `toml:"login"`
-	Password string `toml:"password"`
+	Host        string `toml:"host"`
+	Port        int    `toml:"port"`
+	Login       string `toml:"login"`
+	Password    string `toml:"password"`
+	MaxChannels int    `toml:"max_channels"`
 }
 
 func (conf *MessageBrokerConfig) FullDNS() string {

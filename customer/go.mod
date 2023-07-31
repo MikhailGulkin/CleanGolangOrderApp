@@ -4,7 +4,6 @@ go 1.20
 
 require (
 	github.com/BurntSushi/toml v1.3.2
-	github.com/MikhailGulkin/simpleGoOrderApp/pkg v0.0.0-20230729133038-bec4b5068280
 	github.com/google/uuid v1.3.0
 	gorm.io/driver/postgres v1.5.2
 	gorm.io/gorm v1.25.2

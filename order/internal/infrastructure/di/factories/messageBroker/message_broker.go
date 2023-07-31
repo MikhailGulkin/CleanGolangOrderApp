@@ -9,8 +9,7 @@ import (
 )
 
 var Module = fx.Provide(
-	messagebroker.BuildDial,
-	messagebroker.BuildChannel,
+	messagebroker.BuildAMPQ,
 	brokerconfigurate.NewMessageBrokerConfigure,
 	order.NewSetupBroker,
 	brokerconfigurate.NewBrokerSetup,

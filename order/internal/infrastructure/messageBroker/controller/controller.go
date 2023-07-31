@@ -3,6 +3,7 @@ package controller
 import (
 	"context"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/broker"
+	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
 	"github.com/rabbitmq/amqp091-go"
 )
 
@@ -28,8 +29,8 @@ func (m *MessageBrokerImpl) BuildMessage(message []byte) amqp091.Publishing {
 		Body:        message,
 	}
 }
-func NewMessageBroker(channel *amqp091.Channel) broker.MessageBroker {
+func NewMessageBroker(rabbit messagebroker.Rabbit) broker.MessageBroker {
 	return &MessageBrokerImpl{
-		Channel: channel,
+		Channel: rabbit.GetChannel(),
 	}
 }

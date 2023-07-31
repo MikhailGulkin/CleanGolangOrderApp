@@ -4,28 +4,19 @@ import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/saga"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers/order"
-	"github.com/rabbitmq/amqp091-go"
 )
 
 func NewEventConsumer(
-	connection *amqp091.Connection,
+	rabbit messagebroker.Rabbit,
 	sagaOrderCreate saga.CreateOrder,
 	cache cache.OrderCache,
 	logger logger.Logger,
 ) Subscribers {
-	ch, err := connection.Channel()
-	if err != nil {
-		panic(err)
-	}
-
-	ch2, err2 := connection.Channel()
-	if err2 != nil {
-		panic(err2)
-	}
 	return Subscribers{
-		order.SagaCreateSubscriber{Channel: ch, CreateOrder: sagaOrderCreate, Logger: logger},
-		order.OrderEvent{Channel: ch2, Logger: logger, OrderCache: cache},
+		order.SagaCreateSubscriber{Channel: rabbit.GetChannel(), CreateOrder: sagaOrderCreate, Logger: logger},
+		order.OrderEvent{Channel: rabbit.GetChannel(), Logger: logger, OrderCache: cache},
 	}
 }
 
