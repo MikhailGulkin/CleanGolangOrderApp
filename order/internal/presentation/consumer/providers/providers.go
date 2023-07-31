@@ -1,7 +1,7 @@
 package providers
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer/subscribers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers"
 	"go.uber.org/fx"
 )
 

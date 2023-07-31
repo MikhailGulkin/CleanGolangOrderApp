@@ -1,8 +1,8 @@
 package reader
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/filters"
 	"github.com/google/uuid"
 )
 

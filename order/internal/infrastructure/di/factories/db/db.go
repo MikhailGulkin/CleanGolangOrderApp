@@ -1,14 +1,14 @@
 package db
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/dao"
-	base "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/uow"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/db/orders"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/db/outbox"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/db/product"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/dao"
+	base "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/uow"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/orders"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/outbox"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/product"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )

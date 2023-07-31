@@ -1,7 +1,7 @@
 package vo
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/id"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common/id"
 	"github.com/google/uuid"
 )
 

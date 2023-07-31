@@ -1,10 +1,10 @@
 package mediator
 
 import (
-	commandOrder "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/command"
-	queryOrder "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/query"
-	commandProduct "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
-	queryProduct "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
+	commandOrder "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/command"
+	queryOrder "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/query"
+	commandProduct "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/command"
+	queryProduct "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/query"
 	"go.uber.org/fx"
 )
 

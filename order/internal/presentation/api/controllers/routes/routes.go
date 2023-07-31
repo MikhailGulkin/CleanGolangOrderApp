@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/routes/healthcheck"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/routes/order"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/routes/product"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes/healthcheck"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes/order"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes/product"
 )
 
 type Routes []Route

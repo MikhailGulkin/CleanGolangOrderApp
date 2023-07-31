@@ -2,13 +2,13 @@ package saga
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/consts"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/consts/outbox"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/saga"
-	out "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/consts"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/consts/outbox"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/saga"
+	out "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/relay/interfaces/persistence/dao"
 )
 
 type CreateOrderImpl struct {

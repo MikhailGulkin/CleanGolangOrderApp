@@ -1,7 +1,7 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/mediator"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/mediator"
 )
 
 func NewProductHandler(

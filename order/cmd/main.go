@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/config"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron"
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxevent"
 )

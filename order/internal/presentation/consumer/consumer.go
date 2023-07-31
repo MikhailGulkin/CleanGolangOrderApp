@@ -3,9 +3,9 @@ package consumer
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer/providers"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer/subscribers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/providers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers"
 	"go.uber.org/fx"
 )
 

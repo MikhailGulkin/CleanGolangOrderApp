@@ -1,11 +1,11 @@
 package command
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/command"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/vo"
 )
 
 type CreateProductImpl struct {

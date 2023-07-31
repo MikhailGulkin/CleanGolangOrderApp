@@ -2,9 +2,9 @@ package errorhandler
 
 import (
 	"errors"
-	application "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/response"
+	application "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/exceptions"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/exceptions"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/response"
 	"net/http"
 )
 

@@ -1,7 +1,7 @@
 package saga
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/consts"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/consts"
 	"github.com/google/uuid"
 )
 

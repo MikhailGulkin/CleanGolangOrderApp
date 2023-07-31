@@ -3,12 +3,12 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/config"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/controllers/routes"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/prometheus"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/providers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/config"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/engine"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/prometheus"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/providers"
 	"go.uber.org/fx"
 )
 

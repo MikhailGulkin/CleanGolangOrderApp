@@ -2,7 +2,7 @@ package controller
 
 import (
 	"context"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/broker"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/broker"
 	"github.com/rabbitmq/amqp091-go"
 )
 

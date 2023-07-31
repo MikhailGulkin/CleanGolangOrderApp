@@ -2,13 +2,13 @@ package query
 
 import (
 	"fmt"
-	base "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/logger"
-	baseFilters "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/filters"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/filters"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
+	base "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/logger"
+	baseFilters "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/query"
 )
 
 type GetAllProductsImpl struct {

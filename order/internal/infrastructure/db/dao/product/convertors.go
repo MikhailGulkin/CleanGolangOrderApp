@@ -1,9 +1,9 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/vo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertProductModelToEntity(model models.Product) entities.Product {

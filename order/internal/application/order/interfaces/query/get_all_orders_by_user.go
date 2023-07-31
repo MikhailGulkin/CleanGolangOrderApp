@@ -1,8 +1,8 @@
 package query
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence/query"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/dto"
 	"github.com/google/uuid"
 )
 

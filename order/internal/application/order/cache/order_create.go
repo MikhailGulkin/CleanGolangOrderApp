@@ -2,10 +2,10 @@ package cache
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/cache"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/cache"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/dao"
 )
 
 type OrderCacheImpl struct {

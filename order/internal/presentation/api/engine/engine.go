@@ -1,8 +1,8 @@
 package engine
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
-	api "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/config"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	api "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/config"
 	"github.com/gin-gonic/gin"
 )
 

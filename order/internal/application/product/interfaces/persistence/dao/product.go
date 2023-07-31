@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/id"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common/id"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/entities"
 )
 
 type ProductDAO interface {

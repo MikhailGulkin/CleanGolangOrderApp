@@ -1,8 +1,8 @@
 package events
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/events"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/consts"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common/events"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/consts"
 	"github.com/google/uuid"
 )
 

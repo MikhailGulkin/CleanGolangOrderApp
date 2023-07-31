@@ -1,6 +1,6 @@
 package dto
 
-import f "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/filters"
+import f "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence/filters"
 
 type BaseSequence struct {
 	Count  uint        `json:"count"`

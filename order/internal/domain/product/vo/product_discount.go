@@ -1,7 +1,7 @@
 package vo
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/exceptions"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/exceptions"
 	"strconv"
 )
 

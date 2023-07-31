@@ -1,7 +1,7 @@
 package query
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/dto"
 )
 
 type GetProductByNameQuery struct {

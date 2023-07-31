@@ -1,14 +1,14 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/command"
-	c "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/command"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
-	q "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/query"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/command"
+	c "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/command"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	q "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/query"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/query"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
 	"go.uber.org/fx"
 )
 

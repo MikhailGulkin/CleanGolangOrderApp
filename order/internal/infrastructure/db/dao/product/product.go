@@ -2,12 +2,12 @@ package product
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/exceptions"
-	appDAO "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/id"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/exceptions"
+	appDAO "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common/id"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo"
 	"gorm.io/gorm"
 )
 

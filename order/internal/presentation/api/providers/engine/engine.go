@@ -1,7 +1,7 @@
 package engine
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/engine"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/engine"
 	"go.uber.org/fx"
 )
 

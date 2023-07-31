@@ -2,7 +2,7 @@
 mode='development'
 
 [api]
-host = "0.0.0.0"
+host = "localhost"
 port = 8000
 base_url_prefix = "/api/v1"
 

@@ -2,7 +2,7 @@ package exceptions
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common"
 )
 
 type OrderIDNotExist struct {

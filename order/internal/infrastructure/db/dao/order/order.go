@@ -2,11 +2,11 @@ package order
 
 import (
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
-	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/exceptions"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	order "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
+	repo "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo"
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )

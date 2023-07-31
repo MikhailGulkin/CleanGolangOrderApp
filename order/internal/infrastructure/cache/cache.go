@@ -1,7 +1,7 @@
 package cache
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/config"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/cache/config"
 	"github.com/redis/go-redis/v9"
 )
 

@@ -1,8 +1,8 @@
 package product
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertProductModelToDTO(model models.Product) dto.Product {

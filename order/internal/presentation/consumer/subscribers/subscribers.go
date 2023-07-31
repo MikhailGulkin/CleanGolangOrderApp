@@ -1,10 +1,10 @@
 package subscribers
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/cache"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/saga"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/consumer/subscribers/order"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/cache"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/saga"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers/order"
 	"github.com/rabbitmq/amqp091-go"
 )
 

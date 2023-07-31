@@ -1,6 +1,6 @@
 package handlers
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/handlers/relay"
+import "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/handlers/relay"
 
 type Handlers []Handler
 

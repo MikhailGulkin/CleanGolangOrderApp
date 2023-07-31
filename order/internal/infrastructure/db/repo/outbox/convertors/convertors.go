@@ -1,8 +1,8 @@
 package convertors
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common/events"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common/events"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 	"github.com/google/uuid"
 	"reflect"
 )

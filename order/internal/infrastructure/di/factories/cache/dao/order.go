@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache"
-	base "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/dao/order"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/cache"
+	base "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/cache/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/cache/dao/order"
 	"go.uber.org/fx"
 )
 

@@ -2,9 +2,9 @@ package interactors
 
 import (
 	"context"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/broker"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/interactors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/persistence/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/broker"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/relay/interfaces/interactors"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/relay/interfaces/persistence/dao"
 	"github.com/google/uuid"
 	"time"
 )

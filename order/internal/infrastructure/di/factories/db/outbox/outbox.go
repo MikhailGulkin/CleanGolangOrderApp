@@ -1,11 +1,11 @@
 package outbox
 
 import (
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/interfaces/persistence/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/interfaces/persistence/dao"
-	relay "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/dao/outbox"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/outbox"
+	appRepo "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence/repo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/relay/interfaces/persistence/dao"
+	relay "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/dao/outbox"
+	repo "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo/outbox"
 	"go.uber.org/fx"
 )
 

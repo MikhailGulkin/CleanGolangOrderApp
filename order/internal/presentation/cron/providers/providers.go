@@ -1,9 +1,9 @@
 package providers
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/engine"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/handlers"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/handlers/relay"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/engine"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/handlers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/handlers/relay"
 	"go.uber.org/fx"
 )
 

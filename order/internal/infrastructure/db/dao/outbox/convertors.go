@@ -2,8 +2,8 @@ package outbox
 
 import (
 	"encoding/json"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/relay/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertOutboxModelToDTO(model models.Outbox) (dto.Message, error) {

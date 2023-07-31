@@ -1,9 +1,9 @@
 package query
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/query"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/query"
 )
 
 type GetProductByNameImpl struct {

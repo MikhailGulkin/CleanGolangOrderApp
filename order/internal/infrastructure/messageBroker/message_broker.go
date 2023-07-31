@@ -1,7 +1,7 @@
 package messagebroker
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/messageBroker/config"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/config"
 	"github.com/rabbitmq/amqp091-go"
 )
 

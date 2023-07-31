@@ -1,9 +1,9 @@
 package convertors
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/consts/outbox"
-	o "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/events"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/consts/outbox"
+	o "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/events"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 	"reflect"
 )
 

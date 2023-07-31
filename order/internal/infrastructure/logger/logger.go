@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger/config"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

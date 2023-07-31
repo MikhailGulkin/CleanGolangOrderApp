@@ -1,8 +1,8 @@
 package logging
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/middleware/interfaces"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/middleware/interfaces"
 	"github.com/gin-gonic/gin"
 )
 

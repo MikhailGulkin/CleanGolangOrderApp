@@ -1,12 +1,12 @@
 package di
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/cache"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/db"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/interactors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/logger"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/mediator"
-	messagebroker "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/di/factories/messageBroker"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/cache"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/logger"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/mediator"
+	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/messageBroker"
 	"go.uber.org/fx"
 )
 

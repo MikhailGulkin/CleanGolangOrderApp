@@ -1,8 +1,8 @@
 package entities
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/product/vo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/exceptions"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/product/vo"
 	"regexp"
 )
 

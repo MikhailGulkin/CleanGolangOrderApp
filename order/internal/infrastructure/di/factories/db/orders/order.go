@@ -1,11 +1,11 @@
 package orders
 
 import (
-	appDAO "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/dao"
-	appRepo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/repo"
-	orderDAO "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/dao/order"
-	repo "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/repo/order"
+	appDAO "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/dao"
+	appRepo "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/repo"
+	orderDAO "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/dao/order"
+	repo "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo/order"
 	"go.uber.org/fx"
 )
 

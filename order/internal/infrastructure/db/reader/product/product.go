@@ -3,12 +3,12 @@ package product
 import (
 	"errors"
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/exceptions"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/filters"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/reader"
-	db "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/dao"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/exceptions"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/reader"
+	db "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/dao"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 	"gorm.io/gorm"
 )
 

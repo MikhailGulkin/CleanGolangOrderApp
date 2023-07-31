@@ -1,7 +1,7 @@
 package response
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/common"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/common"
 )
 
 type ExceptionResponse struct {

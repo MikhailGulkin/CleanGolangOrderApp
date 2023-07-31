@@ -1,9 +1,9 @@
 package query
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/persistence/reader"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/interfaces/query"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/reader"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/query"
 )
 
 type GetOrderByIDImpl struct {

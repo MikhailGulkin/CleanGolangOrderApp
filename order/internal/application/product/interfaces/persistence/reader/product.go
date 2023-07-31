@@ -1,8 +1,8 @@
 package reader
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/dto"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/product/interfaces/persistence/filters"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/product/interfaces/persistence/filters"
 )
 
 type ProductReader interface {

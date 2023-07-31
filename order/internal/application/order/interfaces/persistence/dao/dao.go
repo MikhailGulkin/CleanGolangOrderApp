@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/order/dto"
-	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/dto"
+	order "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/entities"
 	"github.com/google/uuid"
 )
 

@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/common/consts/outbox"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/application/relay/dto"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/consts/outbox"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/relay/dto"
 	"github.com/google/uuid"
 )
 

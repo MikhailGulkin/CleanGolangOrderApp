@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/middleware/errorHandler"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/middleware/logging"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/middleware/errorHandler"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/middleware/logging"
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,7 +1,7 @@
 package brokerconfigurate
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate/interfaces"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate/interfaces"
 	"github.com/rabbitmq/amqp091-go"
 )
 

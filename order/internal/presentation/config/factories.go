@@ -1,13 +1,13 @@
 package config
 
 import (
-	cache "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/cache/config"
-	load "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/config"
-	db "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/config"
-	logger "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/logger/config"
-	broker "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/messageBroker/config"
-	api "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/config"
-	cron "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/cron/config"
+	cache "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/cache/config"
+	load "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/config"
+	db "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/config"
+	logger "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger/config"
+	broker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/config"
+	api "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/config"
+	cron "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/config"
 )
 
 func NewConfig() Config {

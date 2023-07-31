@@ -1,4 +1,4 @@
-module github.com/MikhailGulkin/simpleGoOrderApp/order
+module github.com/MikhailGulkin/CleanGolangOrderApp/order
 
 go 1.20
 

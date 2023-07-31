@@ -1,8 +1,8 @@
 package order
 
 import (
-	order "github.com/MikhailGulkin/simpleGoOrderApp/order/internal/domain/order/entities"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/infrastructure/db/models"
+	order "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/entities"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
 )
 
 func ConvertProductsModelsToOrderEntity(models []models.Product) []order.OrderProduct {

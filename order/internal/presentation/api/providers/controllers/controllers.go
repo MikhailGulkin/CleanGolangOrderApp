@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/providers/controllers/handlers"
-	"github.com/MikhailGulkin/simpleGoOrderApp/order/internal/presentation/api/providers/controllers/routes"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/providers/controllers/handlers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/providers/controllers/routes"
 	"go.uber.org/fx"
 )
 
