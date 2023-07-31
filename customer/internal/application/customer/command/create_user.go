@@ -9,7 +9,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/vo"
 )
 
-type CreateUserImpl struct {
+type CreateCustomerImpl struct {
 	services.Service
 	persistence.UoW
 	repo.UserRepo
