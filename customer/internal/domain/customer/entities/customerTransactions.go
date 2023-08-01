@@ -1,7 +1,7 @@
 package entities
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/consts"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/customer/consts"
 	"github.com/google/uuid"
 	"time"
 )

@@ -46,6 +46,7 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	}
 	err = interactor.OrderRepo.AddOrder(orderAggregate, interactor.UoW.StartTx())
 	if err != nil {
+		interactor.UoW.Rollback()
 		return err
 	}
 	err = interactor.OutboxRepo.AddEvents(orderAggregate.PullEvents(), interactor.UoW.GetTx())
