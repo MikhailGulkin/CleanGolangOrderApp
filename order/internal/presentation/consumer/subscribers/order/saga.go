@@ -14,6 +14,7 @@ type SagaCreateSubscriber struct {
 }
 
 func (s SagaCreateSubscriber) Listen() {
+	defer s.ReusableChannel.Release()
 	messages, _ := s.ReusableChannel.Consume(
 		"CustomerSaga",
 		"",

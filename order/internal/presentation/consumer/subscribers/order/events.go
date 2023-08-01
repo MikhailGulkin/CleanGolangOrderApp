@@ -14,6 +14,7 @@ type OrderEvent struct {
 }
 
 func (s OrderEvent) Listen() {
+	defer s.ReusableChannel.Release()
 	messages, _ := s.ReusableChannel.Consume(
 		"Orders",
 		"",
