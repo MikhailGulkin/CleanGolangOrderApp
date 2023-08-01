@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/broker"
 	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit"
 	"github.com/rabbitmq/amqp091-go"
 )
 
 type MessageBrokerImpl struct {
 	broker.MessageBroker
-	*amqp091.Channel
+	*rabbit.ReusableChannel
 }
 
 func (m *MessageBrokerImpl) PublishMessage(ctx context.Context, exchangeName, routingKey string, message []byte) error {
@@ -31,6 +32,6 @@ func (m *MessageBrokerImpl) BuildMessage(message []byte) amqp091.Publishing {
 }
 func NewMessageBroker(rabbit messagebroker.Rabbit) broker.MessageBroker {
 	return &MessageBrokerImpl{
-		Channel: rabbit.GetChannel(),
+		ReusableChannel: rabbit.GetChannel(),
 	}
 }

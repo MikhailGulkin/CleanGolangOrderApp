@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/BurntSushi/toml v1.3.2
-	github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit v0.0.0-20230731222015-1b5ba9e7a26a
+	github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit v0.0.0-20230731234738-7e943482b407
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/uuid v1.3.0
 	github.com/rabbitmq/amqp091-go v1.8.1

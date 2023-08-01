@@ -4,17 +4,17 @@ import (
 	"encoding/json"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/saga"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
-	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit"
 )
 
 type SagaCreateSubscriber struct {
-	messagebroker.Rabbit
+	*rabbit.ReusableChannel
 	logger.Logger
 	saga.CreateOrder
 }
 
 func (s SagaCreateSubscriber) Listen() {
-	messages, _ := s.Rabbit.GetChannel().Consume(
+	messages, _ := s.ReusableChannel.Consume(
 		"CustomerSaga",
 		"",
 		true,

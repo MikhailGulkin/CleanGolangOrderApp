@@ -4,17 +4,17 @@ import (
 	"encoding/json"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/cache"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
-	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit"
 )
 
 type OrderEvent struct {
-	messagebroker.Rabbit
+	*rabbit.ReusableChannel
 	logger.Logger
 	cache.OrderCache
 }
 
 func (s OrderEvent) Listen() {
-	messages, _ := s.Rabbit.GetChannel().Consume(
+	messages, _ := s.ReusableChannel.Consume(
 		"Orders",
 		"",
 		true,

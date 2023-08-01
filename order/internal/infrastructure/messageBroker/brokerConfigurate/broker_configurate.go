@@ -3,12 +3,12 @@ package brokerconfigurate
 import (
 	messagebroker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate/interfaces"
-	"github.com/rabbitmq/amqp091-go"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/rabbit"
 )
 
 type MessageBrokerConfigure struct {
 	interfaces.BaseMessageBrokerConfigure
-	Channel *amqp091.Channel
+	Channel *rabbit.ReusableChannel
 }
 
 func (m *MessageBrokerConfigure) DeclareExchange(exchangeName string) {

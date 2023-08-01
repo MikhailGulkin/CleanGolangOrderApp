@@ -28,7 +28,7 @@ seconds = 5
 
 [logging]
 log_output=''
-log_level='info'
+log_level="info"
 
 [cache]
 host="localhost"
