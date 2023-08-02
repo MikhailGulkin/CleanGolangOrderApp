@@ -7,13 +7,12 @@ import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/graph"
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxevent"
-	"os"
 )
 
 func main() {
-
 	fx.New(
 		fx.WithLogger(func(logger logger.Logger) fxevent.Logger {
 			return logger.GetFxLogger()
@@ -23,12 +22,6 @@ func main() {
 		api.Module,
 		consumer.Module,
 		cron.Module,
-		fx.Options(fx.Invoke(func(diGraph fx.DotGraph) {
-			err := os.WriteFile("./graph.txt", []byte(diGraph), 0644)
-			if err != nil {
-				return
-			}
-		},
-		)),
+		graph.Module,
 	).Run()
 }

@@ -10,11 +10,11 @@ import (
 	"go.uber.org/fx"
 )
 
-type App struct {
+type AppConfig struct {
 	Mode string
 }
 type Config struct {
-	App                        `toml:"app"`
+	AppConfig                  `toml:"app"`
 	db.DBConfig                `toml:"db"`
 	api.APIConfig              `toml:"api"`
 	broker.MessageBrokerConfig `toml:"broker"`
@@ -33,5 +33,6 @@ var Module = fx.Module(
 		NewCronConfig,
 		NewLoggerConfig,
 		NewCacheConfig,
+		NewAppConfig,
 	),
 )
