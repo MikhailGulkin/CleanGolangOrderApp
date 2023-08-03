@@ -6,6 +6,7 @@ import (
 	o "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/entities"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/vo"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/models"
+	"time"
 )
 
 func ConvertOrderModelToAggregate(model models.Order) order.Order {
@@ -29,9 +30,13 @@ func ConvertOrderModelToAggregate(model models.Order) order.Order {
 			SerialNumber: model.SerialNumber,
 			Closed:       model.Closed,
 		},
+		OrderDeleted: vo.OrderDeleted{
+			Deleted:  model.Deleted,
+			DeleteAt: model.DeletedAt,
+		},
 	}
 }
-func ConvertOrderAggregateToModel(order order.Order) models.Order {
+func ConvertOrderAggregateToModel(order *order.Order) models.Order {
 	products := make([]models.Product, len(order.Products))
 	for index, product := range order.Products {
 		products[index] = models.Product{
@@ -39,7 +44,12 @@ func ConvertOrderAggregateToModel(order order.Order) models.Order {
 		}
 	}
 	return models.Order{
-		Base:          models.Base{ID: order.OrderID.Value, CreatedAt: order.Date},
+		Base: models.Base{
+			ID:        order.OrderID.Value,
+			UpdatedAt: time.Now(),
+			CreatedAt: order.Date,
+			DeletedAt: order.DeleteAt,
+		},
 		OrderStatus:   string(order.OrderStatus),
 		ClientID:      order.ClientID,
 		PaymentMethod: string(order.PaymentMethod),
@@ -47,5 +57,6 @@ func ConvertOrderAggregateToModel(order order.Order) models.Order {
 		Closed:        order.Closed,
 		SerialNumber:  order.SerialNumber,
 		Products:      products,
+		Deleted:       order.Deleted,
 	}
 }

@@ -23,6 +23,7 @@ func (repo *RepoImpl) AcquireLastOrder() (order.Order, error) {
 		Preload("Products").
 		Order("created_at desc").
 		Where("saga_status = ?", consts.Approved).
+		Where("deleted = ?", false).
 		Limit(1).
 		Find(&orderModel)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
@@ -38,6 +39,7 @@ func (repo *RepoImpl) AcquiredOrder(orderID uuid.UUID) (order.Order, error) {
 	result := repo.Session.
 		Preload("Products").
 		Where("saga_status = ? AND id = ?", consts.Approved, orderID).
+		Where("deleted = ?", false).
 		Find(&orderModel)
 	err := exceptions.OrderIDNotExist{}.Exception(orderID.String())
 
@@ -53,7 +55,7 @@ func (repo *RepoImpl) AcquiredOrder(orderID uuid.UUID) (order.Order, error) {
 	return ConvertOrderModelToAggregate(orderModel), nil
 }
 
-func (repo *RepoImpl) AddOrder(entity order.Order, tx any) error {
+func (repo *RepoImpl) AddOrder(entity *order.Order, tx any) error {
 	model := ConvertOrderAggregateToModel(entity)
 	result := tx.(*gorm.DB).
 		Omit("Products.*").
@@ -62,4 +64,8 @@ func (repo *RepoImpl) AddOrder(entity order.Order, tx any) error {
 		return result.Error
 	}
 	return nil
+}
+func (repo *RepoImpl) UpdateOrder(entity *order.Order, tx any) error {
+	model := ConvertOrderAggregateToModel(entity)
+	return tx.(*gorm.DB).Updates(&model).Error
 }

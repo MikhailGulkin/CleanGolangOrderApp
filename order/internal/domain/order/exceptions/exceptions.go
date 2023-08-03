@@ -17,6 +17,18 @@ func (e OrderIsClosed) Exception(context string) OrderIsClosed {
 		}}
 }
 
+type OrderIsDeleted struct {
+	common.CustomException
+}
+
+func (e OrderIsDeleted) Exception(context string) OrderIsDeleted {
+	return OrderIsDeleted{
+		CustomException: common.CustomException{
+			Message: "Order already deleted;",
+			Ctx:     fmt.Sprintf("order id: `%s`", context),
+		}}
+}
+
 type InvalidSerialNumber struct {
 	common.CustomException
 }

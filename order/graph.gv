@@ -206,8 +206,6 @@ digraph {
 		
 			constructor_16 -> "persistence.UoW" [ltail=cluster_16];
 		
-			constructor_16 -> "dao.OrderDAO" [ltail=cluster_16];
-		
 			constructor_16 -> "repo.OutboxRepo" [ltail=cluster_16];
 		
 		

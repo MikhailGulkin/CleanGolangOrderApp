@@ -66,14 +66,12 @@ func NewDeleteOrderByID(
 	logger logger.Logger,
 	repo repo.OrderRepo,
 	uow persistence.UoW,
-	orderDAO dao.OrderDAO,
 	outRepo outboxRepo.OutboxRepo,
 ) c.DeleteOrder {
 	return &command.DeleteOrderImpl{
 		Logger:     logger,
 		OrderRepo:  repo,
 		UoW:        uow,
-		OrderDAO:   orderDAO,
 		OutboxRepo: outRepo,
 	}
 }

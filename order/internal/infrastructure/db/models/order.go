@@ -12,8 +12,8 @@ type Order struct {
 	AddressID     uuid.UUID
 	Closed        bool
 	SerialNumber  int
-
-	SagaStatus string `gorm:"default:Pending"`
+	Deleted       bool   `gorm:"default:false"`
+	SagaStatus    string `gorm:"default:Pending"`
 
 	Products []Product `gorm:"many2many:order_products;"`
 }

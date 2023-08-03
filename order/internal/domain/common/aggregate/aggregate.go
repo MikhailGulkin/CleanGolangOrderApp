@@ -13,9 +13,9 @@ func (r *AggregateRoot) GetEvents() []events.Event {
 	return r.Events
 }
 func (r *AggregateRoot) PullEvents() []events.Event {
-	length := len(r.Events)
+	length := len(r.GetEvents())
 	cleared := make([]events.Event, length)
-	copy(cleared, r.Events)
+	copy(cleared, r.GetEvents())
 	r.Events = r.Events[0:]
 	return cleared
 }

@@ -27,7 +27,7 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	}
 	serialNumber := 0
 	if !reflect.ValueOf(previousOrder).IsZero() {
-		serialNumber = previousOrder.GetSerialNumber()
+		serialNumber = previousOrder.SerialNumber
 	}
 
 	products, productError := interactor.OrderDAO.GetProductsByIDs(command.ProductsIDs)
@@ -44,7 +44,7 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if err != nil {
 		return err
 	}
-	err = interactor.OrderRepo.AddOrder(orderAggregate, interactor.UoW.StartTx())
+	err = interactor.OrderRepo.AddOrder(&orderAggregate, interactor.UoW.StartTx())
 	if err != nil {
 		interactor.UoW.Rollback()
 		return err
