@@ -8,7 +8,6 @@ import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/services"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/vo"
-	"github.com/google/uuid"
 	"reflect"
 )
 
@@ -22,7 +21,6 @@ type CreateOrderImpl struct {
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
-	command.OrderID = uuid.New()
 	previousOrder, previousOrderError := interactor.OrderRepo.AcquireLastOrder()
 	if previousOrderError != nil {
 		return previousOrderError
