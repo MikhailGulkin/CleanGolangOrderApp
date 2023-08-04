@@ -46,6 +46,8 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if err != nil {
 		return err
 	}
+	// TODO: Придумать что-то с uow и его получением -- нужен новый экземпляр на каждый запрос
+
 	uow := interactor.UoW.Get()
 
 	err = interactor.OrderRepo.AddOrder(&orderAggregate, uow.StartTx())
