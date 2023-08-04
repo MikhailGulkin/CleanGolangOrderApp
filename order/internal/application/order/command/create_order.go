@@ -8,6 +8,7 @@ import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/order/interfaces/persistence/repo"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/services"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/domain/order/vo"
+	"github.com/google/uuid"
 	"reflect"
 )
 
@@ -21,6 +22,7 @@ type CreateOrderImpl struct {
 }
 
 func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) error {
+	command.OrderID = uuid.New()
 	previousOrder, previousOrderError := interactor.OrderRepo.AcquireLastOrder()
 	if previousOrderError != nil {
 		return previousOrderError
@@ -44,17 +46,19 @@ func (interactor *CreateOrderImpl) Create(command command.CreateOrderCommand) er
 	if err != nil {
 		return err
 	}
-	err = interactor.OrderRepo.AddOrder(&orderAggregate, interactor.UoW.StartTx())
+	uow := interactor.UoW.Get()
+
+	err = interactor.OrderRepo.AddOrder(&orderAggregate, uow.StartTx())
 	if err != nil {
-		interactor.UoW.Rollback()
+		uow.Rollback()
 		return err
 	}
-	err = interactor.OutboxRepo.AddEvents(orderAggregate.PullEvents(), interactor.UoW.GetTx())
+	err = interactor.OutboxRepo.AddEvents(orderAggregate.PullEvents(), uow.GetTx())
 	if err != nil {
-		interactor.UoW.Rollback()
+		uow.Rollback()
 		return err
 	}
-	err = interactor.UoW.Commit()
+	err = uow.Commit()
 	if err != nil {
 		return err
 	}

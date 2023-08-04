@@ -1,7 +1,6 @@
 package db
 
 import (
-	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/application/common/interfaces/persistence"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/dao"
 	base "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/repo"
@@ -20,15 +19,11 @@ func NewBaseDAO(conn *gorm.DB) dao.BaseGormDAO {
 	return dao.BaseGormDAO{Session: conn}
 }
 
-func BuildGormUoW(conn *gorm.DB) persistence.UoW {
-	return &uow.GormUoW{Session: conn}
-}
-
 var Module = fx.Options(
 	product.Module,
 	orders.Module,
 	fx.Provide(
-		BuildGormUoW,
+		uow.BuildGormUoW,
 		db.BuildConnection,
 		NewBaseRepo,
 		NewBaseDAO,
