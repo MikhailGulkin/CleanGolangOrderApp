@@ -14,7 +14,7 @@ type MessageBrokerImpl struct {
 }
 
 func (m *MessageBrokerImpl) PublishMessage(ctx context.Context, exchangeName, routingKey string, message []byte) error {
-	err := m.PublishWithContext(
+	err := m.ReusableChannel.PublishWithContext(
 		ctx,
 		exchangeName,
 		routingKey,
