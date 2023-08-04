@@ -8,12 +8,12 @@ import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/engine"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/prometheus"
-	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/providers"
+	api "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/di/api"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	providers.Module,
+	api.Module,
 	fx.Invoke(Start),
 )
 

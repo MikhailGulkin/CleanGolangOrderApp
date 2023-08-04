@@ -1,4 +1,4 @@
-package providers
+package consumer
 
 import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers"

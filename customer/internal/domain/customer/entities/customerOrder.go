@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type UserOrder struct {
+type CustomerOrder struct {
 	OrderID    uuid.UUID
 	TotalPrice float64
 	Date       time.Time

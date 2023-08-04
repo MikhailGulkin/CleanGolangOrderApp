@@ -7,7 +7,6 @@ import (
 	broker "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/config"
 	api "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/config"
 	cron "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/config"
-	"go.uber.org/fx"
 )
 
 type AppConfig struct {
@@ -22,17 +21,3 @@ type Config struct {
 	logger.LoggerConfig        `toml:"logging"`
 	cache.RedisConfig          `toml:"cache"`
 }
-
-var Module = fx.Module(
-	"presentation.config",
-	fx.Provide(
-		NewConfig,
-		NewDBConfig,
-		NewAPIConfig,
-		NewBrokerConfig,
-		NewCronConfig,
-		NewLoggerConfig,
-		NewCacheConfig,
-		NewAppConfig,
-	),
-)

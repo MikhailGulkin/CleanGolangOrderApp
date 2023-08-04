@@ -12,7 +12,7 @@ type Customer struct {
 	AddressID    uuid.UUID
 	Transactions []entities.CustomerTransactions
 	Balance      entities.CustomerBalance
-	Orders       []entities.UserOrder
+	Orders       []entities.CustomerOrder
 }
 
 func Create(fullName vo.FullName, addressID uuid.UUID) Customer {
@@ -24,6 +24,6 @@ func Create(fullName vo.FullName, addressID uuid.UUID) Customer {
 	}
 }
 
-func (c *Customer) AddOrder(order entities.UserOrder) {
+func (c *Customer) AddOrder(order entities.CustomerOrder) {
 	c.Orders = append(c.Orders, order)
 }

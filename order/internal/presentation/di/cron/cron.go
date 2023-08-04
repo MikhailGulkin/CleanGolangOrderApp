@@ -1,4 +1,4 @@
-package providers
+package cron
 
 import (
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/engine"

@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger"
 	brokerconfigurate "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate"
-	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/providers"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/di/consumer"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	providers.Module,
+	consumer.Module,
 	fx.Invoke(Start),
 )
 

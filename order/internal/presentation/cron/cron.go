@@ -7,12 +7,12 @@ import (
 	brokerconfigurate "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/engine"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/handlers"
-	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/providers"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/di/cron"
 	"go.uber.org/fx"
 )
 
 var Module = fx.Options(
-	providers.Module,
+	cron.Module,
 	fx.Invoke(Start),
 )
 

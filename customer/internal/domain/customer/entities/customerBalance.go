@@ -1,7 +1,7 @@
 package entities
 
 import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/vo"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/customer/vo"
 	"github.com/google/uuid"
 )
 
