@@ -1,6 +1,8 @@
 package vo
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/exceptions"
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
+)
 
 type FullName struct {
 	FirstName  string

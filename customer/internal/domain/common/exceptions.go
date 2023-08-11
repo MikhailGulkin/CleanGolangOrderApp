@@ -1,10 +1,13 @@
 package common
 
-type CustomException struct {
-	Message string
-	Ctx     string
-}
+import "errors"
 
-func (e *CustomException) Error() string {
-	return e.Message + " " + e.Ctx
-}
+var (
+	ErrAlreadyExists       = errors.New("Already exists")
+	ErrAggregateNotFound   = errors.New("aggregate not found")
+	ErrInvalidEventType    = errors.New("invalid event type")
+	ErrInvalidCommandType  = errors.New("invalid command type")
+	ErrInvalidAggregate    = errors.New("invalid aggregate")
+	ErrInvalidAggregateID  = errors.New("invalid aggregate id")
+	ErrInvalidEventVersion = errors.New("invalid event version")
+)
