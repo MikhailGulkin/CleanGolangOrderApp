@@ -1,9 +1,5 @@
 package vo
 
-import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
-)
-
 type FullName struct {
 	FirstName  string
 	MiddleName string
@@ -12,16 +8,16 @@ type FullName struct {
 
 func (FullName) Create(firstName, middleName, lastName string) (FullName, error) {
 	if firstName == "" {
-		err := exceptions.EmptyName{}.Exception("First name cannot be empty", firstName)
-		return FullName{}, &err
+		// TODO: add exception
+		return FullName{}, nil
 	}
 	if middleName == "" {
-		err := exceptions.EmptyName{}.Exception("First name cannot be empty", middleName)
-		return FullName{}, &err
+		// TODO: add exception
+		return FullName{}, nil
 	}
 	if lastName == "" {
-		err := exceptions.EmptyName{}.Exception("First name cannot be empty", lastName)
-		return FullName{}, &err
+		// TODO: add exception
+		return FullName{}, nil
 	}
 
 	return FullName{

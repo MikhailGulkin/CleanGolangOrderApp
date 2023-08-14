@@ -1,17 +1,13 @@
 package vo
 
-import (
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
-)
-
 type BalanceMoney struct {
 	Value float64
 }
 
 func (BalanceMoney) Create(money float64) (BalanceMoney, error) {
 	if money < 0 {
-		err := exceptions.IncorrectBalance{}.Exception(money)
-		return BalanceMoney{}, &err
+		// TODO: add error handling
+		return BalanceMoney{}, nil
 	}
 	return BalanceMoney{Value: money}, nil
 }
