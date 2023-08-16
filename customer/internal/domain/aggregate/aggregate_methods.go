@@ -3,7 +3,9 @@ package aggregate
 import (
 	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/events"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
 )
 
 func (a *CustomerAggregate) When(evt common.Event) error {
@@ -13,6 +15,8 @@ func (a *CustomerAggregate) When(evt common.Event) error {
 		return a.onCustomerCreated(evt)
 	case events.TransactionUpdated:
 		return a.onUpdateCustomerTransaction(evt)
+	case events.BalanceUpdated:
+		return a.onUpdateCustomerBalance(evt)
 	default:
 		return common.ErrInvalidEventType
 	}
@@ -34,4 +38,26 @@ func (a *CustomerAggregate) onUpdateCustomerTransaction(evt common.Event) error 
 	}
 	a.Customer.Transactions = append(a.Customer.Transactions, eventData.Transaction)
 	return nil
+}
+func (a *CustomerAggregate) onUpdateCustomerBalance(evt common.Event) error {
+	var eventData events.BalanceUpdatedEvent
+	if err := evt.GetJsonData(&eventData); err != nil {
+		return fmt.Errorf("get Json Data, err: %w", err)
+	}
+	a.Customer.Balance = eventData.Balance
+	return nil
+}
+func (a *CustomerAggregate) GetNewBalance(money vo.Money, txType consts.TransactionType) vo.CustomerBalance {
+	balance := a.Customer.Balance
+	switch txType {
+	case consts.FREZEE:
+		return FreezeBalance(balance, money)
+	default:
+		return vo.CustomerBalance{}
+	}
+}
+func FreezeBalance(balance vo.CustomerBalance, money vo.Money) vo.CustomerBalance {
+	balance.SubAvailableMoney(money)
+	balance.AddFrozenMoney(money)
+	return balance
 }

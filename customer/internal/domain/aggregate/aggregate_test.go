@@ -1,7 +1,9 @@
 package aggregate
 
 import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/consts"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/events"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
 	"github.com/go-faker/faker/v4"
 	"github.com/google/uuid"
 	"testing"
@@ -14,7 +16,7 @@ func TestCustomer(t *testing.T) {
 		t.Fatal("wrong id")
 	}
 	t.Run("create customer", CreateCustomerTest(customer))
-	t.Run("update transaction", TransactionUpdateEvent(customer))
+	t.Run("update transaction", TransactionFreezeUpdateEvent(customer))
 
 }
 func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
@@ -25,7 +27,7 @@ func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if err := customer.CreateCustomer(createEvent.FullName, createEvent.AddressID, createEvent.Balance); err != nil {
+		if err := customer.CreateCustomer(createEvent.FullName, createEvent.AddressID); err != nil {
 			t.Fatal(err)
 		}
 		if customer.Customer.FullName != createEvent.FullName {
@@ -34,7 +36,7 @@ func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
 		if customer.Customer.AddressID != createEvent.AddressID {
 			t.Fatal("wrong address id")
 		}
-		if customer.Customer.Balance != createEvent.Balance {
+		if customer.Customer.Balance != vo.NewCustomerBalance() {
 			t.Fatal("wrong balance")
 		}
 		if len(customer.GetUncommittedEvents()) != 1 {
@@ -43,13 +45,14 @@ func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
 	}
 
 }
-func TransactionUpdateEvent(customer *CustomerAggregate) func(t *testing.T) {
+func TransactionFreezeUpdateEvent(customer *CustomerAggregate) func(t *testing.T) {
 	return func(t *testing.T) {
 		transactionEvent := events.TransactionsUpdatedEvent{}
 		err := faker.FakeData(&transactionEvent)
 		if err != nil {
 			t.Fatal(err)
 		}
+		transactionEvent.Transaction.TransactionType = consts.FREZEE
 		err = customer.UpdateTransactionCustomer(transactionEvent.Transaction)
 		if err != nil {
 			t.Fatal(err)
@@ -60,6 +63,12 @@ func TransactionUpdateEvent(customer *CustomerAggregate) func(t *testing.T) {
 
 		if len(customer.GetUncommittedEvents()) != 2 {
 			t.Fatal("wrong number of uncommitted events")
+		}
+		if (customer.Customer.Balance.AvailableMoney.Value + transactionEvent.Transaction.TransactionSum.Value) != 0 {
+			t.Fatal("wrong balance")
+		}
+		if (customer.Customer.Balance.FrozenMoney.Value - transactionEvent.Transaction.TransactionSum.Value) != 0 {
+			t.Fatal("wrong balance")
 		}
 	}
 }

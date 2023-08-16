@@ -1,13 +1,13 @@
 package vo
 
-type BalanceMoney struct {
+type Money struct {
 	Value float64
 }
 
-func (BalanceMoney) Create(money float64) (BalanceMoney, error) {
+func (Money) Create(money float64) (Money, error) {
 	if money < 0 {
 		// TODO: add error handling
-		return BalanceMoney{}, nil
+		return Money{}, nil
 	}
-	return BalanceMoney{Value: money}, nil
+	return Money{Value: money}, nil
 }

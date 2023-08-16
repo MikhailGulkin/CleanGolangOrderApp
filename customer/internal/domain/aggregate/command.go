@@ -10,9 +10,8 @@ import (
 func (a *CustomerAggregate) CreateCustomer(
 	fullName vo.FullName,
 	addressID uuid.UUID,
-	balance vo.CustomerBalance,
 ) error {
-	event, err := events.NewCustomerCreatedEvent(a, fullName, addressID, balance)
+	event, err := events.NewCustomerCreatedEvent(a, fullName, addressID, vo.NewCustomerBalance())
 	if err != nil {
 		return err
 	}
@@ -23,6 +22,14 @@ func (a *CustomerAggregate) UpdateTransactionCustomer(
 ) error {
 	event, err := events.NewTransactionsUpdatedEvent(a, transaction)
 	if err != nil {
+		return err
+	}
+	balance := a.GetNewBalance(transaction.TransactionSum, transaction.TransactionType)
+	eventBalance, errBalance := events.NewBalanceUpdatedEvent(a, balance)
+	if errBalance != nil {
+		return errBalance
+	}
+	if err := a.Apply(eventBalance); err != nil {
 		return err
 	}
 	return a.Apply(event)

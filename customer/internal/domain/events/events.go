@@ -10,6 +10,7 @@ import (
 const (
 	CustomerCreated    = "CUSTOMER_CREATED"
 	TransactionUpdated = "TRANSACTION_UPDATED"
+	BalanceUpdated     = "BALANCE_UPDATED"
 )
 
 type CustomerCreatedEvent struct {
@@ -49,5 +50,20 @@ func NewTransactionsUpdatedEvent(
 		return common.Event{}, err
 	}
 	return baseEvent, nil
+}
 
+type BalanceUpdatedEvent struct {
+	Balance vo.CustomerBalance `json:"balance"`
+}
+
+func NewBalanceUpdatedEvent(
+	aggregate common.Aggregate,
+	balance vo.CustomerBalance,
+) (common.Event, error) {
+	eventData := BalanceUpdatedEvent{Balance: balance}
+	baseEvent := common.NewBaseEvent(aggregate, BalanceUpdated)
+	if err := baseEvent.SetJsonData(&eventData); err != nil {
+		return common.Event{}, err
+	}
+	return baseEvent, nil
 }

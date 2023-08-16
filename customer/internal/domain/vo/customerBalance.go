@@ -1,15 +1,26 @@
 package vo
 
 type CustomerBalance struct {
-	AvailableMoney BalanceMoney
-	FrozenMoney    BalanceMoney
-	TotalMoney     float64
+	AvailableMoney Money
+	FrozenMoney    Money
 }
 
-func (CustomerBalance) Create() CustomerBalance {
+func NewCustomerBalance() CustomerBalance {
 	return CustomerBalance{
-		AvailableMoney: BalanceMoney{Value: 0},
-		FrozenMoney:    BalanceMoney{Value: 0},
-		TotalMoney:     0,
+		AvailableMoney: Money{Value: 0},
+		FrozenMoney:    Money{Value: 0},
 	}
+}
+
+func (c *CustomerBalance) SubAvailableMoney(money Money) {
+	c.AvailableMoney.Value -= money.Value
+}
+func (c *CustomerBalance) AddFrozenMoney(money Money) {
+	c.FrozenMoney.Value += money.Value
+}
+func (c *CustomerBalance) EqAvailableMoney(money Money) bool {
+	if c.AvailableMoney.Value == money.Value {
+		return false
+	}
+	return true
 }
