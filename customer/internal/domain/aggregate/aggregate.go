@@ -15,7 +15,7 @@ type Customer struct {
 	vo.CustomerID
 	FullName     vo.FullName
 	AddressID    uuid.UUID
-	Balance      vo.CustomerBalance
+	Balance      vo.Balance
 	Transactions []*entities.CustomerTransactions
 	Orders       []*uuid.UUID
 }

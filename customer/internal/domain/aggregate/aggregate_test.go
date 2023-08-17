@@ -17,6 +17,7 @@ func TestCustomer(t *testing.T) {
 	}
 	t.Run("create customer", CreateCustomerTest(customer))
 	t.Run("update transaction", TransactionFreezeUpdateEvent(customer))
+	t.Run("update transaction", TransactionDepositUpdateEvent(customer))
 
 }
 func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
@@ -52,7 +53,7 @@ func TransactionFreezeUpdateEvent(customer *CustomerAggregate) func(t *testing.T
 		if err != nil {
 			t.Fatal(err)
 		}
-		transactionEvent.Transaction.TransactionType = consts.FREZEE
+		transactionEvent.Transaction.TransactionType = consts.PURCHASE
 		err = customer.UpdateTransactionCustomer(transactionEvent.Transaction)
 		if err != nil {
 			t.Fatal(err)
@@ -61,7 +62,7 @@ func TransactionFreezeUpdateEvent(customer *CustomerAggregate) func(t *testing.T
 			t.Fatal("wrong number of transactions")
 		}
 
-		if len(customer.GetUncommittedEvents()) != 2 {
+		if len(customer.GetUncommittedEvents()) != 3 {
 			t.Fatal("wrong number of uncommitted events")
 		}
 		if (customer.Customer.Balance.AvailableMoney.Value + transactionEvent.Transaction.TransactionSum.Value) != 0 {
@@ -69,6 +70,27 @@ func TransactionFreezeUpdateEvent(customer *CustomerAggregate) func(t *testing.T
 		}
 		if (customer.Customer.Balance.FrozenMoney.Value - transactionEvent.Transaction.TransactionSum.Value) != 0 {
 			t.Fatal("wrong balance")
+		}
+	}
+}
+func TransactionDepositUpdateEvent(customer *CustomerAggregate) func(t *testing.T) {
+	return func(t *testing.T) {
+		transactionEvent := events.TransactionsUpdatedEvent{}
+		err := faker.FakeData(&transactionEvent)
+		if err != nil {
+			t.Fatal(err)
+		}
+		transactionEvent.Transaction.TransactionType = consts.DEPOSIT
+		err = customer.UpdateTransactionCustomer(transactionEvent.Transaction)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if len(customer.Customer.Transactions) != 2 {
+			t.Fatal("wrong number of transactions")
+		}
+
+		if len(customer.GetUncommittedEvents()) != 5 {
+			t.Fatal("wrong number of uncommitted events")
 		}
 	}
 }

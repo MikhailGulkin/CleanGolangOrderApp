@@ -14,15 +14,15 @@ const (
 )
 
 type CustomerCreatedEvent struct {
-	FullName  vo.FullName        `json:"fullName"`
-	AddressID uuid.UUID          `json:"addressID,omitempty"`
-	Balance   vo.CustomerBalance `json:"balance"`
+	FullName  vo.FullName `json:"fullName"`
+	AddressID uuid.UUID   `json:"addressID,omitempty"`
+	Balance   vo.Balance  `json:"balance"`
 }
 
 func NewCustomerCreatedEvent(
 	aggregate common.Aggregate,
 	fullName vo.FullName, addressID uuid.UUID,
-	balance vo.CustomerBalance,
+	balance vo.Balance,
 ) (common.Event, error) {
 	eventData := CustomerCreatedEvent{
 		FullName:  fullName,
@@ -53,12 +53,12 @@ func NewTransactionsUpdatedEvent(
 }
 
 type BalanceUpdatedEvent struct {
-	Balance vo.CustomerBalance `json:"balance"`
+	Balance vo.Balance `json:"balance"`
 }
 
 func NewBalanceUpdatedEvent(
 	aggregate common.Aggregate,
-	balance vo.CustomerBalance,
+	balance vo.Balance,
 ) (common.Event, error) {
 	eventData := BalanceUpdatedEvent{Balance: balance}
 	baseEvent := common.NewBaseEvent(aggregate, BalanceUpdated)

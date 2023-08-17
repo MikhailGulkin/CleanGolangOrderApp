@@ -47,17 +47,14 @@ func (a *CustomerAggregate) onUpdateCustomerBalance(evt common.Event) error {
 	a.Customer.Balance = eventData.Balance
 	return nil
 }
-func (a *CustomerAggregate) GetNewBalance(money vo.Money, txType consts.TransactionType) vo.CustomerBalance {
+func (a *CustomerAggregate) GetNewBalance(money vo.Money, txType consts.TransactionType) vo.Balance {
 	balance := a.Customer.Balance
 	switch txType {
-	case consts.FREZEE:
-		return FreezeBalance(balance, money)
+	case consts.DEPOSIT:
+		return balance.DepositBalance(money)
+	case consts.PURCHASE:
+		return balance.Purchase(money)
 	default:
-		return vo.CustomerBalance{}
+		return vo.Balance{}
 	}
-}
-func FreezeBalance(balance vo.CustomerBalance, money vo.Money) vo.CustomerBalance {
-	balance.SubAvailableMoney(money)
-	balance.AddFrozenMoney(money)
-	return balance
 }
