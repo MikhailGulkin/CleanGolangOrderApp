@@ -43,6 +43,13 @@ func (a *AggregateBase) SetAppliedEvents(events []Event) {
 	a.AppliedEvents = events
 }
 
+func (a *AggregateBase) GetLastUncommittedEvent() (Event, error) {
+	if len(a.UncommittedEvents) == 0 {
+		return Event{}, ErrNoUncommittedEvents
+	}
+	return a.UncommittedEvents[len(a.UncommittedEvents)-1], nil
+}
+
 // GetUncommittedEvents get AggregateBase uncommitted Event's
 func (a *AggregateBase) GetUncommittedEvents() []Event {
 	return a.UncommittedEvents

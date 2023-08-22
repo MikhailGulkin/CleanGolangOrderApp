@@ -10,8 +10,9 @@ import (
 func (a *CustomerAggregate) CreateCustomer(
 	fullName vo.FullName,
 	addressID uuid.UUID,
+	email vo.Email,
 ) error {
-	event, err := events.NewCustomerCreatedEvent(a, fullName, addressID, vo.NewCustomerBalance())
+	event, err := events.NewCustomerCreatedEvent(a, fullName, addressID, email, vo.NewCustomerBalance())
 	if err != nil {
 		return err
 	}

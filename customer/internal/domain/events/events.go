@@ -14,17 +14,21 @@ const (
 )
 
 type CustomerCreatedEvent struct {
+	ID        uuid.UUID   `json:"id,omitempty"`
 	FullName  vo.FullName `json:"fullName"`
 	AddressID uuid.UUID   `json:"addressID,omitempty"`
 	Balance   vo.Balance  `json:"balance"`
+	Email     vo.Email    `json:"email"`
 }
 
 func NewCustomerCreatedEvent(
 	aggregate common.Aggregate,
 	fullName vo.FullName, addressID uuid.UUID,
+	email vo.Email,
 	balance vo.Balance,
 ) (common.Event, error) {
 	eventData := CustomerCreatedEvent{
+		Email:     email,
 		FullName:  fullName,
 		AddressID: addressID,
 		Balance:   balance,

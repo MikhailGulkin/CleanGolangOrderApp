@@ -15,6 +15,7 @@ type Customer struct {
 	vo.CustomerID
 	FullName     vo.FullName
 	AddressID    uuid.UUID
+	Email        vo.Email
 	Balance      vo.Balance
 	Transactions []*entities.CustomerTransactions
 	Orders       []*uuid.UUID
@@ -41,13 +42,13 @@ func NewCustomer() *Customer {
 	}
 }
 
-func NewCustomerAggregateWithID(id string) *CustomerAggregate {
-	if id == "" {
+func NewCustomerAggregateWithID(id uuid.UUID) *CustomerAggregate {
+	if id.String() == "" {
 		return nil
 	}
 
 	aggregate := NewCustomerAggregate()
-	aggregate.SetID(id)
+	aggregate.SetID(id.String())
 	aggregate.Customer.SetID(id)
 	return aggregate
 }

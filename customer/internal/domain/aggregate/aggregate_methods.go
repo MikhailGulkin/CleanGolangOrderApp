@@ -29,6 +29,7 @@ func (a *CustomerAggregate) onCustomerCreated(evt common.Event) error {
 	a.Customer.Balance = eventData.Balance
 	a.Customer.FullName = eventData.FullName
 	a.Customer.AddressID = eventData.AddressID
+	a.Customer.Email = eventData.Email
 	return nil
 }
 func (a *CustomerAggregate) onUpdateCustomerTransaction(evt common.Event) error {
@@ -52,7 +53,7 @@ func (a *CustomerAggregate) GetNewBalance(money vo.Money, txType consts.Transact
 	switch txType {
 	case consts.DEPOSIT:
 		return balance.DepositBalance(money)
-	case consts.PURCHASE:
+	case consts.PURCHASE_PENDING:
 		return balance.Purchase(money)
 	default:
 		return vo.Balance{}

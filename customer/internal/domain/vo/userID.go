@@ -6,9 +6,12 @@ type CustomerID struct {
 	Value uuid.UUID
 }
 
-func (id *CustomerID) ToString() string {
+func (id *CustomerID) StringID() string {
 	return id.Value.String()
 }
-func (id *CustomerID) SetID(value string) {
-	id.Value = uuid.MustParse(value)
+func (id *CustomerID) SetID(value uuid.UUID) {
+	id.Value = value
+}
+func (id *CustomerID) GetID() uuid.UUID {
+	return id.Value
 }

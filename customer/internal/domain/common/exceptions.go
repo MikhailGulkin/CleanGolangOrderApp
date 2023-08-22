@@ -10,4 +10,5 @@ var (
 	ErrInvalidAggregate    = errors.New("invalid aggregate")
 	ErrInvalidAggregateID  = errors.New("invalid aggregate id")
 	ErrInvalidEventVersion = errors.New("invalid event version")
+	ErrNoUncommittedEvents = errors.New("no uncommitted events")
 )

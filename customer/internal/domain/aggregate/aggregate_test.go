@@ -10,9 +10,9 @@ import (
 )
 
 func TestCustomer(t *testing.T) {
-	id := uuid.New().String()
+	id := uuid.New()
 	customer := NewCustomerAggregateWithID(id)
-	if customer.Customer.CustomerID.ToString() != id {
+	if customer.Customer.CustomerID.Value != id {
 		t.Fatal("wrong id")
 	}
 	t.Run("create customer", CreateCustomerTest(customer))
@@ -28,7 +28,7 @@ func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if err := customer.CreateCustomer(createEvent.FullName, createEvent.AddressID); err != nil {
+		if err := customer.CreateCustomer(createEvent.FullName, createEvent.AddressID, createEvent.Email); err != nil {
 			t.Fatal(err)
 		}
 		if customer.Customer.FullName != createEvent.FullName {
@@ -53,7 +53,7 @@ func TransactionFreezeUpdateEvent(customer *CustomerAggregate) func(t *testing.T
 		if err != nil {
 			t.Fatal(err)
 		}
-		transactionEvent.Transaction.TransactionType = consts.PURCHASE
+		transactionEvent.Transaction.TransactionType = consts.PURCHASE_PENDING
 		err = customer.UpdateTransactionCustomer(transactionEvent.Transaction)
 		if err != nil {
 			t.Fatal(err)
@@ -88,7 +88,6 @@ func TransactionDepositUpdateEvent(customer *CustomerAggregate) func(t *testing.
 		if len(customer.Customer.Transactions) != 2 {
 			t.Fatal("wrong number of transactions")
 		}
-
 		if len(customer.GetUncommittedEvents()) != 5 {
 			t.Fatal("wrong number of uncommitted events")
 		}
