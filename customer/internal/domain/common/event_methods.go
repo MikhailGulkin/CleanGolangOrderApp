@@ -10,6 +10,11 @@ func (e *Event) GetAggregateID() string {
 	return e.AggregateID
 }
 
+// GetAggregateType returns the AggregateType of the event.
+func (e *Event) GetAggregateType() AggregateType {
+	return e.AggregateType
+}
+
 // GetEventType returns the EventType of the event.
 func (e *Event) GetEventType() string {
 	return e.EventType

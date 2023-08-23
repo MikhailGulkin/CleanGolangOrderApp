@@ -1,6 +1,8 @@
 package config
 
-import db "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db/config"
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db"
+)
 
 type App struct {
 	Mode string

@@ -23,12 +23,18 @@ type CreateCustomerHandler interface {
 type createCustomerHandler struct {
 	persistence.EventStore
 	persistence.Outbox
+	persistence.UoWManager
 }
 
-func NewCreateCustomerHandler(es persistence.EventStore, o persistence.Outbox) CreateCustomerHandler {
+func NewCreateCustomerHandler(
+	es persistence.EventStore,
+	o persistence.Outbox,
+	m persistence.UoWManager,
+) CreateCustomerHandler {
 	return &createCustomerHandler{
 		EventStore: es,
 		Outbox:     o,
+		UoWManager: m,
 	}
 }
 
@@ -45,14 +51,29 @@ func (c *createCustomerHandler) Handle(command CreateCustomerCommand) (CustomerC
 	if err := customer.CreateCustomer(fullName, command.AddressID, email); err != nil {
 		return CustomerCreateDTO{}, err
 	}
-	if err := c.EventStore.Create(customer, nil); err != nil {
+	uow := c.UoWManager.GetUoW()
+	tx, errTx := uow.Begin()
+	if errTx != nil {
+		return CustomerCreateDTO{}, errTx
+	}
+	if err := c.EventStore.Exists(customer.GetID()); err != nil {
 		return CustomerCreateDTO{}, err
 	}
-	if err := c.Outbox.AddEvents(customer.GetUncommittedEvents(), nil); err != nil {
+	if err := c.EventStore.Create(customer, tx); err != nil {
+		return CustomerCreateDTO{}, err
+	}
+	if err := c.Outbox.AddEvents(customer.GetUncommittedEvents(), tx); err != nil {
 		return CustomerCreateDTO{}, err
 	}
 	event, eventError := customer.GetLastUncommittedEvent()
 	if eventError != nil {
+		err := uow.Rollback()
+		if err != nil {
+			return CustomerCreateDTO{}, err
+		}
+		return CustomerCreateDTO{}, eventError
+	}
+	if err := uow.Commit(); err != nil {
 		return CustomerCreateDTO{}, err
 	}
 	return CustomerCreateDTO{

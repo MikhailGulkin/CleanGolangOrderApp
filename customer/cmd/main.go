@@ -1,5 +1,15 @@
 package main
 
+import (
+	"fmt"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/command"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db"
+	"github.com/go-faker/faker/v4"
+	"github.com/google/uuid"
+	"github.com/joho/godotenv"
+)
+
 // import (
 //
 //	"context"
@@ -13,8 +23,34 @@ package main
 //	"net"
 //
 // )
-func main() {
+type TestOutbox struct {
+}
 
+func (t *TestOutbox) AddEvents(_ []common.Event, _ interface{}) error {
+	return nil
+}
+func main() {
+	err := godotenv.Load("./configs/app/.env")
+	if err != nil {
+		return
+	}
+
+	createCustomerCommand := command.CreateCustomerCommand{}
+	if err := faker.FakeData(&createCustomerCommand); err != nil {
+	}
+	createCustomerCommand.CustomerID = uuid.MustParse("56574c41-6253-1e37-4001-121a60063856")
+	dbconf := db.NewConfig()
+
+	conn := db.NewConnection(dbconf)
+
+	repo := db.NewEventStore(conn)
+	manager := db.NewUoWManager(conn)
+	createCustomer := command.NewCreateCustomerHandler(&repo, &TestOutbox{}, manager)
+	handle, err := createCustomer.Handle(createCustomerCommand)
+	if err != nil {
+		println(err.Error())
+	}
+	fmt.Printf("%v", handle)
 	//lis, _ := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
 	//
 	//serv := grpc.NewServer()
