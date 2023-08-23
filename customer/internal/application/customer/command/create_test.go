@@ -9,8 +9,14 @@ import (
 type TestEventStore struct {
 }
 
-func (t *TestEventStore) Save(_ common.Aggregate, _ interface{}) error {
+func (t *TestEventStore) Create(_ common.Aggregate, _ interface{}) error {
 	return nil
+}
+func (t *TestEventStore) Update(_ common.Aggregate, _ interface{}) error {
+	return nil
+}
+func (t *TestEventStore) Find(_ string) (common.Aggregate, error) {
+	return nil, nil
 }
 
 type TestOutbox struct {

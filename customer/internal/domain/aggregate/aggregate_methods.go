@@ -56,6 +56,6 @@ func (a *CustomerAggregate) GetNewBalance(money vo.Money, txType consts.Transact
 	case consts.PURCHASE_PENDING:
 		return balance.Purchase(money)
 	default:
-		return vo.Balance{}
+		return vo.NewBalance()
 	}
 }

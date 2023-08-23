@@ -33,11 +33,11 @@ func NewCreateCustomerHandler(es persistence.EventStore, o persistence.Outbox) C
 }
 
 func (c *createCustomerHandler) Handle(command CreateCustomerCommand) (CustomerCreateDTO, error) {
-	fullName, err := vo.FullName{}.Create(command.FirstName, command.MiddleName, command.LastName)
+	fullName, err := vo.NewFullName(command.FirstName, command.MiddleName, command.LastName)
 	if err != nil {
 		return CustomerCreateDTO{}, err
 	}
-	email, errEmail := vo.Email{}.Create(command.Email)
+	email, errEmail := vo.NewEmail(command.Email)
 	if errEmail != nil {
 		return CustomerCreateDTO{}, errEmail
 	}
@@ -45,7 +45,7 @@ func (c *createCustomerHandler) Handle(command CreateCustomerCommand) (CustomerC
 	if err := customer.CreateCustomer(fullName, command.AddressID, email); err != nil {
 		return CustomerCreateDTO{}, err
 	}
-	if err := c.EventStore.Save(customer, nil); err != nil {
+	if err := c.EventStore.Create(customer, nil); err != nil {
 		return CustomerCreateDTO{}, err
 	}
 	if err := c.Outbox.AddEvents(customer.GetUncommittedEvents(), nil); err != nil {

@@ -51,6 +51,8 @@ type AggregateBase struct {
 	when              when
 }
 
+// NewAggregateBase create new AggregateBase
+// main purpose of this function is to set when function
 func NewAggregateBase(when when) *AggregateBase {
 	if when == nil {
 		return nil

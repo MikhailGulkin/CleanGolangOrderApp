@@ -21,6 +21,7 @@ type CustomerCreatedEvent struct {
 	Email     vo.Email    `json:"email"`
 }
 
+// NewCustomerCreatedEvent creates new CustomerCreatedEvent
 func NewCustomerCreatedEvent(
 	aggregate common.Aggregate,
 	fullName vo.FullName, addressID uuid.UUID,
@@ -44,6 +45,7 @@ type TransactionsUpdatedEvent struct {
 	Transaction *entities.CustomerTransactions `json:"transaction"`
 }
 
+// NewTransactionsUpdatedEvent creates new TransactionsUpdatedEvent
 func NewTransactionsUpdatedEvent(
 	aggregate common.Aggregate,
 	transaction *entities.CustomerTransactions,
@@ -60,6 +62,7 @@ type BalanceUpdatedEvent struct {
 	Balance vo.Balance `json:"balance"`
 }
 
+// NewBalanceUpdatedEvent creates new BalanceUpdatedEvent
 func NewBalanceUpdatedEvent(
 	aggregate common.Aggregate,
 	balance vo.Balance,

@@ -6,7 +6,8 @@ type FullName struct {
 	LastName   string
 }
 
-func (FullName) Create(firstName, middleName, lastName string) (FullName, error) {
+// NewFullName creates new FullName value object
+func NewFullName(firstName, middleName, lastName string) (FullName, error) {
 	if firstName == "" {
 		// TODO: add exception
 		return FullName{}, nil

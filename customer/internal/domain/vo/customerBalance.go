@@ -5,34 +5,42 @@ type Balance struct {
 	FrozenMoney    Money
 }
 
-func NewCustomerBalance() Balance {
+// NewBalance creates new Balance value object
+func NewBalance() Balance {
 	return Balance{
-		AvailableMoney: Money{Value: 0},
-		FrozenMoney:    Money{Value: 0},
+		AvailableMoney: NewMoney(),
+		FrozenMoney:    NewMoney(),
 	}
 }
 
+// SubAvailableMoney Sub returns new Balance value object with subtracted money
 func (b *Balance) SubAvailableMoney(money Money) {
-	b.AvailableMoney.Value -= money.Value
+	b.AvailableMoney.Sub(money)
 }
+
+// AddFrozenMoney Add returns new Balance value object with added money
 func (b *Balance) AddFrozenMoney(money Money) {
-	b.FrozenMoney.Value += money.Value
+	b.FrozenMoney.Add(money)
 }
+
+// EqAvailableMoney Eq returns true if money is equal to balance
 func (b *Balance) EqAvailableMoney(money Money) bool {
-	if b.AvailableMoney.Value == money.Value {
-		return false
+	if b.AvailableMoney.Eq(money) {
+		return true
 	}
-	return true
+	return false
 }
+
+// AddAvailableMoney Add returns new Balance value object with added money
 func (b *Balance) AddAvailableMoney(money Money) {
-	b.AvailableMoney.Value += money.Value
+	b.AvailableMoney.Add(money)
 }
 func (b *Balance) SubFrozenMoney(money Money) {
-	b.FrozenMoney.Value -= money.Value
+	b.FrozenMoney.Sub(money)
 }
 func (b *Balance) AddFrozenMoneyFromAvailable(money Money) {
-	b.AvailableMoney.Value -= money.Value
-	b.FrozenMoney.Value += money.Value
+	b.AvailableMoney.Sub(money)
+	b.FrozenMoney.Add(money)
 }
 
 func (b *Balance) DepositBalance(money Money) Balance {

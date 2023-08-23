@@ -12,7 +12,7 @@ func (a *CustomerAggregate) CreateCustomer(
 	addressID uuid.UUID,
 	email vo.Email,
 ) error {
-	event, err := events.NewCustomerCreatedEvent(a, fullName, addressID, email, vo.NewCustomerBalance())
+	event, err := events.NewCustomerCreatedEvent(a, fullName, addressID, email, vo.NewBalance())
 	if err != nil {
 		return err
 	}

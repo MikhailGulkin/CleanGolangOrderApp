@@ -31,13 +31,16 @@ func CreateCustomerTest(customer *CustomerAggregate) func(t *testing.T) {
 		if err := customer.CreateCustomer(createEvent.FullName, createEvent.AddressID, createEvent.Email); err != nil {
 			t.Fatal(err)
 		}
+		if customer.Customer.Email != createEvent.Email {
+			t.Fatal("wrong email")
+		}
 		if customer.Customer.FullName != createEvent.FullName {
 			t.Fatal("wrong full name")
 		}
 		if customer.Customer.AddressID != createEvent.AddressID {
 			t.Fatal("wrong address id")
 		}
-		if customer.Customer.Balance != vo.NewCustomerBalance() {
+		if customer.Customer.Balance != vo.NewBalance() {
 			t.Fatal("wrong balance")
 		}
 		if len(customer.GetUncommittedEvents()) != 1 {

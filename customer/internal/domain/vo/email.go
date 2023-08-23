@@ -4,7 +4,8 @@ type Email struct {
 	Email string `json:"email"`
 }
 
-func (Email) Create(email string) (Email, error) {
+// NewEmail creates new Email value object
+func NewEmail(email string) (Email, error) {
 	if email == "" {
 		return Email{}, nil
 	}

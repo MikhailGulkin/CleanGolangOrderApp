@@ -4,10 +4,25 @@ type Money struct {
 	Value float64
 }
 
-func (Money) Create(money float64) (Money, error) {
-	if money < 0 {
-		// TODO: add error handling
-		return Money{}, nil
+// NewMoney creates new Money value object
+func NewMoney() Money {
+	return Money{Value: 0}
+}
+
+// Sub subtracts money from Money
+func (m *Money) Sub(money Money) {
+	m.Value -= money.Value
+}
+
+// Add adds money to Money
+func (m *Money) Add(money Money) {
+	m.Value += money.Value
+}
+
+// Eq checks if Money is equal to money
+func (m *Money) Eq(money Money) bool {
+	if m.Value == money.Value {
+		return false
 	}
-	return Money{Value: money}, nil
+	return true
 }
