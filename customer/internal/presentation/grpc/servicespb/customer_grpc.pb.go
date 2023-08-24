@@ -47,21 +47,19 @@ func (c *customerServiceClient) CreateCustomer(ctx context.Context, in *CreateCu
 }
 
 // CustomerServiceServer is the server API for CustomerService service.
-// All implementations must embed UnimplementedCustomerServiceServer
+// All implementations should embed UnimplementedCustomerServiceServer
 // for forward compatibility
 type CustomerServiceServer interface {
 	CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error)
-	mustEmbedUnimplementedCustomerServiceServer()
 }
 
-// UnimplementedCustomerServiceServer must be embedded to have forward compatible implementations.
+// UnimplementedCustomerServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedCustomerServiceServer struct {
 }
 
 func (UnimplementedCustomerServiceServer) CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomer not implemented")
 }
-func (UnimplementedCustomerServiceServer) mustEmbedUnimplementedCustomerServiceServer() {}
 
 // UnsafeCustomerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to CustomerServiceServer will

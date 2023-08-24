@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "./servicespb";
+
+message CreateCustomerRequest {
+  string customerID = 1;
+  string firstName = 2;
+  string middleName = 3;
+  string lastName = 4;
+  string email = 5;
+  string addressID = 6;
+}
+
+message CreateCustomerResponse {
+  string id = 1;
+  string eventID = 2;
+}
+
+service CustomerService {
+  rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse);
+}

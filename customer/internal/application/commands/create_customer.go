@@ -1,20 +1,10 @@
-package command
+package commands
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
 	aggregate "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
 )
-
-//import (
-//	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/common/interfaces/persistence"
-//	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/customer/interfaces/command"
-//	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/customer/interfaces/persistence/dao"
-//	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/customer/interfaces/persistence/repo"
-//	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/services"
-//	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/user/vo"
-//)
-//
 
 type CreateCustomerHandler interface {
 	Handle(command CreateCustomerCommand) (CustomerCreateDTO, error)

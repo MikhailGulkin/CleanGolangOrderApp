@@ -9,3 +9,8 @@ migrate-down:
 	migrate -path ${MIGRATION_PATH} -database ${DB_URL} -verbose down
 migrate-force:
 	migrate -path ${MIGRATION_PATH} -database ${DB_URL} -verbose force ${VERSION}
+generate-customer:
+	cd protobuf && \
+	protoc --go_out=. \
+		  --go-grpc_out=. --go-grpc_opt=require_unimplemented_servers=false \
+			customer.proto

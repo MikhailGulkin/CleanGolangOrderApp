@@ -2,7 +2,9 @@ package db
 
 import (
 	"context"
+	"errors"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
 	"github.com/jackc/pgx/v4"
 )
@@ -11,8 +13,8 @@ type EventStore struct {
 	Conn Connection
 }
 
-func NewEventStore(conn Connection) EventStore {
-	return EventStore{
+func NewEventStore(conn Connection) persistence.EventStore {
+	return &EventStore{
 		Conn: conn,
 	}
 }
@@ -49,6 +51,9 @@ func (es *EventStore) Exists(id string) error {
 	var customerID string
 	err := row.Scan(&customerID)
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil
+		}
 		return err
 	}
 	if customerID == id {
