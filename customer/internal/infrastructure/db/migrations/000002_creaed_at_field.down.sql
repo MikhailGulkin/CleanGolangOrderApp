@@ -1,0 +1,5 @@
+ALTER TABLE IF EXISTS events
+    DROP COLUMN IF EXISTS created_at;
+
+ALTER TABLE IF EXISTS entities
+    DROP COLUMN IF EXISTS created_at;

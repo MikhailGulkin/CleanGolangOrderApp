@@ -4,6 +4,7 @@ services:
     container_name: orderService.api
     build:
       context: .
+      dockerfile: ./order/Dockerfile
     restart: on-failure
     expose:
       - "8000"
@@ -45,7 +46,7 @@ services:
       - .env
     volumes:
       - orderService.postgres.data:/var/lib/postgresql/users:rw
-      - ./configs/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./order/configs/db/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
       interval: 10s
@@ -68,7 +69,7 @@ services:
       - "127.0.0.1:5672:5672"
       - "127.0.0.1:15672:15672"
     env_file:
-      .env.dev
+      .env
     healthcheck:
       test: [ "CMD-SHELL", "rabbitmq-diagnostics check_running -q" ]
       interval: 30s

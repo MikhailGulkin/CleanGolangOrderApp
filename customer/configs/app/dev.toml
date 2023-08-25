@@ -1,0 +1,36 @@
+[app]
+mode='development'
+
+[api]
+host = "0.0.0.0"
+port = 8000
+base_url_prefix = "/api/v1"
+
+[db]
+host = "localhost"
+port = 5431
+database = "CustomerApp"
+user = "postgres"
+password = "1234"
+migration = true
+logging = true
+max_idle_connection = 100
+
+[broker]
+host = "localhost"
+port = 5672
+login = "admin"
+password = "admin"
+
+[cron]
+seconds = 5
+
+[logging]
+log_output=''
+log_level='info'
+
+[cache]
+host="localhost"
+port=6379
+password=""
+db=0

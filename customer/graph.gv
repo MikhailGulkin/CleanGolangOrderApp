@@ -1,0 +1,110 @@
+digraph {
+	rankdir=RL;
+	graph [compound=true];
+	
+		subgraph cluster_0 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_0 [shape=plaintext label="NewConfig"];
+			
+			"db.Config" [label=<db.Config>];
+			
+		}
+		
+		
+		subgraph cluster_1 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_1 [shape=plaintext label="NewConnection"];
+			
+			"db.Connection" [label=<db.Connection>];
+			
+		}
+		
+			constructor_1 -> "db.Config" [ltail=cluster_1];
+		
+		
+		subgraph cluster_2 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_2 [shape=plaintext label="NewEventStore"];
+			
+			"persistence.EventStore" [label=<persistence.EventStore>];
+			
+		}
+		
+			constructor_2 -> "db.Connection" [ltail=cluster_2];
+		
+		
+		subgraph cluster_3 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_3 [shape=plaintext label="NewUoWManager"];
+			
+			"persistence.UoWManager" [label=<persistence.UoWManager>];
+			
+		}
+		
+			constructor_3 -> "db.Connection" [ltail=cluster_3];
+		
+		
+		subgraph cluster_4 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application";
+			constructor_4 [shape=plaintext label="NewCustomerServices"];
+			
+			"*application.CustomerServices" [label=<*application.CustomerServices>];
+			
+		}
+		
+			constructor_4 -> "persistence.EventStore" [ltail=cluster_4];
+		
+			constructor_4 -> "persistence.UoWManager" [ltail=cluster_4];
+		
+		
+		subgraph cluster_5 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc";
+			constructor_5 [shape=plaintext label="NewGrpcServer"];
+			
+			"*grpc.GrpcServer" [label=<*grpc.GrpcServer>];
+			
+		}
+		
+			constructor_5 -> "servicespb.CustomerServiceServer" [ltail=cluster_5];
+		
+		
+		subgraph cluster_6 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc";
+			constructor_6 [shape=plaintext label="NewCustomerGrpcService"];
+			
+			"servicespb.CustomerServiceServer" [label=<servicespb.CustomerServiceServer>];
+			
+		}
+		
+			constructor_6 -> "*application.CustomerServices" [ltail=cluster_6];
+		
+		
+		subgraph cluster_7 {
+			label = "go.uber.org/fx";
+			constructor_7 [shape=plaintext label="New.func1"];
+			
+			"fx.Lifecycle" [label=<fx.Lifecycle>];
+			
+		}
+		
+		
+		subgraph cluster_8 {
+			label = "go.uber.org/fx";
+			constructor_8 [shape=plaintext label="(*App).shutdowner-fm"];
+			
+			"fx.Shutdowner" [label=<fx.Shutdowner>];
+			
+		}
+		
+		
+		subgraph cluster_9 {
+			label = "go.uber.org/fx";
+			constructor_9 [shape=plaintext label="(*App).dotGraph-fm"];
+			
+			"fx.DotGraph" [label=<fx.DotGraph>];
+			
+		}
+		
+		
+	
+}

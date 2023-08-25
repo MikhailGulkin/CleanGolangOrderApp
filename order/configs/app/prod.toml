@@ -1,0 +1,37 @@
+[app]
+mode='production'
+
+[api]
+host = "0.0.0.0"
+port = 8000
+base_url_prefix = "/api/v1"
+
+[db]
+host = "orderService.postgres"
+port = 5432
+database = "OrderApp"
+user = "postgres"
+password = "1234"
+migration = true
+logging = true
+max_idle_connection = 100
+
+[broker]
+host = "orderService.rabbitmq"
+port = 5672
+login = "admin"
+password = "admin"
+max_channels = 10
+
+[cron]
+seconds = 5
+
+[logging]
+log_output=''
+log_level='info'
+
+[cache]
+host="orderService.redis"
+port=6379
+password=""
+db=0

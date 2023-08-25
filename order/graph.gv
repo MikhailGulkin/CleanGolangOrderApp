@@ -1,0 +1,765 @@
+digraph {
+	rankdir=RL;
+	graph [compound=true];
+	
+		subgraph cluster_0 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/product";
+			constructor_0 [shape=plaintext label="BuildProductRepo"];
+			
+			"dao.ProductDAO" [label=<dao.ProductDAO>];
+			
+		}
+		
+			constructor_0 -> "dao.BaseGormRepo" [ltail=cluster_0];
+		
+		
+		subgraph cluster_1 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/product";
+			constructor_1 [shape=plaintext label="BuildProductReader"];
+			
+			"reader.ProductReader" [label=<reader.ProductReader>];
+			
+		}
+		
+			constructor_1 -> "dao.BaseGormDAO" [ltail=cluster_1];
+		
+		
+		subgraph cluster_2 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/orders";
+			constructor_2 [shape=plaintext label="BuildOrderRepo"];
+			
+			"repo.OrderRepo" [label=<repo.OrderRepo>];
+			
+		}
+		
+			constructor_2 -> "dao.BaseGormRepo" [ltail=cluster_2];
+		
+		
+		subgraph cluster_3 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/orders";
+			constructor_3 [shape=plaintext label="BuildOrderDAO"];
+			
+			"dao.OrderDAO" [label=<dao.OrderDAO>];
+			
+		}
+		
+			constructor_3 -> "dao.BaseGormRepo" [ltail=cluster_3];
+		
+		
+		subgraph cluster_4 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/orders";
+			constructor_4 [shape=plaintext label="BuildOrderSagaDAO"];
+			
+			"dao.OrderSagaDAO" [label=<dao.OrderSagaDAO>];
+			
+		}
+		
+			constructor_4 -> "dao.BaseGormRepo" [ltail=cluster_4];
+		
+		
+		subgraph cluster_5 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/uow";
+			constructor_5 [shape=plaintext label="BuildGormUoW"];
+			
+			"persistence.UoW" [label=<persistence.UoW>];
+			
+		}
+		
+			constructor_5 -> "*gorm.DB" [ltail=cluster_5];
+		
+		
+		subgraph cluster_6 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db";
+			constructor_6 [shape=plaintext label="BuildConnection"];
+			
+			"*gorm.DB" [label=<*gorm.DB>];
+			
+		}
+		
+			constructor_6 -> "logger.Logger" [ltail=cluster_6];
+		
+			constructor_6 -> "config.DBConfig" [ltail=cluster_6];
+		
+		
+		subgraph cluster_7 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db";
+			constructor_7 [shape=plaintext label="NewBaseRepo"];
+			
+			"dao.BaseGormRepo" [label=<dao.BaseGormRepo>];
+			
+		}
+		
+			constructor_7 -> "*gorm.DB" [ltail=cluster_7];
+		
+		
+		subgraph cluster_8 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db";
+			constructor_8 [shape=plaintext label="NewBaseDAO"];
+			
+			"dao.BaseGormDAO" [label=<dao.BaseGormDAO>];
+			
+		}
+		
+			constructor_8 -> "*gorm.DB" [ltail=cluster_8];
+		
+		
+		subgraph cluster_9 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/outbox";
+			constructor_9 [shape=plaintext label="BuildOutboxRepo"];
+			
+			"repo.OutboxRepo" [label=<repo.OutboxRepo>];
+			
+		}
+		
+			constructor_9 -> "dao.BaseGormRepo" [ltail=cluster_9];
+		
+		
+		subgraph cluster_10 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db/outbox";
+			constructor_10 [shape=plaintext label="BuildOutboxDAO"];
+			
+			"dao.OutboxDAO" [label=<dao.OutboxDAO>];
+			
+		}
+		
+			constructor_10 -> "dao.BaseGormRepo" [ltail=cluster_10];
+		
+		
+		subgraph cluster_11 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/product";
+			constructor_11 [shape=plaintext label="NewCreateProduct"];
+			
+			"command.CreateProduct" [label=<command.CreateProduct>];
+			
+		}
+		
+			constructor_11 -> "dao.ProductDAO" [ltail=cluster_11];
+		
+			constructor_11 -> "persistence.UoW" [ltail=cluster_11];
+		
+		
+		subgraph cluster_12 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/product";
+			constructor_12 [shape=plaintext label="NewGetALlProducts"];
+			
+			"query.GetAllProducts" [label=<query.GetAllProducts>];
+			
+		}
+		
+			constructor_12 -> "reader.ProductReader" [ltail=cluster_12];
+		
+			constructor_12 -> "logger.Logger" [ltail=cluster_12];
+		
+		
+		subgraph cluster_13 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/product";
+			constructor_13 [shape=plaintext label="NewUpdateProductName"];
+			
+			"command.UpdateProductName" [label=<command.UpdateProductName>];
+			
+		}
+		
+			constructor_13 -> "dao.ProductDAO" [ltail=cluster_13];
+		
+			constructor_13 -> "persistence.UoW" [ltail=cluster_13];
+		
+		
+		subgraph cluster_14 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/product";
+			constructor_14 [shape=plaintext label="NewGetProductByName"];
+			
+			"query.GetProductByName" [label=<query.GetProductByName>];
+			
+		}
+		
+			constructor_14 -> "reader.ProductReader" [ltail=cluster_14];
+		
+		
+		subgraph cluster_15 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_15 [shape=plaintext label="NewCreateOrder"];
+			
+			"command.CreateOrder" [label=<command.CreateOrder>];
+			
+		}
+		
+			constructor_15 -> "persistence.UoW" [ltail=cluster_15];
+		
+			constructor_15 -> "repo.OrderRepo" [ltail=cluster_15];
+		
+			constructor_15 -> "dao.OrderDAO" [ltail=cluster_15];
+		
+			constructor_15 -> "repo.OutboxRepo" [ltail=cluster_15];
+		
+		
+		subgraph cluster_16 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_16 [shape=plaintext label="NewDeleteOrderByID"];
+			
+			"command.DeleteOrder" [label=<command.DeleteOrder>];
+			
+		}
+		
+			constructor_16 -> "logger.Logger" [ltail=cluster_16];
+		
+			constructor_16 -> "repo.OrderRepo" [ltail=cluster_16];
+		
+			constructor_16 -> "persistence.UoW" [ltail=cluster_16];
+		
+			constructor_16 -> "repo.OutboxRepo" [ltail=cluster_16];
+		
+		
+		subgraph cluster_17 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_17 [shape=plaintext label="NewGetAllOrders"];
+			
+			"query.GetAllOrders" [label=<query.GetAllOrders>];
+			
+		}
+		
+			constructor_17 -> "reader.OrderCacheReader" [ltail=cluster_17];
+		
+		
+		subgraph cluster_18 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_18 [shape=plaintext label="NewGetOrderByID"];
+			
+			"query.GetOrderByID" [label=<query.GetOrderByID>];
+			
+		}
+		
+			constructor_18 -> "reader.OrderCacheReader" [ltail=cluster_18];
+		
+		
+		subgraph cluster_19 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_19 [shape=plaintext label="NewGetAllOrdersByUserID"];
+			
+			"query.GetAllOrdersByUserID" [label=<query.GetAllOrdersByUserID>];
+			
+		}
+		
+			constructor_19 -> "reader.OrderCacheReader" [ltail=cluster_19];
+		
+			constructor_19 -> "logger.Logger" [ltail=cluster_19];
+		
+		
+		subgraph cluster_20 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_20 [shape=plaintext label="NewCacheCreateOrder"];
+			
+			"cache.OrderCache" [label=<cache.OrderCache>];
+			
+		}
+		
+			constructor_20 -> "dao.OrderCacheDAO" [ltail=cluster_20];
+		
+			constructor_20 -> "logger.Logger" [ltail=cluster_20];
+		
+		
+		subgraph cluster_21 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/order";
+			constructor_21 [shape=plaintext label="NewSagaCreateOrder"];
+			
+			"saga.CreateOrder" [label=<saga.CreateOrder>];
+			
+		}
+		
+			constructor_21 -> "dao.OrderSagaDAO" [ltail=cluster_21];
+		
+			constructor_21 -> "persistence.UoW" [ltail=cluster_21];
+		
+			constructor_21 -> "logger.Logger" [ltail=cluster_21];
+		
+			constructor_21 -> "dao.OutboxDAO" [ltail=cluster_21];
+		
+		
+		subgraph cluster_22 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/interactors/relay";
+			constructor_22 [shape=plaintext label="NewOutboxRelay"];
+			
+			"interactors.Relay" [label=<interactors.Relay>];
+			
+		}
+		
+			constructor_22 -> "dao.OutboxDAO" [ltail=cluster_22];
+		
+			constructor_22 -> "broker.MessageBroker" [ltail=cluster_22];
+		
+		
+		subgraph cluster_23 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker";
+			constructor_23 [shape=plaintext label="BuildAMPQ"];
+			
+			"messagebroker.Rabbit" [label=<messagebroker.Rabbit>];
+			
+		}
+		
+			constructor_23 -> "config.MessageBrokerConfig" [ltail=cluster_23];
+		
+			constructor_23 -> "logger.Logger" [ltail=cluster_23];
+		
+		
+		subgraph cluster_24 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate";
+			constructor_24 [shape=plaintext label="NewMessageBrokerConfigure"];
+			
+			"interfaces.BaseMessageBrokerConfigure" [label=<interfaces.BaseMessageBrokerConfigure>];
+			
+		}
+		
+			constructor_24 -> "messagebroker.Rabbit" [ltail=cluster_24];
+		
+		
+		subgraph cluster_25 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate/order";
+			constructor_25 [shape=plaintext label="NewSetupBroker"];
+			
+			"order.BrokerSetup" [label=<order.BrokerSetup>];
+			
+		}
+		
+			constructor_25 -> "interfaces.BaseMessageBrokerConfigure" [ltail=cluster_25];
+		
+		
+		subgraph cluster_26 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/brokerConfigurate";
+			constructor_26 [shape=plaintext label="NewBrokerSetup"];
+			
+			"brokerconfigurate.Brokers" [label=<brokerconfigurate.Brokers>];
+			
+		}
+		
+			constructor_26 -> "order.BrokerSetup" [ltail=cluster_26];
+		
+		
+		subgraph cluster_27 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/messageBroker/controller";
+			constructor_27 [shape=plaintext label="NewMessageBroker"];
+			
+			"broker.MessageBroker" [label=<broker.MessageBroker>];
+			
+		}
+		
+			constructor_27 -> "messagebroker.Rabbit" [ltail=cluster_27];
+		
+		
+		subgraph cluster_28 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/cache";
+			constructor_28 [shape=plaintext label="NewClient"];
+			
+			"cache.Cache" [label=<cache.Cache>];
+			
+		}
+		
+			constructor_28 -> "config.RedisConfig" [ltail=cluster_28];
+		
+		
+		subgraph cluster_29 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/cache/dao";
+			constructor_29 [shape=plaintext label="NewOrderCacheDAO"];
+			
+			"dao.OrderCacheDAO" [label=<dao.OrderCacheDAO>];
+			
+		}
+		
+			constructor_29 -> "cache.Cache" [ltail=cluster_29];
+		
+		
+		subgraph cluster_30 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/cache/reader";
+			constructor_30 [shape=plaintext label="NewOrderCacheReader"];
+			
+			"reader.OrderCacheReader" [label=<reader.OrderCacheReader>];
+			
+		}
+		
+			constructor_30 -> "cache.Cache" [ltail=cluster_30];
+		
+		
+		subgraph cluster_31 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/logger";
+			constructor_31 [shape=plaintext label="NewLogger"];
+			
+			"logger.Logger" [label=<logger.Logger>];
+			
+		}
+		
+			constructor_31 -> "config.LoggerConfig" [ltail=cluster_31];
+		
+		
+		subgraph cluster_32 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/mediator";
+			constructor_32 [shape=plaintext label="NewMediator"];
+			
+			"mediator.Mediator" [label=<mediator.Mediator>];
+			
+		}
+		
+			constructor_32 -> "query.GetAllProducts" [ltail=cluster_32];
+		
+			constructor_32 -> "query.GetProductByName" [ltail=cluster_32];
+		
+			constructor_32 -> "command.UpdateProductName" [ltail=cluster_32];
+		
+			constructor_32 -> "command.CreateProduct" [ltail=cluster_32];
+		
+			constructor_32 -> "command.CreateOrder" [ltail=cluster_32];
+		
+			constructor_32 -> "command.DeleteOrder" [ltail=cluster_32];
+		
+			constructor_32 -> "query.GetAllOrders" [ltail=cluster_32];
+		
+			constructor_32 -> "query.GetAllOrdersByUserID" [ltail=cluster_32];
+		
+			constructor_32 -> "query.GetOrderByID" [ltail=cluster_32];
+		
+		
+		subgraph cluster_33 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_33 [shape=plaintext label="NewConfig"];
+			
+			"config.Config" [label=<config.Config>];
+			
+		}
+		
+		
+		subgraph cluster_34 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_34 [shape=plaintext label="NewDBConfig"];
+			
+			"config.DBConfig" [label=<config.DBConfig>];
+			
+		}
+		
+			constructor_34 -> "config.Config" [ltail=cluster_34];
+		
+		
+		subgraph cluster_35 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_35 [shape=plaintext label="NewAPIConfig"];
+			
+			"config.APIConfig" [label=<config.APIConfig>];
+			
+		}
+		
+			constructor_35 -> "config.Config" [ltail=cluster_35];
+		
+		
+		subgraph cluster_36 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_36 [shape=plaintext label="NewBrokerConfig"];
+			
+			"config.MessageBrokerConfig" [label=<config.MessageBrokerConfig>];
+			
+		}
+		
+			constructor_36 -> "config.Config" [ltail=cluster_36];
+		
+		
+		subgraph cluster_37 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_37 [shape=plaintext label="NewCronConfig"];
+			
+			"config.CronConfig" [label=<config.CronConfig>];
+			
+		}
+		
+			constructor_37 -> "config.Config" [ltail=cluster_37];
+		
+		
+		subgraph cluster_38 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_38 [shape=plaintext label="NewLoggerConfig"];
+			
+			"config.LoggerConfig" [label=<config.LoggerConfig>];
+			
+		}
+		
+			constructor_38 -> "config.Config" [ltail=cluster_38];
+		
+		
+		subgraph cluster_39 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_39 [shape=plaintext label="NewCacheConfig"];
+			
+			"config.RedisConfig" [label=<config.RedisConfig>];
+			
+		}
+		
+			constructor_39 -> "config.Config" [ltail=cluster_39];
+		
+		
+		subgraph cluster_40 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/config";
+			constructor_40 [shape=plaintext label="NewAppConfig"];
+			
+			"config.AppConfig" [label=<config.AppConfig>];
+			
+		}
+		
+			constructor_40 -> "config.Config" [ltail=cluster_40];
+		
+		
+		subgraph cluster_41 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/middleware/errorHandler";
+			constructor_41 [shape=plaintext label="NewErrorMiddleware"];
+			
+			"errorhandler.ErrorMiddleware" [label=<errorhandler.ErrorMiddleware>];
+			
+		}
+		
+			constructor_41 -> "logger.Logger" [ltail=cluster_41];
+		
+		
+		subgraph cluster_42 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/middleware/logging";
+			constructor_42 [shape=plaintext label="NewLoggerMiddleware"];
+			
+			"logging.LoggerMiddleware" [label=<logging.LoggerMiddleware>];
+			
+		}
+		
+			constructor_42 -> "logger.Logger" [ltail=cluster_42];
+		
+		
+		subgraph cluster_43 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/middleware";
+			constructor_43 [shape=plaintext label="NewMiddlewares"];
+			
+			"middleware.Middlewares" [label=<middleware.Middlewares>];
+			
+		}
+		
+			constructor_43 -> "errorhandler.ErrorMiddleware" [ltail=cluster_43];
+		
+			constructor_43 -> "logging.LoggerMiddleware" [ltail=cluster_43];
+		
+		
+		subgraph cluster_44 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/engine";
+			constructor_44 [shape=plaintext label="NewRequestHandler"];
+			
+			"engine.RequestHandler" [label=<engine.RequestHandler>];
+			
+		}
+		
+			constructor_44 -> "logger.Logger" [ltail=cluster_44];
+		
+			constructor_44 -> "config.APIConfig" [ltail=cluster_44];
+		
+		
+		subgraph cluster_45 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/handlers/product";
+			constructor_45 [shape=plaintext label="NewProductHandler"];
+			
+			"product.Handler" [label=<product.Handler>];
+			
+		}
+		
+			constructor_45 -> "mediator.Mediator" [ltail=cluster_45];
+		
+		
+		subgraph cluster_46 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/handlers/order";
+			constructor_46 [shape=plaintext label="NewOrderHandler"];
+			
+			"order.Handler" [label=<order.Handler>];
+			
+		}
+		
+			constructor_46 -> "mediator.Mediator" [ltail=cluster_46];
+		
+		
+		subgraph cluster_47 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/handlers/healthcheck";
+			constructor_47 [shape=plaintext label="NewHealthCheckHandler"];
+			
+			"healthcheck.Handler" [label=<healthcheck.Handler>];
+			
+		}
+		
+		
+		subgraph cluster_48 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes";
+			constructor_48 [shape=plaintext label="NewRoutes"];
+			
+			"routes.Routes" [label=<routes.Routes>];
+			
+		}
+		
+			constructor_48 -> "product.Routes" [ltail=cluster_48];
+		
+			constructor_48 -> "order.Routes" [ltail=cluster_48];
+		
+			constructor_48 -> "healthcheck.Routes" [ltail=cluster_48];
+		
+		
+		subgraph cluster_49 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes";
+			constructor_49 [shape=plaintext label="NewGroupRoutes"];
+			
+			"engine.GroupRoutes" [label=<engine.GroupRoutes>];
+			
+		}
+		
+			constructor_49 -> "config.APIConfig" [ltail=cluster_49];
+		
+			constructor_49 -> "engine.RequestHandler" [ltail=cluster_49];
+		
+			constructor_49 -> "middleware.Middlewares" [ltail=cluster_49];
+		
+		
+		subgraph cluster_50 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes/product";
+			constructor_50 [shape=plaintext label="NewProductRoutes"];
+			
+			"product.Routes" [label=<product.Routes>];
+			
+		}
+		
+			constructor_50 -> "engine.GroupRoutes" [ltail=cluster_50];
+		
+			constructor_50 -> "product.Handler" [ltail=cluster_50];
+		
+		
+		subgraph cluster_51 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes/order";
+			constructor_51 [shape=plaintext label="NewOrderRoutes"];
+			
+			"order.Routes" [label=<order.Routes>];
+			
+		}
+		
+			constructor_51 -> "engine.GroupRoutes" [ltail=cluster_51];
+		
+			constructor_51 -> "order.Handler" [ltail=cluster_51];
+		
+		
+		subgraph cluster_52 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/controllers/routes/healthcheck";
+			constructor_52 [shape=plaintext label="NewHealthCheckRoutes"];
+			
+			"healthcheck.Routes" [label=<healthcheck.Routes>];
+			
+		}
+		
+			constructor_52 -> "engine.RequestHandler" [ltail=cluster_52];
+		
+			constructor_52 -> "healthcheck.Handler" [ltail=cluster_52];
+		
+			constructor_52 -> "logging.LoggerMiddleware" [ltail=cluster_52];
+		
+		
+		subgraph cluster_53 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/api/prometheus";
+			constructor_53 [shape=plaintext label="NewPrometheus"];
+			
+			"prometheus.Prometheus" [label=<prometheus.Prometheus>];
+			
+		}
+		
+		
+		subgraph cluster_54 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/consumer/subscribers";
+			constructor_54 [shape=plaintext label="NewEventConsumer"];
+			
+			"subscribers.Subscribers" [label=<subscribers.Subscribers>];
+			
+		}
+		
+			constructor_54 -> "messagebroker.Rabbit" [ltail=cluster_54];
+		
+			constructor_54 -> "saga.CreateOrder" [ltail=cluster_54];
+		
+			constructor_54 -> "cache.OrderCache" [ltail=cluster_54];
+		
+			constructor_54 -> "logger.Logger" [ltail=cluster_54];
+		
+		
+		subgraph cluster_55 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/handlers";
+			constructor_55 [shape=plaintext label="NewHandlers"];
+			
+			"handlers.Handlers" [label=<handlers.Handlers>];
+			
+		}
+		
+			constructor_55 -> "relay.CronRelayHandler" [ltail=cluster_55];
+		
+		
+		subgraph cluster_56 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/handlers/relay";
+			constructor_56 [shape=plaintext label="NewCronHandler"];
+			
+			"relay.CronRelayHandler" [label=<relay.CronRelayHandler>];
+			
+		}
+		
+			constructor_56 -> "engine.CronController" [ltail=cluster_56];
+		
+			constructor_56 -> "interactors.Relay" [ltail=cluster_56];
+		
+		
+		subgraph cluster_57 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/engine";
+			constructor_57 [shape=plaintext label="NewCron"];
+			
+			"*cron.Cron" [label=<*cron.Cron>];
+			
+		}
+		
+		
+		subgraph cluster_58 {
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/presentation/cron/engine";
+			constructor_58 [shape=plaintext label="NewCronController"];
+			
+			"engine.CronController" [label=<engine.CronController>];
+			
+		}
+		
+			constructor_58 -> "*cron.Cron" [ltail=cluster_58];
+		
+			constructor_58 -> "config.CronConfig" [ltail=cluster_58];
+		
+		
+		subgraph cluster_59 {
+			label = "go.uber.org/fx";
+			constructor_59 [shape=plaintext label="New.func1"];
+			
+			"fx.Lifecycle" [label=<fx.Lifecycle>];
+			
+		}
+		
+		
+		subgraph cluster_60 {
+			label = "go.uber.org/fx";
+			constructor_60 [shape=plaintext label="(*App).shutdowner-fm"];
+			
+			"fx.Shutdowner" [label=<fx.Shutdowner>];
+			
+		}
+		
+		
+		subgraph cluster_61 {
+			label = "go.uber.org/fx";
+			constructor_61 [shape=plaintext label="(*App).dotGraph-fm"];
+			
+			"fx.DotGraph" [label=<fx.DotGraph>];
+			
+		}
+		
+		
+		subgraph cluster_62 {
+			label = "main";
+			constructor_62 [shape=plaintext label="main.func1"];
+			
+			"fxevent.Logger" [label=<fxevent.Logger>];
+			
+		}
+		
+			constructor_62 -> "logger.Logger" [ltail=cluster_62];
+		
+		
+	
+}
