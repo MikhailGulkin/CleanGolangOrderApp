@@ -1,35 +1,19 @@
 package main
 
+import (
+	"github.com/99designs/gqlgen/handler"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer-gateway/internal/graphql"
+	"log"
+	"net/http"
+)
+
 func main() {
-	//conn, err := grpc.Dial("localhost:50052", grpc.WithInsecure())
-	//if err != nil {
-	//	log.Fatalf("Ошибка при подключении: %v", err)
-	//}
-	//
-	//defer func(conn *grpc.ClientConn) {
-	//	err := conn.Close()
-	//	if err != nil {
-	//
-	//	}
-	//}(conn)
-	//
-	//// Создание клиентского объекта
-	//client := servicespb.NewCustomerServiceClient(conn)
-	//
-	//// Напиши код, чтобы он слал запросы раз в 5 минут
-	//// Вызов метода сервера
-	//for i := 0; i < 100; i++ {
-	//	request := &servicespb.CreateCustomerRequest{
-	//		Email: "Привет, сервер!",
-	//	}
-	//
-	//	response, err := client.CreateCustomer(context.Background(), request)
-	//	if err != nil {
-	//		log.Fatalf("Ошибка при вызове метода: %v", err)
-	//	}
-	//
-	//	// Обработка ответа от сервера
-	//	fmt.Printf("Ответ сервера: %s\n", response.Id)
-	//	time.Sleep(5 * time.Second)
-	//}
+	s, err := graphql.NewGraphQLServer("localhost:50052")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	http.Handle("/graphql", handler.GraphQL(s.ToExecutableSchema()))
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

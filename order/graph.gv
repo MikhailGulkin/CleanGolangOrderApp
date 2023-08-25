@@ -58,7 +58,7 @@ digraph {
 		
 		
 		subgraph cluster_5 {
-			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db";
+			label = "github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/uow";
 			constructor_5 [shape=plaintext label="BuildGormUoW"];
 			
 			"persistence.UoW" [label=<persistence.UoW>];

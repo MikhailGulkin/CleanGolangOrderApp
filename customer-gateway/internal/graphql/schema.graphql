@@ -1,0 +1,21 @@
+input CustomerInput {
+    id: ID!
+    firstName: String!
+    middleName: String!
+    lastName: String!
+    email: String!
+    addressID: String!
+}
+type CustomerResponse {
+    id: ID!
+    event: String!
+}
+input SomeQuery {
+    id: ID!
+}
+type Query {
+    getCustomer(id: SomeQuery!): CustomerResponse
+}
+type Mutation {
+    createCustomer(customer: CustomerInput!): CustomerResponse
+}

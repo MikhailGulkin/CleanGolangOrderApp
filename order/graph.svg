@@ -296,8 +296,8 @@
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_5</title>
-<polygon fill="none" stroke="#000000" points="2237.2655,-2094 2237.2655,-2225 2781.7912,-2225 2781.7912,-2094 2237.2655,-2094"/>
-<text text-anchor="middle" x="2509.5283" y="-2208.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/di/factories/db</text>
+<polygon fill="none" stroke="#000000" points="2256.2655,-2094 2256.2655,-2225 2761.7912,-2225 2761.7912,-2094 2256.2655,-2094"/>
+<text text-anchor="middle" x="2509.0283" y="-2208.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/MikhailGulkin/CleanGolangOrderApp/order/internal/infrastructure/db/uow</text>
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_4</title>
@@ -435,7 +435,7 @@
 <!-- constructor_5&#45;&gt;*gorm.DB -->
 <g id="edge6" class="edge">
 <title>constructor_5&#45;&gt;*gorm.DB</title>
-<path fill="none" stroke="#000000" d="M2237.2681,-2160.4354C2217.6744,-2156.7974 2198.3624,-2152.3706 2179.8626,-2147 1872.209,-2057.6856 1774.5968,-2031.9066 1541.64,-1812 1404.6055,-1682.6422 1312.874,-1468.119 1283.3719,-1392.4499"/>
+<path fill="none" stroke="#000000" d="M2256.2692,-2163.7101C2230.1979,-2159.5508 2204.3204,-2154.1003 2179.8626,-2147 1872.209,-2057.6856 1774.5968,-2031.9066 1541.64,-1812 1404.6055,-1682.6422 1312.874,-1468.119 1283.3719,-1392.4499"/>
 <polygon fill="#000000" stroke="#000000" points="1286.6375,-1391.1905 1279.776,-1383.1177 1280.1057,-1393.7074 1286.6375,-1391.1905"/>
 </g>
 <!-- persistence.UoW -->
