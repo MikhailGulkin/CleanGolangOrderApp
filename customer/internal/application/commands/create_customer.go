@@ -41,13 +41,15 @@ func (c *createCustomerHandler) Handle(command CreateCustomerCommand) (CustomerC
 	if err := customer.CreateCustomer(fullName, command.AddressID, email); err != nil {
 		return CustomerCreateDTO{}, err
 	}
+
+	if err := c.EventStore.Exists(customer.GetID()); err != nil {
+		return CustomerCreateDTO{}, err
+	}
 	uow := c.UoWManager.GetUoW()
+
 	tx, errTx := uow.Begin()
 	if errTx != nil {
 		return CustomerCreateDTO{}, errTx
-	}
-	if err := c.EventStore.Exists(customer.GetID()); err != nil {
-		return CustomerCreateDTO{}, err
 	}
 	if err := c.EventStore.Create(customer, tx); err != nil {
 		return CustomerCreateDTO{}, err

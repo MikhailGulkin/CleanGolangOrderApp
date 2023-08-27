@@ -61,18 +61,18 @@ digraph {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc";
 			constructor_5 [shape=plaintext label="NewGrpcServer"];
 			
-			"*grpc.GrpcServer" [label=<*grpc.GrpcServer>];
+			"*grpc.Server" [label=<*grpc.Server>];
 			
 		}
 		
-			constructor_5 -> "servicespb.CustomerServiceServer" [ltail=cluster_5];
+			constructor_5 -> "pb.CustomerServiceServer" [ltail=cluster_5];
 		
 		
 		subgraph cluster_6 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc";
 			constructor_6 [shape=plaintext label="NewCustomerGrpcService"];
 			
-			"servicespb.CustomerServiceServer" [label=<servicespb.CustomerServiceServer>];
+			"pb.CustomerServiceServer" [label=<pb.CustomerServiceServer>];
 			
 		}
 		

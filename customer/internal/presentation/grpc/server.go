@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"fmt"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc/servicespb"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc/pb"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
@@ -18,25 +18,25 @@ const (
 	gRPCTime          = 10
 )
 
-type GrpcServer struct {
-	service servicespb.CustomerServiceServer
+type Server struct {
+	service pb.CustomerServiceServer
 }
 
-func NewGrpcServer(service servicespb.CustomerServiceServer) *GrpcServer {
-	return &GrpcServer{
+func NewGrpcServer(service pb.CustomerServiceServer) *Server {
+	return &Server{
 		service: service,
 	}
 }
 
-func (g *GrpcServer) Run() error {
+func (g *Server) Run(port string) error {
 	s := grpc.NewServer(grpc.KeepaliveParams(keepalive.ServerParameters{
 		MaxConnectionIdle: maxConnectionIdle * time.Minute,
 		Timeout:           gRPCTimeout * time.Second,
 		MaxConnectionAge:  maxConnectionAge * time.Minute,
 		Time:              gRPCTime * time.Minute,
 	}))
-	servicespb.RegisterCustomerServiceServer(s, g.service)
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 50052))
+	pb.RegisterCustomerServiceServer(s, g.service)
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%s", port))
 
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
