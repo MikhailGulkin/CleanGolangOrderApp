@@ -69,7 +69,7 @@ func (c *createCustomerHandler) Handle(command CreateCustomerCommand) (CustomerC
 		return CustomerCreateDTO{}, err
 	}
 	return CustomerCreateDTO{
-		CustomerID: customer.Customer.StringID(),
+		CustomerID: customer.GetID(),
 		EventID:    event.GetEventID(),
 	}, nil
 }

@@ -1,6 +1,8 @@
 package db
 
-import "time"
+import (
+	"time"
+)
 
 type Event struct {
 	EventID    string
@@ -15,4 +17,11 @@ type Entity struct {
 	EntityID      string
 	EntityVersion int64
 	CreatedAt     time.Time
+}
+type OutboxMessage struct {
+	Exchange    string
+	Route       string
+	Payload     []byte
+	AggregateID string
+	EventStatus int
 }

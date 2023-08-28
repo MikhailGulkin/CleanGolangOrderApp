@@ -22,3 +22,11 @@ func ConvertDomainEventToEventModel(event common.Event) Event {
 		CreatedAt:  event.GetTimeStamp(),
 	}
 }
+func ConvertDomainEventToOutboxMessage(event common.Event) OutboxMessage {
+	return OutboxMessage{
+		Exchange:    "Customer",
+		Route:       "Customer",
+		Payload:     event.GetData(),
+		AggregateID: event.GetAggregateID(),
+	}
+}

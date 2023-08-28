@@ -4,40 +4,40 @@ digraph {
 	
 		subgraph cluster_0 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_0 [shape=plaintext label="NewConfig"];
+			constructor_0 [shape=plaintext label="NewOutbox"];
+			
+			"persistence.Outbox" [label=<persistence.Outbox>];
+			
+		}
+		
+			constructor_0 -> "db.Connection" [ltail=cluster_0];
+		
+		
+		subgraph cluster_1 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_1 [shape=plaintext label="NewConfig"];
 			
 			"db.Config" [label=<db.Config>];
 			
 		}
 		
 		
-		subgraph cluster_1 {
+		subgraph cluster_2 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_1 [shape=plaintext label="NewConnection"];
+			constructor_2 [shape=plaintext label="NewConnection"];
 			
 			"db.Connection" [label=<db.Connection>];
 			
 		}
 		
-			constructor_1 -> "db.Config" [ltail=cluster_1];
-		
-		
-		subgraph cluster_2 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_2 [shape=plaintext label="NewEventStore"];
-			
-			"persistence.EventStore" [label=<persistence.EventStore>];
-			
-		}
-		
-			constructor_2 -> "db.Connection" [ltail=cluster_2];
+			constructor_2 -> "db.Config" [ltail=cluster_2];
 		
 		
 		subgraph cluster_3 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_3 [shape=plaintext label="NewUoWManager"];
+			constructor_3 [shape=plaintext label="NewEventStore"];
 			
-			"persistence.UoWManager" [label=<persistence.UoWManager>];
+			"persistence.EventStore" [label=<persistence.EventStore>];
 			
 		}
 		
@@ -45,61 +45,74 @@ digraph {
 		
 		
 		subgraph cluster_4 {
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_4 [shape=plaintext label="NewUoWManager"];
+			
+			"persistence.UoWManager" [label=<persistence.UoWManager>];
+			
+		}
+		
+			constructor_4 -> "db.Connection" [ltail=cluster_4];
+		
+		
+		subgraph cluster_5 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application";
-			constructor_4 [shape=plaintext label="NewCustomerServices"];
+			constructor_5 [shape=plaintext label="NewCustomerServices"];
 			
 			"*application.CustomerServices" [label=<*application.CustomerServices>];
 			
 		}
 		
-			constructor_4 -> "persistence.EventStore" [ltail=cluster_4];
+			constructor_5 -> "persistence.EventStore" [ltail=cluster_5];
 		
-			constructor_4 -> "persistence.UoWManager" [ltail=cluster_4];
+			constructor_5 -> "persistence.Outbox" [ltail=cluster_5];
+		
+			constructor_5 -> "persistence.UoWManager" [ltail=cluster_5];
 		
 		
-		subgraph cluster_5 {
+		subgraph cluster_6 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc";
-			constructor_5 [shape=plaintext label="NewGrpcServer"];
+			constructor_6 [shape=plaintext label="NewGrpcServer"];
 			
 			"*grpc.Server" [label=<*grpc.Server>];
 			
 		}
 		
-			constructor_5 -> "pb.CustomerServiceServer" [ltail=cluster_5];
+			constructor_6 -> "pb.CustomerServiceServer" [ltail=cluster_6];
 		
 		
-		subgraph cluster_6 {
+		subgraph cluster_7 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc";
-			constructor_6 [shape=plaintext label="NewCustomerGrpcService"];
+			constructor_7 [shape=plaintext label="NewCustomerGrpcService"];
 			
 			"pb.CustomerServiceServer" [label=<pb.CustomerServiceServer>];
 			
 		}
 		
-			constructor_6 -> "*application.CustomerServices" [ltail=cluster_6];
+			constructor_7 -> "*application.CustomerServices" [ltail=cluster_7];
 		
 		
-		subgraph cluster_7 {
+		subgraph cluster_8 {
 			label = "go.uber.org/fx";
-			constructor_7 [shape=plaintext label="New.func1"];
+			constructor_8 [shape=plaintext label="New.func1"];
 			
 			"fx.Lifecycle" [label=<fx.Lifecycle>];
 			
 		}
 		
 		
-		subgraph cluster_8 {
+		subgraph cluster_9 {
 			label = "go.uber.org/fx";
-			constructor_8 [shape=plaintext label="(*App).shutdowner-fm"];
+			constructor_9 [shape=plaintext label="(*App).shutdowner-fm"];
 			
 			"fx.Shutdowner" [label=<fx.Shutdowner>];
 			
 		}
 		
 		
-		subgraph cluster_9 {
+		subgraph cluster_10 {
 			label = "go.uber.org/fx";
-			constructor_9 [shape=plaintext label="(*App).dotGraph-fm"];
+			constructor_10 [shape=plaintext label="(*App).dotGraph-fm"];
 			
 			"fx.DotGraph" [label=<fx.DotGraph>];
 			

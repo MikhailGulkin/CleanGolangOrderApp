@@ -6,13 +6,14 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
 	"github.com/go-faker/faker/v4"
 	"github.com/google/uuid"
+	"strings"
 	"testing"
 )
 
 func TestCustomer(t *testing.T) {
 	id := uuid.New()
 	customer := NewCustomerAggregateWithID(id)
-	if customer.Customer.CustomerID.Value != id {
+	if strings.Contains(customer.GetID(), id.String()) == false {
 		t.Fatal("wrong id")
 	}
 	t.Run("create customer", CreateCustomerTest(customer))

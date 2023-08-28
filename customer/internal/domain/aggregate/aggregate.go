@@ -12,7 +12,6 @@ const (
 )
 
 type Customer struct {
-	vo.CustomerID
 	FullName     vo.FullName
 	AddressID    uuid.UUID
 	Email        vo.Email
@@ -49,7 +48,6 @@ func NewCustomerAggregateWithID(id uuid.UUID) *CustomerAggregate {
 
 	aggregate := NewCustomerAggregate()
 	aggregate.SetID(id.String())
-	aggregate.Customer.SetID(id)
 	return aggregate
 }
 
