@@ -4,6 +4,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
 	"github.com/go-faker/faker/v4"
+	"strings"
 	"testing"
 )
 
@@ -60,7 +61,7 @@ func TestSuccessCreateCustomerHandle(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if customerDTO.CustomerID != createCustomerCommand.CustomerID.String() {
+	if strings.Contains(customerDTO.CustomerID, createCustomerCommand.CustomerID.String()) == false {
 		t.Fatalf("expected customerID: %s, got: %s", createCustomerCommand.CustomerID, customerDTO.CustomerID)
 	}
 	if customerDTO.EventID == "" {

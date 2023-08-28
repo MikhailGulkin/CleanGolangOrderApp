@@ -1,5 +1,7 @@
 github.com/99designs/gqlgen v0.17.36 h1:u/o/rv2SZ9s5280dyUOOrkpIIkr/7kITMXYD3rkJ9go=
 github.com/99designs/gqlgen v0.17.36/go.mod h1:6RdyY8puhCoWAQVr2qzF2OMVfudQzc8ACxzpzluoQm4=
+github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env v0.0.0-20230825192009-3a1d4df0af00 h1:NPqtEicVXVcMJ8U8+PzWznvgP/cw6MssGEzxoRKvaQY=
+github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env v0.0.0-20230825192009-3a1d4df0af00/go.mod h1:XtM11ZVR8qEBMwanEVfl7dxFmfrKTXenZyQmH3OpPzc=
 github.com/agnivade/levenshtein v1.1.1 h1:QY8M92nrzkmr798gCo3kmMyqXFzdQVpxLlGPRBij0P8=
 github.com/agnivade/levenshtein v1.1.1/go.mod h1:veldBMzWxcCG2ZvUTKD2kJNRdCk5hVbJomOvKkmgYbo=
 github.com/andreyvit/diff v0.0.0-20170406064948-c7f18ee00883 h1:bvNMNQO63//z+xNgfBlViaCIJKLlCJ6/fmUseuG0wVQ=

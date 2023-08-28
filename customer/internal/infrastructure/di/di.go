@@ -7,6 +7,7 @@ import (
 )
 
 var Module = fx.Provide(
+	db.NewOutbox,
 	db.NewConfig,
 	db.NewConnection,
 	db.NewEventStore,

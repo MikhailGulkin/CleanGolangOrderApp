@@ -67,3 +67,30 @@ func (es *EventStore) Update(_ common.Aggregate, _ interface{}) error {
 func (es *EventStore) Find(_ string) (common.Aggregate, error) {
 	return nil, nil
 }
+
+type Outbox struct {
+	Conn Connection
+}
+
+func NewOutbox(conn Connection) persistence.Outbox {
+	return &Outbox{
+		Conn: conn,
+	}
+}
+
+func (o *Outbox) AddEvents(events []common.Event, tx interface{}) error {
+	conn := tx.(pgx.Tx)
+	query := `INSERT INTO public.outbox (exchange, route, payload, aggregate_id)
+				VALUES ($1, $2, $3, $4);`
+	for _, e := range events {
+		event := ConvertDomainEventToOutboxMessage(e)
+		_, err := conn.Exec(
+			context.Background(),
+			query, event.Exchange, event.Route, event.Payload, event.AggregateID,
+		)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}

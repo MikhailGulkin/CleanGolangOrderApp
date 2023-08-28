@@ -3,25 +3,21 @@ package graphql
 
 import (
 	"github.com/99designs/gqlgen/graphql"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer-gateway/internal/grpc"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer-gateway/internal/grpc/pb"
 )
 
 type Server struct {
-	customerClient *grpc.Client
+	customerClient pb.CustomerServiceClient
 }
 
-func NewGraphQLServer(customerUrl string) (*Server, error) {
-	customerClient, err := grpc.NewClient(customerUrl)
-	if err != nil {
-		return nil, err
-	}
+func NewGraphQLServer(client pb.CustomerServiceClient) (*Server, error) {
 	return &Server{
-		customerClient: customerClient,
+		customerClient: client,
 	}, nil
 }
 func (s *Server) Mutation() MutationResolver {
 	return &mutationResolver{
-		client: s.customerClient.Client,
+		client: s.customerClient,
 	}
 }
 func (s *Server) Query() QueryResolver {

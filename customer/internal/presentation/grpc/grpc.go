@@ -3,6 +3,7 @@ package grpc
 import (
 	"context"
 	"fmt"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env"
 	"go.uber.org/fx"
 )
 
@@ -14,7 +15,7 @@ var Module = fx.Options(
 	fx.Invoke(Start),
 )
 
-func Start(lifecycle fx.Lifecycle, server *GrpcServer) {
+func Start(lifecycle fx.Lifecycle, server *Server) {
 	lifecycle.Append(
 		fx.Hook{
 			OnStart: func(context.Context) error {
@@ -24,7 +25,7 @@ func Start(lifecycle fx.Lifecycle, server *GrpcServer) {
 							fmt.Printf("Recovered when boot grpc server, r %s", r)
 						}
 					}()
-					err := server.Run()
+					err := server.Run(env.GetEnv("GRPC_PORT", "50052"))
 					if err != nil {
 						panic(err)
 					}

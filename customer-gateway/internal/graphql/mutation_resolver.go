@@ -2,19 +2,19 @@ package graphql
 
 import (
 	"context"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer-gateway/internal/grpc/servicespb"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer-gateway/internal/grpc/pb"
 	"time"
 )
 
 type mutationResolver struct {
-	client servicespb.CustomerServiceClient
+	client pb.CustomerServiceClient
 }
 
 func (r *mutationResolver) CreateCustomer(ctx context.Context, input CustomerInput) (*CustomerResponse, error) {
 	ctx, cancel := context.WithTimeout(ctx, 3*time.Second)
 	defer cancel()
 
-	customer, err := r.client.CreateCustomer(ctx, &servicespb.CreateCustomerRequest{
+	customer, err := r.client.CreateCustomer(ctx, &pb.CreateCustomerRequest{
 		CustomerID: input.ID,
 		FirstName:  input.FirstName,
 		MiddleName: input.MiddleName,

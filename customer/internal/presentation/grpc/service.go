@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/commands"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc/servicespb"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/grpc/pb"
 	"github.com/google/uuid"
 )
 
@@ -12,14 +12,14 @@ type CustomerGrpcService struct {
 	cs *application.CustomerServices
 }
 
-func NewCustomerGrpcService(cs *application.CustomerServices) servicespb.CustomerServiceServer {
+func NewCustomerGrpcService(cs *application.CustomerServices) pb.CustomerServiceServer {
 	return &CustomerGrpcService{
 		cs: cs,
 	}
 }
 func (s *CustomerGrpcService) CreateCustomer(
-	_ context.Context, request *servicespb.CreateCustomerRequest,
-) (*servicespb.CreateCustomerResponse, error) {
+	_ context.Context, request *pb.CreateCustomerRequest,
+) (*pb.CreateCustomerResponse, error) {
 	customerID, customerErr := uuid.Parse(request.CustomerID)
 	if customerErr != nil {
 		return nil, customerErr
@@ -41,7 +41,7 @@ func (s *CustomerGrpcService) CreateCustomer(
 	if err != nil {
 		return nil, err
 	}
-	return &servicespb.CreateCustomerResponse{
+	return &pb.CreateCustomerResponse{
 		Id:      response.CustomerID,
 		EventID: response.EventID,
 	}, nil

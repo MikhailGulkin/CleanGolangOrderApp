@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/99designs/gqlgen v0.17.36
+	github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env v0.0.0-20230825192009-3a1d4df0af00
 	github.com/vektah/gqlparser/v2 v2.5.8
 	google.golang.org/grpc v1.57.0
 	google.golang.org/protobuf v1.30.0
