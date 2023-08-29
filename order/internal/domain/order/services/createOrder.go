@@ -33,9 +33,9 @@ func (Service) CreateOrder(
 		orderException := exceptions.OrderProductsEmpty{}.Exception(orderID.ToString())
 		return domain.Order{}, &orderException
 	}
-	productsEvent := make([]events.OrderCreateProductEvent, len(products))
+	productsEvent := make([]events.OrderCreateProduct, len(products))
 	for index, product := range products {
-		productsEvent[index] = events.OrderCreateProductEvent{
+		productsEvent[index] = events.OrderCreateProduct{
 			ProductID:  product.ProductID,
 			Name:       product.Name,
 			TotalPrice: product.GetActualPrice(),
