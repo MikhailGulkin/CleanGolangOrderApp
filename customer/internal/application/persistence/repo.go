@@ -10,3 +10,6 @@ type EventStore interface {
 	Find(id string) (common.Aggregate, error)
 	Exists(id string) error
 }
+type Outbox interface {
+	AddEvents(events []common.Event, tx interface{}) error
+}

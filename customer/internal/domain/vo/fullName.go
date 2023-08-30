@@ -1,5 +1,7 @@
 package vo
 
+import "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
+
 type FullName struct {
 	FirstName  string
 	MiddleName string
@@ -9,16 +11,13 @@ type FullName struct {
 // NewFullName creates new FullName value object
 func NewFullName(firstName, middleName, lastName string) (FullName, error) {
 	if firstName == "" {
-		// TODO: add exception
-		return FullName{}, nil
+		return FullName{}, exceptions.InvalidFullNameLength
 	}
 	if middleName == "" {
-		// TODO: add exception
-		return FullName{}, nil
+		return FullName{}, exceptions.InvalidFullNameLength
 	}
 	if lastName == "" {
-		// TODO: add exception
-		return FullName{}, nil
+		return FullName{}, exceptions.InvalidFullNameLength
 	}
 
 	return FullName{
