@@ -1,6 +1,11 @@
 package vo
 
-import "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
+import (
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
+	"regexp"
+)
+
+var NameRegex = regexp.MustCompile(`^[A-Z][a-z]{1,254}$`)
 
 type FullName struct {
 	FirstName  string
@@ -10,14 +15,14 @@ type FullName struct {
 
 // NewFullName creates new FullName value object
 func NewFullName(firstName, middleName, lastName string) (FullName, error) {
-	if firstName == "" {
-		return FullName{}, exceptions.InvalidFullNameLength
+	if !NameRegex.MatchString(firstName) {
+		return FullName{}, exceptions.InvalidFullName
 	}
-	if middleName == "" {
-		return FullName{}, exceptions.InvalidFullNameLength
+	if !NameRegex.MatchString(middleName) {
+		return FullName{}, exceptions.InvalidFullName
 	}
-	if lastName == "" {
-		return FullName{}, exceptions.InvalidFullNameLength
+	if !NameRegex.MatchString(lastName) {
+		return FullName{}, exceptions.InvalidFullName
 	}
 
 	return FullName{

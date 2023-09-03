@@ -12,9 +12,9 @@ func TestValidFullName(t *testing.T) {
 	}
 }
 func TestInvalidFullName(t *testing.T) {
-	name := ""
+	name := "Smth"
 	middleName := ""
-	lastName := ""
+	lastName := "SSS"
 	_, err := NewFullName(name, middleName, lastName)
 	if err == nil {
 		t.Error(err)
