@@ -18,9 +18,9 @@ func (t *MockEventStore) Update(aggregate common.Aggregate, tx interface{}) erro
 	args := t.Called(aggregate, tx)
 	return args.Error(0)
 }
-func (t *MockEventStore) Find(id string) (common.Aggregate, error) {
-	args := t.Called(id)
-	return args.Get(0).(common.Aggregate), args.Error(1)
+func (t *MockEventStore) Load(aggregate common.Aggregate) error {
+	args := t.Called(aggregate)
+	return args.Error(0)
 }
 
 func (t *MockEventStore) Exists(id string) error {

@@ -31,3 +31,7 @@ func NewFullName(firstName, middleName, lastName string) (FullName, error) {
 		LastName:   lastName,
 	}, nil
 }
+
+func (f *FullName) String() string {
+	return f.FirstName + " " + f.MiddleName + " " + f.LastName
+}

@@ -11,6 +11,7 @@ const (
 	CustomerCreated    = "CUSTOMER_CREATED"
 	TransactionUpdated = "TRANSACTION_UPDATED"
 	BalanceUpdated     = "BALANCE_UPDATED"
+	AvatarUriCreated   = "AVATAR_URI_CREATED"
 )
 
 type CustomerCreatedEvent struct {
@@ -19,6 +20,10 @@ type CustomerCreatedEvent struct {
 	AddressID uuid.UUID   `json:"addressID,omitempty"`
 	Balance   vo.Balance  `json:"balance"`
 	Email     vo.Email    `json:"email"`
+}
+
+type AvatarUriCreatedEvent struct {
+	Uri string `json:"uri, omitempty"`
 }
 
 // NewCustomerCreatedEvent creates new CustomerCreatedEvent
@@ -37,6 +42,18 @@ func NewCustomerCreatedEvent(
 		Balance:   balance,
 	}
 	baseEvent := common.NewBaseEvent(aggregate, CustomerCreated)
+	if err := baseEvent.SetJsonData(&eventData); err != nil {
+		return common.Event{}, err
+	}
+	return baseEvent, nil
+}
+
+// NewAvatarUriCreatedEvent creates new AvatarUriCreatedEvent
+func NewAvatarUriCreatedEvent(aggregate common.Aggregate) (common.Event, error) {
+	eventData := AvatarUriCreatedEvent{
+		Uri: uuid.New().String(),
+	}
+	baseEvent := common.NewBaseEvent(aggregate, AvatarUriCreated)
 	if err := baseEvent.SetJsonData(&eventData); err != nil {
 		return common.Event{}, err
 	}

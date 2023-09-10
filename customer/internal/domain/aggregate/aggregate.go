@@ -1,6 +1,7 @@
 package aggregate
 
 import (
+	"fmt"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/entities"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
@@ -8,13 +9,14 @@ import (
 )
 
 const (
-	OrderAggregateType common.AggregateType = "order"
+	CustomerAggregateType common.AggregateType = "customer"
 )
 
 type Customer struct {
 	FullName     vo.FullName
 	AddressID    uuid.UUID
 	Email        vo.Email
+	AvatarUri    string
 	Balance      vo.Balance
 	Transactions []*entities.CustomerTransactions
 	Orders       []*uuid.UUID
@@ -30,8 +32,9 @@ func (a *CustomerAggregate) RaiseEvent(event common.Event) error {
 }
 
 func (a *CustomerAggregate) String() string {
-	//TODO implement me
-	panic("implement me")
+	return fmt.Sprintf(
+		"CustomerAggregate{ID: %s, FullName: %s, AddressID: %s, Email: %s, Balance: %s, Transactions: %v, Orders: %v, AvatarUri: %s}",
+		a.GetID(), a.Customer.FullName, a.Customer.AddressID, a.Customer.Email, a.Customer.Balance, a.Customer.Transactions, a.Customer.Orders, a.Customer.AvatarUri)
 }
 
 func NewCustomer() *Customer {
@@ -54,7 +57,7 @@ func NewCustomerAggregateWithID(id uuid.UUID) *CustomerAggregate {
 func NewCustomerAggregate() *CustomerAggregate {
 	orderAggregate := &CustomerAggregate{Customer: NewCustomer()}
 	base := common.NewAggregateBase(orderAggregate.When)
-	base.SetType(OrderAggregateType)
+	base.SetType(CustomerAggregateType)
 	orderAggregate.AggregateBase = base
 	return orderAggregate
 }

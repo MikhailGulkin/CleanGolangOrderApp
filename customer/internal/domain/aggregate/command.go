@@ -18,6 +18,15 @@ func (a *CustomerAggregate) CreateCustomer(
 	}
 	return a.Apply(event)
 }
+
+func (a *CustomerAggregate) CreateAvatarUri() error {
+	event, err := events.NewAvatarUriCreatedEvent(a)
+	if err != nil {
+		return err
+	}
+	return a.Apply(event)
+}
+
 func (a *CustomerAggregate) UpdateTransactionCustomer(
 	transaction *entities.CustomerTransactions,
 ) error {

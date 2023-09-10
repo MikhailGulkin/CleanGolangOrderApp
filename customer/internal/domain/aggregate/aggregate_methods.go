@@ -17,6 +17,8 @@ func (a *CustomerAggregate) When(evt common.Event) error {
 		return a.onUpdateCustomerTransaction(evt)
 	case events.BalanceUpdated:
 		return a.onUpdateCustomerBalance(evt)
+	case events.AvatarUriCreated:
+		return a.onUpdateCustomerAvatarUri(evt)
 	default:
 		return common.ErrInvalidEventType
 	}
@@ -30,6 +32,14 @@ func (a *CustomerAggregate) onCustomerCreated(evt common.Event) error {
 	a.Customer.FullName = eventData.FullName
 	a.Customer.AddressID = eventData.AddressID
 	a.Customer.Email = eventData.Email
+	return nil
+}
+func (a *CustomerAggregate) onUpdateCustomerAvatarUri(evt common.Event) error {
+	var eventData events.AvatarUriCreatedEvent
+	if err := evt.GetJsonData(&eventData); err != nil {
+		return fmt.Errorf("get Json Data, err: %w", err)
+	}
+	a.Customer.AvatarUri = eventData.Uri
 	return nil
 }
 func (a *CustomerAggregate) onUpdateCustomerTransaction(evt common.Event) error {
@@ -58,4 +68,9 @@ func (a *CustomerAggregate) GetNewBalance(money vo.Money, txType consts.Transact
 	default:
 		return vo.NewBalance()
 	}
+}
+
+func (a *CustomerAggregate) GetAvatarUri() string {
+	return a.Customer.AvatarUri
+
 }

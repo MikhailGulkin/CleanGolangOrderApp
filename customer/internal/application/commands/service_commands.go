@@ -1,11 +1,16 @@
 package commands
 
 type CustomerCommands struct {
-	CreateCustomer CreateCustomerHandler `json:"createCustomer" binding:"required"`
+	CreateCustomer       CreateCustomerHandler       `json:"createCustomer,omitempty"`
+	UploadCustomerAvatar UploadAvatarCustomerHandler `json:"uploadCustomerAvatar,omitempty"`
 }
 
-func NewCustomerCommands(createCustomer CreateCustomerHandler) *CustomerCommands {
+func NewCustomerCommands(
+	createCustomer CreateCustomerHandler,
+	uploadCustomer UploadAvatarCustomerHandler,
+) *CustomerCommands {
 	return &CustomerCommands{
-		CreateCustomer: createCustomer,
+		CreateCustomer:       createCustomer,
+		UploadCustomerAvatar: uploadCustomer,
 	}
 }

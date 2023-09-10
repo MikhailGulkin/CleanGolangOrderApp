@@ -30,3 +30,21 @@ func ConvertDomainEventToOutboxMessage(event common.Event) OutboxMessage {
 		AggregateID: event.GetAggregateID(),
 	}
 }
+
+func ConvertEventToDomainEvent(event Event) common.Event {
+	return common.Event{
+		EventID:       event.EventID,
+		EventType:     event.EventType,
+		Data:          event.EventData,
+		AggregateType: common.AggregateType(event.EntityType),
+		AggregateID:   event.EntityID,
+		Timestamp:     event.CreatedAt,
+	}
+}
+func ConvertEventsToDomainEvents(event []Event) []common.Event {
+	events := make([]common.Event, 0, len(event))
+	for _, e := range event {
+		events = append(events, ConvertEventToDomainEvent(e))
+	}
+	return events
+}

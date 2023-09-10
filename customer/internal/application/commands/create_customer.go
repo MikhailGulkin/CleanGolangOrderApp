@@ -11,13 +11,13 @@ type CreateCustomerHandler interface {
 }
 
 type createCustomerHandler struct {
-	persistence.EventStore
+	aggregate.EventStore
 	persistence.Outbox
 	persistence.UoWManager
 }
 
 func NewCreateCustomerHandler(
-	es persistence.EventStore,
+	es aggregate.EventStore,
 	o persistence.Outbox,
 	m persistence.UoWManager,
 ) CreateCustomerHandler {
