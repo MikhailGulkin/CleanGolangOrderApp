@@ -3,6 +3,7 @@ package minio
 import (
 	"bytes"
 	"context"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
@@ -14,10 +15,16 @@ type Client struct {
 }
 
 func NewMinio() persistence.Bucket {
-	minioClient, err := minio.New("localhost:9000", &minio.Options{
-		Creds:  credentials.NewStaticV4("g7D6LHivwHFXEZgo7nlv", "XVNhSAYuv4ossGre91ZugQlRrjhHt6fdnesSnipx", ""),
-		Secure: false,
-	})
+	minioClient, err := minio.New(
+		env.GetEnv("MINIO_HOST", "localhost:9000"),
+		&minio.Options{
+			Creds: credentials.NewStaticV4(
+				env.GetEnv("MINIO_ACCESS", "g7D6LHivwHFXEZgo7nlv"),
+				env.GetEnv("MINIO_SECRET", "XVNhSAYuv4ossGre91ZugQlRrjhHt6fdnesSnipx"),
+				"",
+			),
+			Secure: false,
+		})
 	if err != nil {
 		panic(err)
 	}

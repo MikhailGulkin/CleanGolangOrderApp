@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"fmt"
+	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env"
 	"go.uber.org/fx"
 )
 
@@ -32,7 +33,7 @@ func Start(
 							fmt.Printf("Recovered when boot grpc server, r %s", r)
 						}
 					}()
-					err := engine.Listen(":8000")
+					err := engine.Listen(env.GetEnv("API_PORT", ":8000"))
 					if err != nil {
 						panic(err)
 					}
