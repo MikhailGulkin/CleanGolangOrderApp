@@ -2,7 +2,7 @@ package commands
 
 import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
-	aggregate "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/aggregate"
+	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
 )
 
