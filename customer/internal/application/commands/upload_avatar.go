@@ -6,11 +6,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/aggregate"
 )
 
-type UploadAvatarCustomerHandler interface {
-	Handle(command UploadAvatarCommand) (UploadAvatarDTO, error)
-}
-
-type uploadCustomerHandler struct {
+type UploadAvatarCustomerHandler struct {
 	aggregate.EventStore
 	persistence.Outbox
 	persistence.UoWManager
@@ -22,15 +18,15 @@ func NewCustomerUploadAvatarHandler(
 	o persistence.Outbox,
 	m persistence.UoWManager,
 	bucket persistence.Bucket,
-) UploadAvatarCustomerHandler {
-	return &uploadCustomerHandler{
+) *UploadAvatarCustomerHandler {
+	return &UploadAvatarCustomerHandler{
 		EventStore: es,
 		Outbox:     o,
 		UoWManager: m,
 		Bucket:     bucket,
 	}
 }
-func (c *uploadCustomerHandler) Handle(command UploadAvatarCommand) (UploadAvatarDTO, error) {
+func (c *UploadAvatarCustomerHandler) Handle(command UploadAvatarCommand) (UploadAvatarDTO, error) {
 	customer, err := aggregate.LoadOrderAggregate(context.Background(), c.EventStore, command.CustomerID)
 	if err != nil {
 		return UploadAvatarDTO{}, err

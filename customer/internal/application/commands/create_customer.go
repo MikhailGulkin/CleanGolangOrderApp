@@ -6,11 +6,7 @@ import (
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/vo"
 )
 
-type CreateCustomerHandler interface {
-	Handle(command CreateCustomerCommand) (CustomerCreateDTO, error)
-}
-
-type createCustomerHandler struct {
+type CreateCustomerHandler struct {
 	aggregate.EventStore
 	persistence.Outbox
 	persistence.UoWManager
@@ -20,15 +16,15 @@ func NewCreateCustomerHandler(
 	es aggregate.EventStore,
 	o persistence.Outbox,
 	m persistence.UoWManager,
-) CreateCustomerHandler {
-	return &createCustomerHandler{
+) *CreateCustomerHandler {
+	return &CreateCustomerHandler{
 		EventStore: es,
 		Outbox:     o,
 		UoWManager: m,
 	}
 }
 
-func (c *createCustomerHandler) Handle(command CreateCustomerCommand) (CustomerCreateDTO, error) {
+func (c *CreateCustomerHandler) Handle(command CreateCustomerCommand) (CustomerCreateDTO, error) {
 	fullName, err := vo.NewFullName(command.FirstName, command.MiddleName, command.LastName)
 	if err != nil {
 		return CustomerCreateDTO{}, err
