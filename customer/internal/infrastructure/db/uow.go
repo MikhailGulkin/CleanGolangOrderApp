@@ -46,7 +46,7 @@ func (u *UoWManager) GetUoW() persistence.UoW {
 	}
 }
 
-func NewUoWManager(conn Connection) persistence.UoWManager {
+func NewUoWManager(conn Connection) *UoWManager {
 	return &UoWManager{
 		Conn: conn,
 	}

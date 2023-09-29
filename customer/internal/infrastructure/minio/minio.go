@@ -4,17 +4,16 @@ import (
 	"bytes"
 	"context"
 	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"log"
 )
 
 type Client struct {
-	minio.Client
+	*minio.Client
 }
 
-func NewMinio() persistence.Bucket {
+func NewMinio() *Client {
 	minioClient, err := minio.New(
 		env.GetEnv("MINIO_HOST", "localhost:9000"),
 		&minio.Options{
@@ -28,7 +27,7 @@ func NewMinio() persistence.Bucket {
 	if err != nil {
 		panic(err)
 	}
-	client := Client{Client: *minioClient}
+	client := Client{Client: minioClient}
 	SetupBuckets(&client)
 	return &client
 

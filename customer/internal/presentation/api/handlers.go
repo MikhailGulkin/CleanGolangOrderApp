@@ -25,6 +25,11 @@ func (h *Handler) UploadNewAvatar(context *fiber.Ctx) error {
 			"error": err.Error(),
 		})
 	}
+	if len(context.Body()) == 0 {
+		return context.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "Body can't be empty",
+		})
+	}
 	data, err := h.cs.Commands.UploadCustomerAvatar.Handle(commands.UploadAvatarCommand{
 		CustomerID: uid,
 		Avatar:     context.Body(),

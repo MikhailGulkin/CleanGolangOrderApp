@@ -3,8 +3,6 @@ package db
 import (
 	"context"
 	"errors"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/application/persistence"
-	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/aggregate"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/common"
 	"github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/domain/exceptions"
 	"github.com/jackc/pgx/v4"
@@ -14,7 +12,7 @@ type EventStore struct {
 	Conn Connection
 }
 
-func NewEventStore(conn Connection) aggregate.EventStore {
+func NewEventStore(conn Connection) *EventStore {
 	return &EventStore{
 		Conn: conn,
 	}
@@ -118,7 +116,7 @@ type Outbox struct {
 	Conn Connection
 }
 
-func NewOutbox(conn Connection) persistence.Outbox {
+func NewOutbox(conn Connection) *Outbox {
 	return &Outbox{
 		Conn: conn,
 	}

@@ -3,8 +3,8 @@ digraph {
 	graph [compound=true];
 	
 		subgraph cluster_0 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_0 [shape=plaintext label="NewOutbox"];
+			label = "reflect";
+			constructor_0 [shape=plaintext label="makeFuncStub"];
 			
 			"persistence.Outbox" [label=<persistence.Outbox>];
 			
@@ -14,30 +14,30 @@ digraph {
 		
 		
 		subgraph cluster_1 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_1 [shape=plaintext label="NewConfig"];
+			label = "reflect";
+			constructor_1 [shape=plaintext label="makeFuncStub"];
 			
-			"db.Config" [label=<db.Config>];
+			"aggregate.EventStore" [label=<aggregate.EventStore>];
 			
 		}
+		
+			constructor_1 -> "db.Connection" [ltail=cluster_1];
 		
 		
 		subgraph cluster_2 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_2 [shape=plaintext label="NewConnection"];
+			label = "reflect";
+			constructor_2 [shape=plaintext label="makeFuncStub"];
 			
-			"db.Connection" [label=<db.Connection>];
+			"persistence.Bucket" [label=<persistence.Bucket>];
 			
 		}
 		
-			constructor_2 -> "db.Config" [ltail=cluster_2];
-		
 		
 		subgraph cluster_3 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_3 [shape=plaintext label="NewEventStore"];
+			label = "reflect";
+			constructor_3 [shape=plaintext label="makeFuncStub"];
 			
-			"aggregate.EventStore" [label=<aggregate.EventStore>];
+			"persistence.UoWManager" [label=<persistence.UoWManager>];
 			
 		}
 		
@@ -46,22 +46,22 @@ digraph {
 		
 		subgraph cluster_4 {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
-			constructor_4 [shape=plaintext label="NewUoWManager"];
+			constructor_4 [shape=plaintext label="NewConfig"];
 			
-			"persistence.UoWManager" [label=<persistence.UoWManager>];
+			"db.Config" [label=<db.Config>];
 			
 		}
-		
-			constructor_4 -> "db.Connection" [ltail=cluster_4];
 		
 		
 		subgraph cluster_5 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/minio";
-			constructor_5 [shape=plaintext label="NewMinio"];
+			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/infrastructure/db";
+			constructor_5 [shape=plaintext label="NewConnection"];
 			
-			"persistence.Bucket" [label=<persistence.Bucket>];
+			"db.Connection" [label=<db.Connection>];
 			
 		}
+		
+			constructor_5 -> "db.Config" [ltail=cluster_5];
 		
 		
 		subgraph cluster_6 {

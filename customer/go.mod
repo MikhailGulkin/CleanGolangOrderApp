@@ -1,6 +1,6 @@
 module github.com/MikhailGulkin/simpleGoOrderApp/customer
 
-go 1.20
+go 1.21.1
 
 require (
 	github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env v0.0.0-20230823115643-0478c908f652
@@ -22,6 +22,8 @@ require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/fogleman/gg v1.3.0 // indirect
+	github.com/golang-migrate/migrate v3.5.4+incompatible // indirect
+	github.com/golang-migrate/migrate/v4 v4.16.2 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
