@@ -146,8 +146,8 @@ digraph {
 		
 		
 		subgraph cluster_13 {
-			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/api";
-			constructor_13 [shape=plaintext label="NewCustomerRouter"];
+			label = "reflect";
+			constructor_13 [shape=plaintext label="makeFuncStub"];
 			
 			"api.Route" [label=<api.Route>];
 			

@@ -26,8 +26,8 @@
 </g>
 <g id="clust14" class="cluster">
 <title>cluster_13</title>
-<polygon fill="none" stroke="#000000" points="2260.0514,-8 2260.0514,-139 2736.0192,-139 2736.0192,-8 2260.0514,-8"/>
-<text text-anchor="middle" x="2498.0353" y="-122.4" font-family="Times,serif" font-size="14.00" fill="#000000">github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/api</text>
+<polygon fill="none" stroke="#000000" points="2440.5402,-8 2440.5402,-139 2556.5304,-139 2556.5304,-8 2440.5402,-8"/>
+<text text-anchor="middle" x="2498.5353" y="-122.4" font-family="Times,serif" font-size="14.00" fill="#000000">reflect</text>
 </g>
 <g id="clust13" class="cluster">
 <title>cluster_12</title>
@@ -318,19 +318,19 @@
 <!-- constructor_13 -->
 <g id="node27" class="node">
 <title>constructor_13</title>
-<text text-anchor="middle" x="2498.5353" y="-83.8" font-family="Times,serif" font-size="14.00" fill="#000000">NewCustomerRouter</text>
+<text text-anchor="middle" x="2498.5353" y="-83.8" font-family="Times,serif" font-size="14.00" fill="#000000">makeFuncStub</text>
 </g>
 <!-- constructor_13&#45;&gt;api.Handler -->
 <g id="edge15" class="edge">
 <title>constructor_13&#45;&gt;api.Handler</title>
-<path fill="none" stroke="#000000" d="M2379.3338,-138.9976C2335.5291,-155.9554 2285.0782,-173.442 2237.807,-185 2179.302,-199.3048 2111.0795,-206.9774 2062.0436,-210.9703"/>
+<path fill="none" stroke="#000000" d="M2440.5426,-114.0317C2388.5002,-136.3074 2309.4968,-167.4715 2237.807,-185 2179.302,-199.3048 2111.0795,-206.9774 2062.0436,-210.9703"/>
 <polygon fill="#000000" stroke="#000000" points="2061.5771,-207.4961 2051.8815,-211.7676 2062.1246,-214.4746 2061.5771,-207.4961"/>
 </g>
 <!-- constructor_13&#45;&gt;api.FiberGroup -->
 <g id="edge14" class="edge">
 <title>constructor_13&#45;&gt;api.FiberGroup</title>
-<path fill="none" stroke="#000000" d="M2260.0557,-82.3054C2193.7817,-80.7229 2126.3182,-79.112 2076.1707,-77.9145"/>
-<polygon fill="#000000" stroke="#000000" points="2076.0811,-74.4115 2066.0004,-77.6717 2075.914,-81.4095 2076.0811,-74.4115"/>
+<path fill="none" stroke="#000000" d="M2440.5417,-86.6152C2350.8199,-84.4728 2178.1226,-80.349 2076.403,-77.9201"/>
+<polygon fill="#000000" stroke="#000000" points="2076.2692,-74.416 2066.1884,-77.6761 2076.102,-81.414 2076.2692,-74.416"/>
 </g>
 <!-- api.Route -->
 <g id="node28" class="node">

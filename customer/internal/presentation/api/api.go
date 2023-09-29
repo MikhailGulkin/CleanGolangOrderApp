@@ -13,7 +13,10 @@ var Module = fx.Options(
 		NewCustomerHandler,
 		NewMiddlewares,
 		NewFiberGroup,
-		NewCustomerRouter,
+		fx.Annotate(
+			NewCustomerRouter,
+			fx.As(new(Route)),
+		),
 	),
 	fx.Invoke(Start),
 )

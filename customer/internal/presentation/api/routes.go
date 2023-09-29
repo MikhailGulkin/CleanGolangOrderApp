@@ -18,6 +18,6 @@ func (r Routes) Setup() {
 func NewCustomerRouter(
 	group FiberGroup,
 	controller Handler,
-) Route {
-	return Routes{controller: controller, FiberGroup: group}
+) *Routes {
+	return &Routes{controller: controller, FiberGroup: group}
 }
