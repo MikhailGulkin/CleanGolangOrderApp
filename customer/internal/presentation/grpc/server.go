@@ -20,6 +20,7 @@ const (
 
 type Server struct {
 	service pb.CustomerServiceServer
+	server  *grpc.Server
 }
 
 func NewGrpcServer(service pb.CustomerServiceServer) *Server {
@@ -42,10 +43,13 @@ func (g *Server) Run(port string) error {
 		log.Fatalf("Failed to listen: %v", err)
 	}
 	reflection.Register(s)
-
+	g.server = s
 	err = s.Serve(lis)
 	if err != nil {
 		return err
 	}
 	return nil
+}
+func (g *Server) Down() {
+	g.server.GracefulStop()
 }

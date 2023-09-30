@@ -44,7 +44,7 @@ func Start(
 				return nil
 			},
 			OnStop: func(context.Context) error {
-				return nil
+				return engine.Shutdown()
 			},
 		},
 	)

@@ -33,6 +33,7 @@ func Start(lifecycle fx.Lifecycle, server *Server) {
 				return nil
 			},
 			OnStop: func(context.Context) error {
+				server.Down()
 				return nil
 			},
 		},
