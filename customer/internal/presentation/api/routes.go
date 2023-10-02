@@ -1,10 +1,13 @@
 package api
 
-import "github.com/gofiber/fiber/v2"
+import (
+	_ "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/api/docs"
+	"github.com/gofiber/fiber/v2"
+)
 
 type Routes struct {
 	FiberGroup
-	controller Handler
+	controller *Handler
 }
 
 type Route interface {
@@ -17,7 +20,7 @@ func (r Routes) Setup() {
 
 func NewCustomerRouter(
 	group FiberGroup,
-	controller Handler,
+	controller *Handler,
 ) *Routes {
 	return &Routes{controller: controller, FiberGroup: group}
 }

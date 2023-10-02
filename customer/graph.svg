@@ -275,11 +275,11 @@
 <path fill="none" stroke="#000000" d="M1758.0222,-303.8651C1701.4694,-312.1506 1644.1483,-320.5487 1597.7467,-327.3469"/>
 <polygon fill="#000000" stroke="#000000" points="1597.0295,-323.9146 1587.6425,-328.8273 1598.0442,-330.8406 1597.0295,-323.9146"/>
 </g>
-<!-- api.Handler -->
+<!-- *api.Handler -->
 <g id="node22" class="node">
-<title>api.Handler</title>
-<ellipse fill="none" stroke="#000000" cx="1995.9941" cy="-215" rx="56.2" ry="18"/>
-<text text-anchor="middle" x="1995.9941" y="-210.8" font-family="Times,serif" font-size="14.00" fill="#000000">api.Handler</text>
+<title>*api.Handler</title>
+<ellipse fill="none" stroke="#000000" cx="1995.9941" cy="-215" rx="61.357" ry="18"/>
+<text text-anchor="middle" x="1995.9941" y="-210.8" font-family="Times,serif" font-size="14.00" fill="#000000">*api.Handler</text>
 </g>
 <!-- constructor_11 -->
 <g id="node23" class="node">
@@ -320,11 +320,11 @@
 <title>constructor_13</title>
 <text text-anchor="middle" x="2498.5353" y="-83.8" font-family="Times,serif" font-size="14.00" fill="#000000">makeFuncStub</text>
 </g>
-<!-- constructor_13&#45;&gt;api.Handler -->
+<!-- constructor_13&#45;&gt;*api.Handler -->
 <g id="edge15" class="edge">
-<title>constructor_13&#45;&gt;api.Handler</title>
-<path fill="none" stroke="#000000" d="M2440.5426,-114.0317C2388.5002,-136.3074 2309.4968,-167.4715 2237.807,-185 2179.302,-199.3048 2111.0795,-206.9774 2062.0436,-210.9703"/>
-<polygon fill="#000000" stroke="#000000" points="2061.5771,-207.4961 2051.8815,-211.7676 2062.1246,-214.4746 2061.5771,-207.4961"/>
+<title>constructor_13&#45;&gt;*api.Handler</title>
+<path fill="none" stroke="#000000" d="M2440.5426,-114.0317C2388.5002,-136.3074 2309.4968,-167.4715 2237.807,-185 2181.0284,-198.8827 2115.0973,-206.5188 2066.4339,-210.6072"/>
+<polygon fill="#000000" stroke="#000000" points="2066.0058,-207.1303 2056.3212,-211.4267 2066.5713,-214.1074 2066.0058,-207.1303"/>
 </g>
 <!-- constructor_13&#45;&gt;api.FiberGroup -->
 <g id="edge14" class="edge">

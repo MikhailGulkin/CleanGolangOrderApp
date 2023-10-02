@@ -3,7 +3,6 @@ package api
 import (
 	"context"
 	"fmt"
-	"github.com/MikhailGulkin/CleanGolangOrderApp/pkg/env"
 	"go.uber.org/fx"
 )
 
@@ -26,7 +25,9 @@ func Start(
 	route Route,
 	engine Engine,
 ) {
+	engine.Setup()
 	route.Setup()
+
 	lifecycle.Append(
 		fx.Hook{
 			OnStart: func(context.Context) error {
@@ -36,7 +37,7 @@ func Start(
 							fmt.Printf("Recovered when boot grpc server, r %s", r)
 						}
 					}()
-					err := engine.Listen(env.GetEnv("API_PORT", ":8000"))
+					err := engine.Run()
 					if err != nil {
 						panic(err)
 					}

@@ -116,7 +116,7 @@ digraph {
 			label = "github.com/MikhailGulkin/simpleGoOrderApp/customer/internal/presentation/api";
 			constructor_10 [shape=plaintext label="NewCustomerHandler"];
 			
-			"api.Handler" [label=<api.Handler>];
+			"*api.Handler" [label=<*api.Handler>];
 			
 		}
 		
@@ -155,7 +155,7 @@ digraph {
 		
 			constructor_13 -> "api.FiberGroup" [ltail=cluster_13];
 		
-			constructor_13 -> "api.Handler" [ltail=cluster_13];
+			constructor_13 -> "*api.Handler" [ltail=cluster_13];
 		
 		
 		subgraph cluster_14 {

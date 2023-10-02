@@ -7,5 +7,5 @@ type FiberGroup struct {
 }
 
 func NewFiberGroup(engine Engine, middlewares Middlewares) FiberGroup {
-	return FiberGroup{Router: engine.Group("/api/v1", middlewares...)}
+	return FiberGroup{Router: engine.app.Group("/api/v1", middlewares...)}
 }
