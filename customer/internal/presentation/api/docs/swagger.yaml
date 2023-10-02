@@ -1,0 +1,58 @@
+basePath: /api/v1
+definitions:
+  api.Error:
+    properties:
+      error:
+        type: string
+    type: object
+  commands.UploadAvatarDTO:
+    properties:
+      avatarUri:
+        type: string
+      customerID:
+        type: string
+      eventID:
+        type: string
+    required:
+    - avatarUri
+    - customerID
+    - eventID
+    type: object
+host: localhost:8000
+info:
+  contact: {}
+  description: This is a sample server for Customer API.
+  title: Customer API
+  version: "1.0"
+paths:
+  /upload-avatar/{id}/:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload new avatar for customer
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Avatar
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/commands.UploadAvatarDTO'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/api.Error'
+      summary: Upload new avatar for customer
+      tags:
+      - Customer
+swagger: "2.0"
